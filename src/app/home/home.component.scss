@@ -1,0 +1,15 @@
+h1 {
+  font-family: "Bree Serif", serif;
+  border-top: 2px solid #c62828;
+  border-bottom: 2px solid #c62828;
+  padding-left: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.home-content {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  font-family: "Bree Serif", serif;
+}
