@@ -1,0 +1,24 @@
+.eboard-info {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+table {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-spacing: 0;
+
+  tr:nth-child(odd) {
+    background-color: #eeeeee;
+  }
+
+  tr:nth-child(1) {
+    background-color: #d9d9d9;
+  }
+
+  th,
+  td {
+    padding: 1rem;
+  }
+}

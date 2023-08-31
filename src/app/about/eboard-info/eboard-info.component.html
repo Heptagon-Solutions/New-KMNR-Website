@@ -1,0 +1,67 @@
+<div class="eboard-info" *ngIf="executiveBoard; else loading">
+  <table class="eboard-table">
+    <tr>
+      <th>Title</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+    <tr>
+      <td>Station Manager</td>
+      <td>{{ executiveBoard.stationManager }}</td>
+      <td>
+        <a href="mailto:stationmanager@kmnr.org">stationmanager@kmnr.org</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Program Director</td>
+      <td>{{ executiveBoard.programDirector }}</td>
+      <td><a href="mailto:programming@kmnr.org">programming@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Chief Engineer</td>
+      <td>{{ executiveBoard.chiefEngineer }}</td>
+      <td><a href="mailto:engineering@kmnr.org">engineering@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Personnel Director</td>
+      <td>{{ executiveBoard.personnelDirector }}</td>
+      <td><a href="mailto:personnel@kmnr.org">personnel@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Business Director</td>
+      <td>{{ executiveBoard.businessDirector }}</td>
+      <td><a href="mailto:business@kmnr.org">business@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Public Relations</td>
+      <td>{{ executiveBoard.publicRelations }}</td>
+      <td><a href="mailto:pr@kmnr.org">pr@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Music Director</td>
+      <td>{{ executiveBoard.musicDirector }}</td>
+      <td><a href="mailto:music@kmnr.org">music@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Roadshow Director</td>
+      <td>{{ executiveBoard.roadshowDirectors }}</td>
+      <td><a href="mailto:roadshow@kmnr.org">roadshow@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>News Director</td>
+      <td>{{ executiveBoard.newsDirector }}</td>
+      <td><a href="mailto:news@kmnr.org">news@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Productions</td>
+      <td>{{ executiveBoard.productions }}</td>
+      <td><a href="mailto:productions@kmnr.org">productions@kmnr.org</a></td>
+    </tr>
+    <tr>
+      <td>Historian</td>
+      <td>{{ executiveBoard.historian }}</td>
+      <td><a href="mailto:historian@kmnr.org">historian@kmnr.org</a></td>
+    </tr>
+  </table>
+</div>
+<ng-template #loading>Loading...</ng-template>

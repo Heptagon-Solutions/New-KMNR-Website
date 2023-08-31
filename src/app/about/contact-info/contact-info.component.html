@@ -1,0 +1,27 @@
+<div *ngIf="contactInfo; else loading" class="contact-info">
+  <div class="social-media">
+    <h2>Social Media</h2>
+    <p><strong>Twitter: </strong>{{ contactInfo.twitter }}</p>
+    <p>
+      <strong>Facebook: </strong
+      ><a :href="contactInfo.FACEBOOK">KMNR on Facebook</a>
+    </p>
+    <p><strong>E-Mail: </strong>{{ contactInfo.email }}</p>
+  </div>
+  <div class="phone">
+    <h2>Phone</h2>
+    <p><strong>Request Line: </strong>{{ contactInfo.phoneNumbers.request }}</p>
+    <p><strong>Office: </strong>{{ contactInfo.phoneNumbers.office }}</p>
+    <p><strong>Texter: </strong>{{ contactInfo.phoneNumbers.texter }}</p>
+  </div>
+  <div class="mail">
+    <h2>Mailing</h2>
+    <p>Please direct all postcards, love letters and fan-mail to:</p>
+    <br />
+    <p><strong>KMNR</strong></p>
+    <p>{{ contactInfo.address.line1 }}</p>
+    <p>{{ contactInfo.address.line2 }}</p>
+    <p>{{ contactInfo.address.cityStateZip }}</p>
+  </div>
+</div>
+<ng-template #loading>Loading...</ng-template>
