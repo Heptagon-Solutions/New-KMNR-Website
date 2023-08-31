@@ -1,0 +1,32 @@
+{
+  "misc": {
+    "advisor": "Dr. Jeff Schramm"
+  },
+  "contactInfo": {
+    "twitter": "@kmnr",
+    "email": "stationmanager@kmnr.org",
+    "phoneNumbers": {
+      "request": "573-341-4272",
+      "office": "573-341-4272",
+      "texter": "504-656-6735"
+    },
+    "address": {
+      "line1": "218 Havener Center",
+      "line2": "1346 N. Bishop Ave.",
+      "cityStateZip": "Rolla, MO 65409-1440"
+    }
+  },
+  "executiveBoard": {
+    "stationManager": "NAME HERE",
+    "programDirector": "NAME HERE",
+    "chiefEngineer": "NAME HERE",
+    "personnelDirector": "NAME HERE",
+    "businessDirector": "NAME HERE",
+    "publicRelations": "NAME HERE",
+    "musicDirector": "NAME HERE",
+    "roadshowDirectors": "NAMES HERE",
+    "newsDirector": "NAME HERE",
+    "productions": "NAME HERE",
+    "historian": "NAME HERE"
+  }
+}
