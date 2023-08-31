@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BannerComponent } from './banner/banner.component';
+import { BannerComponent } from '../shared/banner/banner.component';
 
 @Component({
   selector: 'home',
