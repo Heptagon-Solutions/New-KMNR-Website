@@ -1,0 +1,24 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TownAndCampusNewsEntry } from 'src/models';
+import { NewsService } from './news.service';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'news',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './news.component.html',
+  styleUrls: ['./news.component.scss'],
+})
+export class NewsComponent {
+  public newsEntries: TownAndCampusNewsEntry[] = [];
+
+  constructor(private readonly newsService: NewsService) {
+    newsService
+      .getNewsEntries()
+      .then(
+        (entries: TownAndCampusNewsEntry[]) => (this.newsEntries = entries)
+      );
+  }
+}

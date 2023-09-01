@@ -1,0 +1,23 @@
+<div class="news">
+  <h1>Town and Campus News</h1>
+  <p>
+    Town and Campus News provides a free platform for announcing your community
+    or school event to the Rolla community. All news items are read five time
+    daily on air, and can be run for up to two weeks!
+  </p>
+  <button>
+    <a routerLink="/news/form">Submit Your Event!</a>
+  </button>
+  <hr />
+  <h2>Events</h2>
+  <div class="news-item" *ngFor="let entry of newsEntries">
+    <h2 class="news">{{ entry.title }}</h2>
+    <p>
+      Location: <span class="news">{{ entry.location }}</span>
+    </p>
+    <p>
+      Contact: <span class="news">{{ entry.contact_email }}</span>
+    </p>
+    <p class="news">{{ entry.description }}</p>
+  </div>
+</div>

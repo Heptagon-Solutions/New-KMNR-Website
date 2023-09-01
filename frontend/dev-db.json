@@ -1,7 +1,12 @@
 {
-  "misc": {
-    "advisor": "Dr. Jeff Schramm"
-  },
+  "townAndCampusNews": [
+    {
+      "title": "Test 1",
+      "location": "Olive Garden",
+      "contact_email": "nobody@fake.email",
+      "description": "Angular >"
+    }
+  ],
   "contactInfo": {
     "twitter": "@kmnr",
     "email": "stationmanager@kmnr.org",
@@ -28,5 +33,8 @@
     "newsDirector": "NAME HERE",
     "productions": "NAME HERE",
     "historian": "NAME HERE"
+  },
+  "misc": {
+    "advisor": "Dr. Jeff Schramm"
   }
 }

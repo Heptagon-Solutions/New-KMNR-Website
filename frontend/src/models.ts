@@ -1,3 +1,10 @@
+export type TownAndCampusNewsEntry = {
+  title: string;
+  location: string;
+  contact_email: string;
+  description: string;
+};
+
 export type ContactInfo = {
   twitter: string;
   email: string;
