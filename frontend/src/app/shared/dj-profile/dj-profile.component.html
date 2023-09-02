@@ -1,0 +1,20 @@
+<div class="dj-profile">
+  <on-air />
+  <hr />
+  <div class="dj-info" *ngIf="dj">
+    <div class="dj-picture">
+      <div class="picture">
+        <img src="../../../assets/sonic.gif" alt="sample" />
+      </div>
+    </div>
+    <div class="dj-description">
+      <h1>{{ dj.name }}</h1>
+      <i>{{ dj.genres }}</i>
+      <!-- <p>{{dj.description}}</p> -->
+    </div>
+    <div class="dj-shows">
+      <h2>FEATURED ON</h2>
+      <h4>SHOW_NAME</h4>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,10 @@
 {
+  "djs": [
+    { "id": 1, "name": "DJCubed", "genres": "70-90s rock" },
+    { "id": 2, "name": "David", "genres": "idc" },
+    { "id": 3, "name": "Davy", "genres": "none" },
+    { "id": 4, "name": "Silly Bob", "genres": "silly music" }
+  ],
   "townAndCampusNews": [
     {
       "title": "Test 1",

@@ -1,0 +1,19 @@
+<div class="djs">
+  <on-air />
+  <h1>DISC JOCKEYS</h1>
+  <div class="dj-list" *ngIf="djList">
+    <div
+      *ngFor="let dj of djList.slice(listStart, listStart + djsPerPage)"
+      class="dj-avatar"
+    >
+      <div class="picture">
+        <img src="../../assets/sonic.gif" alt="sample" />
+      </div>
+      <h3>
+        <a [routerLink]="['/djs', dj.id]">{{ dj.name }}</a>
+      </h3>
+      <i>{{ dj.genres }}</i>
+    </div>
+  </div>
+  <button class="next">Next</button>
+</div>

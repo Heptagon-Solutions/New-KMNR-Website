@@ -1,0 +1,43 @@
+$colors: #c62828, #6d597a, #0f7173;
+
+.djs {
+  font-family: "Bree Serif", serif;
+  //text-align: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.picture {
+  margin: 1rem;
+  height: 12rem;
+  width: 12rem;
+  border: 2px solid #c62828;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    text-align: center;
+  }
+}
+
+.dj-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+
+button {
+  margin-bottom: 4rem;
+}
+
+h1 {
+  border-top: 2px solid #c62828;
+  border-bottom: 2px solid #c62828;
+  padding-left: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

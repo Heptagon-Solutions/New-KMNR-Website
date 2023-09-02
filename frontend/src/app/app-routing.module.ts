@@ -7,11 +7,26 @@ import { BlogComponent } from './blog/blog.component';
 import { AboutComponent } from './about/about.component';
 import { NewsComponent } from './news/news.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
+import { DJListComponent } from './dj-list/dj-list.component';
+import { DJProfileComponent } from './shared/dj-profile/dj-profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'djs',
+    children: [
+      {
+        path: '',
+        component: DJListComponent,
+      },
+      {
+        path: ':id',
+        component: DJProfileComponent,
+      },
+    ],
   },
   {
     path: 'news',

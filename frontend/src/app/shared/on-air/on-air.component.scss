@@ -1,0 +1,19 @@
+.dj-icons {
+  grid-area: icons;
+}
+
+.show-info {
+  grid-area: info;
+}
+
+.snapman {
+  grid-area: player;
+}
+
+.on-air {
+  font-family: "Bree Serif", serif;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: "icons info player";
+}
