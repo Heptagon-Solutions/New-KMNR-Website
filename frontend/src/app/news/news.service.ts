@@ -9,7 +9,7 @@ const URL = 'http://localhost:3000/townAndCampusNews/';
 export class NewsService {
   constructor() {}
 
-  async getNewsEntries(): Promise<TownAndCampusNewsEntry[]> {
+  public async getNewsEntries(): Promise<TownAndCampusNewsEntry[]> {
     const data = await fetch(URL);
     return await data.json();
   }

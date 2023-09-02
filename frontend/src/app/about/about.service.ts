@@ -10,17 +10,17 @@ const URL = 'http://localhost:3000/';
 export class AboutService {
   constructor() {}
 
-  async getAdvisor(): Promise<string> {
+  public async getAdvisor(): Promise<string> {
     const data = await fetch(URL + 'misc');
     return (await data.json())?.advisor;
   }
 
-  async getContactInfo(): Promise<ContactInfo> {
+  public async getContactInfo(): Promise<ContactInfo> {
     const data = await fetch(URL + 'contactInfo');
     return await data.json();
   }
 
-  async getEboard(): Promise<ExecutiveBoard> {
+  public async getEboard(): Promise<ExecutiveBoard> {
     const data = await fetch(URL + 'executiveBoard');
     return await data.json();
   }

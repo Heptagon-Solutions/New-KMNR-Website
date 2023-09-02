@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent {
-  public newsEntries: TownAndCampusNewsEntry[] = [];
+  public newsEntries: TownAndCampusNewsEntry[] | undefined = undefined;
 
   constructor(private readonly newsService: NewsService) {
     newsService

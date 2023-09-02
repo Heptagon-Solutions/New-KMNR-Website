@@ -1,11 +1,11 @@
-export type TownAndCampusNewsEntry = {
+export interface TownAndCampusNewsEntry {
   title: string;
   location: string;
   contact_email: string;
   description: string;
-};
+}
 
-export type ContactInfo = {
+export interface ContactInfo {
   twitter: string;
   email: string;
   phoneNumbers: {
@@ -18,9 +18,9 @@ export type ContactInfo = {
     line2: string;
     cityStateZip: string;
   };
-};
+}
 
-export type ExecutiveBoard = {
+export interface ExecutiveBoard {
   stationManager: string;
   programDirector: string;
   chiefEngineer: string;
@@ -32,4 +32,4 @@ export type ExecutiveBoard = {
   newsDirector: string;
   productions: string;
   historian: string;
-};
+}
