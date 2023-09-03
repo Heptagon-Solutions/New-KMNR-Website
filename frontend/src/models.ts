@@ -1,3 +1,8 @@
+export interface Semester {
+  term: string;
+  year: number;
+}
+
 export interface DJ {
   id: number;
   name: string;

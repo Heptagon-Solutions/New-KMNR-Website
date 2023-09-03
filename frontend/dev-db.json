@@ -41,6 +41,8 @@
     "historian": "NAME HERE"
   },
   "misc": {
-    "advisor": "Dr. Jeff Schramm"
+    "advisor": "Dr. Jeff Schramm",
+    "term": "F",
+    "year": "2023"
   }
 }
