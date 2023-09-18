@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { DJ } from 'src/models';
 
 import { OnAirComponent } from '../shared/on-air/on-air.component';
 import { DJService } from '../shared/dj.service';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'dj-list',

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OnAirComponent } from '../shared/on-air/on-air.component';
+
 import { Semester } from 'src/models';
+
+import { OnAirComponent } from '../shared/on-air/on-air.component';
+
 import { ShowService } from './show.service';
 import { ShowScheduleComponent } from './show-schedule/show-schedule.component';
 

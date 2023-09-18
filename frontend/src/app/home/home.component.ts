@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { BannerComponent } from '../shared/banner/banner.component';
 
 @Component({

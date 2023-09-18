@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TownAndCampusNewsEntry } from 'src/models';
-import { NewsService } from './news.service';
 import { RouterModule } from '@angular/router';
+
+import { TownAndCampusNewsEntry } from 'src/models';
+
+import { NewsService } from './news.service';
 
 @Component({
   selector: 'news',

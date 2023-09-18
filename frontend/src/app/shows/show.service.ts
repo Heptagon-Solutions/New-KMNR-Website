@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Semester } from 'src/models';
 
 const URL = 'http://localhost:3000/';
