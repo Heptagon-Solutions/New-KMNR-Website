@@ -35,6 +35,11 @@ The _Prettier_ extension is also useful for keeping your code style consistent w
 
 Run `ng generate component <component-name> --standalone` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+### Mock-ups
+
+Mock-ups help with giving an idea for what the website should look like. Think of them as style guides. 
+We have the origional mock-ups made by KMNR alumni _Elizabeth Hoffer_ and are [available here](https://drive.google.com/drive/folders/1BJ4RVYpYwLwPs1m9jhKhyHFUlajuOsvx).
+
 ## Production Tools
 
 These are for getting the website ready to be served on the internet
