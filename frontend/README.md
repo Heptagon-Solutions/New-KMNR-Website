@@ -1,14 +1,16 @@
 # KWIP2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0. To get help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0. To get help on the Angular CLI use `npx ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Running the application
 
 These commands run a local version of the website on your computer for your personal use.
 
+In case of errors, ensure you are in the `frontend` folder. If this is your first time using KWIP-2 you will need to run `npm install` (which means you must have _NodeJS_ on your machine - version 18 specifically).
+
 ### Frontend
 
-Run `ng serve` to start the frontend dev server. In your browser, go to [`http://localhost:4200/`](). The application will automatically reload if you change any of the source files.
+Run `npx ng serve` to start the frontend dev server. In your browser, go to [`http://localhost:4200/`](). The application will automatically reload if you change any of the source files.
 
 ### Backend
 
