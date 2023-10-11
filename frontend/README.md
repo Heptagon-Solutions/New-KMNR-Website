@@ -1,4 +1,4 @@
-# KWIP2
+# Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0. To get help on the Angular CLI use `npx ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
