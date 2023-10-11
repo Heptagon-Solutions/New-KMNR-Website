@@ -4,13 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Running the application
 
-These commands run a local version of the website on your computer for your personal use.
-
-In case of errors, ensure you are in the `frontend` folder. If this is your first time using KWIP-2 you will need to run `npm install` (which means you must have _NodeJS_ on your machine - version 18 specifically).
+These commands run a local version of the website on your computer for your personal use. If you get any errors, make sure you are in the `frontend` folder in your terminal.
 
 ### Frontend
 
-Run `npx ng serve` to start the frontend dev server. In your browser, go to [`http://localhost:4200/`](). The application will automatically reload if you change any of the source files.
+Run `npm run start` to start the frontend dev server. In your browser, go to [`http://localhost:4200/`](). The application will automatically reload if you change any of the source files.
 
 ### Backend
 
@@ -39,7 +37,7 @@ Run `ng generate component <component-name> --standalone` to generate a new comp
 
 ### Mock-ups
 
-Mock-ups help with giving an idea for what the website should look like. Think of them as style guides. 
+Mock-ups help with giving an idea for what the website should look like. Think of them as style guides.
 We have the origional mock-ups made by KMNR alumni _Elizabeth Hoffer_ and are [available here](https://drive.google.com/drive/folders/1BJ4RVYpYwLwPs1m9jhKhyHFUlajuOsvx).
 
 ## Production Tools
