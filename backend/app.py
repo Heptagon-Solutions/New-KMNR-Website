@@ -1,6 +1,10 @@
 from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+# THIS IS FOR DEV ONLY - REMOVE BEFORE PRODUCTION
+CORS(app, origins=["http://localhost:4200"])
 
 
 @app.route("/")
