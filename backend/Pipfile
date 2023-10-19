@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-mysqldb = "*"
+python-dotenv = "*"
 
 [dev-packages]
 flask-cors = "*"

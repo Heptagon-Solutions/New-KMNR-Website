@@ -1,4 +1,5 @@
 from configparser import ConfigParser
+from dotenv import dotenv_values
 
 from flask import Flask
 from flask_mysqldb import MySQL
@@ -10,12 +11,13 @@ app = Flask(__name__)
 config = ConfigParser()
 config.read("config.ini")
 db_config = config["DATABASE"]
+secrets = dotenv_values(".env")
 
 app.config["MYSQL_HOST"] = db_config["host"]
 app.config["MYSQL_PORT"] = int(db_config["port"])
 app.config["MYSQL_DB"] = db_config["database"]
-app.config["MYSQL_USER"] = db_config["user"]
-app.config["MYSQL_PASSWORD"] = db_config["pass"]
+app.config["MYSQL_USER"] = secrets["DB_USER"]
+app.config["MYSQL_PASSWORD"] = secrets["DB_PASS"]
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"  # Makes cursor.execute() return Dict or Dict[]
 mysql = MySQL(app)
 

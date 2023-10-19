@@ -35,4 +35,6 @@ pipenv install
 
 ### MySQL Database
 
-Coming soon...
+Your database username and password are _secrets_ that will be stored in a `.env` file. In the backend directory, create a copy of `example.env` and rename it `.env`. Fill in your chosen username and password as indicated in the file.
+
+More Coming soon...
