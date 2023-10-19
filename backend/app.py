@@ -35,18 +35,19 @@ def fake_data():
 
 @app.route("/database")
 def database_test():
-    cur = mysql.connection.cursor()
-    cur.execute("""SELECT * FROM actor""")
-    rv = cur.fetchone()
-    cur.close()
-    return str(rv)
+    with mysql.connection.cursor() as cur:
+        cur.execute("""SELECT * FROM actor""")
+        rv = cur.fetchone()  # Returns a dict
+    # Dict and list types are converted to JSON responses
+    return rv
 
 @app.route("/database/<table_name>")
 def database_table(table_name):
     with mysql.connection.cursor() as cur:
         cur.execute(f"""SELECT * FROM {table_name} LIMIT 5""")
-        rv = cur.fetchall()
-    return str(rv)
+        rv = cur.fetchall()  # Returns a tuple
+    # Must return list or dict for a JSON response; convert tuples to lists
+    return list(rv)
 
 if __name__ == "__main__":
     app.run(debug=True)
