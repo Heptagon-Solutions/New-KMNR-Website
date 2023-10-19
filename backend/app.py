@@ -45,3 +45,6 @@ def database_table(table_name):
         cur.execute(f"""SELECT * FROM {table_name} LIMIT 5""")
         rv = cur.fetchall()
     return str(rv)
+
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -1,7 +1,5 @@
 # Backend
 
-Run `pipenv run flask run` to start the backend application.
+Run `pipenv run py app.py` to start the backend application in debug mode. By using debug mode, you don't have to restart the app after making changes and you get more detailed error logs.
 
 To check that it is running go to [http://localhost:5000/]().
-
-Unlike Angular, Flask doesn't automatically reload when you change the source code. You will have to restart the process after any edits for them to take effect.
