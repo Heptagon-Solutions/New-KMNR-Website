@@ -35,6 +35,6 @@ pipenv install
 
 ### MySQL Database
 
-Your database username and password are _secrets_ that will be stored in a `.env` file. In the backend directory, create a copy of `example.env` and rename it `.env`. Fill in your chosen username and password as indicated in the file.
+You will need to install MySQL on your device to use the database. Read [`backend/Installing_MySQL.md`](backend/Installing_MySQL.md) for instructions.
 
-More Coming soon...
+The backend will access the database through the `root` account you setup during MySQL Server configuration. To use this account, the backend has to know the password. In the backend directory, create a copy of [`example.env`](backend/example.env) and rename it to `.env`. Fill in your password as indicated in the file.
