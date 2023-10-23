@@ -21,33 +21,43 @@ export class HomeComponent {
   public backendMsg: string = 'Waiting for backend to respond...';
 
   constructor(private readonly http: HttpClient) {
-    // Using an Observable to change component data
+    // Example of processing an Observable to edit component data
     this.getBackendMsg$().subscribe({
+      // This is called if everything goes well
       next: (data: BackendData) => {
         this.backendMsg = data.msg;
       },
+      // This is called when errorHandler$ `throw`s an error
       error: (err: string) => {
-        this.backendMsg = err;
+        this.backendMsg = 'ERROR: ' + err;
       },
     });
   }
 
-  // Example of requesting data from the backend, and getting it back as an Observable
+  /**
+   * Example of requesting data from the backend and getting it back as an Observable.
+   */
   private getBackendMsg$(): Observable<BackendData> {
-    return this.http
-      .get<BackendData>('http://localhost:5000/data')
-      .pipe(catchError(this.errorHandler$));
+    return this.http.get<BackendData>('http://localhost:5000/data').pipe(
+      // errorHandler$ is called if the request throws an error (HttpErrorResponse)
+      catchError(this.errorHandler$)
+    );
   }
 
-  // Handles all errors from Observable before use in frontend
+  /**
+   * Observable error handlers can either:
+   * 1. Process the error and return an Observable, which makes everything continue like nothing happened, or,
+   * 2. Throw an error, triggering the 'error' function in the subscription.
+   * @throws a string error message describing what went wrong.
+   */
   private errorHandler$(error: HttpErrorResponse): Observable<BackendData> {
     if (error.error === 0) {
       throw 'An client-side or network error occured.';
     } else {
       if (error.status === 0) {
-        throw 'Error when contacting the backend. Do you have it running?';
+        throw 'Problem contacting backend. Do you have it running?';
       } else {
-        throw `Error: backend returned code ${error.status}.`;
+        throw `backend returned code ${error.status}.`;
       }
     }
   }
