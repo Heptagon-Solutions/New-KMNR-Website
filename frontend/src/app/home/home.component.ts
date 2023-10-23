@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { BannerComponent } from '../shared/banner/banner.component';
+
+interface BackendData {
+  msg: string;
+}
 
 @Component({
   selector: 'home',
@@ -11,15 +18,37 @@ import { BannerComponent } from '../shared/banner/banner.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  public msg: string = 'nothing recieved from backend';
+  public backendMsg: string = 'Waiting for backend to respond...';
 
-  constructor() {
-    this.getMsg().then(msg => (this.msg = msg));
+  constructor(private readonly http: HttpClient) {
+    // Using an Observable to change component data
+    this.getBackendMsg$().subscribe({
+      next: (data: BackendData) => {
+        this.backendMsg = data.msg;
+      },
+      error: (err: string) => {
+        this.backendMsg = err;
+      },
+    });
   }
 
-  // This is an example of how to communicate to the Flask API
-  private async getMsg(): Promise<string> {
-    const response = await fetch('http://localhost:5000/data');
-    return (await response.json()).msg;
+  // Example of requesting data from the backend, and getting it back as an Observable
+  private getBackendMsg$(): Observable<BackendData> {
+    return this.http
+      .get<BackendData>('http://localhost:5000/data')
+      .pipe(catchError(this.errorHandler$));
+  }
+
+  // Handles all errors from Observable before use in frontend
+  private errorHandler$(error: HttpErrorResponse): Observable<BackendData> {
+    if (error.error === 0) {
+      throw 'An client-side or network error occured.';
+    } else {
+      if (error.status === 0) {
+        throw 'Error when contacting the backend. Do you have it running?';
+      } else {
+        throw `Error: backend returned code ${error.status}.`;
+      }
+    }
   }
 }
