@@ -5,6 +5,8 @@ from flask import Flask
 from flask_mysqldb import MySQL
 from flask_cors import CORS
 
+from MySQLdb import Error
+
 
 app = Flask(__name__)
 
@@ -33,21 +35,34 @@ def hello_world():
 def fake_data():
     return {"msg": "Hi! This is the backend API speaking!"}
 
+# Example endpoint that accesses the database and catches database related errors.
 @app.route("/database")
 def database_test():
-    with mysql.connection.cursor() as cur:
-        cur.execute("""SELECT * FROM actor""")
-        rv = cur.fetchone()  # Returns a dict
-    # Dict and list types are converted to JSON responses
-    return rv
+    try:
+        with mysql.connection.cursor() as cur:
+            cur.execute("""SELECT * FROM actor""")
+            rv = cur.fetchone()  # Returns a dict
+        # Dict and list types are converted to JSON responses
+        return rv
+    except Error as e:
+        return {
+            "message": f"{e.args[1]} ({e.args[0]})"
+        }, 500
 
+# Example endpoint that uses URL parameters to make a dynamic database query
+# (fyi - this is a TOTALLY unsecure endpoint)
 @app.route("/database/<table_name>")
 def database_table(table_name):
-    with mysql.connection.cursor() as cur:
-        cur.execute(f"""SELECT * FROM {table_name} LIMIT 5""")
-        rv = cur.fetchall()  # Returns a tuple
-    # Must return list or dict for a JSON response; convert tuples to lists
-    return list(rv)
+    try:
+        with mysql.connection.cursor() as cur:
+            cur.execute(f"""SELECT * FROM {table_name} LIMIT 5""")
+            rv = cur.fetchall()  # Returns a tuple
+        # Must return list or dict for a JSON response; convert tuples to lists
+        return list(rv)
+    except Error as e:
+        return {
+            "message": f"{e.args[1]} ({e.args[0]})"
+        }, 500
 
 if __name__ == "__main__":
     app.run(debug=True)
