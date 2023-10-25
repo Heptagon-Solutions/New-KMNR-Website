@@ -40,7 +40,7 @@ def fake_data():
 def database_test():
     try:
         with mysql.connection.cursor() as cur:
-            cur.execute("""SELECT * FROM actor""")
+            cur.execute("""SELECT * FROM show_slot""")
             rv = cur.fetchone()  # Returns a dict
         # Dict and list types are converted to JSON responses
         return rv
