@@ -1,0 +1,85 @@
+CREATE TABLE User{
+   ID int,
+   Name VARCHAR(50) NOT NULL,
+   Email VARCHAR(50) NOT NULL,
+   Password VARCHAR(50) NOT NULL,
+   Associated_DJ VARCHAR(50),
+   Role VARCHAR(50),
+   PRIMARY KEY(ID),
+}
+
+CREATE TABLE DJ{
+   ID int,
+   DJ_Name VARCHAR(50) NOT NULL,
+   Sem_Trained VARCHAR(20) NOT NULL,
+   Grad_Sem VARCHAR(20) NOT NULL,
+   Prof_Desc TINYTEXT,
+   Prof_IMG MEDIUMBLOB,
+   PRIMARY KEY(ID),
+}
+
+CREATE TABLE Semester{
+   
+
+
+CREATE TABLE Town_And_Campus_News{
+   ID int,
+   Title VARCHAR(50) NOT NULL,
+   Organization VARCHAR(50),
+   Description VARCHAR(//idk) NOT NULL,
+   Location VARCHAR(50) NOT NULL,
+   Website VARCHAR(50),
+   Person_Of_Contact VARCHAR(50) NOT NULL,
+   Contact_Email VARCHAR(50) NOT NULL,
+   PRIMARY KEY(ID),
+}
+
+CREATE TABLE Rented_Show{
+   ID int,
+   Show // FROM SHOW TABLE,
+   Date DATE, //apparently is an allowed thing - format: YYYY-MM-DD
+   Claimer // DJ_Name,
+}
+
+CREATE TABLE Show{
+   ID int,
+   Name VARCHAR(50),
+   Desc_Long VARCHAR(200),
+   Desc_Short VARCHAR(50),
+   DJs //list of associated djs from the dj table,
+   Associated_Slot //from showslot table,
+   Show_Image //img,
+}
+
+CREATE TABLE Playlist{
+   ID int,
+   Name VARCHAR(50),
+   Desc VARCHAR(50),
+   Date DATE,
+   Ass_Show //rip from show table,
+   --Listenership //hmmidk, tbh
+   Spotify_URL VARCHAR(50),
+   Hidden bool,
+   Playlist_IMG //img,
+   PRIMARY KEY(ID),
+}
+
+CREATE TABLE Show_Slot{
+   ID int,
+   Day VARCHAR(10),
+   Start_Time tinyint, //DATETIME unneccessary
+   End_Time tinyint,
+   Sem_Year VARCHAR(20),
+}
+
+CREATE TABLE Playlist_Track{
+   Track_Num int,
+   Ass_Playlist //rip from playlist,
+   Song_Name VARCHAR(100),
+   Artist_Name VARCHAR(100),
+   Album_Name VARCHAR(50),
+   Spotify_URL VARCHAR(50), //may be able to rip from Spotify API Integration
+   PRIMARY KEY(ID),
+   FOREIGN KEY (Ass_Playlist) REFERENCES Playlist(ID),
+}
+
