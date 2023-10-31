@@ -52,23 +52,17 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
--- Idek if we'll use this one
--- CREATE TABLE Show_Slot{
---    ID int,
---    Day VARCHAR(10),
---    Start_Time tinyint, //DATETIME unneccessary
---    End_Time tinyint,
---    Sem_Year VARCHAR(20),
--- }
-
 CREATE TABLE
     radio_show (
         id INT AUTO_INCREMENT,
         name VARCHAR(50) NOT NULL,
-        long_desc TINYTEXT,  -- Longer?
         short_desc VARCHAR(50),  -- Shorter?
-        -- Associated_Slot from showslot table
-        -- Fuck, idk if we need those slots or not man
+        long_desc TINYTEXT,  -- Longer?
+        day ENUM('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday') NOT NULL,
+        start_time TINYINT NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
+        end_time TINYINT NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
+        semester ENUM('Spring','Summer','Fall') NOT NULL,
+        year YEAR NOT NULL,
         show_image MEDIUMBLOB,  -- What's the best blob size?
         PRIMARY KEY (id)
     );
