@@ -96,7 +96,7 @@ CREATE TABLE
         id INT,
         radio_show_id INT NOT NULL,
         name VARCHAR(50),  -- Null allowed for DJs who don't leave playlist names in KLAP
-        desc TINYTEXT,  -- Longer? Shorter?
+        description TINYTEXT,  -- Longer? Shorter?
         date_played DATE NOT NULL,  -- Default to current date?
         -- Listenership: Problem for another day
         -- Spotify_URL VARCHAR(50): Problem for another day
