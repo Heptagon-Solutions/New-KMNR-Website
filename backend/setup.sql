@@ -1,7 +1,15 @@
 CREATE DATABASE IF NOT EXISTS kwip;
 USE kwip;
 
+DROP TABLE IF EXISTS playlist_track;
+DROP TABLE IF EXISTS playlist;
+DROP TABLE IF EXISTS rented_show;
+DROP TABLE IF EXISTS show_host;
+DROP TABLE IF EXISTS radio_show;
+DROP TABLE IF EXISTS town_and_campus_news;
+DROP TABLE IF EXISTS dj;
 DROP TABLE IF EXISTS user;
+
 CREATE TABLE
     user (
         id INT AUTO_INCREMENT,
@@ -12,7 +20,6 @@ CREATE TABLE
         PRIMARY KEY (ID)
     );
 
-DROP TABLE IF EXISTS dj;
 CREATE TABLE
     dj (
         id INT AUTO_INCREMENT,
@@ -29,7 +36,6 @@ CREATE TABLE
         FOREIGN KEY (trainer_dj_id) REFERENCES dj(id)
     );
 
-DROP TABLE IF EXISTS town_and_campus_news;
 CREATE TABLE
     town_and_campus_news (
         id INT AUTO_INCREMENT,
@@ -55,7 +61,6 @@ CREATE TABLE
 --    Sem_Year VARCHAR(20),
 -- }
 
-DROP TABLE IF EXISTS radio_show;
 CREATE TABLE
     radio_show (
         id INT AUTO_INCREMENT,
@@ -68,7 +73,6 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
-DROP TABLE IF EXISTS show_host;
 CREATE TABLE
     show_host (
         radio_show_id INT,
@@ -78,7 +82,6 @@ CREATE TABLE
         FOREIGN KEY (dj_id) REFERENCES dj(id)
     );
 
-DROP TABLE IF EXISTS rented_show;
 CREATE TABLE
     rented_show (
         id INT,  -- Remove surrogate; use composite show_id + rent_date key instead?
@@ -90,7 +93,6 @@ CREATE TABLE
         FOREIGN KEY (claimer_dj_id) REFERENCES dj(id)
     );
 
-DROP TABLE IF EXISTS playlist;
 CREATE TABLE
     playlist (
         id INT,
@@ -106,7 +108,6 @@ CREATE TABLE
         FOREIGN KEY (radio_show_id) REFERENCES radio_show(id)
     );
 
-DROP TABLE IF EXISTS playlist_track;
 CREATE TABLE
     playlist_track (
         playlist_id INT,
