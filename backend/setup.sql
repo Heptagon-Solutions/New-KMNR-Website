@@ -55,9 +55,9 @@ CREATE TABLE
 --    Sem_Year VARCHAR(20),
 -- }
 
-DROP TABLE IF EXISTS show;
+DROP TABLE IF EXISTS radio_show;
 CREATE TABLE
-    show (
+    radio_show (
         id INT AUTO_INCREMENT,
         name VARCHAR(50) NOT NULL,
         long_desc TINYTEXT,  -- Longer?
@@ -71,10 +71,10 @@ CREATE TABLE
 DROP TABLE IF EXISTS show_host;
 CREATE TABLE
     show_host (
-        show_id INT,
+        radio_show_id INT,
         dj_id INT,
-        PRIMARY KEY (show_id, dj_id),
-        FOREIGN KEY (show_id) REFERENCES show (id),
+        PRIMARY KEY (radio_show_id, dj_id),
+        FOREIGN KEY (radio_show_id) REFERENCES radio_show (id),
         FOREIGN KEY (dj_id) REFERENCES dj(id)
     );
 
@@ -82,11 +82,11 @@ DROP TABLE IF EXISTS rented_show;
 CREATE TABLE
     rented_show (
         id INT,  -- Remove surrogate; use composite show_id + rent_date key instead?
-        show_id INT NOT NULL,
+        radio_show_id INT NOT NULL,
         rent_date DATE NOT NULL,  -- Time can be found from joining with show or slot table
         claimer_dj_id INT,
         PRIMARY KEY (id),
-        FOREIGN KEY (show_id) REFERENCES show (id),
+        FOREIGN KEY (radio_show_id) REFERENCES radio_show (id),
         FOREIGN KEY (claimer_dj_id) REFERENCES dj(id)
     );
 
@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS playlist;
 CREATE TABLE
     playlist (
         id INT,
-        show_id INT NOT NULL,
+        radio_show_id INT NOT NULL,
         name VARCHAR(50),  -- Null allowed for DJs who don't leave playlist names in KLAP
         desc TINYTEXT,  -- Longer? Shorter?
         date_played DATE NOT NULL,  -- Default to current date?
@@ -103,7 +103,7 @@ CREATE TABLE
         hidden BOOLEAN NOT NULL DEFAULT 0,
         playlist_img MEDIUMBLOB,  -- What's the best blob size?
         PRIMARY KEY (ID),
-        FOREIGN KEY (show_id) REFERENCES show(id)
+        FOREIGN KEY (radio_show_id) REFERENCES radio_show(id)
     );
 
 DROP TABLE IF EXISTS playlist_track;
