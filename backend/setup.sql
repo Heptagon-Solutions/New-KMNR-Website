@@ -9,6 +9,15 @@ DROP TABLE IF EXISTS radio_show;
 DROP TABLE IF EXISTS town_and_campus_news;
 DROP TABLE IF EXISTS dj;
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS semester;
+
+CREATE TABLE
+    semester (
+        id INT AUTO_INCREMENT,
+        semester ENUM('Spring','Summer','Fall') NOT NULL,
+        year YEAR NOT NULL,
+        PRIMARY KEY (id)
+    );
 
 CREATE TABLE
     user (
@@ -24,16 +33,16 @@ CREATE TABLE
     dj (
         id INT AUTO_INCREMENT,
         dj_name VARCHAR(50) NOT NULL,
-        sem_trained ENUM('Spring', 'Summer', 'Fall') NOT NULL,
-        year_trained YEAR NOT NULL,
+        training_semester_id INT NOT NULL,
         trainer_dj_id INT,  -- Can not make NOT NULL; how would we add the first DJ?
-        sem_grad ENUM('Spring', 'Summer', 'Fall'),
-        year_grad YEAR,
+        graduating_semester_id INT,
         profile_desc TINYTEXT,  -- Longer?
         profile_img MEDIUMBLOB,  -- What's best Blob size?
         PRIMARY KEY (id),
         FOREIGN KEY (id) REFERENCES user(id),
-        FOREIGN KEY (trainer_dj_id) REFERENCES dj(id)
+        FOREIGN KEY (training_semester_id) REFERENCES semester(id),
+        FOREIGN KEY (trainer_dj_id) REFERENCES dj(id),
+        FOREIGN KEY (graduating_semester_id) REFERENCES semester(id)
     );
 
 CREATE TABLE
@@ -61,10 +70,10 @@ CREATE TABLE
         day ENUM('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday') NOT NULL,
         start_time TINYINT NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
         end_time TINYINT NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
-        semester ENUM('Spring','Summer','Fall') NOT NULL,
-        year YEAR NOT NULL,
+        semester_id INT NOT NULL,
         show_image MEDIUMBLOB,  -- What's the best blob size?
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        FOREIGN KEY (semester_id) REFERENCES semester(id)
     );
 
 CREATE TABLE
