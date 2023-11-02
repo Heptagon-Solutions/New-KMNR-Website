@@ -1,12 +1,12 @@
 CREATE DATABASE IF NOT EXISTS kwip;
 USE kwip;
 
+DROP TABLE IF EXISTS town_and_campus_news;
 DROP TABLE IF EXISTS playlist_track;
 DROP TABLE IF EXISTS playlist;
 DROP TABLE IF EXISTS rented_show;
 DROP TABLE IF EXISTS show_host;
 DROP TABLE IF EXISTS radio_show;
-DROP TABLE IF EXISTS town_and_campus_news;
 DROP TABLE IF EXISTS dj;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS semester;
@@ -43,22 +43,6 @@ CREATE TABLE
         FOREIGN KEY (training_semester_id) REFERENCES semester(id),
         FOREIGN KEY (trainer_dj_id) REFERENCES dj(id),
         FOREIGN KEY (graduating_semester_id) REFERENCES semester(id)
-    );
-
-CREATE TABLE
-    town_and_campus_news (
-        id INT UNSIGNED AUTO_INCREMENT,
-        title VARCHAR(50) NOT NULL,
-        organization VARCHAR(50),
-        description TEXT NOT NULL,  -- TEXT can be sized for enforcing char-limit
-        location VARCHAR(50) NOT NULL,
-        website VARCHAR(50),  -- Lengthen for longer URLs?
-        contact_name VARCHAR(50) NOT NULL,
-        contact_email VARCHAR(50) NOT NULL,
-        approved BOOLEAN NOT NULL DEFAULT 0,
-        submit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        expiration_date TIMESTAMP NOT NULL,
-        PRIMARY KEY (id)
     );
 
 CREATE TABLE
@@ -123,4 +107,20 @@ CREATE TABLE
         -- Spotify_URL VARCHAR(50): Problem for another day
         PRIMARY KEY (playlist_id, track),
         FOREIGN KEY (playlist_id) REFERENCES playlist(id)
+    );
+
+CREATE TABLE
+    town_and_campus_news (
+        id INT UNSIGNED AUTO_INCREMENT,
+        title VARCHAR(50) NOT NULL,
+        organization VARCHAR(50),
+        description TEXT NOT NULL,  -- TEXT can be sized for enforcing char-limit
+        location VARCHAR(50) NOT NULL,
+        website VARCHAR(50),  -- Lengthen for longer URLs?
+        contact_name VARCHAR(50) NOT NULL,
+        contact_email VARCHAR(50) NOT NULL,
+        approved BOOLEAN NOT NULL DEFAULT 0,
+        submit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        expiration_date DATE NOT NULL,
+        PRIMARY KEY (id)
     );
