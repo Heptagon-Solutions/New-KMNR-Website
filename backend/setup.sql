@@ -99,15 +99,17 @@ CREATE TABLE
 CREATE TABLE
     playlist (
         id INT UNSIGNED AUTO_INCREMENT,
-        radio_show_id INT UNSIGNED NOT NULL,
+        date_played TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        posting_dj_id INT UNSIGNED,  -- The DJ that posted the playlist from KLAP. NULL means automation
+        radio_show_id INT UNSIGNED,  -- Only provided if this playlist was for a show (not inmpromptu/automation)
+        -- This also allows shows like Artist Feature to have many different DJs providing playlists
         name VARCHAR(50),  -- Null allowed for DJs who don't leave playlist names in KLAP
         description TINYTEXT,  -- Longer? Shorter?
-        date_played DATE NOT NULL,  -- Default to current date?
         -- Listenership: Problem for another day
         -- Spotify_URL VARCHAR(50): Problem for another day
         hidden BOOLEAN NOT NULL DEFAULT 0,
         playlist_img MEDIUMBLOB,  -- What's the best blob size?
-        PRIMARY KEY (ID),
+        PRIMARY KEY (id),
         FOREIGN KEY (radio_show_id) REFERENCES radio_show(id)
     );
 

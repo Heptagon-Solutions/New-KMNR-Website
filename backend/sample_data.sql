@@ -35,10 +35,12 @@ INSERT INTO rented_show
         (4, '2023-11-04', 1);
 
 INSERT INTO playlist
-    (id, radio_show_id, name, description, date_played)
+    (id, date_played, posting_dj_id, radio_show_id, name, description)
     VALUES
-    (1, 1, NULL, NULL, '2023-10-30'),
-    (2, 3, 'Spooky walk', 'walking on friday 13th', '2023-10-13');
+    (1, '2023-10-30', 1, 1, NULL, NULL),
+    (2, '2023-10-13', 1, 3, 'Spooky walk', 'walking on friday 13th'),
+    (3, '2023-10-20', 2, NULL, 'impromptu show', NULL),
+    (4, '2023-10-22', NULL, NULL, 'automation show', NULL);
 
 INSERT INTO playlist_track VALUES
     (1, 1, 'Barely Legal', 'The Strokes', 'Is This It?'),
