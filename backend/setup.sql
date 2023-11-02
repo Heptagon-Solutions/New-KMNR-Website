@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS semester;
 
 CREATE TABLE
     semester (
-        id INT AUTO_INCREMENT,
+        id INT UNSIGNED AUTO_INCREMENT,
         semester ENUM('Spring','Summer','Fall') NOT NULL,
         year YEAR NOT NULL,
         PRIMARY KEY (id)
@@ -21,7 +21,7 @@ CREATE TABLE
 
 CREATE TABLE
     user (
-        id INT AUTO_INCREMENT,
+        id INT UNSIGNED AUTO_INCREMENT,
         name VARCHAR(50) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(50) NOT NULL,
@@ -31,11 +31,11 @@ CREATE TABLE
 
 CREATE TABLE
     dj (
-        id INT AUTO_INCREMENT,
+        id INT UNSIGNED AUTO_INCREMENT,
         dj_name VARCHAR(50) NOT NULL,
-        training_semester_id INT NOT NULL,
-        trainer_dj_id INT,  -- Can not make NOT NULL; how would we add the first DJ?
-        graduating_semester_id INT,
+        training_semester_id INT UNSIGNED NOT NULL,
+        trainer_dj_id INT UNSIGNED,  -- Can not make NOT NULL; how would we add the first DJ?
+        graduating_semester_id INT UNSIGNED,
         profile_desc TINYTEXT,  -- Longer?
         profile_img MEDIUMBLOB,  -- What's best Blob size?
         PRIMARY KEY (id),
@@ -47,7 +47,7 @@ CREATE TABLE
 
 CREATE TABLE
     town_and_campus_news (
-        id INT AUTO_INCREMENT,
+        id INT UNSIGNED AUTO_INCREMENT,
         title VARCHAR(50) NOT NULL,
         organization VARCHAR(50),
         description TEXT NOT NULL,  -- TEXT can be sized for enforcing char-limit
@@ -63,14 +63,14 @@ CREATE TABLE
 
 CREATE TABLE
     radio_show (
-        id INT AUTO_INCREMENT,
+        id INT UNSIGNED AUTO_INCREMENT,
         name VARCHAR(50) NOT NULL,
         short_desc VARCHAR(50),  -- Shorter?
         long_desc TINYTEXT,  -- Longer?
         day ENUM('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday') NOT NULL,
-        start_time TINYINT NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
-        end_time TINYINT NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
-        semester_id INT NOT NULL,
+        start_time TINYINT UNSIGNED NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
+        end_time TINYINT UNSIGNED NOT NULL,  -- Only 24 values needed, maybe customize with BIT(size)?
+        semester_id INT UNSIGNED NOT NULL,
         show_image MEDIUMBLOB,  -- What's the best blob size?
         PRIMARY KEY (id),
         FOREIGN KEY (semester_id) REFERENCES semester(id)
@@ -78,8 +78,8 @@ CREATE TABLE
 
 CREATE TABLE
     show_host (
-        radio_show_id INT,
-        dj_id INT,
+        radio_show_id INT UNSIGNED AUTO_INCREMENT,
+        dj_id INT UNSIGNED,
         PRIMARY KEY (radio_show_id, dj_id),
         FOREIGN KEY (radio_show_id) REFERENCES radio_show (id),
         FOREIGN KEY (dj_id) REFERENCES dj(id)
@@ -87,10 +87,10 @@ CREATE TABLE
 
 CREATE TABLE
     rented_show (
-        id INT,  -- Remove surrogate; use composite show_id + rent_date key instead?
-        radio_show_id INT NOT NULL,
+        id INT UNSIGNED AUTO_INCREMENT,
+        radio_show_id INT UNSIGNED NOT NULL,
         rent_date DATE NOT NULL,  -- Time can be found from joining with show or slot table
-        claimer_dj_id INT,
+        claimer_dj_id INT UNSIGNED,
         PRIMARY KEY (id),
         FOREIGN KEY (radio_show_id) REFERENCES radio_show (id),
         FOREIGN KEY (claimer_dj_id) REFERENCES dj(id)
@@ -98,8 +98,8 @@ CREATE TABLE
 
 CREATE TABLE
     playlist (
-        id INT,
-        radio_show_id INT NOT NULL,
+        id INT UNSIGNED AUTO_INCREMENT,
+        radio_show_id INT UNSIGNED NOT NULL,
         name VARCHAR(50),  -- Null allowed for DJs who don't leave playlist names in KLAP
         description TINYTEXT,  -- Longer? Shorter?
         date_played DATE NOT NULL,  -- Default to current date?
@@ -113,8 +113,8 @@ CREATE TABLE
 
 CREATE TABLE
     playlist_track (
-        playlist_id INT,
-        track TINYINT,  -- unsigned preferably
+        playlist_id INT UNSIGNED,
+        track TINYINT UNSIGNED,  -- is this long enough? can KLAP post full day long playlists?
         song VARCHAR(100) NOT NULL,  -- what's the best size for this?
         artist VARCHAR(100) NOT NULL,  -- what's the best size for this?
         album VARCHAR(50),  -- what's the best size for this?
