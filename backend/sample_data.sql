@@ -1,4 +1,3 @@
--- Active: 1697039968418@@localhost@3306@kwip
 USE kwip;
 
 INSERT INTO semester VALUES
