@@ -41,9 +41,11 @@ The backend will access the database through the `root` account you setup during
 
 Connect to your MySQL Server and run `backend/setup.sql`. There are several commands/applications you can use to do this, but here are instructions for using _MySQL Command Line Client_ to do it:
 
-1. Find and copy the absolute path to your `backend/setup.sql` file
+1. Find and copy the absolute path to your [`backend/setup.sql`](backend/setup.sql) file
 2. Open _MySQL Command Line Client_
 3. Run the command `source <setup.sql's absolute path>`
+
+If you would like to populate your database with some prepared sample data, repeat these steps with [`backend/sample_data.sql`](backend/sample_data.sql).
 
 After that your database should be running and prepared for use.
 
