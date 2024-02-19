@@ -11,6 +11,7 @@ import { DJListComponent } from './dj-list/dj-list.component';
 import { DJProfileComponent } from './shared/dj-profile/dj-profile.component';
 import { ShowsComponent } from './shows/shows.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 
 const routes: Routes = [
   {
@@ -62,7 +63,16 @@ const routes: Routes = [
   {
     // TO DO: AUTHENTICATION HERE
     path: 'admin',
-    component: AdminHomeComponent,
+    children: [
+      {
+        path: '',
+        component: AdminHomeComponent,
+      },
+      {
+        path: 'news',
+        component: AdminNewsComponent,
+      },
+    ],
   },
   {
     path: '**',

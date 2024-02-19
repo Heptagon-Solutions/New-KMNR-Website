@@ -1,0 +1,9 @@
+<h1>Below is the full list of Town And Campus events</h1>
+<div *ngIf="newsEntries; else loadingOrError">
+  <div *ngFor="let entry of newsEntries">
+    {{ entry.title }}
+  </div>
+</div>
+<ng-template #loadingOrError>
+  <i>Loading...</i> (or broken beyond repair /:)
+</ng-template>
