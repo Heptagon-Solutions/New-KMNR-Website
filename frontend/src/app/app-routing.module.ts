@@ -10,6 +10,7 @@ import { NewsFormComponent } from './news/news-form/news-form.component';
 import { DJListComponent } from './dj-list/dj-list.component';
 import { DJProfileComponent } from './shared/dj-profile/dj-profile.component';
 import { ShowsComponent } from './shows/shows.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    // TO DO: AUTHENTICATION HERE
+    path: 'admin',
+    component: AdminHomeComponent,
   },
   {
     path: '**',
