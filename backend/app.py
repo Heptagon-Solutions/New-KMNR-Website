@@ -1,4 +1,5 @@
 """ This is the Application Factory and entry point for the Flask application. """
+
 from configparser import ConfigParser
 from dotenv import dotenv_values
 
@@ -20,9 +21,9 @@ def create_app():
     app.config["MYSQL_DB"] = db_config["database"]
     app.config["MYSQL_USER"] = secrets["DB_USER"]
     app.config["MYSQL_PASSWORD"] = secrets["DB_PASS"]
-    app.config[
-        "MYSQL_CURSORCLASS"
-    ] = "DictCursor"  # Makes cursor.execute() return Dict or Dict[]
+    app.config["MYSQL_CURSORCLASS"] = (
+        "DictCursor"  # Makes cursor.execute() return Dict or Dict[]
+    )
 
     # Initialize database
     from database import db
@@ -34,6 +35,7 @@ def create_app():
 
     # Add all endpoints to the app
     with app.app_context():
+        import example_endpoints
         import endpoints
 
         return app
