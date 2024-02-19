@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { TownAndCampusNewsEntry } from 'src/models';
 
-import { NewsService } from './news.service';
+import { NewsService } from '../services/news.service';
 
 @Component({
   selector: 'news',
