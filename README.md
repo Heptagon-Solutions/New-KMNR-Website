@@ -9,7 +9,7 @@ This is a copy of the original [KWIP](https://github.com/KMNR/KWIP) with a chang
 
 ## Frontend
 
-If you don't alread have _NodeJS_ installed, do so [here](https://nodejs.org/en) (we use 18.18.0 LTS, but anything with version 18 should work). During the installation make sure you check this box:
+If you don't already have _NodeJS_ installed, do so [here](https://nodejs.org/en) (we use 18.18.0 LTS, but anything with version 18 should work). During the installation make sure you check this box:
 
 ![image](https://github.com/KMNR/KWIP-2/assets/69428664/6e0dd2b5-0d8c-4416-a180-56b3e985394a)
 
