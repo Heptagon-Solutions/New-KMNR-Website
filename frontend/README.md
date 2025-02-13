@@ -40,6 +40,14 @@ Run `ng generate component <component-name> --standalone` to generate a new comp
 Mock-ups help with giving an idea for what the website should look like. Think of them as style guides.
 We have the origional mock-ups made by KMNR alumni _Elizabeth Hoffer_ and are [available here](https://drive.google.com/drive/folders/1BJ4RVYpYwLwPs1m9jhKhyHFUlajuOsvx).
 
+## Maintenance
+
+Run `npm outdated` to see what dependencies have updates. Run following command to update outdated packages (not listing any specific packages updates them all):
+
+```npm update --save [list specific packages if desired]```
+
+**Please**, start up the app and test it before committing these changes.
+
 ## Production Tools
 
 These are for getting the website ready to be served on the internet
