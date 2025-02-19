@@ -18,9 +18,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  public login() {
-    this.auth
-      .login$('testuser@temp.com', 'testpass')
-      .subscribe(m => (this.backendMsg = m.message));
+  public login(email: string, password: string) {
+    this.auth.login$(email, password).subscribe({
+      next: m => (this.backendMsg = m.message),
+      error: e => (this.backendMsg = e.message),
+    });
   }
 }

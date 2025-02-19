@@ -2,7 +2,17 @@
   <h1 class="title">Login</h1>
 
   <div class="login">
-    <button (click)="login()">Login</button>
+    <div>
+      <input type="text" placeholder="Email" #email />
+    </div>
+    <div>
+      <input type="text" placeholder="Password" #password />
+    </div>
+
+    <button (click)="login(email.value.trim(), password.value.trim())">
+      Login
+    </button>
+
     <div *ngIf="backendMsg != null">Message from backend: {{ backendMsg }}</div>
   </div>
 

@@ -6,7 +6,8 @@ INSERT INTO semester VALUES
 
 INSERT INTO user VALUES
     (1, 'Carson', 'carson@jones.com', 'sfgebyrs4346dA', NULL),
-    (2, 'Luna', 'im@dog.gov', 'fd73Jsd8SH', NULL);
+    (2, 'Luna', 'im@dog.gov', 'fd73Jsd8SH', NULL),
+    (3, 'test', 'a@b.c', '12345', NULL);
 
 INSERT INTO dj (id, dj_name, training_semester_id)
     VALUES

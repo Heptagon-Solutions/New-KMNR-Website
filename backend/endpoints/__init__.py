@@ -2,4 +2,4 @@
 
 from . import temp
 from . import news
-from . import user
+from . import authentication
