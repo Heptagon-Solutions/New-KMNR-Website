@@ -26,7 +26,7 @@ CREATE TABLE
         email VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(50) NOT NULL,
         role VARCHAR(50),  -- IDK about this one; probably should be enum
-        PRIMARY KEY (ID)
+        PRIMARY KEY (id)
     );
 
 CREATE TABLE
