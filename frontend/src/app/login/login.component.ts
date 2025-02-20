@@ -18,10 +18,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  public login(email: string, password: string) {
+  public login(email: string, password: string, rememberMe: boolean = false) {
+    // TODO: Validation
     this.auth.login$(email, password).subscribe({
       next: m => (this.backendMsg = m.message),
-      error: e => (this.backendMsg = e.message),
+      error: e => {
+        console.error('Error while logging in:', e);
+        this.backendMsg = e.message;
+      },
+    });
+  }
+
+  public signup(
+    name: string,
+    email: string,
+    password: string,
+    rememberMe: boolean = false
+  ) {
+    // TODO: Validation
+    this.auth.signup$(name, email, password).subscribe({
+      next: m => (this.backendMsg = m.message),
+      error: e => {
+        console.error('Error while signing up:', e);
+        this.backendMsg = e.message;
+      },
     });
   }
 }

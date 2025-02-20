@@ -3,15 +3,29 @@
 
   <div class="login">
     <div>
+      <input type="text" placeholder="Name" #name />
+    </div>
+    <div>
       <input type="text" placeholder="Email" #email />
     </div>
     <div>
       <input type="text" placeholder="Password" #password />
     </div>
 
-    <button (click)="login(email.value.trim(), password.value.trim())">
-      Login
-    </button>
+    <div>
+      <button (click)="login(email.value.trim(), password.value.trim())">
+        Login
+      </button>
+      <button
+        (click)="
+          signup(name.value.trim(), email.value.trim(), password.value.trim())
+        "
+      >
+        Sign up
+      </button>
+      <input id="remember-me-checkbox" type="checkbox" #rememberMe />
+      <label for="remember-me-checkbox">Remember Me</label>
+    </div>
 
     <div *ngIf="backendMsg != null">Message from backend: {{ backendMsg }}</div>
   </div>

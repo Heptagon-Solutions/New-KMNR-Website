@@ -14,4 +14,13 @@ export class AuthenticationService {
     const body = { email, pass };
     return this.http.post<{ message: string }>(API_URL + 'login', body);
   }
+
+  public signup$(
+    name: string,
+    email: string,
+    pass: string
+  ): Observable<{ message: string }> {
+    const body = { name, email, pass };
+    return this.http.post<{ message: string }>(API_URL + 'signup', body);
+  }
 }
