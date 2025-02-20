@@ -5,9 +5,9 @@ INSERT INTO semester VALUES
     (2, 'Spring', 2024);
 
 INSERT INTO user VALUES
-    (1, 'Carson', 'carson@jones.com', 'sfgebyrs4346dA', NULL),
-    (2, 'Luna', 'im@dog.gov', 'fd73Jsd8SH', NULL),
-    (3, 'test', 'a@b.c', '12345', NULL);
+    (1, 'Carson', 'carson@jones.com', 'sfgebyrs4346dA', 'admin'),
+    (2, 'Luna', 'im@dog.gov', 'fd73Jsd8SH', 'dj'),
+    (3, 'test', 'a@b.c', '12345', 'dj');
 
 INSERT INTO dj (id, dj_name, training_semester_id)
     VALUES

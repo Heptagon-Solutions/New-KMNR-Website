@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS rented_show;
 DROP TABLE IF EXISTS show_host;
 DROP TABLE IF EXISTS radio_show;
 DROP TABLE IF EXISTS dj;
-DROP TABLE IF EXISTS auth_tokens;
+DROP TABLE IF EXISTS auth_token;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS semester;
 
@@ -26,7 +26,7 @@ CREATE TABLE
         name VARCHAR(50) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(50) NOT NULL,
-        role VARCHAR(50),  -- IDK about this one; probably should be enum
+        role ENUM ('dj', 'admin') DEFAULT 'dj' NOT NULL,
         PRIMARY KEY (id)
     );
 
