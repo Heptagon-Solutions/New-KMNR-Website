@@ -1,6 +1,10 @@
 CREATE DATABASE IF NOT EXISTS kwip;
 USE kwip;
 
+CREATE USER IF NOT EXISTS 'kwip'@'localhost' IDENTIFIED BY 'kwip-password';
+GRANT ALL PRIVILEGES ON kwip.* TO 'kwip'@localhost;
+FLUSH PRIVILEGES;
+
 DROP TABLE IF EXISTS town_and_campus_news;
 DROP TABLE IF EXISTS playlist_track;
 DROP TABLE IF EXISTS playlist;
