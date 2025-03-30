@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS rented_show;
 DROP TABLE IF EXISTS show_host;
 DROP TABLE IF EXISTS radio_show;
 DROP TABLE IF EXISTS dj;
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS semester;
 
 CREATE TABLE
@@ -24,7 +24,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    user (
+    `user` (
         id INT UNSIGNED AUTO_INCREMENT,
         name VARCHAR(50) NOT NULL,
         email VARCHAR(50) NOT NULL UNIQUE,
@@ -43,7 +43,7 @@ CREATE TABLE
         profile_desc TINYTEXT,  -- Longer?
         profile_img MEDIUMBLOB,  -- What's best Blob size?
         PRIMARY KEY (id),
-        FOREIGN KEY (id) REFERENCES user(id),
+        FOREIGN KEY (id) REFERENCES `user`(id),
         FOREIGN KEY (training_semester_id) REFERENCES semester(id),
         FOREIGN KEY (trainer_dj_id) REFERENCES dj(id),
         FOREIGN KEY (graduating_semester_id) REFERENCES semester(id)

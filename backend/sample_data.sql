@@ -4,7 +4,7 @@ INSERT INTO semester VALUES
     (1, 'Fall', 2023),
     (2, 'Spring', 2024);
 
-INSERT INTO user VALUES
+INSERT INTO `user` VALUES
     (1, 'Carson', 'carson@jones.com', 'sfgebyrs4346dA', NULL),
     (2, 'Luna', 'im@dog.gov', 'fd73Jsd8SH', NULL);
 
