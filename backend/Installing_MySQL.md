@@ -52,7 +52,7 @@ Select _Use Strong Password Encryption for Authentication (RECOMMENDED)_.
 
 #### Accounts and Roles
 
-MySQL Server has build security practices to prevent random people/programs from accessing your databases. As such, an account with a password is required for access. On this page you will be asked to set a password for this `root` account. This password is very important, and is used later in KWIP's setup, so you should **probably** write it down somewhere.
+MySQL Server has build security practices to prevent random people/programs from accessing your databases. As such, an account with a password is required for access. On this page you will be asked to set a password for this `root` account. This password is very important, without it you won't be able to actually use your shiny new database server -- so remember it or write it down.
 
 Once you set the password, click Next.
 
