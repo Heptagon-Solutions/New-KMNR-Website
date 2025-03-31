@@ -30,7 +30,7 @@ This project uses `pipenv` to manage dependencies. In the backend folder, run th
 ```
 pip install --user pip
 pip install --user pipenv
-pipenv install
+pipenv install --dev
 ```
 
 ### MySQL Database
