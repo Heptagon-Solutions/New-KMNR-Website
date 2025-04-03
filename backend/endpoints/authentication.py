@@ -102,17 +102,22 @@ def set_auth_cookie(user_id):
 def create_auth_token(user_id):
     """Generate a auth token for the given user, add it to the database, and return (token, expiration time)."""
 
-    while True:
-        token_bytes = secrets.token_bytes(8)
-        token = int.from_bytes(token_bytes)
+    try:
+        while True:
+            token_bytes = secrets.token_bytes(8)
+            token = int.from_bytes(token_bytes)
 
-        with db.connection.cursor() as cur:
-            cur.execute(
-                f"""SELECT id FROM auth_token
-                    WHERE token = {token}"""
-            )
-            if cur.fetchone() is None:
-                break
+            with db.connection.cursor() as cur:
+                cur.execute(
+                    f"""SELECT id FROM auth_token
+                        WHERE token = {token}"""
+                )
+                if cur.fetchone() is None:
+                    break
+    except DatabaseError as e:
+        # TODO: Database connection error
+        print("AN ERROR OCCURRED", e)
+        pass
 
     expiration = datetime.datetime.now() + EXPIRATION_PERIOD
     expiration_string = expiration.isoformat(" ", "seconds")
