@@ -95,8 +95,8 @@ def login_success(user_id) -> Response:
 
     resp = make_response({"message": f"a login request was made for user_id={user_id}"})
     set_auth_cookie(resp, user_id)
-    # DEV: THIS IS FOR DEV ONLY, DELETE FOR PRODUCTION:
-    resp.headers["Access-Control-Allow-Credentials"] = "true"
+    # DEV: THIS IS FOR DEV ONLY (and idk if they actually work lol), DELETE FOR PRODUCTION:
+    # resp.headers["Access-Control-Allow-Credentials"] = "true"
     # resp.access_control_allow_credentials = True
 
     return resp
@@ -111,12 +111,11 @@ def set_auth_cookie(resp: Response, user_id):
     resp.set_cookie(
         "auth",
         str(token),
-        # EXPIRATION_PERIOD,
-        # expiration,
-        secure=True,
-        # httponly=True,
-        samesite="None",
-        domain="127.0.0.1",
+        EXPIRATION_PERIOD,
+        expiration,
+        # secure=True,  # Only set the cookie over HTTPS; SKIP FOR DEV, ENFORCE FOR PROD
+        httponly=True,
+        samesite="Lax",
     )
 
 
