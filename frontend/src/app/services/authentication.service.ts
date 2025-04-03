@@ -12,7 +12,9 @@ export class AuthenticationService {
 
   public login$(email: string, pass: string): Observable<{ message: string }> {
     const body = { email, pass };
-    return this.http.post<{ message: string }>(API_URL + 'login', body);
+    return this.http.post<{ message: string }>(API_URL + 'login', body, {
+      withCredentials: true,
+    });
   }
 
   public signup$(

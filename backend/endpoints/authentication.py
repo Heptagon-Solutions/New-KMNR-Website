@@ -1,6 +1,7 @@
 import datetime, secrets
 
-from flask import current_app, request
+from flask import current_app, request, make_response
+from flask import Response
 
 from database import db, DatabaseError
 
@@ -48,12 +49,8 @@ def sign_up():
         print("Database error:", m)
         return {"message": m}, 500
 
-    if user:
-        user_id = user["id"]
-        set_auth_cookie(user_id)
-        return {
-            "message": f"Sign-up request for {name} ({email}) successful. Assigned id={user['id']}"
-        }
+    if user["id"]:
+        return login_success(user["id"])
     else:
         return {
             "message": f"We somehow created {email}'s account, but lost their id...?"
@@ -71,6 +68,11 @@ def login():
     except KeyError:
         return {"message": f"Login request must provide 'email' and 'pass'."}, 400
 
+    print("DEBUG: Cookies are:", [c for c in request.cookies.lists()])
+    auth_cookie = request.cookies.get("auth")
+    if auth_cookie:
+        print(f"DEBUG: Auth cookie found during login attempt. Token is {auth_cookie}")
+
     try:
         with db.connection.cursor() as cur:
             cur.execute(
@@ -82,21 +84,40 @@ def login():
         print("Database error:", m)
         return {"message": m}, 500
 
-    if user:
-        user_id = user["id"]
-        set_auth_cookie(user_id)
-        return {"message": f"a login request was made for {email} (id={user_id})"}
+    if user["id"]:
+        return login_success(user["id"])
     else:
         return {"message": f"No user with email {email} found"}, 404
 
 
-def set_auth_cookie(user_id):
-    """Generate a new auth token and set it as a cookie in response."""
+def login_success(user_id) -> Response:
+    """Returns response for a successful login and sets user's auth cookie."""
 
-    # TODO: STUB function
+    resp = make_response({"message": f"a login request was made for user_id={user_id}"})
+    set_auth_cookie(resp, user_id)
+    # DEV: THIS IS FOR DEV ONLY, DELETE FOR PRODUCTION:
+    resp.headers["Access-Control-Allow-Credentials"] = "true"
+    # resp.access_control_allow_credentials = True
+
+    return resp
+
+
+def set_auth_cookie(resp: Response, user_id):
+    """Set a new auth cookie in response for user."""
 
     token, expiration = create_auth_token(user_id)
-    print(f"Auth token created for user #{user_id}: {token}")
+    print(f"DEBUG: Auth token created for user #{user_id}: {token}")
+
+    resp.set_cookie(
+        "auth",
+        str(token),
+        # EXPIRATION_PERIOD,
+        # expiration,
+        secure=True,
+        # httponly=True,
+        samesite="None",
+        domain="127.0.0.1",
+    )
 
 
 def create_auth_token(user_id):
