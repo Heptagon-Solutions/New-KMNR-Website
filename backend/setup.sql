@@ -38,10 +38,11 @@ CREATE TABLE
     `auth_token` (
         `id` INT UNSIGNED AUTO_INCREMENT,
         `user_id` INT UNSIGNED NOT NULL,
+        `token` BIGINT UNSIGNED NOT NULL, -- 8 bytes
         `expiration` DATETIME,  -- Should this be NOT NULL?
         PRIMARY KEY (`id`),
         FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
-    )
+    );
 
 CREATE TABLE
     `dj` (
