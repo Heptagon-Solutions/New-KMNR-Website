@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { API_URL } from 'src/constants';
 import { BannerComponent } from '../shared/banner/banner.component';
 
 interface BackendData {
@@ -38,7 +39,7 @@ export class HomeComponent {
    * Example of requesting data from the backend and getting it back as an Observable.
    */
   private getBackendMsg$(): Observable<BackendData> {
-    return this.http.get<BackendData>('http://localhost:5000/data').pipe(
+    return this.http.get<BackendData>(API_URL + 'data').pipe(
       // errorHandler$ is called if the request throws an error (HttpErrorResponse)
       catchError(this.errorHandler$)
     );
