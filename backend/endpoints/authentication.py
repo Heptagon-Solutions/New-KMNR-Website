@@ -88,22 +88,55 @@ def login():
         return login_success(user["id"])
     else:
         return {"message": f"No user with email {email} found"}, 404
+    
+
+@current_app.get('/authenticate')
+def autheticate_using_cookie():
+    auth_token = request.cookies.get("auth")
+
+    if auth_token is None:
+        return {"message": "No authentication cookie found"}, 400
+    
+    print(f"DEBUG: Auth cookie found. Token is {auth_token}")
+    
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(f"SELECT user_id, expiration FROM auth_token WHERE token = {auth_token}")
+            token_info = cur.fetchone()
+    except DatabaseError as e:
+        m = f"{e.args[1]} ({e.args[0]})"
+        print("Database error:", m)
+        return {"message": m}, 500
+    
+    user_id: str = token_info['user_id']
+    expiration: datetime = token_info['expiration']
+
+    # Check expiration
+    if expiration < datetime.datetime.now():
+        # Redirect to login screen?
+        return {"message": "Authentication token expired"}, 401
+
+    return {"success": True, "user_id": user_id}
 
 
 def login_success(user_id) -> Response:
     """Returns response for a successful login and sets user's auth cookie."""
 
     resp = make_response({"message": f"a login request was made for user_id={user_id}"})
-    set_auth_cookie(resp, user_id)
-    # DEV: THIS IS FOR DEV ONLY (and idk if they actually work lol), DELETE FOR PRODUCTION:
-    # resp.headers["Access-Control-Allow-Credentials"] = "true"
-    # resp.access_control_allow_credentials = True
+    try:
+        set_auth_cookie(resp, user_id)
+        # DEV: THIS IS FOR DEV ONLY (and idk if they actually work lol), DELETE FOR PRODUCTION:
+        # resp.headers["Access-Control-Allow-Credentials"] = "true"
+        # resp.access_control_allow_credentials = True
+    except DatabaseError as e:
+        # Only occurs if unable to connect to database
+        print("Non-critical database error:", e)
 
     return resp
 
 
 def set_auth_cookie(resp: Response, user_id):
-    """Set a new auth cookie in response for user."""
+    """Set a new auth cookie in response for user. Can raise DatabaseError if there is no connection."""
 
     token, expiration = create_auth_token(user_id)
     print(f"DEBUG: Auth token created for user #{user_id}: {token}")
@@ -120,24 +153,23 @@ def set_auth_cookie(resp: Response, user_id):
 
 
 def create_auth_token(user_id):
-    """Generate a auth token for the given user, add it to the database, and return (token, expiration time)."""
+    """Generate a auth token for the given user, add it to the database, and return (token, expiration time). Can raise DatabaseError if there is no connection."""
 
-    try:
-        while True:
-            token_bytes = secrets.token_bytes(8)
-            token = int.from_bytes(token_bytes)
+    # TODO: Set the token with IP Address too
+    # TODO: Why not just make the token the table's primary key?
 
-            with db.connection.cursor() as cur:
-                cur.execute(
-                    f"""SELECT id FROM auth_token
-                        WHERE token = {token}"""
-                )
-                if cur.fetchone() is None:
-                    break
-    except DatabaseError as e:
-        # TODO: Database connection error
-        print("AN ERROR OCCURRED", e)
-        pass
+    while True:
+        token_bytes = secrets.token_bytes(8)
+        token = int.from_bytes(token_bytes)
+
+        # Check if that token number already exists
+        with db.connection.cursor() as cur:
+            cur.execute(
+                f"""SELECT id FROM auth_token
+                    WHERE token = {token}"""
+            )
+            if cur.fetchone() is None:
+                break
 
     expiration = datetime.datetime.now() + EXPIRATION_PERIOD
     expiration_string = expiration.isoformat(" ", "seconds")
