@@ -35,6 +35,15 @@ CREATE TABLE
     );
 
 CREATE TABLE
+    `auth_token` (
+        `id` INT UNSIGNED AUTO_INCREMENT,
+        `user_id` INT UNSIGNED NOT NULL,
+        `expiration` DATETIME,  -- Should this be NOT NULL?
+        PRIMARY KEY (`id`),
+        FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+    )
+
+CREATE TABLE
     `dj` (
         `id` INT UNSIGNED AUTO_INCREMENT,
         `dj_name` VARCHAR(50) NOT NULL,
