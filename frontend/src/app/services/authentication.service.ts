@@ -10,9 +10,17 @@ import { API_URL } from 'src/constants';
 export class AuthenticationService {
   constructor(private readonly http: HttpClient) {}
 
+  public authenticate$(): Observable<{ message: string }> {
+    return this.http.get<{ message: string }>(API_URL + 'authenticate', {
+      // withCredentials must be added for cookies to be sent or set
+      withCredentials: true,
+    });
+  }
+
   public login$(email: string, pass: string): Observable<{ message: string }> {
     const body = { email, pass };
     return this.http.post<{ message: string }>(API_URL + 'login', body, {
+      // withCredentials must be added for cookies to be sent or set
       withCredentials: true,
     });
   }

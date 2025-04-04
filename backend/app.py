@@ -30,8 +30,14 @@ def create_app():
 
     db.init_app(app)
 
-    # THIS IS FOR DEV ONLY - REMOVE BEFORE PRODUCTION
-    CORS(app, origins=["http://localhost:4200"])
+    # TODO: Document that the server machine's public facing IP must be in here
+    # TODO: Somehow figure out the frontend's host IP and port and place it here
+    CORS(
+        app,
+        origins=["http://localhost:4200"],
+        # TODO: THERE ARE IMPORTANT SECURITY ISSUES ATTACHED TO THIS (CSRF)
+        supports_credentials=True
+    )
 
     # Add all endpoints to the app
     with app.app_context():

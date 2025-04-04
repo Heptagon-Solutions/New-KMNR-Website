@@ -84,10 +84,11 @@ def login():
         print("Database error:", m)
         return {"message": m}, 500
 
-    if user["id"]:
-        return login_success(user["id"])
-    else:
-        return {"message": f"No user with email {email} found"}, 404
+    if user is None:
+        # This returns 401 as a security measure. Attackers won't know if it was the password or the email that was bad.
+        return {"message": f"No user with email {email} found"}, 401
+    
+    return login_success(user["id"])
     
 
 @current_app.get('/authenticate')
@@ -108,6 +109,9 @@ def autheticate_using_cookie():
         print("Database error:", m)
         return {"message": m}, 500
     
+    if token_info is None:
+        return {"message", "The provided authentication token does not exist"}, 401
+    
     user_id: str = token_info['user_id']
     expiration: datetime = token_info['expiration']
 
@@ -116,7 +120,7 @@ def autheticate_using_cookie():
         # Redirect to login screen?
         return {"message": "Authentication token expired"}, 401
 
-    return {"success": True, "user_id": user_id}
+    return {"message": f"User #{user_id} successfully authenticated"}
 
 
 def login_success(user_id) -> Response:

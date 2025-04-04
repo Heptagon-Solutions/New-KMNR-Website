@@ -18,6 +18,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  public authenticate() {
+    this.auth.authenticate$().subscribe({
+      next: m => (this.backendMsg = m.message),
+      error: e => {
+        console.error('Error while authenticating:', e);
+        this.backendMsg = e.message;
+      },
+    });
+  }
+
   public login(email: string, password: string, rememberMe: boolean = false) {
     // TODO: Validation
     this.auth.login$(email, password).subscribe({
