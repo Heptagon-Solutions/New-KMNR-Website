@@ -29,7 +29,8 @@ CREATE TABLE
         `id` INT UNSIGNED AUTO_INCREMENT,
         `name` VARCHAR(50) NOT NULL,
         `email` VARCHAR(50) NOT NULL UNIQUE,
-        `password` VARCHAR(50) NOT NULL,
+        `salt` BINARY(32) NOT NULL,
+        `password_hash` BINARY(64) NOT NULL,
         `role` ENUM ('dj', 'admin') DEFAULT 'dj' NOT NULL,
         PRIMARY KEY (`id`)
     );
@@ -38,7 +39,7 @@ CREATE TABLE
     `auth_token` (
         `id` INT UNSIGNED AUTO_INCREMENT,
         `user_id` INT UNSIGNED NOT NULL,
-        `token` BIGINT UNSIGNED NOT NULL, -- 8 bytes
+        `token` BIGINT UNSIGNED NOT NULL UNIQUE, -- 8 bytes
         `expiration` DATETIME,  -- Should this be NOT NULL?
         PRIMARY KEY (`id`),
         FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)

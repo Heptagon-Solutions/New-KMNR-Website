@@ -5,9 +5,10 @@ INSERT INTO `semester` VALUES
     (2, 'Spring', 2024);
 
 INSERT INTO `user` VALUES
-    (1, 'Carson', 'carson@jones.com', 'sfgebyrs4346dA', 'admin'),
-    (2, 'Luna', 'im@dog.gov', 'fd73Jsd8SH', 'dj'),
-    (3, 'test', 'a@b.c', '12345', 'dj');
+    -- All of these dummy accounts have the password: 'password'
+    (1, 'Carson', 'carson@jones.com', UNHEX('25fcb872a83dfb97b0f487c9c9c5508398e4f9f921de9ac9d9b0d8ec7ca0db9c'), UNHEX('a3b32c3aff3bf0ea733c6e0ee10a12ff9b3cb12f0652c9d07f957ff0ec7ecd6d5ab60f3f179743027027136f6e88d965428c422d962729579603bafb50f5be84'), 'admin'),
+    (2, 'Luna', 'im@dog.gov', UNHEX('3ca6818d0d5b4b97ac99cd0f5742fd054e32ec5db9890035ec82fccb0a9b7701'), UNHEX('355db24f35be0fd01c198f52cbf617f9cce2320aadc83d4493a485121cd814d56bd7683bdb88c7fdd59481bf54a84442439c9f1d718aa6f105e797b8d3780e9e'), 'dj'),
+    (3, 'test', 'a@b.c', UNHEX('61bd392469af8bd703f10829c6807a9f5bfdc33007c8d22b4fa0d2f2af337761'), UNHEX('92604e44b94dd0ca20635b129dfdd2b7fc3d3ee26287d018f4b149c3e8c2e885f2e0a176f14e30b332bbf685e5bdbcb3dac91d5590d1c4a1342937d82450a2e5'), 'dj');
 
 INSERT INTO `dj` (`id`, `dj_name`, `training_semester_id`)
     VALUES

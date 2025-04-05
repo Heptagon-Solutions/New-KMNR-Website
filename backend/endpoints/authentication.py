@@ -1,4 +1,5 @@
 import datetime, secrets
+from hashlib import scrypt
 
 from flask import current_app, request, make_response
 from flask import Response
@@ -63,8 +64,8 @@ def login():
     print("login post made", data)
 
     try:
-        email = data["email"]
-        password = data["pass"]
+        email: str = data["email"]
+        password_attempt: str = data["pass"]
     except KeyError:
         return {"message": f"Login request must provide 'email' and 'pass'."}, 400
 
@@ -76,7 +77,7 @@ def login():
     try:
         with db.connection.cursor() as cur:
             cur.execute(
-                f"""SELECT id, email, password, role FROM user WHERE email = '{email}'"""
+                f"""SELECT id, email, salt, password_hash, role FROM user WHERE email = '{email}'"""
             )
             user = cur.fetchone()
     except DatabaseError as e:
@@ -86,13 +87,21 @@ def login():
 
     if user is None:
         # This returns 401 as a security measure. Attackers won't know if it was the password or the email that was bad.
+        # TODO: Change this from a debug message to something less obvious of what went wrong.
         return {"message": f"No user with email {email} found"}, 401
     
-    return login_success(user["id"])
+    hashed_attempt = hash_password(password_attempt.encode(), user['salt'])
+    print(f"DEBUG: User attempt began with {hashed_attempt.hex()[:10]}, saved hash begins with {user['password_hash'].hex()[:10]}")
+    if hashed_attempt == user['password_hash']:
+        return login_success(user["id"])
+    else:
+        # TODO: Change this from a debug message to something less obvious of what went wrong.
+        # This message should be vague, to ensure attackers don't know if the password was wrong or the email.
+        return {"message": "Incorrect password"}, 401
     
 
 @current_app.get('/authenticate')
-def autheticate_using_cookie():
+def authenticate_using_cookie():
     auth_token = request.cookies.get("auth")
 
     if auth_token is None:
@@ -137,6 +146,15 @@ def login_success(user_id) -> Response:
         print("Non-critical database error:", e)
 
     return resp
+
+
+def generate_salt() -> bytes:
+    return secrets.token_bytes()  # 32 bytes by default
+
+
+def hash_password(password: str, salt: bytes) -> bytes:
+    """Hash password with salt into a 64 byte string."""
+    return scrypt(password, salt=salt, n=16384, r=8, p=1)  # Output is 64 bytes by default
 
 
 def set_auth_cookie(resp: Response, user_id):
