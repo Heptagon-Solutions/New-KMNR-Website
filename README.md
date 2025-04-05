@@ -1,50 +1,22 @@
 # KWIP-2
 
-This is a copy of the original [KWIP](https://github.com/KMNR/KWIP) with a change of tech stack.
+A fork of the original [KWIP](https://github.com/KMNR/KWIP) with a different tech stack.
 
-- Frontend is now in Angular
-- Backend is in Python's Flask
+- Angular frontend
+- Flask (Python) backend
+- MySQL/MariaDB database
 
-# First time setup
+For more info or help, Carson Jones (aka DJCubed) would be happy to help: djcubed12@gmail.com.
 
-## Frontend
+## Quickstart commands
 
-If you don't already have _NodeJS_ installed, do so [here](https://nodejs.org/en) (we use 18.18.0 LTS, but anything with version 18 should work). During the installation make sure you check this box:
+In `frontend/`: `npm run start`
 
-![image](https://github.com/KMNR/KWIP-2/assets/69428664/6e0dd2b5-0d8c-4416-a180-56b3e985394a)
+In `backend/`: `pipenv run python3 app.py`
 
-Once _NodeJS_ is installed, in your terminal in the frontend folder run `npm install`.
+## First time setup
 
-Now the frontend should be good to go, read the [README.md](frontend/README.md) there for further info.
+There are instruction documents for setting up KWIP for the first time in the `documentation` folder. Note that the instructions are different for Windows vs. Linux machines.
 
-## Backend
-
-### Flask Backend
-
-As the backend uses Python, it must first be installed. Download the latest version from [here](https://www.python.org/downloads/).
-
-`pip` should automatically be installed with Python, but you can make sure with the command `pip --version`.
-
-This project uses `pipenv` to manage dependencies. In the backend folder, run the following commands to install pipenv and the necessary dependencies:
-
-```
-pip install --user pip
-pip install --user pipenv
-pipenv install --dev
-```
-
-### MySQL Database
-
-You will need to install MySQL on your device to use the database. Read [`backend/Installing_MySQL.md`](backend/Installing_MySQL.md) for instructions.
-
-Connect to your MySQL Server and run `backend/setup.sql`. There are several commands/applications you can use to do this, but here are instructions for using _MySQL Command Line Client_ to do it:
-
-1. Find and copy the absolute path to your [`backend/setup.sql`](backend/setup.sql) file
-2. Open _MySQL Command Line Client_
-3. Run the command `source <setup.sql's absolute path>;` (don't forget the semicolon!)
-
-If you would like to populate your database with some prepared sample data, repeat these steps with [`backend/sample_data.sql`](backend/sample_data.sql).
-
-After that your database should be running and prepared for use.
-
-Make sure to read [`backend/README.md`](backend/README.md) for information about how to use the backend.
+- [Windows setup](./documentation/windows-setup.md)
+- [Linux setup](./documentation/linux-setup.md)

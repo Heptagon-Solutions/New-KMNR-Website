@@ -1,4 +1,4 @@
-# Installing MySQL for Windows
+# MySQL Windows Installation
 
 Go to https://dev.mysql.com/downloads/installer/. Select Version 8.0.34. Click Download on the top Installer (the one that says _mysql-installer-web-community-8.0.34.0.msi_ under the title) to be redirected to the download page. Scroll to the bottom and click _No thanks, just start my download_ to download the installer.
 
