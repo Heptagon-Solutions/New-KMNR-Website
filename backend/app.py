@@ -26,7 +26,7 @@ def create_app():
     )
 
     # Initialize database
-    from database import db
+    from .database import db
 
     db.init_app(app)
 
@@ -41,8 +41,8 @@ def create_app():
 
     # Add all endpoints to the app
     with app.app_context():
-        import example_endpoints
-        import endpoints
+        from . import example_endpoints
+        from . import endpoints
 
         return app
 

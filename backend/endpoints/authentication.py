@@ -1,13 +1,10 @@
 import datetime, secrets
-from hashlib import scrypt
 
 from flask import current_app, request, make_response
 from flask import Response
 
-from database import db, DatabaseError
-
-
-EXPIRATION_PERIOD = datetime.timedelta(days=1)
+from ..database import db, DatabaseError
+from ..services import authentication as auth_service
 
 
 @current_app.post("/signup")
@@ -25,8 +22,8 @@ def sign_up():
         }, 400
 
     try:
-        salt = generate_salt()
-        hashed_pass = hash_password(password, salt)
+        salt = auth_service.generate_salt()
+        hashed_pass = auth_service.hash_password(password, salt)
 
         with db.connection.cursor() as cur:
             try:
@@ -100,9 +97,7 @@ def login():
         # TODO: Change this from a debug message to something less obvious of what went wrong.
         return {"message": f"No user with email {email} found"}, 401
     
-    hashed_attempt = hash_password(password_attempt, user['salt'])
-    print(f"DEBUG: User attempt began with {hashed_attempt.hex()[:10]}, saved hash begins with {user['password_hash'].hex()[:10]}")
-    if hashed_attempt == user['password_hash']:
+    if auth_service.check_password(password_attempt, user['password_hash'], user['salt']):
         return login_success(user["id"], user['role'])
     else:
         # TODO: Change this from a debug message to something less obvious of what went wrong.
@@ -113,34 +108,26 @@ def login():
 @current_app.get('/authenticate')
 def authenticate_using_cookie():
     auth_token = request.cookies.get("auth")
-
     if auth_token is None:
         return {"message": "No authentication cookie found"}, 400
     
     print(f"DEBUG: Auth cookie found. Token is {auth_token}")
-    
+
     try:
-        with db.connection.cursor() as cur:
-            cur.execute(f"SELECT user_id, expiration FROM auth_token WHERE token = {auth_token}")
-            token_info = cur.fetchone()
+        user_id = auth_service.check_auth_token(auth_token)
     except DatabaseError as e:
         m = f"{e.args[1]} ({e.args[0]})"
         print("Database error:", m)
         return {"message": m}, 500
-    
-    if token_info is None:
+    except auth_service.TokenNotFoundException:
         return {"message", "The provided authentication token does not exist"}, 401
-    
-    user_id: str = token_info['user_id']
-    expiration: datetime = token_info['expiration']
-
-    # Check expiration
-    if expiration < datetime.datetime.now():
+    except auth_service.TokenExpiredException:
         # Redirect to login screen?
         return {"message": "Authentication token expired"}, 401
 
     return {
         "success": True,
+        "userId": user_id,
         "message": f"User #{user_id} successfully authenticated"
     }
 
@@ -162,62 +149,25 @@ def login_success(user_id: int, user_role: str) -> Response:
     return resp
 
 
-def generate_salt() -> bytes:
-    return secrets.token_bytes()  # 32 bytes by default
-
-
-def hash_password(password: str, salt: bytes) -> bytes:
-    """Hash password with salt into a 64 byte string."""
-    return scrypt(password.encode(), salt=salt, n=16384, r=8, p=1)  # Output is 64 bytes by default
-
-
 def set_auth_cookie(resp: Response, user_id):
     """Set a new auth cookie in response for user. Can raise DatabaseError if there is no connection."""
 
-    token, expiration_date = create_auth_token(user_id)
+    try:
+        token, expiration_date = auth_service.create_auth_token(user_id)
+    except DatabaseError as e:
+        m = f"{e.args[1]} ({e.args[0]})"
+        print("Database error:", m)
+        return {"message": m}, 500
+
     print(f"DEBUG: Auth token created for user #{user_id}: {token}")
 
     resp.set_cookie(
         "auth",
         str(token),
-        EXPIRATION_PERIOD,
+        auth_service.EXPIRATION_PERIOD,
         expiration_date,
-        # secure=True,  # Only set the cookie over HTTPS; SKIP FOR DEV, ENFORCE FOR PROD
+        # Secure means only set the cookie over HTTPS; SKIP FOR DEV, ENFORCE FOR PROD
+        # secure=True,
         httponly=True,
         samesite="Lax",
     )
-
-
-def create_auth_token(user_id):
-    """Generate a auth token for the given user, add it to the database, and return (token, expiration time). Can raise DatabaseError if there is no connection."""
-
-    # TODO: Set the token with IP Address too
-    # TODO: Why not just make the token the table's primary key?
-
-    while True:
-        token_bytes = secrets.token_bytes(8)
-        token = int.from_bytes(token_bytes)
-
-        # Check if that token number already exists
-        with db.connection.cursor() as cur:
-            cur.execute(
-                f"""SELECT id FROM auth_token
-                    WHERE token = {token}"""
-            )
-            if cur.fetchone() is None:
-                break
-
-    expiration = datetime.datetime.now() + EXPIRATION_PERIOD
-    expiration_string = expiration.isoformat(" ", "seconds")
-    try:
-        with db.connection.cursor() as cur:
-            cur.execute(
-                f"""INSERT INTO auth_token (user_id, token, expiration)
-                VALUES ({user_id}, {token}, '{expiration_string}')"""
-            )
-            db.connection.commit()
-        return (token, expiration)
-    except DatabaseError as e:
-        # TODO: Idk what to do here...
-        print("AN ERROR OCCURRED", e)
-        pass
