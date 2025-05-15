@@ -1,7 +1,6 @@
 """Helper functions/facades for authentication checks."""
 
-import secrets
-from datetime import datetime
+import secrets, datetime
 from hashlib import scrypt
 
 from ..database import db
@@ -38,8 +37,8 @@ def create_auth_token(user_id):
         # Check if that token number already exists
         with db.connection.cursor() as cur:
             cur.execute(
-                f"""SELECT id FROM auth_token
-                    WHERE token = {token}"""
+                f"""SELECT `id` FROM `auth_token`
+                    WHERE `token` = {token}"""
             )
             if cur.fetchone() is None:
                 break
@@ -48,7 +47,7 @@ def create_auth_token(user_id):
     expiration_string = expiration.isoformat(" ", "seconds")
     with db.connection.cursor() as cur:
         cur.execute(
-            f"""INSERT INTO auth_token (user_id, token, expiration)
+            f"""INSERT INTO `auth_token` (`user_id`, `token`, `expiration`)
             VALUES ({user_id}, {token}, '{expiration_string}')"""
         )
         db.connection.commit()
@@ -63,17 +62,18 @@ def check_auth_token(auth_token: str) -> int:
     
     # Can raise DatabaseError
     with db.connection.cursor() as cur:
-        cur.execute(f"SELECT user_id, expiration FROM auth_token WHERE token = {auth_token}")
+        cur.execute(f"SELECT `user_id`, `expiration` FROM `auth_token` WHERE `token` = {auth_token}")
         token_info = cur.fetchone()
     
     if token_info is None:
         raise TokenNotFoundException
     
     user_id: int = token_info['user_id']
-    expiration: datetime = token_info['expiration']
+    expiration: datetime.datetime = token_info['expiration']
 
     # Check expiration
-    if expiration < datetime.now():
+    if expiration < datetime.datetime.now():
+        # Also delete the token while we are here maybe?
         raise TokenExpiredException
 
     return user_id

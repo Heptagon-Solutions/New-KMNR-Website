@@ -24,8 +24,9 @@
         Sign up
       </button>
       <button (click)="authenticate()">Authenticate</button>
-      <input id="remember-me-checkbox" type="checkbox" #rememberMe />
-      <label for="remember-me-checkbox">Remember Me</label>
+      <!-- <input id="remember-me-checkbox" type="checkbox" #rememberMe /> -->
+      <!-- <label for="remember-me-checkbox">Remember Me</label> -->
+      <button (click)="logout()">Logout</button>
     </div>
 
     <div *ngIf="backendMsg != null">Message from backend: {{ backendMsg }}</div>

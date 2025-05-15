@@ -59,6 +59,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  public logout() {
+    this.auth.logout$().subscribe();
+  }
+
   public getAuthState(): string {
     const userId = this.auth.getUserId();
     const role = this.auth.getRole();

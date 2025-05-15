@@ -68,7 +68,6 @@ def sign_up():
 @current_app.post("/login")
 def login():
     data = request.json
-    print("login post made", data)
 
     try:
         email: str = data["email"]
@@ -76,6 +75,7 @@ def login():
     except KeyError:
         return {"message": f"Login request must provide 'email' and 'pass'."}, 400
 
+    # DEBUG: Serves no purpose here
     print("DEBUG: Cookies are:", [c for c in request.cookies.lists()])
     auth_cookie = request.cookies.get("auth")
     if auth_cookie:
@@ -104,6 +104,51 @@ def login():
         # This message should be vague, to ensure attackers don't know if the password was wrong or the email.
         return {"message": "Incorrect password"}, 401
     
+
+@current_app.post('/logout')
+def logout():
+    auth_token = request.cookies.get("auth")
+    if auth_token is None:
+        # Should this be 401?
+        return {"message": "No authentication cookie found"}, 400
+
+    # Make sure user actually is logged in (don't allow users to log out other user's accounts)
+    try:
+        user_id = auth_service.check_auth_token(auth_token)
+    except DatabaseError as e:
+        m = f"{e.args[1]} ({e.args[0]})"
+        print("Database error:", m)
+        return {"message": m}, 500
+    except auth_service.TokenNotFoundException:
+        return {"message", "The provided authentication token does not exist"}, 401
+    except auth_service.TokenExpiredException:
+        # Redirect to login screen?
+        return {"message": "Authentication token expired"}, 401
+    
+    resp = make_response({
+        "success": True,
+    })
+    # Always delete cookie, even if issue arises with deleting token from database
+    resp.delete_cookie(
+        "auth",
+        # These seem to need to match how the cookie was created
+        # secure=True,
+        httponly=True,
+        samesite='Lax'
+    )
+
+    # Delete the auth token
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(f"DELETE FROM `auth_token` WHERE `token` = {auth_token}")
+            db.connection.commit()
+    except DatabaseError as e:
+        m = f"{e.args[1]} ({e.args[0]})"
+        print("Database error:", m)
+        return {"message": m}, 500
+
+    return resp
+
 
 @current_app.get('/authenticate')
 def authenticate_using_cookie():

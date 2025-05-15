@@ -39,6 +39,24 @@ export class AuthenticationService {
       .pipe(tap(data => this.setState(data)));
   }
 
+  public logout$(): Observable<{ success: boolean }> {
+    return this.http
+      .post<{ success: boolean }>(
+        API_URL + 'logout',
+        {},
+        {
+          withCredentials: true,
+        }
+      )
+      .pipe(
+        tap(data => {
+          if (data.success) {
+            this.clearState();
+          }
+        })
+      );
+  }
+
   public signup$(
     name: string,
     email: string,
