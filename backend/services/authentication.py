@@ -56,10 +56,7 @@ def create_auth_token(user_id):
 
 
 def check_auth_token(auth_token: str) -> int:
-    """Returns the user_id associated with the token if valid, otherwise raises TokenNotFoundException, or TokenExpiredException. Can also raise DatabaseError."""
-    if auth_token is None:
-        return {"message": "No authentication cookie found"}, 400
-    
+    """Returns the user_id associated with the token if valid, otherwise raises TokenNotFoundException or TokenExpiredException. Can also raise DatabaseError."""
     # Can raise DatabaseError
     with db.connection.cursor() as cur:
         cur.execute(f"SELECT `user_id`, `expiration` FROM `auth_token` WHERE `token` = {auth_token}")
@@ -79,9 +76,15 @@ def check_auth_token(auth_token: str) -> int:
     return user_id
 
 
-class TokenNotFoundException(Exception):
+class InvalidTokenException(Exception):
     pass
 
 
-class TokenExpiredException(Exception):
+class TokenNotFoundException(InvalidTokenException):
+    """The token does not exist in the database."""
+    pass
+
+
+class TokenExpiredException(InvalidTokenException):
+    """The token has expired."""
     pass

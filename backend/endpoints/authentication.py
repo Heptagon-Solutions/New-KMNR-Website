@@ -1,7 +1,6 @@
-import datetime, secrets
-
-from flask import current_app, request, make_response
-from flask import Response
+from flask import current_app, request
+from flask import json
+from flask import Response, make_response
 
 from ..database import db, DatabaseError
 from ..services import authentication as auth_service
@@ -107,46 +106,62 @@ def login():
 
 @current_app.post('/logout')
 def logout():
-    auth_token = request.cookies.get("auth")
+    auth_token: str = request.cookies.get("auth")
     if auth_token is None:
-        # Should this be 401?
-        return {"message": "No authentication cookie found"}, 400
+        return {"success": False, "message": "No authentication cookie found"}, 400
 
+    print(f"DEBUG: Auth cookie found. Token is {auth_token}")
+
+    error_msg: str | None = None
+    status_code: int = 200
     # Make sure user actually is logged in (don't allow users to log out other user's accounts)
     try:
         user_id = auth_service.check_auth_token(auth_token)
     except DatabaseError as e:
-        m = f"{e.args[1]} ({e.args[0]})"
-        print("Database error:", m)
-        return {"message": m}, 500
+        error_msg = f"{e.args[1]} ({e.args[0]})"
+        status_code = 500
+        print("Database error:", error_msg)
     except auth_service.TokenNotFoundException:
-        return {"message", "The provided authentication token does not exist"}, 401
+        error_msg = "The authentication token does not exist"
+        status_code = 401
     except auth_service.TokenExpiredException:
         # Redirect to login screen?
-        return {"message": "Authentication token expired"}, 401
+        error_msg = "Authentication token expired"
+        status_code = 401
+        
+    # Don't attempt to delete token from database if authentication fails
+    if error_msg:
+        data = json.dumps({
+            "success": False,
+            "message": error_msg
+        })
+        resp = Response(data, status=status_code, mimetype="application/json")
+        # Always delete cookie, even if issue arises
+        delete_auth_cookie(resp)
+        return resp
     
-    resp = make_response({
-        "success": True,
-    })
-    # Always delete cookie, even if issue arises with deleting token from database
-    resp.delete_cookie(
-        "auth",
-        # These seem to need to match how the cookie was created
-        # secure=True,
-        httponly=True,
-        samesite='Lax'
-    )
-
-    # Delete the auth token
+    # Authentication successful, try to delete from database
+    database_delete_err_msg: str | None = None
     try:
         with db.connection.cursor() as cur:
             cur.execute(f"DELETE FROM `auth_token` WHERE `token` = {auth_token}")
             db.connection.commit()
     except DatabaseError as e:
-        m = f"{e.args[1]} ({e.args[0]})"
-        print("Database error:", m)
-        return {"message": m}, 500
+        database_delete_err_msg = f"{e.args[1]} ({e.args[0]})"
+        print("Database error:", database_delete_err_msg)
 
+    if database_delete_err_msg:
+        data = json.dumps({
+            "success": False,
+            "message": "Could not delete token from database."
+        })
+        resp = Response(data, status=500, mimetype="application/json")
+    else:
+        data = json.dumps({"success": True, "message": ""})
+        resp = Response(data, mimetype="application/json")
+
+    # Always delete cookie, even if issue arises
+    delete_auth_cookie(resp)
     return resp
 
 
@@ -215,4 +230,14 @@ def set_auth_cookie(resp: Response, user_id):
         # secure=True,
         httponly=True,
         samesite="Lax",
+    )
+
+def delete_auth_cookie(resp: Response):
+    """Set the response to request the auth cookie to be deleted."""
+    resp.delete_cookie(
+        "auth",
+        # These seem to need to match how the cookie was created
+        # secure=True,
+        httponly=True,
+        samesite='Lax'
     )
