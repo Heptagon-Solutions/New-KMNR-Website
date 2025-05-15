@@ -37,7 +37,7 @@ def sign_up():
 
             try:
                 cur.execute("SET sql_auto_is_null = ON;")
-                cur.execute("SELECT id FROM user WHERE id IS NULL;")
+                cur.execute("SELECT id, role FROM user WHERE id IS NULL;")
             except DatabaseError as e:
                 m = f"{e.args[1]} ({e.args[0]})"
                 print("Database error while selecting added user:", m)
@@ -51,7 +51,7 @@ def sign_up():
         return {"message": m}, 500
 
     if user["id"]:
-        return login_success(user["id"])
+        return login_success(user["id"], user['role'])
     else:
         return {
             "message": f"We somehow created {email}'s account, but lost their id...?"
@@ -93,7 +93,7 @@ def login():
     hashed_attempt = hash_password(password_attempt.encode(), user['salt'])
     print(f"DEBUG: User attempt began with {hashed_attempt.hex()[:10]}, saved hash begins with {user['password_hash'].hex()[:10]}")
     if hashed_attempt == user['password_hash']:
-        return login_success(user["id"])
+        return login_success(user["id"], user['role'])
     else:
         # TODO: Change this from a debug message to something less obvious of what went wrong.
         # This message should be vague, to ensure attackers don't know if the password was wrong or the email.
@@ -129,18 +129,22 @@ def authenticate_using_cookie():
         # Redirect to login screen?
         return {"message": "Authentication token expired"}, 401
 
-    return {"message": f"User #{user_id} successfully authenticated"}
+    return {
+        "success": True,
+        "message": f"User #{user_id} successfully authenticated"
+    }
 
 
-def login_success(user_id) -> Response:
+def login_success(user_id: int, user_role: str) -> Response:
     """Returns response for a successful login and sets user's auth cookie."""
 
-    resp = make_response({"message": f"a login request was made for user_id={user_id}"})
+    resp = make_response({
+        "success": True,
+        "userId": user_id,
+        "role": user_role
+    })
     try:
         set_auth_cookie(resp, user_id)
-        # DEV: THIS IS FOR DEV ONLY (and idk if they actually work lol), DELETE FOR PRODUCTION:
-        # resp.headers["Access-Control-Allow-Credentials"] = "true"
-        # resp.access_control_allow_credentials = True
     except DatabaseError as e:
         # Only occurs if unable to connect to database
         print("Non-critical database error:", e)
@@ -160,14 +164,14 @@ def hash_password(password: str, salt: bytes) -> bytes:
 def set_auth_cookie(resp: Response, user_id):
     """Set a new auth cookie in response for user. Can raise DatabaseError if there is no connection."""
 
-    token, expiration = create_auth_token(user_id)
+    token, expiration_date = create_auth_token(user_id)
     print(f"DEBUG: Auth token created for user #{user_id}: {token}")
 
     resp.set_cookie(
         "auth",
         str(token),
         EXPIRATION_PERIOD,
-        expiration,
+        expiration_date,
         # secure=True,  # Only set the cookie over HTTPS; SKIP FOR DEV, ENFORCE FOR PROD
         httponly=True,
         samesite="Lax",

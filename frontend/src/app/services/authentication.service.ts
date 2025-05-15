@@ -1,13 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { API_URL } from 'src/constants';
+
+interface SuccessfulLoginResponse {
+  success: boolean;
+  userId: number;
+  role: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private userId: number | null = null;
+  private role: string = 'dj';
+
   constructor(private readonly http: HttpClient) {}
 
   public authenticate$(): Observable<{ message: string }> {
@@ -17,20 +26,56 @@ export class AuthenticationService {
     });
   }
 
-  public login$(email: string, pass: string): Observable<{ message: string }> {
+  public login$(
+    email: string,
+    pass: string
+  ): Observable<SuccessfulLoginResponse> {
     const body = { email, pass };
-    return this.http.post<{ message: string }>(API_URL + 'login', body, {
-      // withCredentials must be added for cookies to be sent or set
-      withCredentials: true,
-    });
+    return this.http
+      .post<SuccessfulLoginResponse>(API_URL + 'login', body, {
+        // withCredentials must be added for cookies to be sent or set
+        withCredentials: true,
+      })
+      .pipe(tap(data => this.setState(data)));
   }
 
   public signup$(
     name: string,
     email: string,
     pass: string
-  ): Observable<{ message: string }> {
+  ): Observable<SuccessfulLoginResponse> {
     const body = { name, email, pass };
-    return this.http.post<{ message: string }>(API_URL + 'signup', body);
+    return this.http
+      .post<SuccessfulLoginResponse>(API_URL + 'signup', body)
+      .pipe(tap(data => this.setState(data)));
+  }
+
+  public isLoggedIn(): boolean {
+    return this.userId !== null;
+  }
+
+  public getUserId(): number | null {
+    return this.userId;
+  }
+
+  public getRole(): string | null {
+    if (this.userId) {
+      return this.role;
+    } else {
+      return null;
+    }
+  }
+
+  private setState(loginResponse: SuccessfulLoginResponse) {
+    if (loginResponse.success) {
+      this.userId = loginResponse.userId;
+      this.role = loginResponse.role;
+    } else {
+      this.clearState();
+    }
+  }
+
+  private clearState() {
+    this.userId = null;
   }
 }

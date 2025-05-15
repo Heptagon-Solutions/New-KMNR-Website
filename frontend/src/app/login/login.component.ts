@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
   public login(email: string, password: string, rememberMe: boolean = false) {
     // TODO: Validation
     this.auth.login$(email, password).subscribe({
-      next: m => (this.backendMsg = m.message),
+      next: m => {
+        return;
+      },
       error: e => {
         console.error('Error while logging in:', e);
         this.backendMsg = e.message;
@@ -47,11 +49,20 @@ export class LoginComponent implements OnInit {
   ) {
     // TODO: Validation
     this.auth.signup$(name, email, password).subscribe({
-      next: m => (this.backendMsg = m.message),
+      next: m => {
+        return;
+      },
       error: e => {
         console.error('Error while signing up:', e);
         this.backendMsg = e.message;
       },
     });
+  }
+
+  public getAuthState(): string {
+    const userId = this.auth.getUserId();
+    const role = this.auth.getRole();
+
+    return (userId || 'Not logged in') + '; ' + (role || 'no role');
   }
 }
