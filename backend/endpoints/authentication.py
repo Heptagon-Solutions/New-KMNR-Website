@@ -16,19 +16,29 @@ def sign_up():
     print("Attempting to sign up", data)
 
     try:
-        name = data["name"]
-        email = data["email"]
-        password = data["pass"]
+        name: str = data["name"]
+        email: str = data["email"]
+        password: str = data["pass"]
     except KeyError:
         return {
             "message": f"Login request must provide 'name', 'email' and 'pass'."
         }, 400
 
     try:
+        salt = generate_salt()
+        hashed_pass = hash_password(password, salt)
+
         with db.connection.cursor() as cur:
             try:
                 cur.execute(
-                    f"""INSERT INTO user (name, email, password, role) VALUES ('{name}', '{email}', '{password}', 'dj');"""
+                    f"""INSERT INTO user (name, email, salt, password_hash, role)
+                    VALUES (
+                    '{name}',
+                    '{email}',
+                    UNHEX ('{salt.hex()}'),
+                    UNHEX ('{hashed_pass.hex()}'),
+                    'dj'
+                    );"""
                 )
             except DatabaseError as e:
                 m = f"{e.args[1]} ({e.args[0]})"
@@ -90,7 +100,7 @@ def login():
         # TODO: Change this from a debug message to something less obvious of what went wrong.
         return {"message": f"No user with email {email} found"}, 401
     
-    hashed_attempt = hash_password(password_attempt.encode(), user['salt'])
+    hashed_attempt = hash_password(password_attempt, user['salt'])
     print(f"DEBUG: User attempt began with {hashed_attempt.hex()[:10]}, saved hash begins with {user['password_hash'].hex()[:10]}")
     if hashed_attempt == user['password_hash']:
         return login_success(user["id"], user['role'])
@@ -158,7 +168,7 @@ def generate_salt() -> bytes:
 
 def hash_password(password: str, salt: bytes) -> bytes:
     """Hash password with salt into a 64 byte string."""
-    return scrypt(password, salt=salt, n=16384, r=8, p=1)  # Output is 64 bytes by default
+    return scrypt(password.encode(), salt=salt, n=16384, r=8, p=1)  # Output is 64 bytes by default
 
 
 def set_auth_cookie(resp: Response, user_id):

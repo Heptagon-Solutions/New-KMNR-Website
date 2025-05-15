@@ -46,7 +46,10 @@ export class AuthenticationService {
   ): Observable<SuccessfulLoginResponse> {
     const body = { name, email, pass };
     return this.http
-      .post<SuccessfulLoginResponse>(API_URL + 'signup', body)
+      .post<SuccessfulLoginResponse>(API_URL + 'signup', body, {
+        // withCredentials must be added for cookies to be sent or set
+        withCredentials: true,
+      })
       .pipe(tap(data => this.setState(data)));
   }
 
