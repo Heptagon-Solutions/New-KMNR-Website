@@ -1,8 +1,41 @@
 <div class="login-page">
   <h1 class="title">Login</h1>
+
+  <div class="login">
+    <div>
+      <input type="text" placeholder="Name" #name />
+    </div>
+    <div>
+      <input type="text" placeholder="Email" #email />
+    </div>
+    <div>
+      <input type="text" placeholder="Password" #password />
+    </div>
+
+    <div>
+      <button (click)="login(email.value.trim(), password.value.trim())">
+        Login
+      </button>
+      <button
+        (click)="
+          signup(name.value.trim(), email.value.trim(), password.value.trim())
+        "
+      >
+        Sign up
+      </button>
+      <button (click)="authenticate()">Authenticate</button>
+      <!-- <input id="remember-me-checkbox" type="checkbox" #rememberMe /> -->
+      <!-- <label for="remember-me-checkbox">Remember Me</label> -->
+      <button (click)="logout()">Logout</button>
+    </div>
+
+    <div *ngIf="backendMsg != null">Message from backend: {{ backendMsg }}</div>
+
+    <div>{{ getAuthState() }}</div>
+  </div>
+
   <div class="register">
     <h2>New DJ?</h2>
     <p>Sign up here!</p>
   </div>
-  <div class="login"></div>
 </div>

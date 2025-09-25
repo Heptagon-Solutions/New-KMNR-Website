@@ -1,6 +1,6 @@
 from flask import current_app
 
-from database import db, DatabaseError
+from .database import db, DatabaseError
 
 
 @current_app.route("/")

@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS `rented_show`;
 DROP TABLE IF EXISTS `show_host`;
 DROP TABLE IF EXISTS `radio_show`;
 DROP TABLE IF EXISTS `dj`;
+DROP TABLE IF EXISTS `auth_token`;
 DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `semester`;
 
@@ -28,9 +29,20 @@ CREATE TABLE
         `id` INT UNSIGNED AUTO_INCREMENT,
         `name` VARCHAR(50) NOT NULL,
         `email` VARCHAR(50) NOT NULL UNIQUE,
-        `password` VARCHAR(50) NOT NULL,
-        `role` VARCHAR(50),  -- IDK about this one; probably should be enum
+        `salt` BINARY(32) NOT NULL,
+        `password_hash` BINARY(64) NOT NULL,
+        `role` ENUM ('dj', 'admin') DEFAULT 'dj' NOT NULL,
         PRIMARY KEY (`id`)
+    );
+
+CREATE TABLE
+    `auth_token` (
+        `id` INT UNSIGNED AUTO_INCREMENT,
+        `user_id` INT UNSIGNED NOT NULL,
+        `token` BIGINT UNSIGNED NOT NULL UNIQUE, -- 8 bytes
+        `expiration` DATETIME,  -- Should this be NOT NULL?
+        PRIMARY KEY (`id`),
+        FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
     );
 
 CREATE TABLE
@@ -87,7 +99,7 @@ CREATE TABLE
 CREATE TABLE
     `playlist` (
         `id` INT UNSIGNED AUTO_INCREMENT,
-        `date_played` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `date_played` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `posting_dj_id` INT UNSIGNED,  -- The DJ that posted the playlist from KLAP. NULL means automation
         `radio_show_id` INT UNSIGNED,  -- Only provided if this playlist was for a show (not inmpromptu/automation)
         -- This also allows shows like Artist Feature to have many different DJs providing playlists
@@ -124,7 +136,7 @@ CREATE TABLE
         `contact_name` VARCHAR(50) NOT NULL,
         `contact_email` VARCHAR(50) NOT NULL,
         `approved` BOOLEAN NOT NULL DEFAULT 0,
-        `submit_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `submit_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `expiration_date` DATE NOT NULL,
         PRIMARY KEY (`id`)
     );
