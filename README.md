@@ -1,12 +1,11 @@
 # KWIP-2
 
-A fork of the original [KWIP](https://github.com/KMNR/KWIP) with a different tech stack.
+A fork of KMNR's KWIP2 project for CS 4091 - Software Engineering Capstone II.
 
+Stack:
 - Angular frontend
 - Flask (Python) backend
 - MySQL/MariaDB database
-
-For more info or help, Carson Jones (aka DJCubed) would be happy to help: djcubed12@gmail.com.
 
 ## Quickstart commands
 
