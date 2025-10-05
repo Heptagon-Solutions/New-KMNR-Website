@@ -1,0 +1,6 @@
+configparser
+dotenv
+flask
+flask_cors
+flask_mysqldb
+mysql-connector-python

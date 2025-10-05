@@ -1,0 +1,25 @@
+services:
+  kmnr-frontend:
+    image: heptagon/kmnr-frontend:2.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    container_name: kmnr-frontend
+    ports:
+      - "8080:8080"
+      - "4200:4200"
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+  kmnr-backend:
+    image: heptagon/kmnr-backend:2.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    container_name: kmnr-backend
+    ports:
+      - "3000:3000"
+      - "5001:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
