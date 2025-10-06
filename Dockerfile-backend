@@ -1,9 +1,12 @@
 FROM python:3.11-slim
 
-RUN pip install pipenv --break-system-packages
-
 # Set environment variable for Pipenv to create virtual environments within the project directory.
-ENV PIPENV_VENV_IN_PROJECT=1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV PIPENV_VENV_IN_PROJECT 1
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN pip install pipenv -qq --break-system-packages
 
 WORKDIR /app
 
@@ -15,11 +18,13 @@ LABEL org.opencontainers.image.title="KMNR Website (Backend)" \
 
 COPY backend .
 
-RUN apt-get update
-RUN apt-get -qq -y install curl
-RUN apt-get -qq install python3-dev default-libmysqlclient-dev build-essential pkg-config
-RUN pipenv install --dev --system --deploy
-RUN pipenv install -r requirements.txt
+RUN apt-get -qq update \
+    && apt-get -qq install curl \
+    && apt-get -qq install python3-dev default-libmysqlclient-dev build-essential pkg-config \
+    && apt-get -qq clean
+RUN pipenv install --quiet --dev --system --deploy \
+    && pipenv install -q -r requirements.txt
+RUN apt -qq autoremove
 
 EXPOSE 5000
 

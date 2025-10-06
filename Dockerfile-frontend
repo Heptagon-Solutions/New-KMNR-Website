@@ -1,4 +1,4 @@
-FROM node:18-slim
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -10,8 +10,8 @@ LABEL org.opencontainers.image.title="KMNR Website (Frontend)" \
 
 COPY frontend .
 
-RUN npm install
-RUN npm install -g @angular/cli@16.1.0
+RUN npm install -q
+RUN npm install -q -g @angular/cli@16.1.0
 
 EXPOSE 8080
 EXPOSE 4200
