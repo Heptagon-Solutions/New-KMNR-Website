@@ -10,3 +10,5 @@ LABEL org.opencontainers.image.title="KMNR Website (Database)" \
 
 COPY backend/setup.sql /docker-entrypoint-initdb.d/
 COPY backend/sample_data.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 3306
