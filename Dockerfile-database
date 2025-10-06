@@ -8,10 +8,33 @@ LABEL org.opencontainers.image.title="KMNR Website (Database)" \
       org.opencontainers.image.authors="Heptagon Solutions" \
       org.opencontainers.image.source="https://github.com/DJCubed12/New-KMNR-Website/"
 
-COPY backend/db-migrations/* /docker-entrypoint-initdb.d/
-# TODO: Remove 99_sample_data.sql from db-migrations to some kind of "init-db-data" directory
-# Then mount that directory into docker-entrypoint-initdb.d somehow such that it gets executed last
-# This would allow a real DB sql data dump to be used instead in production scenarios
-# (Thus the "init-db-data" directory should be .gitignored as well)
+COPY backend/db-migrations ./db-migrations
+COPY backend/init-db-data ./init-db-data
+
+# Order the files so that all files in init-db-data are executed after files in db-migrations.
+RUN migrations=$(ls ./db-migrations | wc -l); \
+    init_files=$(ls ./init-db-data | wc -l); \
+    sum=$((migrations + init_files)); \
+    total_digits=${#sum}; \
+    index=0; \
+    for file in ./db-migrations/*; do \
+      if [ -f "$file" ]; then \
+        prefix=$(printf "%0${total_digits}d" "$index"); \
+        filename=$(basename "$file"); \
+        cp "$file" "/docker-entrypoint-initdb.d/${prefix}_${filename}"; \
+        index=$(( index + 1 )); \
+      fi \
+    done; \
+    for file in ./init-db-data/*; do \
+      if [ -f "$file" ]; then \
+        prefix=$(printf "%0${total_digits}d" "$index"); \
+        filename=$(basename "$file"); \
+        cp "$file" "/docker-entrypoint-initdb.d/${prefix}_${filename}"; \
+        index=$(( index + 1 )); \
+      fi \
+    done
+
+# Use the following to inspect the output of the file renaming:
+# RUN ls /docker-entrypoint-initdb.d/
 
 EXPOSE 3306

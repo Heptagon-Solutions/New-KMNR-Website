@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 RUN pip install pipenv --break-system-packages
 
-# Set environment variable for Pipenv to create virtual environments within the project directory
+# Set environment variable for Pipenv to create virtual environments within the project directory.
 ENV PIPENV_VENV_IN_PROJECT=1
 
 WORKDIR /app

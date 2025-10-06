@@ -29,6 +29,7 @@ frontend/.angular/cache/
 /libpeerconnection.log
 testem.log
 /typings
+.gitkeep
 
 .DS_Store
 Thumbs.db
