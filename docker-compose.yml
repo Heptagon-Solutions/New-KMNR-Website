@@ -21,5 +21,10 @@ services:
     ports:
       - "5001:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
     restart: unless-stopped
-    environment:
-      NODE_ENV: production
+  kmnr-database:
+    image: heptagon/kmnr-database:2.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-database
+    container_name: kmnr-database
+    restart: always
