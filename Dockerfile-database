@@ -11,18 +11,22 @@ LABEL org.opencontainers.image.title="KMNR Website (Database)" \
 COPY backend/db-migrations ./db-migrations
 COPY backend/init-db-data ./init-db-data
 
-# Order the files so that all files in init-db-data are executed after files in db-migrations.
+# Order the scripts so that all scripts in db-migrations are executed before files in init-db-data.
 RUN migrations=$(ls ./db-migrations | wc -l); \
     init_files=$(ls ./init-db-data | wc -l); \
     sum=$((migrations + init_files)); \
     total_digits=${#sum}; \
     index=0; \
+    # Loops with Bash wildcards go through items in lexographical order.
+    # Similarly, scripts in /docker-entrypoint-initdb.d/ will also be executed in lexographical order.
     for file in ./db-migrations/*; do \
       if [ -f "$file" ]; then \
+        # Add prefixes to each filename; files are numbered to indicate the order of execution.
+        # Leading zeros are needed to properly enforce lexographical order for large quantities of files.
         prefix=$(printf "%0${total_digits}d" "$index"); \
         filename=$(basename "$file"); \
         cp "$file" "/docker-entrypoint-initdb.d/${prefix}_${filename}"; \
-        index=$(( index + 1 )); \
+        index=$((index + 1)); \
       fi \
     done; \
     for file in ./init-db-data/*; do \
@@ -30,7 +34,7 @@ RUN migrations=$(ls ./db-migrations | wc -l); \
         prefix=$(printf "%0${total_digits}d" "$index"); \
         filename=$(basename "$file"); \
         cp "$file" "/docker-entrypoint-initdb.d/${prefix}_${filename}"; \
-        index=$(( index + 1 )); \
+        index=$((index + 1)); \
       fi \
     done
 
