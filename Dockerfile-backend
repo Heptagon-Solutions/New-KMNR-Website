@@ -21,7 +21,6 @@ RUN apt-get -qq install python3-dev default-libmysqlclient-dev build-essential p
 RUN pipenv install --dev --system --deploy
 RUN pipenv install -r requirements.txt
 
-EXPOSE 3000
 EXPOSE 5000
 
 CMD ["pipenv", "run", "python3", "-m", "flask", "--app", "app.py", "run", "--host=0.0.0.0"]

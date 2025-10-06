@@ -15,5 +15,6 @@ RUN npm install -g @angular/cli@16.1.0
 
 EXPOSE 8080
 EXPOSE 4200
+EXPOSE 3000
 
 CMD ["npm", "run", "start-docker"]
