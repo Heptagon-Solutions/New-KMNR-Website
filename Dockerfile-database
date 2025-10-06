@@ -8,7 +8,10 @@ LABEL org.opencontainers.image.title="KMNR Website (Database)" \
       org.opencontainers.image.authors="Heptagon Solutions" \
       org.opencontainers.image.source="https://github.com/DJCubed12/New-KMNR-Website/"
 
-COPY backend/setup.sql /docker-entrypoint-initdb.d/
-COPY backend/sample_data.sql /docker-entrypoint-initdb.d/
+COPY backend/db-migrations/* /docker-entrypoint-initdb.d/
+# TODO: Remove 99_sample_data.sql from db-migrations to some kind of "init-db-data" directory
+# Then mount that directory into docker-entrypoint-initdb.d somehow such that it gets executed last
+# This would allow a real DB sql data dump to be used instead in production scenarios
+# (Thus the "init-db-data" directory should be .gitignored as well)
 
 EXPOSE 3306

@@ -9,6 +9,14 @@ Stack:
 
 ## Quickstart commands
 
+### Using Docker (Debian images):
+
+`docker-compose up` to start everything, and `docker-compose down` to stop everything.
+
+Use `docker-compose down --rmi all` to stop and **reset** everything _(not recommended unless you messed up the database or a container somehow)_.
+
+### Not using Docker (Directly in Windows):
+
 In `frontend/`: `npm run start`
 
 In `backend/`: `pipenv run python3 app.py`

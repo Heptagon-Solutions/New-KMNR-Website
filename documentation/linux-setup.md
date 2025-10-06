@@ -106,11 +106,14 @@ Now to test it. Run the command `mariadb`. It'll open up a new prompt. Type in `
 +----------------------+
 ```
 
-It's working! Now you need to setup the KWIP database with the `setup.sql` and `sample_data.sql` scripts. While still in the MariaDB terminal, enter these two commands:
+It's working! Now you need to setup the KWIP database with the database setup/migration scripts. While still in the MariaDB terminal, enter these two commands:
 
 ```
-source <path to setup.sql>;
-source <path to sample_data.sql>;
+source <path to 00_setup.sql>;
+source <path to 01_whatever.sql>;
+...
+# This last one is not required; populates DB with fake data for development
+source <path to 99_sample_data.sql>;
 ```
 
 _If you run into issues, check [this website](https://www.server-world.info/en/note?os=Debian_12&p=mariadb); it was very helpful while writing this._

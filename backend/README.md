@@ -9,3 +9,7 @@ If you are running the backend on a separate Linux machine from the frontend, ru
 ## Maintenance
 
 To see what dependencies are outdated run `pipenv update --dry-run`. To actually update them run `pipenv update`. **Please** start the app and test it before committing these changes.
+
+## Adding Database Migrations
+
+Add all database migrations to the /db-migrations directory. Give the migrations script an understandable name, and prefix it with `XX_` where XX is the next number not taken (this is done to keep execution order alphabetical).

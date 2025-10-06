@@ -28,11 +28,11 @@ You will need to install MySQL on your device to use the database. Read [`Instal
 
 Connect to your MySQL Server and run `backend/setup.sql`. There are several commands/applications you can use to do this, but here are instructions for using _MySQL Command Line Client_ to do it:
 
-1. Find and copy the absolute path to your [`backend/setup.sql`](../backend/setup.sql) file
+1. Find and copy the absolute path to your [`backend/db-migrations/01_setup.sql`](../backend/db_migrations/01_setup.sql) file
 2. Open _MySQL Command Line Client_
 3. Run the command `source <setup.sql's absolute path>;` (don't forget the semicolon!)
 
-If you would like to populate your database with some prepared sample data, repeat these steps with [`backend/sample_data.sql`](../backend/sample_data.sql).
+If you would like to populate your database with some prepared sample data, repeat these steps with [`backend/db_migrations/99_sample_data.sql`](../backend/db_migrations/99_sample_data.sql).
 
 After that your database should be running and prepared for use.
 
