@@ -1,4 +1,4 @@
-""" This is the Application Factory and entry point for the Flask application. """
+"""This is the Application Factory and entry point for the Flask application."""
 
 from configparser import ConfigParser
 from dotenv import dotenv_values
@@ -31,7 +31,7 @@ def create_app():
     db.init_app(app)
 
     # THIS IS FOR DEV ONLY - REMOVE BEFORE PRODUCTION
-    CORS(app, origins=["http://localhost:4200"])
+    CORS(app, origins=["http://localhost:8970"])
 
     # Add all endpoints to the app
     with app.app_context():

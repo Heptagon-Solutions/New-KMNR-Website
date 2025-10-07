@@ -7,7 +7,7 @@ services:
     container_name: kmnr-frontend
     ports:
       - "8080:8080"
-      - "4200:4200"
+      - "8970:4200"
       - "3000:3000"
     restart: unless-stopped
     environment:
@@ -19,7 +19,10 @@ services:
       dockerfile: Dockerfile-backend
     container_name: kmnr-backend
     ports:
-      - "5001:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
+      - "8971:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
+    links:
+      - "kmnr-database:database"
+
     restart: unless-stopped
   kmnr-database:
     image: heptagon/kmnr-database:2.1.0
