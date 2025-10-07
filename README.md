@@ -15,11 +15,27 @@ Stack:
 
 Use `docker-compose down --rmi all` to stop and **reset** everything _(not recommended unless you messed up the database or a container somehow)_.
 
+Once it is up and running, access the services as so:
+
+|          |                    |
+| -------- | ------------------ |
+| Frontend | [localhost:8970]() |
+| Backend  | [localhost:8971]() |
+| Database | [database:3306]()  |
+
 ### Not using Docker (Directly in Windows):
 
 In `frontend/`: `npm run start`
 
 In `backend/`: `pipenv run python3 app.py`
+
+Once everything is running, access the services as so:
+
+|          |                    |
+| -------- | ------------------ |
+| Frontend | [localhost:4200]() |
+| Backend  | [localhost:5000]() |
+| Database | [localhost:3306]() |
 
 ## First time setup
 
