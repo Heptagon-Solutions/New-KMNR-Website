@@ -11,9 +11,11 @@ Stack:
 
 ### Using Docker (Debian images):
 
-`docker-compose up` to start everything, and `docker-compose down` to stop everything.
+`docker compose up --watch` to start everything with hot reloading enabled (changes to files are reflected immediately).
 
-Use `docker-compose down --rmi all` to stop and **reset** everything _(not recommended unless you messed up the database or a container somehow)_.
+`docker compose down` to stop everything.
+
+Use `docker-compose down --rmi all` to stop and **reset** everything _(not recommended unless you messed up the database or a container somehow)_. Note that if you change/update dependencies anywhere, you will need to do this or delete your existing images, then rebuild.
 
 Once it is up and running, access the services as so:
 
@@ -36,6 +38,8 @@ Once everything is running, access the services as so:
 | Frontend | [localhost:4200]() |
 | Backend  | [localhost:5000]() |
 | Database | [localhost:3306]() |
+
+The above commands enable hot reloading, so changes to the code are reflected immediately.
 
 ## First time setup
 
