@@ -12,6 +12,16 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: production
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/src
+          target: /app/src
+          initial_sync: true
+          ignore:
+            - node_modules/
+            - .angular/cache
+
   kmnr-backend:
     image: heptagon/kmnr-backend:2.1.0
     build:
@@ -22,8 +32,8 @@ services:
       - "8971:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
     links:
       - "kmnr-database:database"
-
     restart: unless-stopped
+
   kmnr-database:
     image: heptagon/kmnr-database:2.1.0
     build:

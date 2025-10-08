@@ -8,10 +8,13 @@ LABEL org.opencontainers.image.title="KMNR Website (Frontend)" \
       org.opencontainers.image.authors="Heptagon Solutions" \
       org.opencontainers.image.source="https://github.com/DJCubed12/New-KMNR-Website/"
 
-COPY frontend .
+# Copy just dependency info so docker can cache the npm installs
+COPY frontend/package.json frontend/package-lock.json ./
 
-RUN npm install -q
 RUN npm install -q -g @angular/cli@16.1.0
+RUN npm install -q
+
+COPY frontend .
 
 EXPOSE 8080
 EXPOSE 4200
