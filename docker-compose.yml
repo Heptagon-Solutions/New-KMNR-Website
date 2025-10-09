@@ -9,6 +9,9 @@ services:
       - "8080:8080"
       - "8970:4200"
       - "3000:3000"
+    networks:
+      - frontend
+    hostname: localhost
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -30,8 +33,10 @@ services:
     container_name: kmnr-backend
     ports:
       - "8971:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
-    links:
-      - "kmnr-database:database"
+    networks:
+      - frontend
+      - backend
+    hostname: localhost
     restart: unless-stopped
     develop:
       watch:
@@ -53,5 +58,18 @@ services:
       dockerfile: Dockerfile-database
     container_name: kmnr-database
     ports:
-      - "3306:3306"
+      - "8972:3306"
+    networks:
+      - backend
+    hostname: localhost
     restart: always
+
+networks:
+  frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
+  backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
