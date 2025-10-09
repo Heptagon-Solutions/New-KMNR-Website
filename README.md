@@ -23,7 +23,7 @@ Once it is up and running, access the services as so:
 | -------- | ------------------ |
 | Frontend | [localhost:8970]() |
 | Backend  | [localhost:8971]() |
-| Database | [database:3306]()  |
+| Database | [localhost:8972]()  |
 
 ### Not using Docker (Directly in Windows):
 

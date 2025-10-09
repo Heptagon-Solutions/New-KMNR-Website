@@ -61,7 +61,7 @@ services:
       - "8972:3306"
     networks:
       - backend
-    hostname: localhost
+    hostname: database
     restart: always
 
 networks:
