@@ -1,0 +1,34 @@
+FROM python:3.11-slim
+
+# Set environment variable for Pipenv to create virtual environments within the project directory.
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIPENV_VENV_IN_PROJECT=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN pip install pipenv -qq --break-system-packages
+
+WORKDIR /app
+
+LABEL org.opencontainers.image.title="KMNR Website (Backend)" \
+      org.opencontainers.image.description="A student radio station run by Missouri S&T students" \
+      org.opencontainers.image.version="2.1.0" \
+      org.opencontainers.image.authors="Heptagon Solutions" \
+      org.opencontainers.image.source="https://github.com/DJCubed12/New-KMNR-Website/"
+
+# Copy just dependency information so installs can be cached
+COPY backend/Pipfile backend/Pipfile.lock backend/requirements.txt ./
+
+RUN apt-get -qq update \
+    && apt-get -qq install curl \
+    && apt-get -qq install python3-dev default-libmysqlclient-dev build-essential pkg-config \
+    && apt-get -qq clean
+RUN pipenv install --quiet --dev --system --deploy \
+    && pipenv install -q -r requirements.txt
+RUN apt -qq autoremove
+
+COPY backend .
+
+EXPOSE 5000
+
+CMD ["./run_with_ports_exposed.sh"]

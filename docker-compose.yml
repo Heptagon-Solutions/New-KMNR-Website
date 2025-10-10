@@ -1,0 +1,75 @@
+services:
+  kmnr-frontend:
+    image: heptagon/kmnr-frontend:2.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    container_name: kmnr-frontend
+    ports:
+      - "8080:8080"
+      - "8970:4200"
+      - "3000:3000"
+    networks:
+      - frontend
+    hostname: localhost
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/src
+          target: /app/src
+          initial_sync: true
+          ignore:
+            - node_modules/
+            - .angular/cache
+
+  kmnr-backend:
+    image: heptagon/kmnr-backend:2.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    container_name: kmnr-backend
+    ports:
+      - "8971:5000" # Ports 5000 and 7000 are reserved on macOS for running the control center.
+    networks:
+      - frontend
+      - backend
+    hostname: localhost
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync
+          path: ./backend
+          target: /app
+          initial_sync: true
+          ignore:
+            - __pycache__/
+            - ./backend/.env
+            - ./backend/init-db-data/
+            - ./backend/db-migrations/
+            - ./backend/README.md
+            - ./backend/run_with_ports_exposed.sh
+  kmnr-database:
+    image: heptagon/kmnr-database:2.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-database
+    container_name: kmnr-database
+    ports:
+      - "8972:3306"
+    networks:
+      - backend
+    hostname: database
+    restart: unless-stopped
+
+networks:
+  frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
+  backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"

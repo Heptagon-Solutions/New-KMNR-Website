@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 These commands run a local version of the website on your computer for your personal use. If you get any errors, make sure you are in the `frontend` folder in your terminal.
 
+Note that these port numbers refer to running the code directly in your machine, not using the docker-compose file.
+
 ### Frontend
 
 Run `npm run start` to start the frontend dev server. In your browser, go to [`http://localhost:4200/`](). The application will automatically reload if you change any of the source files.
