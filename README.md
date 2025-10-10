@@ -25,6 +25,8 @@ Once it is up and running, access the services as so:
 | Backend  | [localhost:8971]() |
 | Database | [localhost:8972]()  |
 
+If using Docker, use the following command to access the database directly: `mysql -u root -h localhost -P 8972 --protocol=tcp`
+
 ### Not using Docker (Directly in Windows):
 
 In `frontend/`: `npm run start`

@@ -62,7 +62,7 @@ services:
     networks:
       - backend
     hostname: database
-    restart: always
+    restart: unless-stopped
 
 networks:
   frontend:
