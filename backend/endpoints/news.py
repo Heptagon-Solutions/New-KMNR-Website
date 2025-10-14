@@ -1,9 +1,12 @@
-from flask import current_app
+from flask import Blueprint
 
 from database import db, DatabaseError
 
 
-@current_app.route("/admin/news")
+town_and_campus_news_blueprint = Blueprint("town_and_campus_news", __name__)
+
+
+@town_and_campus_news_blueprint.route("/admin/news")
 def get_all_news():
     """Get all entries in town_and_campus_news in the database."""
     try:

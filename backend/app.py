@@ -35,8 +35,11 @@ def create_app():
 
     # Add all endpoints to the app
     with app.app_context():
-        import example_endpoints
-        import endpoints
+        from example_endpoints import example_endpoints_blueprint
+        from endpoints.news import town_and_campus_news_blueprint
+
+        app.register_blueprint(example_endpoints_blueprint)
+        app.register_blueprint(town_and_campus_news_blueprint)
 
         return app
 
