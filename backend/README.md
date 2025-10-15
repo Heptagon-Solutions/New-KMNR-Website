@@ -12,4 +12,8 @@ To see what dependencies are outdated run `pipenv update --dry-run`. To actually
 
 ## Adding Database Migrations
 
-Add all database migrations to the /db-migrations directory. Give the migrations script an understandable name, and prefix it with `XX_` where XX is the next number not taken (this is done to keep execution order alphabetical).
+Add all database migrations to the `db-migrations` directory. Give the migrations script an understandable name, and prefix it with `XX_` where XX is the next number not taken (this is done to keep execution order alphabetical).
+
+Note that if you are running docker, you will need to reset your container and image to apply the new migrations.
+
+TODO: there is probably a better way to apply those migrations that we can implement, but this is how it works as of now.
