@@ -1,0 +1,20 @@
+Loading .env environment variables...
+✅ Spotify endpoints loaded successfully
+✅ Playlist endpoints loaded successfully
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.78.11.226:5001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 110-480-146
+127.0.0.1 - - [16/Oct/2025 17:39:40] "GET /data HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 17:39:44] "GET /spotify/callback?code=AQCWUCM5JhA-ZXqnp_VCzD62FIDtY4z-NISxd0j1nt1bXRiytYEY2WmoBUy1XkVM4F6oNekKZLhyTti5q7kOVWi3tBC3WgetGD35KO8fYdifQphlAxtF8ple2aE95Hr4rEFGmUpWwfTITc6t789LxsIB8GFUBvddBmrq6xQG_BqJyX2t76kJN1fHeinMN_RXY4gRLw9QhHeEwXYAx243oUMY7EP-mNk2ceWtH0T0sPOMnN9tr6m7FGR81x1r8XUmDzmFpQxIVkAtD3fmLBDRnnIasmnICSQuhMiDFu891qxgD2l4c9E8F3nlE3N1ciN8tFt9TnJuSX7TQOP0XkYch_h3GJT8yo617-aFtQIP_lI4SjSS8HQww0Rt5Zn4ZmF7iPbyfhXkMQfCdaX-YRPQ-ly37N8iR4-oUyT3GpDhOorVtDTVsfY HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 17:39:45] "GET /data HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 17:39:48] "GET /spotify/callback?code=AQCJUbrxC_PYc00bADVgnYXlwqsl3aN7-ej6y21Qz7i4iSRR_Gced6MsGCZNDNTuqqpQl7UJfpjDnMQjBxy-og3cDGgrbBUPRcJwoNAUXvUlM5QUqj5xOR1ax3U4twJEReV38_K-avPaTFVXVYHSHt0uhCBHSQ9Ua1TP2MnG8ylDpbJjnNAZvtqChSDrGak3yoiOJWOx-GCHknkUm4evadrCeFMtI5d2FXvHZ1XzOYOXJejksQLDR1PAJlaV_S9PKvmNEghLR0izkweAL_anjOrTIQUiWLBdkGko6fYHOppOu0X2_m-5Mxkpe2LSaNrR_eFpOT1GC1gkdNAcn_Gv3plYa4EsADRJTt59lQ0imSZumix_tvDzjYR6blolT6gZ0AFh9bisUVGhLMsDqzZ5WlneGlOztDixO_wXberPO29WCWvQEoM HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 17:39:49] "GET /data HTTP/1.1" 200 -
+/opt/homebrew/Cellar/python@3.11/3.11.14/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

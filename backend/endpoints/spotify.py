@@ -24,24 +24,57 @@ def spotify_auth():
     auth_url = f"{SPOTIFY_AUTH_URL}?response_type=code&client_id={SPOTIFY_CLIENT_ID}&scope={scope}&redirect_uri={SPOTIFY_REDIRECT_URI}"
     return jsonify({"auth_url": auth_url})
 
-@spotify_bp.route('/spotify/callback', methods=['POST'])
+@spotify_bp.route('/spotify/callback', methods=['GET', 'POST'])
 def spotify_callback():
-    code = request.json.get('code')
+    print(f"DEBUG: Received callback request")
+    print(f"DEBUG: Method: {request.method}")
+    print(f"DEBUG: Args: {request.args}")
+    print(f"DEBUG: Content-Type: {request.headers.get('Content-Type')}")
+    
+    if request.method == 'GET':
+        # Handle Spotify's GET callback - redirect to frontend to handle PKCE
+        code = request.args.get('code')
+        error = request.args.get('error')
+        
+        if error:
+            return f'<script>window.location.href="http://127.0.0.1:4200/spotify-callback?error={error}";</script>'
+        
+        if not code:
+            return f'<script>window.location.href="http://127.0.0.1:4200/spotify-callback?error=no_code";</script>'
+        
+        # Redirect to frontend with the code
+        return f'<script>window.location.href="http://127.0.0.1:4200/spotify-callback?code={code}";</script>'
+    else:
+        # Handle POST request (from frontend)
+        if not request.json:
+            return jsonify({"error": "No JSON data provided"}), 400
+        
+        code = request.json.get('code')
+    
+    code_verifier = request.json.get('code_verifier') if request.method == 'POST' and request.json else None
+    
+    print(f"DEBUG: Code: {code}")
+    print(f"DEBUG: Code verifier: {code_verifier}")
+    
     if not code:
         return jsonify({"error": "No authorization code provided"}), 400
     
-    auth_header = base64.b64encode(f"{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET}".encode()).decode()
-    
     headers = {
-        "Authorization": f"Basic {auth_header}",
         "Content-Type": "application/x-www-form-urlencoded"
     }
     
     data = {
         "grant_type": "authorization_code",
         "code": code,
-        "redirect_uri": SPOTIFY_REDIRECT_URI
+        "redirect_uri": SPOTIFY_REDIRECT_URI,
+        "client_id": SPOTIFY_CLIENT_ID
     }
+    
+    # Always require code_verifier for PKCE flow (more secure)
+    if not code_verifier:
+        return jsonify({"error": "code_verifier required for PKCE flow"}), 400
+    
+    data["code_verifier"] = code_verifier
     
     response = requests.post(SPOTIFY_TOKEN_URL, headers=headers, data=data)
     
@@ -52,7 +85,11 @@ def spotify_callback():
         session['spotify_expires_at'] = datetime.now() + timedelta(seconds=token_data['expires_in'])
         return jsonify({"success": True, "access_token": token_data['access_token']})
     else:
-        return jsonify({"error": "Failed to get access token"}), 400
+        try:
+            error_data = response.json() if 'application/json' in response.headers.get('content-type', '') else {}
+        except:
+            error_data = {"status_code": response.status_code, "text": response.text}
+        return jsonify({"error": "Failed to get access token", "details": error_data}), 400
 
 @spotify_bp.route('/spotify/search', methods=['GET'])
 def search_spotify():
@@ -109,7 +146,7 @@ def create_playlist():
     
     user_id = user_response.json()['id']
     
-    playlist_data = request.json
+    playlist_data = request.json or {}
     name = playlist_data.get('name', 'KMNR Playlist')
     description = playlist_data.get('description', 'Created from KMNR website')
     public = playlist_data.get('public', True)
@@ -138,6 +175,9 @@ def add_tracks_to_playlist(playlist_id):
     access_token = session.get('spotify_access_token')
     if not access_token:
         return jsonify({"error": "Not authenticated with Spotify"}), 401
+    
+    if not request.json:
+        return jsonify({"error": "No JSON data provided"}), 400
     
     track_uris = request.json.get('uris', [])
     if not track_uris:

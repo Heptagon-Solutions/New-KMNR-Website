@@ -12,6 +12,8 @@ import { DJProfileComponent } from './shared/dj-profile/dj-profile.component';
 import { ShowsComponent } from './shows/shows.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
+import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
+import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 
 const routes: Routes = [
   {
@@ -59,6 +61,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'spotify',
+    component: SpotifyPlaylistComponent,
+  },
+  {
+    path: 'callback',
+    component: SpotifyCallbackComponent,
   },
   {
     // TO DO: AUTHENTICATION HERE
