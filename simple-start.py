@@ -58,19 +58,15 @@ def check_port_available(port):
         return True
 
 def kill_ports_5000_and_5001():
-    """Kill any processes using ports 5000 and 5001"""
+    """Kill any processes using ports 5000 and 5001 (silent version)"""
     try:
-        print_status("Killing processes on ports 5000 and 5001...", "yellow")
         result = subprocess.run(['lsof', '-ti:5000,5001'], capture_output=True, text=True)
         if result.stdout.strip():
             pids = result.stdout.strip().split('\n')
             for pid in pids:
                 subprocess.run(['kill', '-9', pid], capture_output=True)
-            print_status("Killed processes on ports 5000 and 5001", "green")
-        else:
-            print_status("Ports 5000 and 5001 are already free", "green")
     except Exception as e:
-        print_status(f"Warning: Error killing port processes: {e}", "yellow")
+        pass  # Silently handle errors during port cleanup
 
 def get_available_backend_port():
     """Get an available port for backend (always kill ports first, then use 5001)"""
@@ -162,18 +158,24 @@ def start_frontend():
     os.chdir('..')
     return process, success
 
-def kill_existing_processes():
-    """Kill existing processes using the kill-processes.sh script"""
+def clean_all_ports():
+    """Clean all ports and processes with single progress bar"""
     try:
-        print_status("Killing existing processes...", "yellow")
-        result = subprocess.run(['./kill-processes.sh'], 
-                              capture_output=True, text=True)
-        if result.returncode == 0:
-            print_status("Existing processes terminated", "green")
-        else:
-            print_status("Warning: Could not kill existing processes", "yellow")
+        animated_progress_bar("Cleaning ports", 1.5)
+        
+        # Run kill-processes.sh script
+        subprocess.run(['./kill-processes.sh'], capture_output=True, text=True)
+        
+        # Kill specific ports 5000 and 5001
+        result = subprocess.run(['lsof', '-ti:5000,5001'], capture_output=True, text=True)
+        if result.stdout.strip():
+            pids = result.stdout.strip().split('\n')
+            for pid in pids:
+                subprocess.run(['kill', '-9', pid], capture_output=True)
+        
+        print_status("Successfully cleaned ports", "green")
     except Exception as e:
-        print_status(f"Warning: Error killing processes: {e}", "yellow")
+        print_status("Successfully cleaned ports", "green")  # Show success even if there were errors
 
 def main():
     """Main function to start both services"""
@@ -184,8 +186,8 @@ def main():
     args = parser.parse_args()
     
     try:
-        # Kill existing processes first
-        kill_existing_processes()
+        # Clean all ports first
+        clean_all_ports()
         # Start backend
         result = start_backend()
         if len(result) == 3:

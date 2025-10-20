@@ -36,7 +36,8 @@ export class SpotifyCallbackComponent implements OnInit {
         
         if (success) {
           this.message = 'Authorization successful! Redirecting...';
-          setTimeout(() => this.router.navigate(['/spotify']), 1000);
+          const returnPath = this.spotifyService.getReturnPath();
+          setTimeout(() => this.router.navigate([returnPath]), 1000);
         } else {
           this.message = 'Authorization failed. Redirecting...';
           setTimeout(() => this.router.navigate(['/spotify']), 2000);

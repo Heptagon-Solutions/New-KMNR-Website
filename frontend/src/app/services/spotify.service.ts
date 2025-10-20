@@ -143,8 +143,9 @@ export class SpotifyService {
     const codeVerifier = this.generateRandomString(128);
     const codeChallenge = await this.generateCodeChallenge(codeVerifier);
 
-    // Store code verifier for later use
+    // Store code verifier and return path for later use
     localStorage.setItem('spotify_code_verifier', codeVerifier);
+    localStorage.setItem('spotify_return_path', window.location.pathname);
 
     const params = new URLSearchParams({
       response_type: 'code',
@@ -431,6 +432,13 @@ export class SpotifyService {
     }
   }
 
+  // Get stored return path and clean up
+  getReturnPath(): string {
+    const returnPath = localStorage.getItem('spotify_return_path') || '/spotify';
+    localStorage.removeItem('spotify_return_path');
+    return returnPath;
+  }
+
   // Disconnect Spotify
   disconnect(): void {
     this.accessToken = null;
@@ -440,5 +448,6 @@ export class SpotifyService {
     localStorage.removeItem('spotify_access_token');
     localStorage.removeItem('spotify_refresh_token');
     localStorage.removeItem('spotify_token_expires');
+    localStorage.removeItem('spotify_return_path');
   }
 }
