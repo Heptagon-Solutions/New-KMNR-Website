@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ContactInfo } from 'src/models';
+import { ContactInfo } from 'src/models/models';
 
 import { AboutService } from '../about.service';
 

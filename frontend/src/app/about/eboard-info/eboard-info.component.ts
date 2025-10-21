@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ExecutiveBoard } from 'src/models';
+import { ExecutiveBoard } from 'src/models/models';
 
 import { AboutService } from '../about.service';
 

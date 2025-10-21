@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Semester } from 'src/models';
+import { Semester } from 'src/models/models';
 
 import { OnAirComponent } from '../shared/on-air/on-air.component';
 

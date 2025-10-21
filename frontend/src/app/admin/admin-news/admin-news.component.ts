@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { NewsService } from 'src/app/services/news.service';
-import { TownAndCampusNewsEntryDetailed } from 'src/models';
+import { TownAndCampusNewsEntryDetailed } from 'src/models/models';
 
 @Component({
   selector: 'app-admin-news',

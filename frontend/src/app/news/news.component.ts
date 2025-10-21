@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { TownAndCampusNewsEntry } from 'src/models';
+import { TownAndCampusNewsEntry } from 'src/models/models';
 
 import { NewsService } from '../services/news.service';
 

@@ -4,7 +4,7 @@ import { API_URL } from 'src/constants';
 import {
   TownAndCampusNewsEntry,
   TownAndCampusNewsEntryDetailed,
-} from 'src/models';
+} from 'src/models/models';
 
 const URL = 'http://localhost:3000/townAndCampusNews/';
 
