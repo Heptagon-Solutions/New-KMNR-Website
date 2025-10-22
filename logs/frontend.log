@@ -2,5 +2,21 @@
 > kwip2@0.0.0 start
 > ng serve
 
-? Port 4200 is already in use.
-Would you like to use a different port? (Y/n) [46D[46C
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files   | Names         |  Raw Size
+vendor.js             | vendor        |   2.64 MB |
+polyfills.js          | polyfills     | 331.92 kB |
+main.js               | main          | 284.06 kB |
+styles.css, styles.js | styles        | 229.75 kB |
+runtime.js            | runtime       |   6.51 kB |
+
+| Initial Total |   3.47 MB
+
+Build at: 2025-10-22T20:52:21.878Z - Hash: dcef9fbed41ddf35 - Time: 1855ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+✔ Compiled successfully.

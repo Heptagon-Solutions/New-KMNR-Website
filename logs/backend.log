@@ -10,8 +10,20 @@ Loading .env environment variables...
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 110-480-146
-127.0.0.1 - - [20/Oct/2025 11:00:57] "GET /data HTTP/1.1" 200 -
-127.0.0.1 - - [20/Oct/2025 11:01:04] "GET /spotify/callback?code=AQAASUAX_iPnXGUeggJWHJek03jMyxsUiYUgAisX77AN74VcBuG-8oKdV_SgLAX8rZMboGTa_fGyWSWOpsEei9Q7eFS9RTqzzaSEvUhnRETlNXmNmv87FUY-gs0MNGVoYeH4-ggES2YabohLduz5cXw0O6azzEpB8OXgg__-clFcixB9HKDHQTmocczTC3yOVJq034TuvXpqkCVAqIXzKjFsh4avrwF-77nrisUPrFTwv9FUeLwOS30pPx2R5FL0gqxsdbT28b17bp-Z3-bvVW27tO1_9s_cH-f6bDrbMOUKbrN3HH-M7M4Rkxn918MSLByrrQlFBSqYwjQAp5fHT3qVehWKuVRyxzn7-RB26VDb_fmSUFm51ncov26BrTF-GYpNmWqtItfWySYGozGnMmjc2rwf8tXn0yL644I-QKMCU55suUI HTTP/1.1" 200 -
-127.0.0.1 - - [20/Oct/2025 11:01:04] "OPTIONS /spotify/callback HTTP/1.1" 200 -
-127.0.0.1 - - [20/Oct/2025 11:01:05] "POST /spotify/callback HTTP/1.1" 200 -
+ * Debugger PIN: 153-730-332
+127.0.0.1 - - [22/Oct/2025 15:52:24] "GET /data HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 15:52:35] "GET /spotify/callback?code=AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 15:52:35] "OPTIONS /spotify/callback HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2025 15:52:35] "POST /spotify/callback HTTP/1.1" 200 -
+✅ Spotify endpoints loaded successfully
+✅ Playlist endpoints loaded successfully
+DEBUG: Received callback request
+DEBUG: Method: GET
+DEBUG: Args: ImmutableMultiDict([('code', 'AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI')])
+DEBUG: Content-Type: None
+DEBUG: Received callback request
+DEBUG: Method: POST
+DEBUG: Args: ImmutableMultiDict([])
+DEBUG: Content-Type: application/json
+DEBUG: Code: AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI
+DEBUG: Code verifier: 0yp0cxiplWRXLM7Laj9FEfxblZ4M9kovQlZh98oUuuYnpABIyINGDfJrsG2BWVpcTIsqgeTaRIbUyZpB6UE6pltIqbDWWExjPMCPjU4C8k3e4XNKIRoRXqBjQwdiqbB4
