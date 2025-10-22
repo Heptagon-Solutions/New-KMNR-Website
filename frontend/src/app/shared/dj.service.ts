@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DJ } from 'src/models/models';
-
-const URL = 'http://localhost:3000/djs/';
+import { DJ } from 'src/models/dj';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +9,25 @@ export class DJService {
   constructor() {}
 
   public async getAllDJs(): Promise<DJ[]> {
-    const data = await fetch(URL);
-    return await data.json();
+    return [
+      {
+        id: 1,
+        name: 'Fake DJ 1',
+        genres: 'noise',
+      },
+      {
+        id: 2,
+        name: 'Fake DJ 2',
+        genres: 'math rock',
+      },
+    ];
   }
 
   public async getDJ(id: number): Promise<DJ> {
-    const data = await fetch(URL + id);
-    return await data.json();
+    return {
+      id: id,
+      name: 'Fake DJ 1',
+      genres: 'noise',
+    };
   }
 }

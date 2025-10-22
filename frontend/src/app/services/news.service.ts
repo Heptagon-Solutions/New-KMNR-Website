@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { API_URL } from 'src/constants';
-import {
-  TownAndCampusNewsEntry,
-  TownAndCampusNewsEntryDetailed,
-} from 'src/models/models';
-
-const URL = 'http://localhost:3000/townAndCampusNews/';
+import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +9,7 @@ const URL = 'http://localhost:3000/townAndCampusNews/';
 export class NewsService {
   constructor() {}
 
-  public async getNewsEntries(): Promise<TownAndCampusNewsEntry[]> {
-    const data = await fetch(URL);
-    return await data.json();
-  }
-
-  public async getAllNewsEntries(): Promise<TownAndCampusNewsEntryDetailed[]> {
+  public async getNewsEntries(): Promise<TownAndCampusNewsEntryDetailed[]> {
     const data = await fetch(API_URL + 'admin/news');
     return await data.json();
   }

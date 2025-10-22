@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ContactInfo, ExecutiveBoard } from 'src/models/models';
+import { ContactInfo, ExecutiveBoard } from 'src/models/general';
 
 @Injectable({
   providedIn: 'root',

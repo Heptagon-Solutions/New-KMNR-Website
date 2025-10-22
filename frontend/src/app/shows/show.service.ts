@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Semester } from 'src/models/models';
-
-const URL = 'http://localhost:3000/';
+import { Semester } from 'src/models/general';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +9,9 @@ export class ShowService {
   constructor() {}
 
   public async getSemester(): Promise<Semester> {
-    const response = await fetch(URL + 'misc');
-    const data = await response.json();
-
     return {
-      term: this.parseTerm(data.term),
-      year: data.year,
+      term: 'Summer',
+      year: 1999,
     };
-  }
-
-  private parseTerm(term: string): string {
-    return term === 'SP' ? 'Spring ' : 'Fall ';
   }
 }
