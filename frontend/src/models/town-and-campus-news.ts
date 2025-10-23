@@ -1,13 +1,16 @@
-export interface TownAndCampusNewsEntryDetailed {
+export interface TownAndCampusNewsEntry {
   id: number;
   title: string;
+  approved: boolean;
+  submitDate: string; // ??? Date object instead ???
+  expirationDate: string; // ^
+}
+
+export interface TownAndCampusNewsEntryDetailed extends TownAndCampusNewsEntry {
   organization: string;
   description: string;
   location: string;
   website: string;
-  contact_name: string;
-  contact_email: string;
-  approved: boolean;
-  submit_date: string; // ??? Date object instead ???
-  expiration_date: string; // ^
+  contactName: string;
+  contactEmail: string;
 }
