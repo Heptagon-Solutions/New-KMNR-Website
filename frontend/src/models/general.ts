@@ -1,3 +1,12 @@
+export type DayOfTheWeek =
+  | 'Sunday'
+  | 'Monday'
+  | 'Tuesday'
+  | 'Wednesday'
+  | 'Thursday'
+  | 'Friday'
+  | 'Saturday';
+
 export interface Semester {
   term: string;
   year: number;
