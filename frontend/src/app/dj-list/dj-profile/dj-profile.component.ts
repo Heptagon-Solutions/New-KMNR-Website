@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { DJ } from 'src/models/dj';
 
-import { OnAirComponent } from '../on-air/on-air.component';
+import { OnAirComponent } from '../../shared/on-air/on-air.component';
 import { DJService } from '../../services/dj.service';
 
 @Component({
