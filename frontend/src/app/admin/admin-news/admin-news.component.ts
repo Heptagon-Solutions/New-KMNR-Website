@@ -17,7 +17,7 @@ export class AdminNewsComponent {
   constructor(private readonly newsService: NewsService) {
     newsService
       .getNewsEntries()
-      .then(
+      .subscribe(
         (entries: TownAndCampusNewsEntryDetailed[]) =>
           (this.newsEntries = entries)
       );

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { API_URL } from 'src/constants';
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
@@ -7,10 +9,11 @@ import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news'
   providedIn: 'root',
 })
 export class NewsService {
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
 
-  public async getNewsEntries(): Promise<TownAndCampusNewsEntryDetailed[]> {
-    const data = await fetch(API_URL + 'admin/news');
-    return await data.json();
+  public getNewsEntries(): Observable<TownAndCampusNewsEntryDetailed[]> {
+    return this.http.get<TownAndCampusNewsEntryDetailed[]>(
+      API_URL + 'admin/news'
+    );
   }
 }

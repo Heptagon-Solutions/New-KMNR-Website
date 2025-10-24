@@ -19,7 +19,7 @@ export class NewsComponent {
   constructor(private readonly newsService: NewsService) {
     newsService
       .getNewsEntries()
-      .then(
+      .subscribe(
         (entries: TownAndCampusNewsEntryDetailed[]) =>
           (this.newsEntries = entries)
       );
