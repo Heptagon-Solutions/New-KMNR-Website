@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ContactInfo } from 'src/models/general';
 
-import { AboutService } from '../about.service';
+import { AboutService } from '../../services/about.service';
 
 @Component({
   selector: 'contact-info',

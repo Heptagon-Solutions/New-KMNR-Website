@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DJ } from 'src/models/dj';
 
 import { OnAirComponent } from '../on-air/on-air.component';
-import { DJService } from '../dj.service';
+import { DJService } from '../../services/dj.service';
 
 @Component({
   selector: 'dj-profile',
