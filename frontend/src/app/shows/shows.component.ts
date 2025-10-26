@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Semester } from 'src/models';
+import { Semester } from 'src/models/general';
 
+import { ShowService } from '../services/show.service';
 import { OnAirComponent } from '../shared/on-air/on-air.component';
 
-import { ShowService } from './show.service';
 import { ShowScheduleComponent } from './show-schedule/show-schedule.component';
 
 @Component({

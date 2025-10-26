@@ -12,7 +12,28 @@ def get_all_news():
     try:
         with db.connection.cursor() as cur:
             cur.execute("SELECT * FROM town_and_campus_news ORDER BY submit_date")
-            shows = list(cur.fetchall())
-        return shows
+
+            entries_data = cur.fetchall()
+
+        entries = []
+        for entry in entries_data:
+            # Frontend expects responses in lowerCamelCase, not snake_case
+            # TODO: Could probably find a better, more reusable way of doing this
+            entries.append(
+                {
+                    "id": entry["id"],
+                    "title": entry["title"],
+                    "organization": entry["organization"],
+                    "description": entry["description"],
+                    "location": entry["location"],
+                    "website": entry["website"],
+                    "contactName": entry["contact_name"],
+                    "contactEmail": entry["contact_email"],
+                    "approved": entry["approved"],
+                    "submitDate": entry["submit_date"],
+                    "expirationDate": entry["expiration_date"],
+                }
+            )
+        return entries
     except DatabaseError as e:
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
