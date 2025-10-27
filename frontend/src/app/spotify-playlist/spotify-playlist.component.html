@@ -75,7 +75,7 @@
           <div class="playlist-content">
             <h4>{{ playlist.name }}</h4>
             <p class="track-count">Tracks: {{ playlist.tracks.total }}</p>
-            <p class="playlist-owner">Owner: {{ playlist.owner.display_name || playlist.owner.id }}</p>
+            <p class="playlist-owner">Owner: {{ playlist.owner?.display_name || playlist.owner?.id || 'Unknown' }}</p>
             <p class="playlist-type">
               {{ playlist.public ? 'Public' : 'Private' }} • 
               {{ playlist.collaborative ? 'Collaborative' : 'Solo' }}
@@ -94,31 +94,9 @@
     <div *ngIf="currentView === 'tracks' && !isLoading" class="tracks-view">
       <div class="playlist-tracks-header">
         <button (click)="backToPlaylists()" class="btn btn-back">← Back to Playlists</button>
-        <h3>{{ selectedPlaylistForView?.name }}</h3>
-        <p>{{ selectedPlaylistTracks.length }} tracks</p>
       </div>
 
-      <div class="tracks-list" *ngIf="selectedPlaylistTracks.length > 0">
-        <div *ngFor="let item of selectedPlaylistTracks; let i = index" class="track-item">
-          <div class="track-number">{{ i + 1 }}</div>
-          <div class="track-info">
-            <div class="track-name">
-              {{ item.track.name || 'Unknown Track' }}
-              <span *ngIf="item.track?.explicit" class="explicit-badge">E</span>
-            </div>
-            <div class="track-artist">{{ getArtistNames(item.track.artists || []) }}</div>
-            <div class="track-album">{{ item.track.album.name || 'Unknown Album' }}</div>
-          </div>
-          <div class="track-meta">
-            <div class="track-duration">{{ formatDuration(item.track.duration_ms || 0) }}</div>
-            <div class="track-added">Added: {{ formatDate(item.added_at) }}</div>
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="selectedPlaylistTracks.length === 0" class="empty-playlist">
-        <p>This playlist is empty.</p>
-      </div>
+      <playlist-display [playlistId]="selectedPlaylistForView?.id || null"></playlist-display>
     </div>
 
     <!-- Search and Create View -->
@@ -148,7 +126,7 @@
               <strong>{{ track.name }}</strong>
               <span *ngIf="track.explicit" class="explicit-badge">E</span>
               <span class="artist">by {{ getArtistNames(track.artists) }}</span>
-              <span class="album">from {{ track.album.name }}</span>
+              <span class="album">from {{ track.album?.name || 'Unknown Album' }}</span>
             </div>
             <button 
               (click)="addToPlaylist(track)" 

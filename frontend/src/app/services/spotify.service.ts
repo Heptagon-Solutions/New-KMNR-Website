@@ -6,7 +6,7 @@ export interface SpotifyTrack {
   id: string;
   name: string;
   artists: Array<{ name: string }>;
-  album: { name: string };
+  album: { name: string } | null;
   uri: string;
   external_urls: { spotify: string };
   preview_url?: string;
@@ -20,7 +20,7 @@ export interface SpotifyPlaylist {
   description: string;
   external_urls: { spotify: string };
   tracks: { total: number };
-  owner: { display_name: string; id: string };
+  owner: { display_name: string; id: string } | null;
   public: boolean;
   collaborative: boolean;
 }
@@ -389,6 +389,17 @@ export class SpotifyService {
       };
     } catch (error) {
       console.error('Error fetching playlist tracks:', error);
+      throw error;
+    }
+  }
+
+  // Get playlist details
+  async getPlaylist(playlistId: string): Promise<SpotifyPlaylist> {
+    try {
+      const response = await this.apiRequest(`/playlists/${playlistId}`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching playlist:', error);
       throw error;
     }
   }

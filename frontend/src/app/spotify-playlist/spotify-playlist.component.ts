@@ -14,7 +14,6 @@ export class SpotifyPlaylistComponent implements OnInit {
   searchResults: SpotifyTrack[] = [];
   selectedTracks: SpotifyTrack[] = [];
   currentPlaylist: SpotifyPlaylist | null = null;
-  selectedPlaylistTracks: Array<{ track: SpotifyTrack; added_at: string }> = [];
   playlistName = 'KMNR Playlist';
   isLoading = false;
   searchPerformed = false;
@@ -87,25 +86,13 @@ export class SpotifyPlaylistComponent implements OnInit {
   }
 
   async showPlaylistTracks(playlist: SpotifyPlaylist): Promise<void> {
-    try {
-      this.isLoading = true;
-      this.selectedPlaylistForView = playlist;
-      this.currentView = 'tracks';
-      
-      const response = await this.spotifyService.getPlaylistTracks(playlist.id);
-      this.selectedPlaylistTracks = response.items;
-      console.log(`Loaded ${this.selectedPlaylistTracks.length} tracks from ${playlist.name}`);
-    } catch (error) {
-      console.error('Failed to load playlist tracks:', error);
-    } finally {
-      this.isLoading = false;
-    }
+    this.selectedPlaylistForView = playlist;
+    this.currentView = 'tracks';
   }
 
   backToPlaylists(): void {
     this.currentView = 'playlists';
     this.selectedPlaylistForView = null;
-    this.selectedPlaylistTracks = [];
   }
 
   switchToSearch(): void {
@@ -164,7 +151,6 @@ export class SpotifyPlaylistComponent implements OnInit {
     this.userPlaylists = [];
     this.selectedTracks = [];
     this.currentPlaylist = null;
-    this.selectedPlaylistTracks = [];
     this.currentView = 'playlists';
   }
 

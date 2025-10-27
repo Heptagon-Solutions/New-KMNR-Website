@@ -9,6 +9,7 @@ import { TopBarComponent } from './shared/top-bar/top-bar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
+import { PlaylistDisplayComponent } from './playlist-display/playlist-display.component';
 
 @NgModule({
   declarations: [AppComponent, SpotifyPlaylistComponent, SpotifyCallbackComponent],
@@ -18,7 +19,8 @@ import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.co
     HttpClientModule,
     FormsModule,
     TopBarComponent,
-    FooterComponent
+    FooterComponent,
+    PlaylistDisplayComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
