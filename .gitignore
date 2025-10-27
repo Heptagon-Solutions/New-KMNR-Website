@@ -42,5 +42,4 @@ testem.log
 Thumbs.db
 
 # Environment variables
-.env
 backend/.env
