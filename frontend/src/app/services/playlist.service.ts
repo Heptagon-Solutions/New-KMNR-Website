@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Playlist, PlaylistTrack } from '../../models';
+import { SpotifyPlaylist, PlaylistTrack } from '../../models/playlist';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +31,12 @@ export class PlaylistService {
     console.warn('⚠️ Could not detect backend port, using default 5000');
   }
 
-  getPlaylists(djId?: number): Observable<Playlist[]> {
+  getPlaylists(djId?: number): Observable<SpotifyPlaylist[]> {
     let params: any = {};
     if (djId) {
       params.dj_id = djId.toString();
     }
-    return this.http.get<Playlist[]>(`${this.baseUrl}/playlists`, {
+    return this.http.get<SpotifyPlaylist[]>(`${this.baseUrl}/playlists`, {
       params,
       withCredentials: true
     });
