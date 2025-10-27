@@ -182,4 +182,10 @@ export class SpotifyPlaylistComponent implements OnInit {
   getAddButtonText(track: SpotifyTrack): string {
     return this.isTrackSelected(track) ? 'Added' : 'Add to Playlist';
   }
+
+  openPlaylistInSpotify(playlist: SpotifyPlaylist): void {
+    if (playlist.external_urls?.spotify) {
+      window.open(playlist.external_urls.spotify, '_blank');
+    }
+  }
 }

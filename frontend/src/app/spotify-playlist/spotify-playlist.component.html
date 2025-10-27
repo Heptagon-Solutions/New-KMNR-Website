@@ -4,7 +4,7 @@
   <!-- Authentication Section -->
   <div *ngIf="!isAuthenticated" class="auth-section">
     <div class="connect-wrapper">
-      <h3>🎵 Connect to Spotify</h3>
+      <h3>Connect to Spotify</h3>
       <p>Connect your Spotify account to view and manage your playlists</p>
       <button (click)="authenticateWithSpotify()" class="btn btn-spotify">
         Connect to Spotify
@@ -48,13 +48,13 @@
         (click)="currentView = 'playlists'" 
         [class.active]="currentView === 'playlists'"
         class="nav-tab">
-        📋 Your Playlists
+Your Playlists
       </button>
       <button 
         (click)="switchToSearch()" 
         [class.active]="currentView === 'search'"
         class="nav-tab">
-        🔍 Search & Create
+Search & Create
       </button>
     </div>
 
@@ -66,22 +66,34 @@
     <!-- Playlists View -->
     <div *ngIf="currentView === 'playlists' && !isLoading" class="playlists-view">
       <div class="playlists-summary">
-        <h4>Found {{ userPlaylists.length }} playlists</h4>
+        <h3>Found {{ userPlaylists.length }} playlists</h3>
         <p>Click any playlist to view its tracks</p>
       </div>
       
       <div class="playlists-grid" *ngIf="userPlaylists.length > 0">
-        <div *ngFor="let playlist of userPlaylists" class="playlist-item" (click)="showPlaylistTracks(playlist)">
-          <div class="playlist-content">
-            <h4>{{ playlist.name }}</h4>
-            <p class="track-count">Tracks: {{ playlist.tracks.total }}</p>
-            <p class="playlist-owner">Owner: {{ playlist.owner?.display_name || playlist.owner?.id || 'Unknown' }}</p>
-            <p class="playlist-type">
-              {{ playlist.public ? 'Public' : 'Private' }} • 
-              {{ playlist.collaborative ? 'Collaborative' : 'Solo' }}
-            </p>
-            <p class="click-hint">Click to view tracks</p>
+        <div *ngFor="let playlist of userPlaylists" class="playlist-card" (click)="showPlaylistTracks(playlist)">
+          <div class="playlist-header">
+            <div class="playlist-info">
+              <h4 class="playlist-name">{{ playlist.name }}</h4>
+              <p class="playlist-description" *ngIf="playlist.description">{{ playlist.description }}</p>
+              <div class="playlist-meta">
+                <span class="track-count">{{ playlist.tracks.total }} songs</span>
+                <span class="playlist-owner">by {{ playlist.owner?.display_name || playlist.owner?.id || 'Unknown' }}</span>
+              </div>
+              <div class="playlist-badges">
+                <span class="badge" [class.public]="playlist.public" [class.private]="!playlist.public">
+                  {{ playlist.public ? 'Public' : 'Private' }}
+                </span>
+                <span class="badge collaborative" *ngIf="playlist.collaborative">Collaborative</span>
+              </div>
+            </div>
+            <div class="playlist-actions">
+              <button class="spotify-link-btn" (click)="$event.stopPropagation(); openPlaylistInSpotify(playlist)">
+                <span>♪</span>
+              </button>
+            </div>
           </div>
+          <div class="click-hint">Click to view tracks</div>
         </div>
       </div>
 
@@ -173,17 +185,18 @@
 
       <!-- Successful Playlist Creation -->
       <div *ngIf="currentPlaylist" class="success-section">
-        <h3>✅ Playlist Created Successfully!</h3>
+        <h3>Playlist Created Successfully!</h3>
         <p><strong>{{ currentPlaylist.name }}</strong> has been created with {{ selectedTracks.length }} songs.</p>
         <div class="success-actions">
           <button (click)="openInSpotify()" class="btn btn-spotify-open">
-            🎵 Open in Spotify
+            Open in Spotify
           </button>
           <button (click)="currentView = 'playlists'; loadUserPlaylists()" class="btn btn-view-playlists">
-            📋 View All Playlists
+            View All Playlists
           </button>
         </div>
       </div>
     </div>
+
   </div>
 </div>
