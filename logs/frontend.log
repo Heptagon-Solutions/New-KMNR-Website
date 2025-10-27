@@ -8,13 +8,21 @@
 Initial Chunk Files   | Names         |  Raw Size
 vendor.js             | vendor        |   2.64 MB |
 polyfills.js          | polyfills     | 331.92 kB |
+<<<<<<< HEAD
 main.js               | main          | 284.06 kB |
+=======
+main.js               | main          | 284.37 kB |
+>>>>>>> 05e85a5 (spotify working again. need to style)
 styles.css, styles.js | styles        | 229.75 kB |
 runtime.js            | runtime       |   6.51 kB |
 
 | Initial Total |   3.47 MB
 
+<<<<<<< HEAD
 Build at: 2025-10-22T20:52:21.878Z - Hash: dcef9fbed41ddf35 - Time: 1855ms
+=======
+Build at: 2025-10-27T18:02:19.636Z - Hash: 35f068f4a24a4c68 - Time: 1650ms
+>>>>>>> 05e85a5 (spotify working again. need to style)
 
 ** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
 

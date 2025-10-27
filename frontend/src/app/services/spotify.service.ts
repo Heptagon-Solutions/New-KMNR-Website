@@ -214,7 +214,10 @@ export class SpotifyService {
   // Refresh access token
   async refreshAccessToken(): Promise<boolean> {
     const refreshToken = localStorage.getItem('spotify_refresh_token');
-    if (!refreshToken) return false;
+    if (!refreshToken) {
+      this.clearAuthData();
+      return false;
+    }
 
     try {
       const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -231,7 +234,7 @@ export class SpotifyService {
 
       const data = await response.json();
 
-      if (data.access_token) {
+      if (response.ok && data.access_token) {
         this.accessToken = data.access_token;
         localStorage.setItem('spotify_access_token', data.access_token);
         localStorage.setItem('spotify_token_expires', (Date.now() + (data.expires_in * 1000)).toString());
@@ -243,11 +246,26 @@ export class SpotifyService {
 
         this.isAuthenticatedSubject.next(true);
         return true;
+      } else {
+        console.error('Token refresh failed:', data);
+        this.clearAuthData();
+        return false;
       }
     } catch (error) {
       console.error('Error refreshing token:', error);
+      this.clearAuthData();
+      return false;
     }
-    return false;
+  }
+
+  // Clear authentication data
+  private clearAuthData(): void {
+    this.accessToken = null;
+    this.refreshToken = null;
+    localStorage.removeItem('spotify_access_token');
+    localStorage.removeItem('spotify_refresh_token');
+    localStorage.removeItem('spotify_token_expires');
+    this.isAuthenticatedSubject.next(false);
   }
 
   // Check if token is valid
@@ -441,13 +459,7 @@ export class SpotifyService {
 
   // Disconnect Spotify
   disconnect(): void {
-    this.accessToken = null;
-    this.refreshToken = null;
-    this.isAuthenticatedSubject.next(false);
-
-    localStorage.removeItem('spotify_access_token');
-    localStorage.removeItem('spotify_refresh_token');
-    localStorage.removeItem('spotify_token_expires');
+    this.clearAuthData();
     localStorage.removeItem('spotify_return_path');
   }
 }
