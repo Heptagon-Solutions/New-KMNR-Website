@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
-import { DJ } from 'src/models';
+import { DJ } from 'src/models/dj';
 
-import { OnAirComponent } from '../on-air/on-air.component';
-import { DJService } from '../dj.service';
-
+import { OnAirComponent } from '../../shared/on-air/on-air.component';
+import { DJService } from '../../services/dj.service';
 
 @Component({
   selector: 'dj-profile',

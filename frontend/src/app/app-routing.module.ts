@@ -8,7 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { NewsComponent } from './news/news.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { DJListComponent } from './dj-list/dj-list.component';
-import { DJProfileComponent } from './shared/dj-profile/dj-profile.component';
+import { DJProfileComponent } from './dj-list/dj-profile/dj-profile.component';
 import { ShowsComponent } from './shows/shows.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';

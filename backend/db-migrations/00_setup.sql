@@ -106,6 +106,7 @@ CREATE TABLE
     `playlist_track` (
         `playlist_id` INT UNSIGNED,
         `track` TINYINT UNSIGNED,  -- is this long enough? can KLAP post full day long playlists?
+        -- TODO: Change to track_num or order; not descriptive enough. Also is INT UNSIGNED really too small for a whole days worth of songs?
         `song` VARCHAR(100) NOT NULL,  -- what's the best size for this?
         `artist` VARCHAR(100) NOT NULL,  -- what's the best size for this?
         `album` VARCHAR(50),  -- what's the best size for this?

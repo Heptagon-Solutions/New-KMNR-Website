@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { TownAndCampusNewsEntry } from 'src/models';
+import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
 
 import { NewsService } from '../services/news.service';
 
@@ -14,13 +14,14 @@ import { NewsService } from '../services/news.service';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent {
-  public newsEntries: TownAndCampusNewsEntry[] | undefined = undefined;
+  public newsEntries: TownAndCampusNewsEntryDetailed[] | undefined = undefined;
 
   constructor(private readonly newsService: NewsService) {
     newsService
       .getNewsEntries()
-      .then(
-        (entries: TownAndCampusNewsEntry[]) => (this.newsEntries = entries)
+      .subscribe(
+        (entries: TownAndCampusNewsEntryDetailed[]) =>
+          (this.newsEntries = entries)
       );
   }
 }
