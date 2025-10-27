@@ -1,31 +1,3 @@
-.spotify-status {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f8f9fa;
-  border-left: 4px solid #ff6b35;
-}
-
-.spotify-status.connected {
-  background-color: #d4edda;
-  border-left-color: #28a745;
-}
-
-.spotify-connect-btn {
-  background-color: #1db954;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.spotify-connect-btn:hover {
-  background-color: #1ed760;
-}
-
 .loading {
   text-align: center;
   padding: 20px;
@@ -86,36 +58,4 @@
 .playlist-actions {
   display: flex;
   gap: 10px;
-}
-
-.publish-btn, .view-spotify-btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.publish-btn {
-  background-color: #1db954;
-  color: white;
-}
-
-.publish-btn:hover:not(:disabled) {
-  background-color: #1ed760;
-}
-
-.publish-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.view-spotify-btn {
-  background-color: #191414;
-  color: white;
-}
-
-.view-spotify-btn:hover {
-  background-color: #333;
 }

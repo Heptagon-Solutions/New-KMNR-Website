@@ -1,130 +1,105 @@
 <div class="spotify-player">
-  <!-- Authentication Prompt -->
-  <div *ngIf="!isAuthenticated" class="auth-prompt">
-    <h3>Spotify Player</h3>
-    <p>Connect your Spotify account to control playback</p>
-    <button (click)="authenticate()" class="auth-button">
-      <i class="fab fa-spotify"></i>
-      Connect Spotify
-    </button>
+  <h2>Spotify Player</h2>
+
+  <!-- Configuration Status -->
+  <div class="status" *ngIf="!isConnected">
+    <p>🎵 Connect to Spotify to start listening</p>
   </div>
 
-  <!-- Player Interface -->
-  <div *ngIf="isAuthenticated" class="player-interface">
-    <!-- Error Message -->
-    <div *ngIf="error" class="error-message">
-      {{ error }}
-      <button (click)="error = null" class="close-error">×</button>
+  <!-- Login Section -->
+  <div class="auth-section">
+    <div *ngIf="!isConnected">
+      <button (click)="connectSpotify()" class="connect-btn">
+        🎵 Connect to Spotify
+      </button>
+      <p class="info">You'll need a Spotify Premium account for full playback control</p>
     </div>
 
-    <!-- No Active Device -->
-    <div *ngIf="!playbackState && devices.length === 0" class="no-device">
-      <p>No active Spotify device found</p>
-      <button (click)="loadDevices()" class="refresh-button">Refresh Devices</button>
+    <div *ngIf="isConnected">
+      <p>✅ Connected to Spotify!</p>
+      <p *ngIf="userProfile">Welcome, {{ userProfile.display_name }}!</p>
+      <button (click)="disconnect()" class="disconnect-btn">Disconnect</button>
+    </div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section" *ngIf="isConnected">
+    <h3>🔍 Search Spotify</h3>
+    <div class="search-controls">
+      <input 
+        #searchInput 
+        (keyup.enter)="search(searchInput.value)" 
+        placeholder="Search for songs, albums, artists..."
+        class="search-input">
+      <button (click)="search(searchInput.value)" class="search-btn">Search</button>
     </div>
 
-    <!-- Device Selection -->
-    <div *ngIf="devices.length > 0 && !playbackState?.device?.is_active" class="device-selection">
-      <h4>Available Devices:</h4>
-      <div class="devices-list">
-        <button 
-          *ngFor="let device of devices" 
-          (click)="transferPlayback(device.id)"
-          class="device-button"
-          [class.active]="device.is_active">
-          <i [class]="'fas fa-' + getDeviceIcon(device.type)"></i>
-          {{ device.name }}
-          <span class="device-type">({{ device.type }})</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Active Player -->
-    <div *ngIf="playbackState" class="active-player">
-      <!-- Track Info -->
-      <div class="track-info">
-        <div class="album-art" *ngIf="playbackState.item?.album?.images?.length">
-          <img [src]="playbackState.item!.album!.images![0].url" [alt]="playbackState.item!.album!.name">
-        </div>
-        <div class="track-details">
-          <h4 class="track-name">{{ playbackState.item?.name || 'No track' }}</h4>
-          <p class="artist-name">{{ getArtistNames(playbackState.item?.artists) }}</p>
-          <p class="album-name">{{ playbackState.item?.album?.name }}</p>
-        </div>
-      </div>
-
-      <!-- Controls -->
-      <div class="player-controls">
-        <div class="main-controls">
-          <button (click)="toggleShuffle()" 
-                  class="control-button" 
-                  [class.active]="isShuffleActive()"
-                  [disabled]="isLoading">
-            <i class="fas fa-random"></i>
-          </button>
-
-          <button (click)="skipPrevious()" 
-                  class="control-button" 
-                  [disabled]="isLoading">
-            <i class="fas fa-step-backward"></i>
-          </button>
-
-          <button (click)="togglePlayPause()" 
-                  class="play-pause-button" 
-                  [disabled]="isLoading">
-            <i class="fas" [class.fa-pause]="isPlaying()" [class.fa-play]="!isPlaying()"></i>
-          </button>
-
-          <button (click)="skipNext()" 
-                  class="control-button" 
-                  [disabled]="isLoading">
-            <i class="fas fa-step-forward"></i>
-          </button>
-
-          <button (click)="toggleRepeat()" 
-                  class="control-button" 
-                  [class.active]="isRepeatActive()"
-                  [disabled]="isLoading">
-            <i class="fas" 
-               [class.fa-repeat]="isRepeatContext()"
-               [class.fa-redo]="isRepeatTrack()"></i>
-          </button>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="progress-container" *ngIf="playbackState.item">
-          <span class="time-display">{{ formatTime(playbackState.progress_ms || 0) }}</span>
-          <div class="progress-bar" (click)="onProgressClick($event)">
-            <div class="progress-fill" [style.width.%]="getProgressPercent()"></div>
+    <!-- Search Results -->
+    <div class="search-results" *ngIf="searchResults.length > 0">
+      <h4>🎵 Songs</h4>
+      <div class="results-list">
+        <div class="result-item" *ngFor="let track of searchResults">
+          <div class="track-info">
+            <div class="track-details">
+              <strong>{{ track.name }}</strong><br>
+              <span class="artist">{{ track.artists[0]?.name }}</span><br>
+              <span class="album" *ngIf="track.album">{{ track.album.name }}</span>
+            </div>
           </div>
-          <span class="time-display">{{ formatTime(playbackState.item.duration_ms || 0) }}</span>
-        </div>
-      </div>
-
-      <!-- Volume and Device Info -->
-      <div class="player-footer">
-        <div class="device-info">
-          <i [class]="getDeviceIconClass()"></i>
-          <span>{{ getDeviceName() }}</span>
-        </div>
-
-        <div class="volume-control" *ngIf="playbackState.device">
-          <i class="fas fa-volume-down"></i>
-          <input 
-            type="range" 
-            min="0" 
-            max="100" 
-            [value]="getVolumePercent()"
-            (input)="onVolumeChange($event)"
-            class="volume-slider">
-          <i class="fas fa-volume-up"></i>
+          <div class="track-actions">
+            <button (click)="playTrack(track)" class="play-btn" *ngIf="hasSpotifyPremium">▶️ Play</button>
+            <a [href]="track.external_urls.spotify" target="_blank" class="spotify-link">Open in Spotify</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Loading Indicator -->
-    <div *ngIf="isLoading" class="loading-overlay">
-      <i class="fas fa-spinner fa-spin"></i>
+  <!-- User Playlists -->
+  <div class="playlists-section" *ngIf="isConnected">
+    <h3>📚 Your Playlists</h3>
+    <button (click)="getUserPlaylists()" class="load-btn">Load My Playlists</button>
+
+    <div class="playlists" *ngIf="userPlaylists.length > 0">
+      <div class="playlist-item" *ngFor="let playlist of userPlaylists">
+        <div class="playlist-info">
+          <div class="playlist-details">
+            <strong>{{ playlist.name }}</strong><br>
+            <span class="track-count">{{ playlist.tracks.total }} tracks</span><br>
+            <span class="owner" *ngIf="playlist.owner">by {{ playlist.owner.display_name }}</span>
+          </div>
+        </div>
+        <div class="playlist-actions">
+          <button (click)="playPlaylist(playlist)" class="play-btn" *ngIf="hasSpotifyPremium">▶️ Play</button>
+          <a [href]="playlist.external_urls.spotify" target="_blank" class="spotify-link">Open in Spotify</a>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Player Controls (for Premium users) -->
+  <div class="player-controls" *ngIf="isConnected && hasSpotifyPremium">
+    <h3>🎛️ Player Controls</h3>
+    <p class="note">Make sure you have Spotify open on another device!</p>
+    <div class="controls">
+      <button (click)="previousTrack()" class="control-btn">⏮️ Previous</button>
+      <button (click)="pausePlayback()" class="control-btn">⏸️ Pause</button>
+      <button (click)="resumePlayback()" class="control-btn">▶️ Play</button>
+      <button (click)="nextTrack()" class="control-btn">⏭️ Next</button>
+    </div>
+  </div>
+
+  <!-- Current Playback -->
+  <div class="current-playback" *ngIf="currentTrack">
+    <h4>🎵 Now Playing</h4>
+    <div class="current-track">
+      <strong>{{ currentTrack.name }}</strong><br>
+      <span>{{ currentTrack.artists[0]?.name }}</span>
+    </div>
+  </div>
+
+  <!-- Error Messages -->
+  <div class="error-message" *ngIf="errorMessage">
+    ❌ {{ errorMessage }}
   </div>
 </div>

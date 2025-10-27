@@ -7,12 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './shared/top-bar/top-bar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
-import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
-import { PlaylistDisplayComponent } from './playlist-display/playlist-display.component';
+import { AppleMusicPlayerComponent } from './apple-music-player/apple-music-player.component';
+import { SpotifyPlayerComponent } from './spotify-player/spotify-player.component';
 
 @NgModule({
-  declarations: [AppComponent, SpotifyPlaylistComponent, SpotifyCallbackComponent],
+  declarations: [AppComponent, AppleMusicPlayerComponent, SpotifyPlayerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,7 +19,6 @@ import { PlaylistDisplayComponent } from './playlist-display/playlist-display.co
     FormsModule,
     TopBarComponent,
     FooterComponent,
-    PlaylistDisplayComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

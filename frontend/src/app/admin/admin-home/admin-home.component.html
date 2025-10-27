@@ -7,22 +7,6 @@
   here unless you already logged in as an admin.
 </p>
 
-<h2>Spotify Integration</h2>
-<div>
-  <p *ngIf="!isSpotifyConnected" class="spotify-status">
-    <span>🔗 Connect to Spotify to manage playlists</span>
-  </p>
-  <p *ngIf="isSpotifyConnected" class="spotify-status connected">
-    <span>✅ Connected to Spotify</span>
-  </p>
-  <button 
-    *ngIf="!isSpotifyConnected" 
-    (click)="connectToSpotify()" 
-    class="spotify-connect-btn">
-    Connect to Spotify
-  </button>
-</div>
-
 <h2>DJ Playlists</h2>
 <div *ngIf="isLoading" class="loading">Loading playlists...</div>
 <div *ngIf="!isLoading && playlists.length === 0" class="no-playlists">
@@ -37,21 +21,6 @@
         <span class="date">{{ playlist.date_played | date:'short' }}</span>
       </p>
       <p *ngIf="playlist.description" class="playlist-description">{{ playlist.description }}</p>
-    </div>
-    <div class="playlist-actions">
-      <button 
-        *ngIf="!playlist.spotify_playlist_id" 
-        (click)="publishToSpotify(playlist)"
-        [disabled]="!isSpotifyConnected"
-        class="publish-btn">
-        Publish to Spotify
-      </button>
-      <button 
-        *ngIf="playlist.spotify_playlist_id" 
-        (click)="openSpotifyPlaylist(playlist.spotify_playlist_id!)"
-        class="view-spotify-btn">
-        View on Spotify
-      </button>
     </div>
   </div>
 </div>

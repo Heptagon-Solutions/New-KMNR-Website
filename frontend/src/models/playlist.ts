@@ -23,20 +23,9 @@ export interface PlaylistProfile extends Playlist {
   // image?
 }
 
-// Spotify-specific models
 export interface PlaylistTrack {
   track: number;
   song: string;
   artist: string;
   album?: string;
-}
-
-export interface SpotifyPlaylist {
-  id: number;
-  name?: string;
-  description?: string;
-  date_played: string;
-  spotify_playlist_id?: string;
-  dj_name?: string;
-  posting_dj_id?: number;
 }

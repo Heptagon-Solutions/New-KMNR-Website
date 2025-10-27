@@ -1,37 +1,26 @@
 Loading .env environment variables...
-✅ Spotify endpoints loaded successfully
 ✅ Playlist endpoints loaded successfully
+❌ Failed to load Apple Music endpoints: No module named 'jwt'
  * Serving Flask app 'app'
  * Debug mode: on
 [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5001
- * Running on http://10.106.50.9:5001
+ * Running on http://192.168.4.46:5001
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
-<<<<<<< HEAD
- * Debugger PIN: 153-730-332
-127.0.0.1 - - [22/Oct/2025 15:52:24] "GET /data HTTP/1.1" 200 -
-127.0.0.1 - - [22/Oct/2025 15:52:35] "GET /spotify/callback?code=AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI HTTP/1.1" 200 -
-127.0.0.1 - - [22/Oct/2025 15:52:35] "OPTIONS /spotify/callback HTTP/1.1" 200 -
-127.0.0.1 - - [22/Oct/2025 15:52:35] "POST /spotify/callback HTTP/1.1" 200 -
-✅ Spotify endpoints loaded successfully
-✅ Playlist endpoints loaded successfully
-DEBUG: Received callback request
-DEBUG: Method: GET
-DEBUG: Args: ImmutableMultiDict([('code', 'AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI')])
-DEBUG: Content-Type: None
-DEBUG: Received callback request
-DEBUG: Method: POST
-DEBUG: Args: ImmutableMultiDict([])
-DEBUG: Content-Type: application/json
-DEBUG: Code: AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI
-DEBUG: Code verifier: 0yp0cxiplWRXLM7Laj9FEfxblZ4M9kovQlZh98oUuuYnpABIyINGDfJrsG2BWVpcTIsqgeTaRIbUyZpB6UE6pltIqbDWWExjPMCPjU4C8k3e4XNKIRoRXqBjQwdiqbB4
-=======
  * Debugger PIN: 110-480-146
-127.0.0.1 - - [27/Oct/2025 13:02:21] "GET /data HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2025 13:02:27] "GET /spotify/callback?code=AQAhKO9C5hsdgOxJEMIOVP4lSQsK_ey7oba8NSVV48jHPPzAxHbUISs6oFi58-xTlPgPtFZhAnPbB796q6VVxuPNcx6D2ptA_Ntj0K6XXUQg2epPBvBhl4DixMc4AqfgKe8GtmtDiP3qXKLYXQNdoxsgZCspFeJn1ieEC6Vy3UAOZ_KyuAXQG670J8DOUb5ZxHf7B9vD6-9Jy9xGl1--VMWOCEM3ltxtsma2n9LSFQ2yv7OWchibK4_EpLfHCpvvy0gYn5w6rMlzy03Qo4scM19lVMHrGwEcb9bxlJS4oy3Bpkn3Rm15JK8ToCbOuN88XO8OAi9a4DuN5sQ_GsQAERnMtpRFlxa3oYuTQztyOEpKirfQLfO3_vaL9zcD0pFjJSwnx4t5Ka55XXDo02O9HtMBMqGNveiF3iqt7vLihlgAZl81skY HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2025 13:02:27] "OPTIONS /spotify/callback HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2025 13:02:27] "POST /spotify/callback HTTP/1.1" 200 -
->>>>>>> 05e85a5 (spotify working again. need to style)
+127.0.0.1 - - [27/Oct/2025 16:26:44] "GET /data HTTP/1.1" 200 -
+ * Detected change in '/Users/ctk/Programming/School/Fall 2025/New-KMNR-Website/backend/endpoints/spotify.py', reloading
+✅ Playlist endpoints loaded successfully
+❌ Failed to load Apple Music endpoints: No module named 'jwt'
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 110-480-146
+ * Detected change in '/Users/ctk/Programming/School/Fall 2025/New-KMNR-Website/backend/app.py', reloading
+✅ Playlist endpoints loaded successfully
+❌ Failed to load Apple Music endpoints: No module named 'jwt'
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 110-480-146

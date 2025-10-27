@@ -79,7 +79,25 @@
             },
             {
                 "hidden": [
-                    "$Default"
+                    "$Default",
+                    "frontend/src/app/app.component.spec.ts",
+                    "frontend/src/app/app.component.scss",
+                    "frontend/src/app/spotify-playlist/spotify-playlist.component.spec.ts",
+                    "frontend/src/app/spotify-playlist/spotify-playlist.component.scss",
+                    "frontend/README.md",
+                    ".env",
+                    "README.md",
+                    "backend/endpoints/news.py",
+                    "backend/.env",
+                    "backend/app.py",
+                    "backend/database.py",
+                    "backend/example_endpoints.py",
+                    "frontend/src/assets/",
+                    "frontend/src/index.html",
+                    "frontend/src/main.ts",
+                    "frontend/src/models.ts",
+                    "frontend/src/constants.ts",
+                    "backend/endpoints/temp.py"
                 ],
                 "name": "Spotify",
                 "description": "",
@@ -150,7 +168,25 @@
         "frontend/src/app/services/": true,
         "frontend/src/app/shows/": true,
         "kill-processes.sh": true,
-        "simple-start.py": true
+        "simple-start.py": true,
+        "frontend/src/app/app.component.spec.ts": true,
+        "frontend/src/app/app.component.scss": true,
+        "frontend/src/app/spotify-playlist/spotify-playlist.component.spec.ts": true,
+        "frontend/src/app/spotify-playlist/spotify-playlist.component.scss": true,
+        "frontend/README.md": true,
+        ".env": true,
+        "README.md": true,
+        "backend/endpoints/news.py": true,
+        "backend/.env": true,
+        "backend/app.py": true,
+        "backend/database.py": true,
+        "backend/example_endpoints.py": true,
+        "frontend/src/assets/": true,
+        "frontend/src/index.html": true,
+        "frontend/src/main.ts": true,
+        "frontend/src/models.ts": true,
+        "frontend/src/constants.ts": true,
+        "backend/endpoints/temp.py": true
     },
     "hidefiles.selectedProfile": "Spotify"
 }

@@ -66,6 +66,14 @@ def create_app():
             print("✅ Playlist endpoints loaded successfully")
         except Exception as e:
             print(f"❌ Failed to load Playlist endpoints: {e}")
+            
+        # Import Apple Music endpoints
+        try:
+            from endpoints.apple_music import apple_music_bp
+            app.register_blueprint(apple_music_bp)
+            print("✅ Apple Music endpoints loaded successfully")
+        except Exception as e:
+            print(f"❌ Failed to load Apple Music endpoints: {e}")
 
         return app
 

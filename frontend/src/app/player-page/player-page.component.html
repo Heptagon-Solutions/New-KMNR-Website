@@ -1,20 +1,32 @@
 <div class="player-page">
   <div class="container">
-    <h1>🎵 KMNR Spotify Player</h1>
-    <p class="subtitle">Control your Spotify playback from KMNR's website</p>
-    
-    <app-spotify-player></app-spotify-player>
+    <h1>🎵 KMNR Music Player</h1>
+    <p class="subtitle">Listen to music with KMNR's integrated players</p>
     
     <div class="player-info">
-      <h3>How to use:</h3>
-      <ol>
-        <li>Make sure you have Spotify open on your phone, computer, or another device</li>
-        <li>Click "Connect Spotify" above to authenticate</li>
-        <li>Start playing music on any of your Spotify devices</li>
-        <li>Use the controls above to control playback from this page!</li>
-      </ol>
+      <h3>Available Music Services:</h3>
+      <div class="service-cards">
+        <div class="service-card">
+          <h4>🍎 Apple Music</h4>
+          <p>Stream with Apple Music integration</p>
+          <a routerLink="/apple-music" class="service-link">Go to Apple Music Player</a>
+        </div>
+        <div class="service-card">
+          <h4>🎵 Spotify</h4>
+          <p>Connect your Spotify Premium account</p>
+          <a routerLink="/spotify" class="service-link">Go to Spotify Player</a>
+        </div>
+      </div>
       
-      <p><strong>Note:</strong> This requires a Spotify Premium account for full functionality.</p>
+      <div class="info-section">
+        <h3>How to use:</h3>
+        <ol>
+          <li>Choose your preferred music service above</li>
+          <li>Authenticate with your music service account</li>
+          <li>Search for music and create playlists</li>
+          <li>Enjoy seamless music streaming through KMNR!</li>
+        </ol>
+      </div>
     </div>
   </div>
 </div>

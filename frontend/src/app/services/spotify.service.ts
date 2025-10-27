@@ -107,7 +107,7 @@ export class SpotifyService {
     try {
       const response = await this.http.get('/assets/config.json').toPromise() as any;
       this.clientId = response.spotify?.client_id || '';
-      this.redirectUri = 'http://127.0.0.1:5001/spotify/callback';
+      this.redirectUri = 'http://127.0.0.1:5004/spotify/callback';
       
       if (!this.clientId) {
         console.warn('⚠️ Spotify client ID not configured');
@@ -116,7 +116,7 @@ export class SpotifyService {
       console.warn('⚠️ Could not load Spotify config, using environment variables');
       // Fallback to environment variables in .env file
       this.clientId = 'bcf2215f7b7245b89fe2c40c7fb492c7'; // From your .env
-      this.redirectUri = 'http://127.0.0.1:5001/spotify/callback';
+      this.redirectUri = 'http://127.0.0.1:5004/spotify/callback';
     }
   }
 
@@ -179,7 +179,7 @@ export class SpotifyService {
       }
 
       try {
-        const response = await fetch('http://127.0.0.1:5001/spotify/callback', {
+        const response = await fetch('http://127.0.0.1:5004/spotify/callback', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

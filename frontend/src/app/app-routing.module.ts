@@ -12,9 +12,9 @@ import { DJProfileComponent } from './dj-list/dj-profile/dj-profile.component';
 import { ShowsComponent } from './shows/shows.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
-import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
-import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 import { PlayerPageComponent } from './player-page/player-page.component';
+import { AppleMusicPlayerComponent } from './apple-music-player/apple-music-player.component';
+import { SpotifyPlayerComponent } from './spotify-player/spotify-player.component';
 
 const routes: Routes = [
   {
@@ -64,16 +64,16 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'spotify',
-    component: SpotifyPlaylistComponent,
-  },
-  {
     path: 'player',
     component: PlayerPageComponent,
   },
   {
-    path: 'callback',
-    component: SpotifyCallbackComponent,
+    path: 'apple-music',
+    component: AppleMusicPlayerComponent,
+  },
+  {
+    path: 'spotify',
+    component: SpotifyPlayerComponent,
   },
   {
     // TO DO: AUTHENTICATION HERE

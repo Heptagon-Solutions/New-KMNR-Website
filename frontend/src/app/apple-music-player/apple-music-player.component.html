@@ -1,0 +1,115 @@
+<div class="apple-music-player">
+  <h2>Apple Music Player</h2>
+
+  <!-- Configuration Status -->
+  <div class="status" *ngIf="!(appleMusicService.isConfigured$ | async)">
+    <p>⏳ Configuring Apple Music...</p>
+  </div>
+
+  <!-- Login Section -->
+  <div class="auth-section" *ngIf="appleMusicService.isConfigured$ | async">
+    <div *ngIf="!(appleMusicService.isAuthorized$ | async)">
+      <button (click)="login()" class="login-btn">
+        🎵 Login to Apple Music
+      </button>
+    </div>
+
+    <div *ngIf="appleMusicService.isAuthorized$ | async">
+      <p>✅ Welcome! You are logged in to Apple Music.</p>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section" *ngIf="appleMusicService.isConfigured$ | async">
+    <h3>🔍 Search Apple Music</h3>
+    <div class="search-controls">
+      <input 
+        #searchInput 
+        (keyup.enter)="search(searchInput.value)" 
+        placeholder="Search for songs, albums, artists..."
+        class="search-input">
+      <button (click)="search(searchInput.value)" class="search-btn">Search</button>
+    </div>
+
+    <!-- Search Results -->
+    <div class="search-results" *ngIf="searchResults.length > 0">
+      <h4>🎵 Songs</h4>
+      <div class="results-list" *ngIf="searchResults.length > 0">
+        <div class="result-item" *ngFor="let song of searchResults">
+          <div class="song-info">
+            <img [src]="song.attributes.artwork?.url.replace('{w}', '60').replace('{h}', '60')" 
+                 [alt]="song.attributes.name" 
+                 class="album-art"
+                 *ngIf="song.attributes.artwork">
+            <div class="song-details">
+              <strong>{{ song.attributes.name }}</strong><br>
+              <span class="artist">{{ song.attributes.artistName }}</span><br>
+              <span class="album">{{ song.attributes.albumName }}</span>
+            </div>
+          </div>
+          <button (click)="playSong(song.id)" class="play-btn">▶️ Play</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player Controls -->
+  <div class="player-controls" *ngIf="appleMusicService.isConfigured$ | async">
+    <h3>🎛️ Player Controls</h3>
+    <div class="controls">
+      <button (click)="skipToPrevious()" class="control-btn">⏮️ Previous</button>
+      <button (click)="pause()" class="control-btn">⏸️ Pause</button>
+      <button (click)="stop()" class="control-btn">⏹️ Stop</button>
+      <button (click)="skipToNext()" class="control-btn">⏭️ Next</button>
+    </div>
+  </div>
+
+  <!-- User Library -->
+  <div class="library-section" *ngIf="appleMusicService.isAuthorized$ | async">
+    <h3>📚 Your Library</h3>
+    <button (click)="getUserPlaylists()" class="library-btn">Get My Playlists</button>
+    <button (click)="getRecentlyPlayed()" class="library-btn">Recently Played</button>
+
+    <!-- User Playlists -->
+    <div class="playlists" *ngIf="userPlaylists.length > 0">
+      <h4>📂 Your Playlists</h4>
+      <div class="playlist-item" *ngFor="let playlist of userPlaylists">
+        <div class="playlist-info">
+          <img [src]="playlist.attributes.artwork?.url.replace('{w}', '60').replace('{h}', '60')" 
+               [alt]="playlist.attributes.name" 
+               class="playlist-art"
+               *ngIf="playlist.attributes.artwork">
+          <div class="playlist-details">
+            <strong>{{ playlist.attributes.name }}</strong><br>
+            <span class="track-count">{{ playlist.attributes.trackCount || 0 }} songs</span>
+          </div>
+        </div>
+        <button (click)="playPlaylist(playlist.id)" class="play-btn">▶️ Play</button>
+      </div>
+    </div>
+
+    <!-- Recently Played -->
+    <div class="recently-played" *ngIf="recentlyPlayed.length > 0">
+      <h4>🕐 Recently Played</h4>
+      <div class="result-item" *ngFor="let item of recentlyPlayed">
+        <div class="song-info">
+          <img [src]="item.attributes.artwork?.url.replace('{w}', '60').replace('{h}', '60')" 
+               [alt]="item.attributes.name" 
+               class="album-art"
+               *ngIf="item.attributes.artwork">
+          <div class="song-details">
+            <strong>{{ item.attributes.name }}</strong><br>
+            <span class="artist">{{ item.attributes.artistName }}</span>
+          </div>
+        </div>
+        <button (click)="playSong(item.id)" class="play-btn">▶️ Play</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Messages -->
+  <div class="error-message" *ngIf="errorMessage">
+    ❌ {{ errorMessage }}
+  </div>
+</div>
