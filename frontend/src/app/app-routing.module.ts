@@ -14,6 +14,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
+import { PlayerPageComponent } from './player-page/player-page.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'spotify',
     component: SpotifyPlaylistComponent,
+  },
+  {
+    path: 'player',
+    component: PlayerPageComponent,
   },
   {
     path: 'callback',

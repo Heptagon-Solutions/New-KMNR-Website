@@ -1,0 +1,130 @@
+<div class="spotify-player">
+  <!-- Authentication Prompt -->
+  <div *ngIf="!isAuthenticated" class="auth-prompt">
+    <h3>Spotify Player</h3>
+    <p>Connect your Spotify account to control playback</p>
+    <button (click)="authenticate()" class="auth-button">
+      <i class="fab fa-spotify"></i>
+      Connect Spotify
+    </button>
+  </div>
+
+  <!-- Player Interface -->
+  <div *ngIf="isAuthenticated" class="player-interface">
+    <!-- Error Message -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+      <button (click)="error = null" class="close-error">×</button>
+    </div>
+
+    <!-- No Active Device -->
+    <div *ngIf="!playbackState && devices.length === 0" class="no-device">
+      <p>No active Spotify device found</p>
+      <button (click)="loadDevices()" class="refresh-button">Refresh Devices</button>
+    </div>
+
+    <!-- Device Selection -->
+    <div *ngIf="devices.length > 0 && !playbackState?.device?.is_active" class="device-selection">
+      <h4>Available Devices:</h4>
+      <div class="devices-list">
+        <button 
+          *ngFor="let device of devices" 
+          (click)="transferPlayback(device.id)"
+          class="device-button"
+          [class.active]="device.is_active">
+          <i [class]="'fas fa-' + getDeviceIcon(device.type)"></i>
+          {{ device.name }}
+          <span class="device-type">({{ device.type }})</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Player -->
+    <div *ngIf="playbackState" class="active-player">
+      <!-- Track Info -->
+      <div class="track-info">
+        <div class="album-art" *ngIf="playbackState.item?.album?.images?.length">
+          <img [src]="playbackState.item!.album!.images![0].url" [alt]="playbackState.item!.album!.name">
+        </div>
+        <div class="track-details">
+          <h4 class="track-name">{{ playbackState.item?.name || 'No track' }}</h4>
+          <p class="artist-name">{{ getArtistNames(playbackState.item?.artists) }}</p>
+          <p class="album-name">{{ playbackState.item?.album?.name }}</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="player-controls">
+        <div class="main-controls">
+          <button (click)="toggleShuffle()" 
+                  class="control-button" 
+                  [class.active]="isShuffleActive()"
+                  [disabled]="isLoading">
+            <i class="fas fa-random"></i>
+          </button>
+
+          <button (click)="skipPrevious()" 
+                  class="control-button" 
+                  [disabled]="isLoading">
+            <i class="fas fa-step-backward"></i>
+          </button>
+
+          <button (click)="togglePlayPause()" 
+                  class="play-pause-button" 
+                  [disabled]="isLoading">
+            <i class="fas" [class.fa-pause]="isPlaying()" [class.fa-play]="!isPlaying()"></i>
+          </button>
+
+          <button (click)="skipNext()" 
+                  class="control-button" 
+                  [disabled]="isLoading">
+            <i class="fas fa-step-forward"></i>
+          </button>
+
+          <button (click)="toggleRepeat()" 
+                  class="control-button" 
+                  [class.active]="isRepeatActive()"
+                  [disabled]="isLoading">
+            <i class="fas" 
+               [class.fa-repeat]="isRepeatContext()"
+               [class.fa-redo]="isRepeatTrack()"></i>
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container" *ngIf="playbackState.item">
+          <span class="time-display">{{ formatTime(playbackState.progress_ms || 0) }}</span>
+          <div class="progress-bar" (click)="onProgressClick($event)">
+            <div class="progress-fill" [style.width.%]="getProgressPercent()"></div>
+          </div>
+          <span class="time-display">{{ formatTime(playbackState.item.duration_ms || 0) }}</span>
+        </div>
+      </div>
+
+      <!-- Volume and Device Info -->
+      <div class="player-footer">
+        <div class="device-info">
+          <i [class]="getDeviceIconClass()"></i>
+          <span>{{ getDeviceName() }}</span>
+        </div>
+
+        <div class="volume-control" *ngIf="playbackState.device">
+          <i class="fas fa-volume-down"></i>
+          <input 
+            type="range" 
+            min="0" 
+            max="100" 
+            [value]="getVolumePercent()"
+            (input)="onVolumeChange($event)"
+            class="volume-slider">
+          <i class="fas fa-volume-up"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading-overlay">
+      <i class="fas fa-spinner fa-spin"></i>
+    </div>
+  </div>
+</div>

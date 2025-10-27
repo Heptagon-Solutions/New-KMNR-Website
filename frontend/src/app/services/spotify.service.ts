@@ -83,7 +83,13 @@ export class SpotifyService {
     'user-read-private',
     'user-read-email',
     'playlist-modify-public',
-    'playlist-modify-private'
+    'playlist-modify-private',
+    'user-read-playback-state',
+    'user-modify-playback-state',
+    'user-read-currently-playing',
+    'user-read-recently-played',
+    'streaming',
+    'app-remote-control'
   ];
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
