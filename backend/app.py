@@ -37,9 +37,13 @@ def create_app():
     with app.app_context():
         from example_endpoints import example_endpoints_blueprint
         from endpoints.news import town_and_campus_news_blueprint
+        from endpoints.users import users_bp
+        from endpoints.shows import shows_bp
 
         app.register_blueprint(example_endpoints_blueprint)
         app.register_blueprint(town_and_campus_news_blueprint)
+        app.register_blueprint(users_bp, url_prefix="/api")
+        app.register_blueprint(shows_bp, url_prefix="/api")
 
         return app
 
