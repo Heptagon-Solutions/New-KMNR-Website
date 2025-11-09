@@ -26,7 +26,16 @@ def create_user():
         return {"id": user_id, "name": name, "email": email, "role": role}, 201
     except DatabaseError as e:
         db.connection.rollback()
-        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+        try:
+            err_code = e.args[0]
+        except Exception:
+            err_code = None
+
+        if err_code == 1062:
+            return {"message": "Could not create account with provided data"}, 409
+
+        return {"message": "Could not create account"}, 500
+
 
 
 @users_bp.delete("/users/<int:user_id>")
