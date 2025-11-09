@@ -234,9 +234,16 @@ def update_dj(dj_id: int):
                 f"UPDATE dj SET {', '.join(fields)} WHERE id = %s",
                 tuple(values),
             )
-            if cur.rowcount == 0:
-                db.connection.rollback()
-                return {"message": "dj not found"}, 404
+            updated = cur.rowcount
+
+            if updated == 0:
+                cur.execute("SELECT id FROM dj WHERE id = %s", (dj_id,))
+                exists = cur.fetchone() is not None
+                if not exists:
+                    db.connection.rollback()
+                    return {"message": "dj not found"}, 404
+                db.connection.commit()
+                return {"message": "dj updated"}, 200
 
         db.connection.commit()
         return {"message": "dj updated"}, 200
