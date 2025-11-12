@@ -6,3 +6,5 @@ flask_mysqldb
 mysql-connector-python
 requests
 python-dotenv
+spotipy
+pymysql

@@ -10,28 +10,20 @@ Loading .env environment variables...
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
-<<<<<<< HEAD
- * Debugger PIN: 153-730-332
-127.0.0.1 - - [22/Oct/2025 15:52:24] "GET /data HTTP/1.1" 200 -
-127.0.0.1 - - [22/Oct/2025 15:52:35] "GET /spotify/callback?code=AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI HTTP/1.1" 200 -
-127.0.0.1 - - [22/Oct/2025 15:52:35] "OPTIONS /spotify/callback HTTP/1.1" 200 -
-127.0.0.1 - - [22/Oct/2025 15:52:35] "POST /spotify/callback HTTP/1.1" 200 -
+ * Debugger PIN: 110-480-146
+127.0.0.1 - - [12/Nov/2025 11:36:41] "GET /data HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2025 11:36:47] "GET /spotify/callback?code=AQBL0FLwH-yUB4sCUNjwonyDPDA1mbcDegaW4rhDBzTiYdG_4yz88pHXhG7FaSBG1idvvKZ5Bh3GD4z77GxwwzP8aGSDQtKxOlR3cDhfG6L7l6ZFbcOE87oQB8M789ou8RfVuTaxZU2k3cLrXreG5DGaG1VW0rqRcqUb7yrZze7QkNRx0OHu2hrgWdyPfTCYIXb32zjj6hCKPMslEmx3xRoeZ1gs2Jnew8y37n8HEAcZqO6_fHpHdIxFEcjzQYKG5ltUDgj6Tglotg-1EIjFWWl9r2zs5BPqC1-6ecc2inU5M4h1d-Kxew6BVjPX661cS6d6ePIcrAGlflAzBsnCdj1O7z15O2HY22hEtnYQL4fGMH1I5wJihPTae6MO3ZtyGVN_xTMAjktoDE7CxFRgLM6cBmO3dndWBVcvVN6h2MyjC3ffEzs HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2025 11:36:47] "OPTIONS /spotify/callback HTTP/1.1" 200 -
+127.0.0.1 - - [12/Nov/2025 11:36:48] "POST /spotify/callback HTTP/1.1" 200 -
 ✅ Spotify endpoints loaded successfully
 ✅ Playlist endpoints loaded successfully
 DEBUG: Received callback request
 DEBUG: Method: GET
-DEBUG: Args: ImmutableMultiDict([('code', 'AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI')])
+DEBUG: Args: ImmutableMultiDict([('code', 'AQBL0FLwH-yUB4sCUNjwonyDPDA1mbcDegaW4rhDBzTiYdG_4yz88pHXhG7FaSBG1idvvKZ5Bh3GD4z77GxwwzP8aGSDQtKxOlR3cDhfG6L7l6ZFbcOE87oQB8M789ou8RfVuTaxZU2k3cLrXreG5DGaG1VW0rqRcqUb7yrZze7QkNRx0OHu2hrgWdyPfTCYIXb32zjj6hCKPMslEmx3xRoeZ1gs2Jnew8y37n8HEAcZqO6_fHpHdIxFEcjzQYKG5ltUDgj6Tglotg-1EIjFWWl9r2zs5BPqC1-6ecc2inU5M4h1d-Kxew6BVjPX661cS6d6ePIcrAGlflAzBsnCdj1O7z15O2HY22hEtnYQL4fGMH1I5wJihPTae6MO3ZtyGVN_xTMAjktoDE7CxFRgLM6cBmO3dndWBVcvVN6h2MyjC3ffEzs')])
 DEBUG: Content-Type: None
 DEBUG: Received callback request
 DEBUG: Method: POST
 DEBUG: Args: ImmutableMultiDict([])
 DEBUG: Content-Type: application/json
-DEBUG: Code: AQAer2IMn0lDEpxLldu0REIYYS9RDXTBb_9hpLxcd8P6s3-3HiCRV82wR5nOEXUbK3izxI8Vm8FD_Edk5XwO0sf5IsVaNUW5y1uRdQCwW1WnBQq8b5TGxAZaFelFLy3LLzWg41DAzFqFIBrSaLR1vjJ0pFJcRKs4ctq9iEB09BCd7QfhRqePgrKZsf6twWygJycuueiTFKgmpT59kmbVcpJfX-RhwsH-9RqisM_ajIJwNkDSL5wJWkpvBO9WsRVvPfEh1y9S22Pj8z3IG6GeB24rlXqCQnIsLjerarlMHx-TVaaadennWY-qXcEreNGaupR5ymNxYpq-nIgqNeRi9ZmouTUaw6LkFG0IXgWTWNDT4bjC33iQiciYaANVbi8NvCETSY7G6uJ8eueDyEd1pbBy8XHkioBk9T9YUDOzXpODYWwm8qI
-DEBUG: Code verifier: 0yp0cxiplWRXLM7Laj9FEfxblZ4M9kovQlZh98oUuuYnpABIyINGDfJrsG2BWVpcTIsqgeTaRIbUyZpB6UE6pltIqbDWWExjPMCPjU4C8k3e4XNKIRoRXqBjQwdiqbB4
-=======
- * Debugger PIN: 110-480-146
-127.0.0.1 - - [27/Oct/2025 13:02:21] "GET /data HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2025 13:02:27] "GET /spotify/callback?code=AQAhKO9C5hsdgOxJEMIOVP4lSQsK_ey7oba8NSVV48jHPPzAxHbUISs6oFi58-xTlPgPtFZhAnPbB796q6VVxuPNcx6D2ptA_Ntj0K6XXUQg2epPBvBhl4DixMc4AqfgKe8GtmtDiP3qXKLYXQNdoxsgZCspFeJn1ieEC6Vy3UAOZ_KyuAXQG670J8DOUb5ZxHf7B9vD6-9Jy9xGl1--VMWOCEM3ltxtsma2n9LSFQ2yv7OWchibK4_EpLfHCpvvy0gYn5w6rMlzy03Qo4scM19lVMHrGwEcb9bxlJS4oy3Bpkn3Rm15JK8ToCbOuN88XO8OAi9a4DuN5sQ_GsQAERnMtpRFlxa3oYuTQztyOEpKirfQLfO3_vaL9zcD0pFjJSwnx4t5Ka55XXDo02O9HtMBMqGNveiF3iqt7vLihlgAZl81skY HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2025 13:02:27] "OPTIONS /spotify/callback HTTP/1.1" 200 -
-127.0.0.1 - - [27/Oct/2025 13:02:27] "POST /spotify/callback HTTP/1.1" 200 -
->>>>>>> 05e85a5 (spotify working again. need to style)
+DEBUG: Code: AQBL0FLwH-yUB4sCUNjwonyDPDA1mbcDegaW4rhDBzTiYdG_4yz88pHXhG7FaSBG1idvvKZ5Bh3GD4z77GxwwzP8aGSDQtKxOlR3cDhfG6L7l6ZFbcOE87oQB8M789ou8RfVuTaxZU2k3cLrXreG5DGaG1VW0rqRcqUb7yrZze7QkNRx0OHu2hrgWdyPfTCYIXb32zjj6hCKPMslEmx3xRoeZ1gs2Jnew8y37n8HEAcZqO6_fHpHdIxFEcjzQYKG5ltUDgj6Tglotg-1EIjFWWl9r2zs5BPqC1-6ecc2inU5M4h1d-Kxew6BVjPX661cS6d6ePIcrAGlflAzBsnCdj1O7z15O2HY22hEtnYQL4fGMH1I5wJihPTae6MO3ZtyGVN_xTMAjktoDE7CxFRgLM6cBmO3dndWBVcvVN6h2MyjC3ffEzs
+DEBUG: Code verifier: KOQH0zTJo1ctEVIBCTyZcPpW8oqcSCkoS3xp3iA1QGYwUc1FSjA6GzPNOcm2StAMRlAn6EhyIygj8PsDhAXPFrkPq59vR9ZtXNqTSw1dTib4mQe4X7CihFDayTadsN5G

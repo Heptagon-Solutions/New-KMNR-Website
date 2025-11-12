@@ -43,3 +43,9 @@ Thumbs.db
 
 # Environment variables
 backend/.env
+
+# Node.js dependencies
+node_modules/
+
+# Jekyll build output
+_site/
