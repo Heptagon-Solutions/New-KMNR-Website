@@ -4,6 +4,10 @@ from database import db, DatabaseError
 users_bp = Blueprint("accounts", __name__)
 
 
+DEFAULT_PAGE_SIZE = 200
+"""Default number of rows to fetch and return."""
+
+
 @users_bp.post("/users")
 def create_user():
     data = request.get_json(force=True, silent=True) or {}
@@ -37,7 +41,6 @@ def create_user():
         return {"message": "Could not create account"}, 500
 
 
-
 @users_bp.delete("/users/<int:user_id>")
 def delete_user(user_id: int):
     try:
@@ -56,6 +59,75 @@ def delete_user(user_id: int):
         return "", 204
     except DatabaseError as e:
         db.connection.rollback()
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@users_bp.get("/count/users")
+def user_count():
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute("""SELECT COUNT(`id`) AS `count` FROM `user`""")
+            count = cur.fetchone()["count"]
+        return {"count": count}, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@users_bp.get("/users")
+def list_users():
+    count = request.args.get("count", default=DEFAULT_PAGE_SIZE, type=int)
+    page = request.args.get("page", default=0, type=int)
+    offset = page * count
+
+    if count < 1 or page < 0:
+        return {
+            "message": f"Count must be greater than 0 and Page must be 0 or greater."
+        }, 400
+
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(
+                """
+                SELECT
+                    `id`,
+                    `name`,
+                    `email`,
+                    `role`
+                FROM `user`
+                ORDER BY `id` ASC
+                LIMIT %s OFFSET %s
+                """,
+                (count, offset),
+            )
+            rows = cur.fetchall()
+        return {"users": rows}, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@users_bp.get("/users/<int:user_id>")
+def get_user(user_id: int):
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(
+                """
+                SELECT
+                    `id`,
+                    `name`,
+                    `email`,
+                    `role`
+                FROM `user`
+                WHERE `id` = %s
+                """,
+                (user_id,),
+            )
+            row = cur.fetchone()
+
+        if row is None:
+            return {"message": "User not found"}, 404
+
+        return row, 200
+    except DatabaseError as e:
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
 
 

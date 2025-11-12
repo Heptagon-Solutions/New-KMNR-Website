@@ -16,13 +16,18 @@ export class AdminUsersComponent {
   protected userList: User[] = [];
   protected page: number = 0;
 
-  protected get totalPages(): number {
-    return Math.ceil(this.totalUsers / this.listSize);
+  /** Returns undefined if we're still waiting on an API response. */
+  protected get totalPages(): number | undefined {
+    if (this.totalUsers) {
+      return Math.ceil(this.totalUsers / this.listSize);
+    } else {
+      return undefined;
+    }
   }
 
   private readonly listSize: number = 25;
 
-  private totalUsers: number = 0;
+  private totalUsers: number | undefined = undefined;
 
   constructor(private readonly userService: UserService) {
     userService
@@ -33,7 +38,7 @@ export class AdminUsersComponent {
   }
 
   public goToPage(newPage: number) {
-    if (newPage >= 0 && newPage < this.totalPages) {
+    if (newPage >= 0) {
       this.page = newPage;
 
       this.userService
