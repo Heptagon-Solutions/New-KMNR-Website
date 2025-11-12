@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
-import { DJ } from 'src/models/dj';
+import { DJProfile } from 'src/models/dj';
 
 import { OnAirComponent } from '../../shared/on-air/on-air.component';
 import { DJService } from '../../services/dj.service';
@@ -15,13 +15,13 @@ import { DJService } from '../../services/dj.service';
   styleUrls: ['./dj-profile.component.scss'],
 })
 export class DJProfileComponent {
-  public dj: DJ | undefined = undefined;
+  public dj: DJProfile | undefined = undefined;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly djService: DJService
   ) {
     // TO DO: Use `route` to get real DJ's id. 1 is placeholder here
-    djService.getDJ(1).then((dj: DJ) => (this.dj = dj));
+    djService.getDJProfile(1).subscribe((dj: DJProfile) => (this.dj = dj));
   }
 }

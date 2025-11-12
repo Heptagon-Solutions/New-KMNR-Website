@@ -216,13 +216,13 @@ def list_djs():
             cur.execute(
                 """
                 SELECT
-                    dj.id AS id,
-                    u.name AS user_name,
-                    dj.dj_name AS dj_name,
-                    dj.profile_img AS profile_img
-                FROM dj
-                JOIN user u ON dj.id = u.id
-                ORDER BY dj.dj_name ASC
+                    `dj`.`id` AS `id`,
+                    `u`.`name` AS `userName`,
+                    `dj`.`dj_name` AS `djName`,
+                    `dj`.`profile_img` AS `profileImg`
+                FROM `dj`
+                JOIN `user` `u` ON `dj`.`id` = `u`.`id`
+                ORDER BY `dj`.`id` ASC
                 """
             )
             rows = cur.fetchall()

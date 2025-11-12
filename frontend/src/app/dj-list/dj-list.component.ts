@@ -21,6 +21,6 @@ export class DJListComponent {
   public listStart = 0;
 
   constructor(private readonly djService: DJService) {
-    djService.getAllDJs().then((djs: DJ[]) => (this.djList = djs));
+    djService.getAllDJs().subscribe((djs: DJ[]) => (this.djList = djs));
   }
 }

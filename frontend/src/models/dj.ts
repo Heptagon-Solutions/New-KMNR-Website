@@ -1,11 +1,11 @@
 export interface DJ {
   id: number;
-  name: string;
-  genres: string;
+  djName: string;
+  // genres: string; // Will we have genres for DJs? Not currently supported by DB
   // profile image here or in DJProfile?
 }
 
 export interface DJProfile extends DJ {
   desc: string;
-  image: Blob;
+  // profileImg: Blob;  // TODO: learn more about how we'll handle images
 }

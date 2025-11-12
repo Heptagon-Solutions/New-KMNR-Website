@@ -1,33 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable, of } from 'rxjs';
+import { API_URL } from 'src/constants';
 
-import { DJ } from 'src/models/dj';
+import { DJ, DJProfile } from 'src/models/dj';
+
+const DJS_API_URL = API_URL + 'api/djs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DJService {
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
 
-  public async getAllDJs(): Promise<DJ[]> {
-    return [
-      {
-        id: 1,
-        name: 'Fake DJ 1',
-        genres: 'noise',
-      },
-      {
-        id: 2,
-        name: 'Fake DJ 2',
-        genres: 'math rock',
-      },
-    ];
+  public getAllDJs(): Observable<DJ[]> {
+    return this.http
+      .get<{ djs: DJ[] }>(DJS_API_URL)
+      .pipe(map(resp => resp.djs));
   }
 
-  public async getDJ(id: number): Promise<DJ> {
-    return {
+  public getDJProfile(id: number): Observable<DJProfile> {
+    return of({
       id: id,
-      name: 'Fake DJ 1',
-      genres: 'noise',
-    };
+      djName: 'Fake DJ 1',
+      desc: 'noise',
+    });
   }
 }
