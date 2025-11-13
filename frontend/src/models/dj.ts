@@ -1,6 +1,7 @@
 export interface DJ {
   id: number;
   djName: string;
+  userName: string;
   // genres: string; // Will we have genres for DJs? Not currently supported by DB
   // profile image here or in DJProfile?
 }

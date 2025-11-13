@@ -13,6 +13,7 @@ import { ShowsComponent } from './shows/shows.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminDJsComponent } from './admin/admin-djs/admin-djs.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
       {
         path: 'users',
         component: AdminUsersComponent,
+      },
+      {
+        path: 'djs',
+        component: AdminDJsComponent,
       },
     ],
   },

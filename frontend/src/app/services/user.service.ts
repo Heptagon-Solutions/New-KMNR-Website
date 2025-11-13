@@ -31,6 +31,6 @@ export class UserService {
   }
 
   public getUser(userId: number): Observable<User> {
-    return this.http.get<User>(USERS_API_URL + userId);
+    return this.http.get<User>(USERS_API_URL + '/' + userId);
   }
 }

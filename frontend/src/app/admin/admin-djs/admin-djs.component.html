@@ -1,0 +1,22 @@
+<div>
+  <h2>DJ List</h2>
+
+  <div>
+    <div *ngFor="let dj of djList">
+      <p>{{ dj.djName }} ({{ dj.id }}) - {{ dj.userName }}</p>
+    </div>
+  </div>
+
+  <span>
+    <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+      Previous Page
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+    <button
+      [disabled]="page + 1 >= (totalPages ?? 0)"
+      (click)="goToPage(page + 1)"
+    >
+      Next Page
+    </button>
+  </span>
+</div>
