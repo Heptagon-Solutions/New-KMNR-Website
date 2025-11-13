@@ -21,13 +21,13 @@ export class DJListComponent {
   /** Returns undefined if we're still waiting on an API response. */
   protected get totalPages(): number | undefined {
     if (this.totalDJs) {
-      return Math.ceil(this.totalDJs / this.listSize);
+      return Math.ceil(this.totalDJs / this.djsPerPage);
     } else {
       return undefined;
     }
   }
 
-  private readonly listSize: number = 9;
+  private readonly djsPerPage: number = 9;
 
   private totalDJs: number | undefined = undefined;
 
@@ -42,7 +42,7 @@ export class DJListComponent {
       this.page = newPage;
 
       this.djService
-        .getDJs(this.listSize, this.page)
+        .getDJs(this.djsPerPage, this.page)
         .subscribe((users: DJ[]) => (this.djList = users));
     }
   }

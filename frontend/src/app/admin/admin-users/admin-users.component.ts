@@ -19,13 +19,13 @@ export class AdminUsersComponent {
   /** Returns undefined if we're still waiting on an API response. */
   protected get totalPages(): number | undefined {
     if (this.totalUsers) {
-      return Math.ceil(this.totalUsers / this.listSize);
+      return Math.ceil(this.totalUsers / this.usersPerPage);
     } else {
       return undefined;
     }
   }
 
-  private readonly listSize: number = 25;
+  private readonly usersPerPage: number = 25;
 
   private totalUsers: number | undefined = undefined;
 
@@ -42,7 +42,7 @@ export class AdminUsersComponent {
       this.page = newPage;
 
       this.userService
-        .getUsers(this.listSize, this.page)
+        .getUsers(this.usersPerPage, this.page)
         .subscribe((users: User[]) => (this.userList = users));
     }
   }
