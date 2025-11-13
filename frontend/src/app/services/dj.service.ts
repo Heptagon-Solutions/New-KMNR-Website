@@ -13,9 +13,20 @@ const DJS_API_URL = API_URL + 'api/djs';
 export class DJService {
   constructor(private readonly http: HttpClient) {}
 
-  public getAllDJs(): Observable<DJ[]> {
+  public getDJCount(): Observable<number> {
     return this.http
-      .get<{ djs: DJ[] }>(DJS_API_URL)
+      .get<{ count: number }>(API_URL + 'api/count/djs')
+      .pipe(map(resp => resp.count));
+  }
+
+  /**
+   * Fetch paginated list of users.
+   * @param count Number of users to return
+   * @param page Pagination offset. Page 1 contains users 1 to `count`, page 2 contains `count + 1` to `2 * count`.
+   */
+  public getDJs(count: number, page: number): Observable<DJ[]> {
+    return this.http
+      .get<{ djs: DJ[] }>(DJS_API_URL, { params: { count, page } })
       .pipe(map(resp => resp.djs));
   }
 

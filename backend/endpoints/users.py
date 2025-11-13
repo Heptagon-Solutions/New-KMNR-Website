@@ -144,7 +144,9 @@ def create_dj():
     profile_img = data.get("profile_img")
 
     if not all([user_id, dj_name, training_semester_id]):
-        return {"message": "user_id, dj_name, and training_semester_id are required"}, 400
+        return {
+            "message": "user_id, dj_name, and training_semester_id are required"
+        }, 400
 
     try:
         with db.connection.cursor() as cur:
@@ -153,7 +155,9 @@ def create_dj():
                 return {"message": "user_id does not exist"}, 400
 
             # check training semester exists
-            cur.execute("SELECT id FROM semester WHERE id = %s", (training_semester_id,))
+            cur.execute(
+                "SELECT id FROM semester WHERE id = %s", (training_semester_id,)
+            )
             if cur.fetchone() is None:
                 return {"message": "training_semester_id does not exist"}, 400
 
@@ -209,8 +213,28 @@ def delete_dj(dj_id: int):
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
 
 
+@users_bp.get("/count/djs")
+def dj_count():
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute("""SELECT COUNT(`id`) AS `count` FROM `dj`""")
+            count = cur.fetchone()["count"]
+        return {"count": count}, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
 @users_bp.get("/djs")
 def list_djs():
+    count = request.args.get("count", default=DEFAULT_PAGE_SIZE, type=int)
+    page = request.args.get("page", default=0, type=int)
+    offset = page * count
+
+    if count < 1 or page < 0:
+        return {
+            "message": f"Count must be greater than 0 and Page must be 0 or greater."
+        }, 400
+
     try:
         with db.connection.cursor() as cur:
             cur.execute(
@@ -223,7 +247,9 @@ def list_djs():
                 FROM `dj`
                 JOIN `user` `u` ON `dj`.`id` = `u`.`id`
                 ORDER BY `dj`.`id` ASC
-                """
+                LIMIT %s OFFSET %s
+                """,
+                (count, offset),
             )
             rows = cur.fetchall()
         return {"djs": rows}, 200

@@ -15,12 +15,35 @@ import { DJService } from '../services/dj.service';
   styleUrls: ['./dj-list.component.scss'],
 })
 export class DJListComponent {
-  public readonly djsPerPage = 9;
+  protected djList: DJ[] | undefined = undefined;
+  protected page: number = 0;
 
-  public djList: DJ[] | undefined = undefined;
-  public listStart = 0;
+  /** Returns undefined if we're still waiting on an API response. */
+  protected get totalPages(): number | undefined {
+    if (this.totalDJs) {
+      return Math.ceil(this.totalDJs / this.listSize);
+    } else {
+      return undefined;
+    }
+  }
+
+  private readonly listSize: number = 9;
+
+  private totalDJs: number | undefined = undefined;
 
   constructor(private readonly djService: DJService) {
-    djService.getAllDJs().subscribe((djs: DJ[]) => (this.djList = djs));
+    djService.getDJCount().subscribe(userCount => (this.totalDJs = userCount));
+
+    this.goToPage(0);
+  }
+
+  public goToPage(newPage: number) {
+    if (newPage >= 0) {
+      this.page = newPage;
+
+      this.djService
+        .getDJs(this.listSize, this.page)
+        .subscribe((users: DJ[]) => (this.djList = users));
+    }
   }
 }

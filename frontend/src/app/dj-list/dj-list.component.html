@@ -2,10 +2,7 @@
   <on-air />
   <h1>DISC JOCKEYS</h1>
   <div class="dj-list" *ngIf="djList">
-    <div
-      *ngFor="let dj of djList.slice(listStart, listStart + djsPerPage)"
-      class="dj-avatar"
-    >
+    <div *ngFor="let dj of djList" class="dj-avatar">
       <div class="picture">
         <img src="../../assets/sonic.gif" alt="sample" />
       </div>
@@ -14,5 +11,17 @@
       </h3>
     </div>
   </div>
-  <button class="next">Next</button>
+
+  <span>
+    <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+      Previous Page
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+    <button
+      [disabled]="page + 1 >= (totalPages ?? 0)"
+      (click)="goToPage(page + 1)"
+    >
+      Next Page
+    </button>
+  </span>
 </div>
