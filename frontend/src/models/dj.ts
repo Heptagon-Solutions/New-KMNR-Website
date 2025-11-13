@@ -7,6 +7,6 @@ export interface DJ {
 }
 
 export interface DJProfile extends DJ {
-  desc: string;
+  profileDesc: string;
   // profileImg: Blob;  // TODO: learn more about how we'll handle images
 }

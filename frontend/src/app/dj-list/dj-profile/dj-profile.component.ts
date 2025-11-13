@@ -22,6 +22,11 @@ export class DJProfileComponent {
     private readonly djService: DJService
   ) {
     // TO DO: Use `route` to get real DJ's id. 1 is placeholder here
-    djService.getDJProfile(1).subscribe((dj: DJProfile) => (this.dj = dj));
+    let djId = route.snapshot.paramMap.get('id');
+    if (djId !== null) {
+      djService
+        .getDJProfile(Number(djId))
+        .subscribe((dj: DJProfile) => (this.dj = dj));
+    }
   }
 }

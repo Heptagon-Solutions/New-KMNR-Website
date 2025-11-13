@@ -1,7 +1,7 @@
 <div class="dj-profile">
   <on-air />
   <hr />
-  <div class="dj-info" *ngIf="dj">
+  <div class="dj-info" *ngIf="dj; else errorOccured">
     <div class="dj-picture">
       <div class="picture">
         <img src="../../../assets/sonic.gif" alt="sample" />
@@ -9,12 +9,15 @@
     </div>
     <div class="dj-description">
       <h1>{{ dj.djName }}</h1>
-      <i>{{ dj.desc }}</i>
-      <!-- <p>{{dj.description}}</p> -->
+      <i>{{ dj.profileDesc }}</i>
     </div>
     <div class="dj-shows">
       <h2>FEATURED ON</h2>
       <h4>SHOW_NAME</h4>
     </div>
   </div>
+
+  <ng-template #errorOccured>
+    <div>An error occured</div>
+  </ng-template>
 </div>

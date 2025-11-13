@@ -264,18 +264,18 @@ def get_dj(dj_id: int):
             cur.execute(
                 """
                 SELECT
-                    dj.id AS id,
-                    u.name AS user_name,
-                    u.email AS user_email,
-                    dj.dj_name,
-                    dj.training_semester_id,
-                    dj.trainer_dj_id,
-                    dj.graduating_semester_id,
-                    dj.profile_desc,
-                    dj.profile_img
-                FROM dj
-                JOIN user u ON dj.id = u.id
-                WHERE dj.id = %s
+                    `dj`.`id` AS `id`,
+                    `u`.`name` AS `userName`,
+                    `u`.`email` AS `userEmail`,
+                    `dj`.`dj_name` AS `djName`,
+                    `dj`.`training_semester_id` AS `trainingSemesterId`,
+                    `dj`.`trainer_dj_id` AS `trainerDJId`,
+                    `dj`.`graduating_semester_id` AS `graduatingSemesterId`,
+                    `dj`.`profile_desc` AS `profileDesc`,
+                    `dj`.`profile_img` AS `profileImg`
+                FROM `dj`
+                JOIN `user` `u` ON `dj`.`id` = `u`.`id`
+                WHERE `dj`.`id` = %s
                 """,
                 (dj_id,),
             )
