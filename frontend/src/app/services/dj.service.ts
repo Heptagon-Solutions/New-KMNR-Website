@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { API_URL } from 'src/constants';
 import { DJ, DJProfile } from 'src/models/dj';
