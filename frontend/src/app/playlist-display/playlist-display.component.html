@@ -1,3 +1,4 @@
+<div class="playlist-display-wrapper">
 <div class="playlist-display-container">
   <div *ngIf="isLoading" class="loading-indicator">
     <p>Loading playlist...</p>
@@ -62,4 +63,5 @@
   <div *ngIf="!playlistId && !errorMessage && !isLoading && !showEmbed" class="no-playlist-selected">
      <p>Select or provide a playlist ID to display.</p>
    </div>
+</div>
 </div>

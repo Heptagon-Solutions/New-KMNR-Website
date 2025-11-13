@@ -1,23 +1,11 @@
-<div id="app">
-  <top-bar />
+<!-- Persistent Navigation Bar -->
+<app-top-bar></app-top-bar>
 
-  <div id="nav">
-    <a routerLink="/">KMNR</a> |
-    <a routerLink="/shows">Shows</a> |
-    <a routerLink="/djs">DJs</a> |
-    <a routerLink="/news">Town &amp; Campus News</a> |
-    <a routerLink="/about">About</a> |
-    <a routerLink="/blog">Blog</a> |
-    <a routerLink="/spotify">Spotify Playlists</a> |
-    <a routerLink="/login">Login</a> |
-    <a routerLink="/admin"><i>Admin</i></a>
-  </div>
+<!-- Main Content Area -->
+<main class="content-container">
+  <!-- All modular pages (cards) will be rendered here -->
+  <router-outlet></router-outlet>
+</main>
 
-  <div class="main-content">
-    <router-outlet />
-  </div>
-
-  <div class="footer">
-    <app-footer />
-  </div>
-</div>
+<!-- Optional: Persistent Footer -->
+<app-footer></app-footer>

@@ -10,7 +10,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 import { PlaylistDisplayComponent } from './playlist-display/playlist-display.component';
-
 @NgModule({
   declarations: [AppComponent, SpotifyPlaylistComponent, SpotifyCallbackComponent],
   imports: [

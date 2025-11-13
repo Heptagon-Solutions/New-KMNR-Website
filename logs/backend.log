@@ -1,6 +1,6 @@
 Loading .env environment variables...
 ✅ Spotify endpoints loaded successfully
-✅ Playlist endpoints loaded successfully
+❌ Failed to load Playlist endpoints: No module named 'pymysql'
  * Serving Flask app 'app'
  * Debug mode: on
 [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
@@ -11,19 +11,7 @@ Loading .env environment variables...
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 110-480-146
-127.0.0.1 - - [12/Nov/2025 11:36:41] "GET /data HTTP/1.1" 200 -
-127.0.0.1 - - [12/Nov/2025 11:36:47] "GET /spotify/callback?code=AQBL0FLwH-yUB4sCUNjwonyDPDA1mbcDegaW4rhDBzTiYdG_4yz88pHXhG7FaSBG1idvvKZ5Bh3GD4z77GxwwzP8aGSDQtKxOlR3cDhfG6L7l6ZFbcOE87oQB8M789ou8RfVuTaxZU2k3cLrXreG5DGaG1VW0rqRcqUb7yrZze7QkNRx0OHu2hrgWdyPfTCYIXb32zjj6hCKPMslEmx3xRoeZ1gs2Jnew8y37n8HEAcZqO6_fHpHdIxFEcjzQYKG5ltUDgj6Tglotg-1EIjFWWl9r2zs5BPqC1-6ecc2inU5M4h1d-Kxew6BVjPX661cS6d6ePIcrAGlflAzBsnCdj1O7z15O2HY22hEtnYQL4fGMH1I5wJihPTae6MO3ZtyGVN_xTMAjktoDE7CxFRgLM6cBmO3dndWBVcvVN6h2MyjC3ffEzs HTTP/1.1" 200 -
-127.0.0.1 - - [12/Nov/2025 11:36:47] "OPTIONS /spotify/callback HTTP/1.1" 200 -
-127.0.0.1 - - [12/Nov/2025 11:36:48] "POST /spotify/callback HTTP/1.1" 200 -
-✅ Spotify endpoints loaded successfully
-✅ Playlist endpoints loaded successfully
-DEBUG: Received callback request
-DEBUG: Method: GET
-DEBUG: Args: ImmutableMultiDict([('code', 'AQBL0FLwH-yUB4sCUNjwonyDPDA1mbcDegaW4rhDBzTiYdG_4yz88pHXhG7FaSBG1idvvKZ5Bh3GD4z77GxwwzP8aGSDQtKxOlR3cDhfG6L7l6ZFbcOE87oQB8M789ou8RfVuTaxZU2k3cLrXreG5DGaG1VW0rqRcqUb7yrZze7QkNRx0OHu2hrgWdyPfTCYIXb32zjj6hCKPMslEmx3xRoeZ1gs2Jnew8y37n8HEAcZqO6_fHpHdIxFEcjzQYKG5ltUDgj6Tglotg-1EIjFWWl9r2zs5BPqC1-6ecc2inU5M4h1d-Kxew6BVjPX661cS6d6ePIcrAGlflAzBsnCdj1O7z15O2HY22hEtnYQL4fGMH1I5wJihPTae6MO3ZtyGVN_xTMAjktoDE7CxFRgLM6cBmO3dndWBVcvVN6h2MyjC3ffEzs')])
-DEBUG: Content-Type: None
-DEBUG: Received callback request
-DEBUG: Method: POST
-DEBUG: Args: ImmutableMultiDict([])
-DEBUG: Content-Type: application/json
-DEBUG: Code: AQBL0FLwH-yUB4sCUNjwonyDPDA1mbcDegaW4rhDBzTiYdG_4yz88pHXhG7FaSBG1idvvKZ5Bh3GD4z77GxwwzP8aGSDQtKxOlR3cDhfG6L7l6ZFbcOE87oQB8M789ou8RfVuTaxZU2k3cLrXreG5DGaG1VW0rqRcqUb7yrZze7QkNRx0OHu2hrgWdyPfTCYIXb32zjj6hCKPMslEmx3xRoeZ1gs2Jnew8y37n8HEAcZqO6_fHpHdIxFEcjzQYKG5ltUDgj6Tglotg-1EIjFWWl9r2zs5BPqC1-6ecc2inU5M4h1d-Kxew6BVjPX661cS6d6ePIcrAGlflAzBsnCdj1O7z15O2HY22hEtnYQL4fGMH1I5wJihPTae6MO3ZtyGVN_xTMAjktoDE7CxFRgLM6cBmO3dndWBVcvVN6h2MyjC3ffEzs
-DEBUG: Code verifier: KOQH0zTJo1ctEVIBCTyZcPpW8oqcSCkoS3xp3iA1QGYwUc1FSjA6GzPNOcm2StAMRlAn6EhyIygj8PsDhAXPFrkPq59vR9ZtXNqTSw1dTib4mQe4X7CihFDayTadsN5G
+/opt/homebrew/Cellar/python@3.11/3.11.14/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/opt/homebrew/Cellar/python@3.11/3.11.14/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

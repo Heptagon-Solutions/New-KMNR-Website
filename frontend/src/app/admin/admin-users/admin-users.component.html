@@ -1,0 +1,64 @@
+<div class="modular-card">
+  <h1 class="card-title">Manage Users</h1>
+  <div class="card-content">
+    <!-- User Table -->
+    <div class="users-table-container" *ngIf="users.length > 0; else noUsers">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.created_at | date:'short' }}</td>
+            <td>
+              <button class="edit-btn" (click)="editUser(user)">Edit</button>
+              <button class="delete-btn" (click)="deleteUser(user.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noUsers>
+      <div class="no-users">
+        <p>No users found. Loading...</p>
+      </div>
+    </ng-template>
+
+    <!-- Add User Form -->
+    <div class="add-user-section">
+      <h3>Add New User</h3>
+      <form class="user-form" (ngSubmit)="addUser()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" [(ngModel)]="newUser.username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="newEmail">Email:</label>
+            <input type="email" id="newEmail" [(ngModel)]="newUser.email" name="email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="newRole">Role:</label>
+            <select id="newRole" [(ngModel)]="newUser.role" name="role" required>
+              <option value="dj">DJ</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="add-btn">Add User</button>
+      </form>
+    </div>
+  </div>
+</div>

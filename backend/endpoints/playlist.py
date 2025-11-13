@@ -1,6 +1,8 @@
 import requests
 from flask import Blueprint, request, jsonify, session
 from database import db
+from database_helper import get_db_cursor
+from spotify_integration import get_or_create_track, search_spotify
 
 playlist_bp = Blueprint('playlist', __name__)
 
@@ -9,28 +11,28 @@ def get_playlists():
     """Get all playlists, optionally filtered by DJ"""
     dj_id = request.args.get('dj_id')
     
-    connection = db.connection
-    cursor = connection.cursor()
-    
+    conn, cursor = None, None
     try:
+        conn, cursor = get_db_cursor()
+        
         if dj_id:
             query = """
-                SELECT p.id, p.name, p.description, p.date_played, 
+                SELECT p.id, p.name, p.description, p.date_created, 
                        p.spotify_playlist_id, d.dj_name, p.posting_dj_id
-                FROM playlist p 
-                LEFT JOIN dj d ON p.posting_dj_id = d.id 
+                FROM Playlist p 
+                LEFT JOIN DJ d ON p.posting_dj_id = d.id 
                 WHERE p.posting_dj_id = %s AND p.hidden = 0
-                ORDER BY p.date_played DESC
+                ORDER BY p.date_created DESC
             """
             cursor.execute(query, (dj_id,))
         else:
             query = """
-                SELECT p.id, p.name, p.description, p.date_played, 
+                SELECT p.id, p.name, p.description, p.date_created, 
                        p.spotify_playlist_id, d.dj_name, p.posting_dj_id
-                FROM playlist p 
-                LEFT JOIN dj d ON p.posting_dj_id = d.id 
+                FROM Playlist p 
+                LEFT JOIN DJ d ON p.posting_dj_id = d.id 
                 WHERE p.hidden = 0
-                ORDER BY p.date_played DESC
+                ORDER BY p.date_created DESC
             """
             cursor.execute(query)
         
@@ -40,20 +42,31 @@ def get_playlists():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     finally:
-        cursor.close()
+        if cursor: cursor.close()
+        if conn: conn.close()
 
 @playlist_bp.route('/playlists/<int:playlist_id>/tracks', methods=['GET'])
 def get_playlist_tracks(playlist_id):
-    """Get tracks for a specific playlist"""
-    connection = db.connection
-    cursor = connection.cursor()
-    
+    """Get tracks for a specific playlist using new normalized schema"""
+    conn, cursor = None, None
     try:
+        conn, cursor = get_db_cursor()
+        
         query = """
-            SELECT track, song, artist, album 
-            FROM playlist_track 
-            WHERE playlist_id = %s 
-            ORDER BY track
+            SELECT 
+                t.id AS track_id,
+                t.title,
+                t.spotify_track_id,
+                a.name AS artist_name,
+                al.name AS album_name,
+                pt.track_order,
+                pt.id AS playlist_track_id
+            FROM Playlist_Track pt
+            JOIN Track t ON pt.track_id = t.id
+            JOIN Artist a ON t.artist_id = a.id
+            LEFT JOIN Album al ON t.album_id = al.id
+            WHERE pt.playlist_id = %s
+            ORDER BY pt.track_order ASC
         """
         cursor.execute(query, (playlist_id,))
         tracks = cursor.fetchall()
@@ -62,7 +75,8 @@ def get_playlist_tracks(playlist_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     finally:
-        cursor.close()
+        if cursor: cursor.close()
+        if conn: conn.close()
 
 @playlist_bp.route('/playlists/<int:playlist_id>/publish-to-spotify', methods=['POST'])
 def publish_to_spotify(playlist_id):
@@ -185,4 +199,187 @@ def publish_to_spotify(playlist_id):
         connection.rollback()
         return jsonify({"error": str(e)}), 500
     finally:
-        cursor.close()
+        if cursor: cursor.close()
+        if conn: conn.close()
+
+# NEW SPOTIFY-POWERED ENDPOINTS
+
+@playlist_bp.route('/search', methods=['GET'])
+def search_spotify_tracks():
+    """
+    A new endpoint to search Spotify.
+    This lets the DJ find tracks to add.
+    """
+    query = request.args.get('q')
+    search_type = request.args.get('type', 'track')
+    limit = int(request.args.get('limit', 10))
+    
+    if not query:
+        return jsonify({'error': 'Missing "q" query parameter'}), 400
+    
+    try:
+        results = search_spotify(query, search_type, limit)
+        return jsonify(results), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@playlist_bp.route('/playlists/<int:playlist_id>/tracks', methods=['POST'])
+def add_track_to_playlist(playlist_id):
+    """
+    This is the new "smart" endpoint.
+    It accepts a `spotify_track_id` and `track_order`.
+    It then uses our helper functions to populate the DB.
+    """
+    data = request.get_json()
+    if not data or 'spotify_track_id' not in data or 'track_order' not in data:
+        return jsonify({'error': 'Missing "spotify_track_id" or "track_order"'}), 400
+
+    conn, cursor = None, None
+    try:
+        conn, cursor = get_db_cursor()
+        
+        # This is the magic! Get or create track in normalized schema
+        local_track_id = get_or_create_track(cursor, data['spotify_track_id'])
+        
+        if local_track_id is None:
+            raise Exception("Could not get or create track.")
+        
+        # Now, add the local_track_id to the playlist
+        sql = "INSERT INTO Playlist_Track (playlist_id, track_id, track_order) VALUES (%s, %s, %s)"
+        cursor.execute(sql, (playlist_id, local_track_id, data['track_order']))
+        
+        conn.commit()
+        new_id = cursor.lastrowid
+        
+        return jsonify({
+            'id': new_id,
+            'playlist_id': playlist_id,
+            'local_track_id': local_track_id,
+            **data
+        }), 201
+        
+    except Exception as e:
+        if conn: conn.rollback()
+        return jsonify({'error': str(e)}), 500
+    finally:
+        if cursor: cursor.close()
+        if conn: conn.close()
+
+@playlist_bp.route('/playlists', methods=['POST'])
+def create_playlist():
+    """
+    Creates a new *local* playlist.
+    Does not touch Spotify.
+    """
+    data = request.get_json()
+    if not data or 'name' not in data or 'posting_dj_id' not in data:
+        return jsonify({'error': 'Missing required fields: name, posting_dj_id'}), 400
+
+    conn, cursor = None, None
+    try:
+        conn, cursor = get_db_cursor()
+        sql = "INSERT INTO Playlist (name, description, posting_dj_id, hidden) VALUES (%s, %s, %s, %s)"
+        cursor.execute(sql, (
+            data['name'],
+            data.get('description'),
+            data['posting_dj_id'],
+            data.get('hidden', False)
+        ))
+        conn.commit()
+        new_id = cursor.lastrowid
+        
+        return jsonify({'id': new_id, **data}), 201
+        
+    except Exception as e:
+        if conn: conn.rollback()
+        return jsonify({'error': str(e)}), 500
+    finally:
+        if cursor: cursor.close()
+        if conn: conn.close()
+
+@playlist_bp.route('/playlists/<int:id>', methods=['GET'])
+def get_playlist_with_tracks(id):
+    """
+    THIS IS THE PAYOFF!
+    This endpoint doesn't change at all. It just reads from
+    our perfectly normalized local database.
+    """
+    conn, cursor = None, None
+    try:
+        conn, cursor = get_db_cursor()
+        
+        cursor.execute("SELECT p.*, d.dj_name FROM Playlist p JOIN DJ d ON p.posting_dj_id = d.id WHERE p.id = %s", (id,))
+        playlist_info = cursor.fetchone()
+        
+        if not playlist_info:
+            return jsonify({'error': 'Playlist not found'}), 404
+            
+        sql = """
+        SELECT
+            t.id AS track_id,
+            t.title,
+            t.spotify_track_id,
+            a.name AS artist_name,
+            al.name AS album_name,
+            pt.track_order,
+            pt.id AS playlist_track_id
+        FROM Playlist_Track pt
+        JOIN Track t ON pt.track_id = t.id
+        JOIN Artist a ON t.artist_id = a.id
+        LEFT JOIN Album al ON t.album_id = al.id
+        WHERE pt.playlist_id = %s
+        ORDER BY pt.track_order ASC
+        """
+        cursor.execute(sql, (id,))
+        tracks = cursor.fetchall()
+        
+        playlist_info['tracks'] = tracks
+        return jsonify(playlist_info), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    finally:
+        if cursor: cursor.close()
+        if conn: conn.close()
+
+@playlist_bp.route('/playlists/<int:playlist_id>/tracks/<int:playlist_track_id>', methods=['DELETE'])
+def remove_track_from_playlist(playlist_id, playlist_track_id):
+    """Remove a track from a playlist"""
+    conn, cursor = None, None
+    try:
+        conn, cursor = get_db_cursor()
+        
+        cursor.execute("SELECT * FROM Playlist_Track WHERE id = %s AND playlist_id = %s", (playlist_track_id, playlist_id))
+        item = cursor.fetchone()
+        if not item:
+            return jsonify({'error': 'Track not found in playlist'}), 404
+
+        cursor.execute("DELETE FROM Playlist_Track WHERE id = %s", (playlist_track_id,))
+        conn.commit()
+        
+        return jsonify({'message': 'Track removed from playlist'}), 200
+        
+    except Exception as e:
+        if conn: conn.rollback()
+        return jsonify({'error': str(e)}), 500
+    finally:
+        if cursor: cursor.close()
+        if conn: conn.close()
+
+@playlist_bp.route('/playlists/<int:id>/publish', methods=['POST'])
+def publish_playlist_to_spotify(id):
+    """
+    This is a STUB endpoint to show how you would
+    "publish" your local playlist to Spotify.
+    
+    This requires the much more complex User Auth (SpotifyOAuth)
+    flow, as you are acting on behalf of a user.
+    """
+    # 1. Get local playlist and all its local track IDs
+    # 2. Convert all local track IDs to spotify_track_ids
+    # 3. Use `spotipy.Spotify(auth_manager=SpotifyOAuth(...))`
+    # 4. Call `sp.user_playlist_create(...)`
+    # 5. Call `sp.playlist_add_items(...)` with the list of spotify_track_ids
+    # 6. Save the new `spotify_playlist_id` to our Playlist table
+    
+    return jsonify({'message': 'Endpoint stub for publishing to Spotify. Requires SpotifyOAuth.'}), 501

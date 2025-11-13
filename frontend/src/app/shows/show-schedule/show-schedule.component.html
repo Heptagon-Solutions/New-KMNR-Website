@@ -1,30 +1,41 @@
-<div class="week-grid">
-  <table>
-    <tbody>
-      <tr>
-        <th></th>
-        <th rowspan="1">Sunday</th>
-        <th rowspan="1">Monday</th>
-        <th rowspan="1">Tuesday</th>
-        <th rowspan="1">Wednesday</th>
-        <th rowspan="1">Thursday</th>
-        <th rowspan="1">Friday</th>
-        <th rowspan="1">Saturday</th>
-      </tr>
-      <tr *ngFor="let time of times">
-        <th>{{ parseTime(time) }}</th>
-        <!--
-          This implementation not copied over yet. Original code was:
-
-          <td
-            v-for="(slot, idx) in timeslots[time]"
-            :key="idx"
-            :rowspan="slot.end_time - slot.start_time"
-          >
-            {{ getShow(slot.id) }}
-          </td>
-        -->
-      </tr>
-    </tbody>
-  </table>
+<div class="modular-card">
+  <h1 class="card-title">Show Schedule</h1>
+  <div class="card-content">
+    <div class="schedule-container">
+      <div class="week-grid">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th class="time-header">Time</th>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let time of times" class="schedule-row">
+              <th class="time-slot">{{ parseTime(time) }}</th>
+              <td *ngFor="let day of days" class="show-slot">
+                <div class="show-info" *ngIf="getShowForTimeSlot(time, day)">
+                  <span class="show-name">{{ getShowForTimeSlot(time, day)?.name || 'No Show' }}</span>
+                  <span class="show-dj" *ngIf="getShowForTimeSlot(time, day)?.dj">{{ getShowForTimeSlot(time, day)?.dj }}</span>
+                </div>
+                <div class="empty-slot" *ngIf="!getShowForTimeSlot(time, day)">
+                  <span>Open Slot</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="schedule-legend" *ngIf="shows.length === 0">
+        <p>Loading show schedule...</p>
+      </div>
+    </div>
+  </div>
 </div>

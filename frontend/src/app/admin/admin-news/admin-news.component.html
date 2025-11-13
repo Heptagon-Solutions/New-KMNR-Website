@@ -1,9 +1,51 @@
-<h1>Below is the full list of Town And Campus events</h1>
-<div *ngIf="newsEntries; else loadingOrError">
-  <div *ngFor="let entry of newsEntries">
-    {{ entry.title }}
+<div class="modular-card">
+  <h1 class="card-title">Manage News</h1>
+  <div class="card-content">
+    <!-- News Table -->
+    <div class="news-table-container" *ngIf="newsEntries && newsEntries.length > 0; else noNews">
+      <table class="news-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of newsEntries">
+            <td>{{ entry.title }}</td>
+            <td>{{ entry.description | slice:0:100 }}{{ entry.description.length > 100 ? '...' : '' }}</td>
+            <td>{{ entry.submit_date | date:'short' }}</td>
+            <td>
+              <button class="edit-btn" (click)="editNews(entry)">Edit</button>
+              <button class="delete-btn" (click)="deleteNews(entry.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noNews>
+      <div class="no-news">
+        <p>No news entries found. Loading...</p>
+      </div>
+    </ng-template>
+
+    <!-- Add News Form -->
+    <div class="add-news-section">
+      <h3>Add News Entry</h3>
+      <form class="news-form" (ngSubmit)="addNews()">
+        <div class="form-group">
+          <label for="newsTitle">Title:</label>
+          <input type="text" id="newsTitle" [(ngModel)]="newNews.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="newsDescription">Description:</label>
+          <textarea id="newsDescription" [(ngModel)]="newNews.description" name="description" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="add-btn">Add News</button>
+      </form>
+    </div>
   </div>
 </div>
-<ng-template #loadingOrError>
-  <i>Loading...</i> (or broken beyond repair /:)
-</ng-template>

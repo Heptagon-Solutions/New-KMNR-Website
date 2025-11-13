@@ -1,11 +1,13 @@
-<h1>This is the Admin home</h1>
-<p>
-  <b>NOTE:</b>
-</p>
-<p>
-  There is no authentication implemented yet; you shouldn't be allowed to get
-  here unless you already logged in as an admin.
-</p>
+<div class="modular-card">
+  <h1 class="card-title">Admin Dashboard</h1>
+  <div class="card-content">
+    <div class="notice-section">
+      <p>
+        <strong>NOTE:</strong>
+        There is no authentication implemented yet; you shouldn't be allowed to get
+        here unless you already logged in as an admin.
+      </p>
+    </div>
 
 <h2>Spotify Integration</h2>
 <div>
@@ -56,9 +58,11 @@
   </div>
 </div>
 
-<h2>Subpages</h2>
-<div>
-  <ul>
-    <li><a routerLink="/admin/news">Town And Campus News</a></li>
-  </ul>
+    <div class="subpages-section">
+      <h2>Subpages</h2>
+      <ul>
+        <li><a routerLink="/admin/news">Town And Campus News</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -7,6 +7,7 @@ export interface DJ {
   id: number;
   name: string;
   genres: string;
+  show?: string;
 }
 
 export interface PlaylistTrack {
