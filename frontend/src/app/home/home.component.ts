@@ -3,12 +3,21 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { API_URL } from 'src/constants';
 import { BannerComponent } from '../shared/banner/banner.component';
 
 interface BackendData {
   msg: string;
+}
+
+interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  author?: string;
 }
 
 @Component({
@@ -20,8 +29,9 @@ interface BackendData {
 })
 export class HomeComponent {
   public backendMsg: string = 'Waiting for backend to respond...';
+  public latestBlogPost: BlogPost | null = null;
 
-  constructor(private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient, private router: Router) {
     // Example of processing an Observable to edit component data
     this.getBackendMsg$().subscribe({
       // This is called if everything goes well
@@ -33,6 +43,15 @@ export class HomeComponent {
         this.backendMsg = 'ERROR: ' + err;
       },
     });
+    
+    // Mock latest blog post for now - replace with actual API call when backend is ready
+    this.latestBlogPost = {
+      id: '1',
+      title: 'Welcome to KMNR Blog',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae at, voluptatibus reprehenderit pariatur vero deleniti aliquid delectus id quo vitae inventore asperiores beatae! Quam eius autem dignissimos, sit sapiente dolorem.',
+      date: 'March 1, 2023',
+      author: 'KMNR Staff'
+    };
   }
 
   /**
@@ -61,5 +80,9 @@ export class HomeComponent {
         throw `backend returned code ${error.status}.`;
       }
     }
+  }
+  
+  navigateToBlog(): void {
+    this.router.navigate(['/blog']);
   }
 }

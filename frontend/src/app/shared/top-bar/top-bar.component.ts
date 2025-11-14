@@ -11,6 +11,9 @@ interface ButtonPosition {
 }
 
 interface ButtonConfig {
+  navigation: {
+    pngOffset: number;
+  };
   buttons: Record<string, ButtonPosition>;
 }
 
@@ -45,6 +48,14 @@ export class TopBarComponent implements OnInit {
   private applyButtonPositions() {
     if (!this.buttonConfig) return;
 
+    // Apply PNG offset to navigation container with important to override CSS
+    const navContainer = document.querySelector('.nav-container') as HTMLElement;
+    if (navContainer && this.buttonConfig.navigation) {
+      const offset = this.buttonConfig.navigation.pngOffset;
+      navContainer.style.setProperty('background-position', `${offset}px center`, 'important');
+    }
+
+    // Apply button positions
     Object.entries(this.buttonConfig.buttons).forEach(([className, position]) => {
       const element = document.querySelector(`.${className}`) as HTMLElement;
       if (element) {

@@ -65,16 +65,74 @@ h1 {
   align-items: center;
 }
 
-.artist-features, .album-reviews, .dj-playlists {
+.artist-features, .album-reviews, .dj-playlists, .latest-blog {
   padding: 1.5rem;
   text-align: center;
 }
 
-.artist-features h2, .album-reviews h2, .dj-playlists h2 {
+.artist-features h2, .album-reviews h2, .dj-playlists h2, .latest-blog h2 {
   background-color: rgba(198, 40, 40, 0.2);
   color: #c62828;
   padding: 0.8rem;
   border-radius: 6px;
   margin-bottom: 1rem;
   font-weight: bold;
+}
+
+.latest-blog {
+  grid-column: 1 / -1;
+}
+
+.blog-post-preview {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(198, 40, 40, 0.2);
+  text-align: left;
+}
+
+.blog-post-preview h3 {
+  color: #c62828;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.blog-excerpt {
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  max-height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.blog-date, .blog-author {
+  font-style: italic;
+}
+
+.view-more-btn {
+  background-color: #c62828;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background-color: #a52727;
 }

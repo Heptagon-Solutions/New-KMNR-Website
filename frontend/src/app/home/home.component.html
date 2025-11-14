@@ -35,6 +35,19 @@
         <h2>PLAYLISTS</h2>
         <p>Thing</p>
       </div>
+      
+      <div class="latest-blog" *ngIf="latestBlogPost">
+        <h2>LATEST BLOG POST</h2>
+        <div class="blog-post-preview">
+          <h3>{{ latestBlogPost.title }}</h3>
+          <p class="blog-excerpt">{{ latestBlogPost.content }}</p>
+          <div class="blog-meta">
+            <span class="blog-date">{{ latestBlogPost.date }}</span>
+            <span class="blog-author" *ngIf="latestBlogPost.author">by {{ latestBlogPost.author }}</span>
+          </div>
+          <button class="view-more-btn" (click)="navigateToBlog()">View More</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

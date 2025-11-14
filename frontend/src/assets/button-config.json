@@ -1,58 +1,61 @@
 {
+  "navigation": {
+    "pngOffset": 500
+  },
   "buttons": {
     "kmnr-link": {
-      "left": 5,
-      "right": 0,
+      "left": 115,
+      "right": -130,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "shows-link": {
-      "left": 0,
-      "right": 0,
+      "left": 85,
+      "right": -75,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "djs-link": {
-      "left": 0,
-      "right": 0,
+      "left": 20,
+      "right": -40,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "news-link": {
-      "left": 0,
+      "left": 20,
       "right": 0,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "about-link": {
       "left": 0,
-      "right": 0,
+      "right": 10,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "blog-link": {
-      "left": 0,
-      "right": 0,
+      "left": 200,
+      "right": 200,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "spotify-link": {
-      "left": 10,
-      "right": 10,
-      "up": 10,
-      "down": 10
+      "left": 75,
+      "right": 0,
+      "up": 0,
+      "down": 5
     },
     "login-link": {
       "left": 0,
-      "right": 0,
+      "right": 125,
       "up": 0,
-      "down": 0
+      "down": 5
     },
     "admin-link": {
       "left": 0,
       "right": 0,
       "up": 0,
-      "down": 0
+      "down": 5
     }
   }
 }

@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
+  background-color: #ffffff;
+  min-height: 100vh;
 }
 
 .modular-card {
@@ -9,10 +11,10 @@
   max-width: 1000px;
   padding: 1.5rem 2rem;
   
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #ffffff;
   
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -27,7 +29,7 @@
 }
 
 .card-content {
-  color: #FFFFFF;
+  color: #333333;
   font-family: "Bree Serif", serif;
 }
 
@@ -44,7 +46,7 @@ h2 {
 p {
   padding: 0.5rem 0 0.5rem 0;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: #555555;
 }
 
 .byline {

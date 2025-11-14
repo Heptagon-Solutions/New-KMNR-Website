@@ -104,3 +104,71 @@
 .register p {
   color: #333333;
 }
+
+/* User Dashboard Styling */
+.user-dashboard {
+  text-align: center;
+}
+
+.welcome-message {
+  margin-bottom: 2rem;
+}
+
+.welcome-message h3 {
+  color: #c62828;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.user-role {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.admin-actions {
+  margin-bottom: 1.5rem;
+}
+
+.admin-dashboard-btn {
+  background-color: #c62828;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.admin-dashboard-btn:hover {
+  background-color: #a52727;
+  transform: scale(1.02);
+}
+
+.logout-btn {
+  background-color: #666;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #555;
+}
+
+.error-message {
+  color: #d32f2f;
+  background-color: rgba(211, 47, 47, 0.1);
+  border: 1px solid rgba(211, 47, 47, 0.3);
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  text-align: center;
+}

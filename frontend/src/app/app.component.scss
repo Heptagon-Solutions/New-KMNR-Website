@@ -1,17 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 
-.main-content {
+/* Main app layout using flexbox */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  flex: 1;
   padding: 0 20rem 0 20rem;
 }
 
-.footer {
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 2rem;
-}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
