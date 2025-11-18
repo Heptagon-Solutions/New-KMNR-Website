@@ -4,6 +4,10 @@ from database import db, DatabaseError
 users_bp = Blueprint("accounts", __name__)
 
 
+DEFAULT_PAGE_SIZE = 200
+"""Default number of rows to fetch and return."""
+
+
 @users_bp.post("/users")
 def create_user():
     data = request.get_json(force=True, silent=True) or {}
@@ -37,7 +41,6 @@ def create_user():
         return {"message": "Could not create account"}, 500
 
 
-
 @users_bp.delete("/users/<int:user_id>")
 def delete_user(user_id: int):
     try:
@@ -59,6 +62,75 @@ def delete_user(user_id: int):
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
 
 
+@users_bp.get("/count/users")
+def user_count():
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute("""SELECT COUNT(`id`) AS `count` FROM `user`""")
+            count = cur.fetchone()["count"]
+        return {"count": count}, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@users_bp.get("/users")
+def list_users():
+    count = request.args.get("count", default=DEFAULT_PAGE_SIZE, type=int)
+    page = request.args.get("page", default=0, type=int)
+    offset = page * count
+
+    if count < 1 or page < 0:
+        return {
+            "message": f"Count must be greater than 0 and Page must be 0 or greater."
+        }, 400
+
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(
+                """
+                SELECT
+                    `id`,
+                    `name`,
+                    `email`,
+                    `role`
+                FROM `user`
+                ORDER BY `id` ASC
+                LIMIT %s OFFSET %s
+                """,
+                (count, offset),
+            )
+            rows = cur.fetchall()
+        return {"users": rows}, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@users_bp.get("/users/<int:user_id>")
+def get_user(user_id: int):
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(
+                """
+                SELECT
+                    `id`,
+                    `name`,
+                    `email`,
+                    `role`
+                FROM `user`
+                WHERE `id` = %s
+                """,
+                (user_id,),
+            )
+            row = cur.fetchone()
+
+        if row is None:
+            return {"message": "User not found"}, 404
+
+        return row, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
 @users_bp.post("/djs")
 def create_dj():
     data = request.get_json(force=True, silent=True) or {}
@@ -72,7 +144,9 @@ def create_dj():
     profile_img = data.get("profile_img")
 
     if not all([user_id, dj_name, training_semester_id]):
-        return {"message": "user_id, dj_name, and training_semester_id are required"}, 400
+        return {
+            "message": "user_id, dj_name, and training_semester_id are required"
+        }, 400
 
     try:
         with db.connection.cursor() as cur:
@@ -81,7 +155,9 @@ def create_dj():
                 return {"message": "user_id does not exist"}, 400
 
             # check training semester exists
-            cur.execute("SELECT id FROM semester WHERE id = %s", (training_semester_id,))
+            cur.execute(
+                "SELECT id FROM semester WHERE id = %s", (training_semester_id,)
+            )
             if cur.fetchone() is None:
                 return {"message": "training_semester_id does not exist"}, 400
 
@@ -137,21 +213,43 @@ def delete_dj(dj_id: int):
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
 
 
+@users_bp.get("/count/djs")
+def dj_count():
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute("""SELECT COUNT(`id`) AS `count` FROM `dj`""")
+            count = cur.fetchone()["count"]
+        return {"count": count}, 200
+    except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
 @users_bp.get("/djs")
 def list_djs():
+    count = request.args.get("count", default=DEFAULT_PAGE_SIZE, type=int)
+    page = request.args.get("page", default=0, type=int)
+    offset = page * count
+
+    if count < 1 or page < 0:
+        return {
+            "message": f"Count must be greater than 0 and Page must be 0 or greater."
+        }, 400
+
     try:
         with db.connection.cursor() as cur:
             cur.execute(
                 """
                 SELECT
-                    dj.id AS id,
-                    u.name AS user_name,
-                    dj.dj_name AS dj_name,
-                    dj.profile_img AS profile_img
-                FROM dj
-                JOIN user u ON dj.id = u.id
-                ORDER BY dj.dj_name ASC
-                """
+                    `dj`.`id` AS `id`,
+                    `u`.`name` AS `userName`,
+                    `dj`.`dj_name` AS `djName`,
+                    `dj`.`profile_img` AS `profileImg`
+                FROM `dj`
+                JOIN `user` `u` ON `dj`.`id` = `u`.`id`
+                ORDER BY `dj`.`id` ASC
+                LIMIT %s OFFSET %s
+                """,
+                (count, offset),
             )
             rows = cur.fetchall()
         return {"djs": rows}, 200
@@ -166,18 +264,18 @@ def get_dj(dj_id: int):
             cur.execute(
                 """
                 SELECT
-                    dj.id AS id,
-                    u.name AS user_name,
-                    u.email AS user_email,
-                    dj.dj_name,
-                    dj.training_semester_id,
-                    dj.trainer_dj_id,
-                    dj.graduating_semester_id,
-                    dj.profile_desc,
-                    dj.profile_img
-                FROM dj
-                JOIN user u ON dj.id = u.id
-                WHERE dj.id = %s
+                    `dj`.`id` AS `id`,
+                    `u`.`name` AS `userName`,
+                    `u`.`email` AS `userEmail`,
+                    `dj`.`dj_name` AS `djName`,
+                    `dj`.`training_semester_id` AS `trainingSemesterId`,
+                    `dj`.`trainer_dj_id` AS `trainerDJId`,
+                    `dj`.`graduating_semester_id` AS `graduatingSemesterId`,
+                    `dj`.`profile_desc` AS `profileDesc`,
+                    `dj`.`profile_img` AS `profileImg`
+                FROM `dj`
+                JOIN `user` `u` ON `dj`.`id` = `u`.`id`
+                WHERE `dj`.`id` = %s
                 """,
                 (dj_id,),
             )

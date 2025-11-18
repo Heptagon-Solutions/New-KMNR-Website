@@ -1,14 +1,9 @@
-<div class="djs">
-  <on-air />
-  <h1>DISC JOCKEYS</h1>
-  <div class="dj-list" *ngIf="djList">
-    <div *ngFor="let dj of djList" class="dj-avatar">
-      <div class="picture">
-        <img src="../../assets/sonic.gif" alt="sample" />
-      </div>
-      <h3>
-        <a [routerLink]="['/djs', dj.id]">{{ dj.djName }}</a>
-      </h3>
+<div>
+  <h2>DJ List</h2>
+
+  <div>
+    <div *ngFor="let dj of djList">
+      <p>{{ dj.djName }} ({{ dj.id }}) - {{ dj.userName }}</p>
     </div>
   </div>
 

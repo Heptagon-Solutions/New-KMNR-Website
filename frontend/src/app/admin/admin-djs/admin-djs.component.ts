@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { DJ } from 'src/models/dj';
 
-import { OnAirComponent } from '../shared/on-air/on-air.component';
-import { DJService } from '../services/dj.service';
+import { DJService } from 'src/app/services/dj.service';
 
 @Component({
-  selector: 'dj-list',
+  selector: 'app-admin-djs',
+  templateUrl: './admin-djs.component.html',
+  styleUrls: ['./admin-djs.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterModule, OnAirComponent],
-  templateUrl: './dj-list.component.html',
-  styleUrls: ['./dj-list.component.scss'],
+  imports: [CommonModule],
 })
-export class DJListComponent {
+export class AdminDJsComponent {
   protected djList: DJ[] | undefined = undefined;
   protected page: number = 0;
 
@@ -27,7 +25,7 @@ export class DJListComponent {
     }
   }
 
-  private readonly djsPerPage: number = 9;
+  private readonly djsPerPage: number = 25;
 
   private totalDJs: number | undefined = undefined;
 
