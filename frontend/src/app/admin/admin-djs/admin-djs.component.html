@@ -2,10 +2,25 @@
   <h2>DJ List</h2>
 
   <div>
-    <div *ngFor="let dj of djList">
-      <p>{{ dj.djName }} ({{ dj.id }}) - {{ dj.userName }}</p>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User's Name</th>
+          <th>DJ Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dj of djList">
+          <td>{{ dj.id }}</td>
+          <td>{{ dj.userName }}</td>
+          <td>{{ dj.djName }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <br />
 
   <span>
     <button [disabled]="page <= 0" (click)="goToPage(page - 1)">

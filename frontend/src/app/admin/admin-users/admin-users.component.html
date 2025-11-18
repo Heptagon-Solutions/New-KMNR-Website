@@ -2,9 +2,28 @@
   <h2>Users List</h2>
 
   <div>
-    <div *ngFor="let user of userList">
-      <p>{{ user.name }} ({{ user.id }}) - {{ user.email }}</p>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userList">
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.role }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <br />
 
     <span>
       <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
