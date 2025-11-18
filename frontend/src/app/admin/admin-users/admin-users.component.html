@@ -1,7 +1,7 @@
 <div>
-  <h2>Users List</h2>
-
   <div>
+    <h2>Users List</h2>
+
     <div>
       <table>
         <thead>
@@ -37,5 +37,55 @@
         Next Page
       </button>
     </span>
+  </div>
+
+  <br />
+
+  <div>
+    <h2>Create New User</h2>
+
+    <div>
+      <div>
+        <label for="new-user-name-input">Name: </label>
+        <input
+          id="new-user-name-input"
+          type="text"
+          [formControl]="newUserName"
+        />
+      </div>
+
+      <div>
+        <label for="new-user-email-input">Email: </label>
+        <input
+          id="new-user-email-input"
+          type="text"
+          [formControl]="newUserEmail"
+        />
+      </div>
+
+      <div>
+        <label for="new-user-password-input">Password: </label>
+        <input
+          id="new-user-password-input"
+          type="text"
+          [formControl]="newUserPassword"
+        />
+      </div>
+
+      <div>
+        <label for="new-user-role-input">Role: </label>
+        <input
+          id="new-user-role-input"
+          type="text"
+          [formControl]="newUserRole"
+        />
+      </div>
+
+      <div *ngIf="newUserErrorMessage">
+        {{ newUserErrorMessage }}
+      </div>
+
+      <button (click)="createUser()">Create User</button>
+    </div>
   </div>
 </div>
