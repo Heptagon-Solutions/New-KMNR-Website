@@ -76,9 +76,9 @@ export class AdminUsersComponent {
         this.newUserRole.value
       )
       .subscribe({
-        next: () => {
-          this.newUserErrorMessage = null;
-          // Reload current page, it case it appears there
+        next: (user: User) => {
+          this.newUserErrorMessage = `User "${user.name}" added with ID: ${user.id}!`;
+          // Reload current page, in case it appears there
           this.goToPage(this.page);
         },
         error: (err: HttpErrorResponse) =>

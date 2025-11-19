@@ -1,37 +1,87 @@
 <div>
-  <h2>DJ List</h2>
-
   <div>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>User's Name</th>
-          <th>DJ Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let dj of djList">
-          <td>{{ dj.id }}</td>
-          <td>{{ dj.userName }}</td>
-          <td>{{ dj.djName }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2>DJ List</h2>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User's Name</th>
+            <th>DJ Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dj of djList">
+            <td>{{ dj.id }}</td>
+            <td>{{ dj.userName }}</td>
+            <td>{{ dj.djName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+
+    <span>
+      <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+        Previous Page
+      </button>
+      <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+      <button
+        [disabled]="page + 1 >= (totalPages ?? 0)"
+        (click)="goToPage(page + 1)"
+      >
+        Next Page
+      </button>
+    </span>
   </div>
 
   <br />
 
-  <span>
-    <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
-      Previous Page
-    </button>
-    <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
-    <button
-      [disabled]="page + 1 >= (totalPages ?? 0)"
-      (click)="goToPage(page + 1)"
-    >
-      Next Page
-    </button>
-  </span>
+  <div>
+    <h2>Create New DJ</h2>
+
+    <div>
+      <div>
+        <label for="new-dj-user-id-input">User Id: </label>
+        <input
+          id="new-dj-user-id-input"
+          type="text"
+          [formControl]="newDJUserId"
+        />
+      </div>
+
+      <div>
+        <label for="new-dj-name-input">DJ Name: </label>
+        <input id="new-dj-name-input" type="text" [formControl]="newDJName" />
+      </div>
+
+      <div>
+        <label for="new-dj-training-semester-input"
+          >Training Semester Id:
+        </label>
+        <input
+          id="new-dj-training-semester-input"
+          type="text"
+          [formControl]="newDJTrainingSemesterId"
+        />
+      </div>
+
+      <div>
+        <label for="new-dj-trainer-input">Trainer Id: </label>
+        <input
+          id="new-dj-trainer-input"
+          type="text"
+          [formControl]="newDJTrainerId"
+        />
+      </div>
+
+      <div *ngIf="newUserErrorMessage">
+        {{ newUserErrorMessage }}
+      </div>
+
+      <button (click)="createDJ()">Create DJ</button>
+    </div>
+  </div>
 </div>

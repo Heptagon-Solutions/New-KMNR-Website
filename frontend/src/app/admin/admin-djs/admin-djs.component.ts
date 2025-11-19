@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { DJ } from 'src/models/dj';
 
@@ -10,11 +12,18 @@ import { DJService } from 'src/app/services/dj.service';
   templateUrl: './admin-djs.component.html',
   styleUrls: ['./admin-djs.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AdminDJsComponent {
   protected djList: DJ[] | undefined = undefined;
   protected page: number = 0;
+
+  protected newDJUserId = new FormControl<number | null>(null);
+  protected newDJName = new FormControl('');
+  protected newDJTrainingSemesterId = new FormControl<number | null>(null);
+  protected newDJTrainerId = new FormControl<number | null>(null);
+
+  protected newUserErrorMessage: string | null = null;
 
   /** Returns undefined if we're still waiting on an API response. */
   protected get totalPages(): number | undefined {
@@ -43,5 +52,35 @@ export class AdminDJsComponent {
         .getDJs(this.djsPerPage, this.page)
         .subscribe((users: DJ[]) => (this.djList = users));
     }
+  }
+
+  public createDJ() {
+    if (!this.newDJUserId.value) {
+      this.newUserErrorMessage = 'User Id is required';
+      return;
+    } else if (!this.newDJName.value) {
+      this.newUserErrorMessage = 'DJ Name is required';
+      return;
+    } else if (!this.newDJTrainingSemesterId.value) {
+      this.newUserErrorMessage = 'Training Semester is required';
+      return;
+    }
+
+    this.djService
+      .createDJ(
+        this.newDJUserId.value,
+        this.newDJName.value,
+        this.newDJTrainingSemesterId.value,
+        this.newDJTrainerId.value
+      )
+      .subscribe({
+        next: (dj: DJ) => {
+          this.newUserErrorMessage = `DJ "${dj.djName}" created for user with Id: ${dj.id}!`;
+          // Reload current page, in case it appears there
+          this.goToPage(this.page);
+        },
+        error: (err: HttpErrorResponse) =>
+          (this.newUserErrorMessage = `${err.status} ${err.statusText}: ${err.error?.message}`),
+      });
   }
 }
