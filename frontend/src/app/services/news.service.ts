@@ -37,6 +37,8 @@ export class NewsService {
   public createNewsEntry(
     newsEntryData: TownAndCampusNewsEntryFormData
   ): Observable<TownAndCampusNewsEntryDetailed> {
+    console.debug('Creating new Town & Campus News entry:', newsEntryData);
+
     return this.http.post<TownAndCampusNewsEntryDetailed>(
       API_URL + 'news',
       newsEntryData

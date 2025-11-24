@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { NewsService } from 'src/app/services/news.service';
 import { TownAndCampusNewsEntryFormData } from 'src/models/town-and-campus-news';
@@ -14,7 +15,6 @@ import { TownAndCampusNewsEntryFormData } from 'src/models/town-and-campus-news'
   styleUrls: ['./news-form.component.scss'],
 })
 export class NewsFormComponent {
-  protected newEntryId: number | undefined = undefined;
   protected errorMessage: string | null = null;
 
   protected readonly title = new FormControl('');
@@ -26,11 +26,12 @@ export class NewsFormComponent {
   protected readonly expirationDate = new FormControl('');
   protected readonly description = new FormControl('');
 
-  constructor(private readonly newsService: NewsService) {}
+  constructor(
+    private readonly newsService: NewsService,
+    private readonly router: Router
+  ) {}
 
   public createNewEntry() {
-    this.newEntryId = undefined;
-
     if (!this.title.value) {
       this.errorMessage = 'Title is required';
       return;
@@ -62,7 +63,7 @@ export class NewsFormComponent {
     };
 
     this.newsService.createNewsEntry(data).subscribe({
-      next: resp => (this.newEntryId = resp.id),
+      next: _ => this.router.navigate(['news']),
       error: (err: HttpErrorResponse) =>
         (this.errorMessage = `${err.status} ${err.statusText}: ${err.error?.message}`),
     });
