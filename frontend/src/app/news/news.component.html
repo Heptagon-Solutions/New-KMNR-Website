@@ -5,11 +5,14 @@
     or school event to the Rolla community. All news items are read five time
     daily on air, and can be run for up to two weeks!
   </p>
+
   <button>
     <a routerLink="/news/form">Submit Your Event!</a>
   </button>
+
   <hr />
   <h2>Events</h2>
+
   <div class="news-item" *ngFor="let entry of newsEntries">
     <h2 class="news">{{ entry.title }}</h2>
     <p>
@@ -20,4 +23,18 @@
     </p>
     <p class="news">{{ entry.description }}</p>
   </div>
+
+  <!-- Paginator -->
+  <span>
+    <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+      Previous Page
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+    <button
+      [disabled]="page + 1 >= (totalPages ?? 0)"
+      (click)="goToPage(page + 1)"
+    >
+      Next Page
+    </button>
+  </span>
 </div>
