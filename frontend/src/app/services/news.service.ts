@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { API_URL } from 'src/constants';
-import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
+import {
+  TownAndCampusNewsEntryDetailed,
+  TownAndCampusNewsEntryFormData,
+} from 'src/models/town-and-campus-news';
 
 const NEWS_API_URL = API_URL + 'admin/news';
 
@@ -29,5 +32,14 @@ export class NewsService {
         { params: { count, page } }
       )
       .pipe(map(resp => resp.townAndCampusNews));
+  }
+
+  public createNewsEntry(
+    newsEntryData: TownAndCampusNewsEntryFormData
+  ): Observable<TownAndCampusNewsEntryDetailed> {
+    return this.http.post<TownAndCampusNewsEntryDetailed>(
+      API_URL + 'news',
+      newsEntryData
+    );
   }
 }

@@ -40,6 +40,14 @@
     <input type="date" id="expires" name="expires" /><br />
     <label for="description">Description</label><span class="req">*</span>
     <textarea id="description" name="description"></textarea><br />
-    <input class="submit" type="submit" value="Submit Your Event" />
+    <input
+      class="submit"
+      value="Submit Your Event"
+      (click)="createNewEntry()"
+    />
+
+    <div *ngIf="newEntryId">
+      Create new town and campus news entry! Id is {{ newEntryId }}
+    </div>
   </form>
 </div>
