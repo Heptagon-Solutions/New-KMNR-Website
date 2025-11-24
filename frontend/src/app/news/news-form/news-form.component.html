@@ -21,33 +21,84 @@
       emailing the person who submitted the announcement.
     </li>
   </ul>
+
   <hr />
   <h2>Event Information</h2>
+
   <form>
     <label for="title">Title</label><span class="req">*</span>
-    <input type="text" id="title" name="title" required /><br />
+    <input type="text" id="title" name="title" required [formControl]="title" />
+    <br />
+
     <label for="location">Location</label><span class="req">*</span>
-    <input type="text" id="location" name="location" required /><br />
+    <input
+      type="text"
+      id="location"
+      name="location"
+      required
+      [formControl]="location"
+    />
+    <br />
+
     <label for="contact">Contact Name</label><span class="req">*</span>
-    <input type="text" id="contact" name="contact" required /><br />
+    <input
+      type="text"
+      id="contact"
+      name="contact"
+      required
+      [formControl]="contactName"
+    />
+    <br />
+
     <label for="contact_email">Contact Email</label><span class="req">*</span>
-    <input type="text" id="contact_email" name="contact_email" required /><br />
+    <input
+      type="text"
+      id="contact_email"
+      name="contact_email"
+      required
+      [formControl]="contactEmail"
+    />
+    <br />
+
     <label class="non-req" for="organization">Organization</label>
-    <input type="text" id="organization" name="organization" /><br />
+    <input
+      type="text"
+      id="organization"
+      name="organization"
+      [formControl]="organization"
+    />
+    <br />
+
     <label class="non-req" for="website">Website</label>
-    <input type="text" id="website" name="website" /><br />
+    <input type="text" id="website" name="website" [formControl]="website" />
+    <br />
+
     <label for="expires">Expires</label><span class="req">*</span>
-    <input type="date" id="expires" name="expires" /><br />
+    <input
+      type="date"
+      id="expires"
+      name="expires"
+      [formControl]="expirationDate"
+    />
+    <br />
+
     <label for="description">Description</label><span class="req">*</span>
-    <textarea id="description" name="description"></textarea><br />
+    <textarea
+      id="description"
+      name="description"
+      [formControl]="description"
+    ></textarea>
+    <br />
+
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div *ngIf="newEntryId">
+      News entry creation successful! New entry id is {{ newEntryId }}.
+    </div>
+
     <input
       class="submit"
       value="Submit Your Event"
       (click)="createNewEntry()"
     />
-
-    <div *ngIf="newEntryId">
-      Create new town and campus news entry! Id is {{ newEntryId }}
-    </div>
   </form>
 </div>
