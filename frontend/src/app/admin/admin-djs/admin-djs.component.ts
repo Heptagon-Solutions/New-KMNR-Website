@@ -39,7 +39,7 @@ export class AdminDJsComponent {
   private totalDJs: number | undefined = undefined;
 
   constructor(private readonly djService: DJService) {
-    djService.getDJCount().subscribe(userCount => (this.totalDJs = userCount));
+    djService.getDJCount().subscribe(count => (this.totalDJs = count));
 
     this.goToPage(0);
   }
@@ -50,7 +50,7 @@ export class AdminDJsComponent {
 
       this.djService
         .getDJs(this.djsPerPage, this.page)
-        .subscribe((users: DJ[]) => (this.djList = users));
+        .subscribe((djs: DJ[]) => (this.djList = djs));
     }
   }
 
