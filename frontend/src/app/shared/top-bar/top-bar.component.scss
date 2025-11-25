@@ -104,7 +104,7 @@
 
 /* Navigation Container */
 .nav-container {
-  background-image: url('../../../assets/img/top-bar.svg');
+  background-image: url('../../../assets/img/top-bar-flattened.svg');
   position: relative;
   padding: 0;
   display: flex;
@@ -113,8 +113,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding-top: 1vmax;
-  padding-bottom: 8vmax;
+  padding-top: 1.75vmax;
+  padding-bottom: 3.25vmax;
 }
 
 /* Invisible Navigation Links */
