@@ -33,8 +33,8 @@ def create_app():
     db.init_app(app)
 
     # THIS IS FOR DEV ONLY - REMOVE BEFORE PRODUCTION
-    CORS(app, resources={r'/api/*': {'origins': '*'}}), 
-         supports_credentials=True, 
+    CORS(app, resources={r'/api/*': {'origins': '*'}},
+         supports_credentials=True,
          allow_headers=["Content-Type", "Authorization"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
