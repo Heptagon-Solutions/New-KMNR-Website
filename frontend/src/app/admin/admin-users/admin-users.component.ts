@@ -72,7 +72,10 @@ export class AdminUsersComponent {
     }
   }
 
-  public createUser() {
+  public createUser(event: SubmitEvent) {
+    // Don't reload the page
+    event.preventDefault();
+
     if (this.newUserForm.valid) {
       const newUser = this.newUserForm.getRawValue();
 

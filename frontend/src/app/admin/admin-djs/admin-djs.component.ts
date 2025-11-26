@@ -70,7 +70,10 @@ export class AdminDJsComponent {
     }
   }
 
-  public createDJ() {
+  public createDJ(event: SubmitEvent) {
+    // Don't reload the page
+    event.preventDefault();
+
     if (this.newDJForm.valid) {
       const newDJ = this.newDJForm.getRawValue();
 

@@ -44,7 +44,7 @@
   <div>
     <h2>Create New User</h2>
 
-    <form [formGroup]="newUserForm">
+    <form [formGroup]="newUserForm" (ngSubmit)="createUser($event)">
       <div>
         <label for="new-user-name-input">Name*: </label>
         <input
@@ -92,7 +92,7 @@
         {{ newUserErrorMessage }}
       </div>
 
-      <button (click)="createUser()">Create User</button>
+      <button type="submit">Create User</button>
     </form>
   </div>
 </div>

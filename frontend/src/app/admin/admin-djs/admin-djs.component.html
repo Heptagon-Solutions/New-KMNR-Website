@@ -42,7 +42,7 @@
   <div>
     <h2>Create New DJ</h2>
 
-    <form [formGroup]="newDJForm">
+    <form [formGroup]="newDJForm" (ngSubmit)="createDJ($event)">
       <div>
         <label for="new-dj-user-id-input">User Id*: </label>
         <input
@@ -95,7 +95,7 @@
         {{ newDJErrorMessage }}
       </div>
 
-      <button (click)="createDJ()">Create DJ</button>
+      <button type="submit">Create DJ</button>
     </form>
   </div>
 </div>
