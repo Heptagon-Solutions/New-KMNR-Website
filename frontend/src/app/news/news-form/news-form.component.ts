@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { NewsService } from 'src/app/services/news.service';
-import { TownAndCampusNewsEntryFormData } from 'src/models/town-and-campus-news';
 
 @Component({
   selector: 'news-form',
@@ -17,55 +21,57 @@ import { TownAndCampusNewsEntryFormData } from 'src/models/town-and-campus-news'
 export class NewsFormComponent {
   protected errorMessage: string | null = null;
 
-  protected readonly title = new FormControl('');
-  protected readonly location = new FormControl('');
-  protected readonly contactName = new FormControl('');
-  protected readonly contactEmail = new FormControl('');
-  protected readonly organization = new FormControl('');
-  protected readonly website = new FormControl('');
-  protected readonly expirationDate = new FormControl('');
-  protected readonly description = new FormControl('');
+  protected readonly newEntryForm = new FormGroup({
+    title: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    location: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    contactName: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    contactEmail: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+    organization: new FormControl(''),
+    website: new FormControl(''),
+    expirationDate: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+  });
 
   constructor(
     private readonly newsService: NewsService,
     private readonly router: Router
   ) {}
 
-  public createNewEntry() {
-    if (!this.title.value) {
-      this.errorMessage = 'Title is required';
-      return;
-    } else if (!this.location.value) {
-      this.errorMessage = 'Location is required';
-      return;
-    } else if (!this.contactName.value) {
-      this.errorMessage = 'Contact Name is required';
-      return;
-    } else if (!this.contactEmail.value) {
-      this.errorMessage = 'Contact Email is required';
-      return;
-    } else if (!this.description.value) {
-      this.errorMessage = 'Description is required';
-      return;
+  public createNewEntry(event: SubmitEvent) {
+    // Don't refresh/redirect until backend sends 200 OK
+    event.preventDefault();
+
+    if (this.newEntryForm.valid) {
+      this.newsService
+        .createNewsEntry(this.newEntryForm.getRawValue())
+        .subscribe({
+          next: _ => this.router.navigate(['news']),
+          error: (err: HttpErrorResponse) =>
+            (this.errorMessage = `${err.status} ${err.statusText}: ${err.error?.message}`),
+        });
     } else {
-      this.errorMessage = null;
+      // Show validator errors
+      this.newEntryForm.markAllAsTouched();
+      this.errorMessage =
+        'There are errors in your submission. Please check that you have filled all required fields.';
     }
-
-    const data: TownAndCampusNewsEntryFormData = {
-      title: this.title.value,
-      description: this.description.value,
-      location: this.location.value,
-      contactName: this.contactName.value,
-      contactEmail: this.contactEmail.value,
-      organization: this.organization.value,
-      website: this.website.value,
-      expirationDate: this.expirationDate.value,
-    };
-
-    this.newsService.createNewsEntry(data).subscribe({
-      next: _ => this.router.navigate(['news']),
-      error: (err: HttpErrorResponse) =>
-        (this.errorMessage = `${err.status} ${err.statusText}: ${err.error?.message}`),
-    });
   }
 }
