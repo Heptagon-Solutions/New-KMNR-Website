@@ -42,19 +42,28 @@
   <div>
     <h2>Create New DJ</h2>
 
-    <div>
+    <form [formGroup]="newDJForm">
       <div>
         <label for="new-dj-user-id-input">User Id*: </label>
         <input
+          class="form-field"
           id="new-dj-user-id-input"
-          type="text"
-          [formControl]="newDJUserId"
+          type="number"
+          min="0"
+          required
+          formControlName="userId"
         />
       </div>
 
       <div>
         <label for="new-dj-name-input">DJ Name*: </label>
-        <input id="new-dj-name-input" type="text" [formControl]="newDJName" />
+        <input
+          class="form-field"
+          id="new-dj-name-input"
+          type="text"
+          required
+          formControlName="name"
+        />
       </div>
 
       <div>
@@ -62,26 +71,31 @@
           >Training Semester Id*:
         </label>
         <input
+          class="form-field"
           id="new-dj-training-semester-input"
-          type="text"
-          [formControl]="newDJTrainingSemesterId"
+          type="number"
+          min="0"
+          required
+          formControlName="trainingSemesterId"
         />
       </div>
 
       <div>
         <label for="new-dj-trainer-input">Trainer Id: </label>
         <input
+          class="form-field"
           id="new-dj-trainer-input"
-          type="text"
-          [formControl]="newDJTrainerId"
+          type="number"
+          min="0"
+          formControlName="trainerId"
         />
       </div>
 
-      <div *ngIf="newUserErrorMessage">
-        {{ newUserErrorMessage }}
+      <div *ngIf="newDJErrorMessage">
+        {{ newDJErrorMessage }}
       </div>
 
       <button (click)="createDJ()">Create DJ</button>
-    </div>
+    </form>
   </div>
 </div>

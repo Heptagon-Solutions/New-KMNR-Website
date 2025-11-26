@@ -20,10 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./admin-users.component.scss'],
 })
 export class AdminUsersComponent {
-  protected userList: User[] = [];
-  protected page: number = 0;
-
-  protected newUserForm = new FormGroup({
+  protected readonly newUserForm = new FormGroup({
     name: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required],
@@ -40,6 +37,9 @@ export class AdminUsersComponent {
   });
 
   protected newUserErrorMessage: string | null = null;
+
+  protected userList: User[] = [];
+  protected page: number = 0;
 
   /** Returns undefined if we're still waiting on an API response. */
   protected get totalPages(): number | undefined {

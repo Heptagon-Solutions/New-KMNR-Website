@@ -16,7 +16,7 @@ def create_user():
     password = data.get("password")
     role = data.get("role")
 
-    if not all([name, email, password]):
+    if None in (name, email, password):
         return {"message": "name, email, and password are required"}, 400
 
     try:
@@ -143,7 +143,7 @@ def create_dj():
     profile_desc = data.get("profileDesc")
     profile_img = data.get("profileImg")
 
-    if not all([user_id, dj_name, training_semester_id]):
+    if None in (user_id, dj_name, training_semester_id):
         return {"message": "userId, djName, and trainingSemesterId are required"}, 400
 
     try:
