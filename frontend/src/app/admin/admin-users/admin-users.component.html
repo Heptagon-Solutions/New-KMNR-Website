@@ -44,40 +44,47 @@
   <div>
     <h2>Create New User</h2>
 
-    <div>
+    <form [formGroup]="newUserForm">
       <div>
         <label for="new-user-name-input">Name*: </label>
         <input
+          class="form-field"
           id="new-user-name-input"
           type="text"
-          [formControl]="newUserName"
+          required
+          formControlName="name"
         />
       </div>
 
       <div>
         <label for="new-user-email-input">Email*: </label>
         <input
+          class="form-field"
           id="new-user-email-input"
           type="text"
-          [formControl]="newUserEmail"
+          required
+          formControlName="email"
         />
       </div>
 
       <div>
         <label for="new-user-password-input">Password*: </label>
         <input
+          class="form-field"
           id="new-user-password-input"
           type="text"
-          [formControl]="newUserPassword"
+          required
+          formControlName="password"
         />
       </div>
 
       <div>
         <label for="new-user-role-input">Role: </label>
         <input
+          class="form-field"
           id="new-user-role-input"
           type="text"
-          [formControl]="newUserRole"
+          formControlName="role"
         />
       </div>
 
@@ -86,6 +93,6 @@
       </div>
 
       <button (click)="createUser()">Create User</button>
-    </div>
+    </form>
   </div>
 </div>
