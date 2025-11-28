@@ -33,4 +33,14 @@ export class UserService {
   public getUser(userId: number): Observable<User> {
     return this.http.get<User>(USERS_API_URL + '/' + userId);
   }
+
+  public createUser(
+    email: string,
+    name: string,
+    password: string,
+    role: string | null = null
+  ): Observable<User> {
+    const data = { email, name, password, role };
+    return this.http.post<User>(USERS_API_URL, data);
+  }
 }
