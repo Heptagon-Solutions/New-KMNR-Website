@@ -33,4 +33,14 @@ export class DJService {
   public getDJProfile(id: number): Observable<DJProfile> {
     return this.http.get<DJProfile>(DJS_API_URL + '/' + id);
   }
+
+  public createDJ(
+    userId: number,
+    djName: string,
+    trainingSemesterId: number,
+    trainerId: number | null = null
+  ): Observable<DJProfile> {
+    const data = { userId, djName, trainingSemesterId, trainerId };
+    return this.http.post<DJProfile>(DJS_API_URL, data);
+  }
 }

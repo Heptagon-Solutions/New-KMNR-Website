@@ -16,7 +16,7 @@ def create_user():
     password = data.get("password")
     role = data.get("role")
 
-    if not all([name, email, password]):
+    if None in (name, email, password):
         return {"message": "name, email, and password are required"}, 400
 
     try:
@@ -134,32 +134,30 @@ def get_user(user_id: int):
 @users_bp.post("/djs")
 def create_dj():
     data = request.get_json(force=True, silent=True) or {}
-    user_id = data.get("user_id")
-    dj_name = data.get("dj_name")
-    training_semester_id = data.get("training_semester_id")
+    user_id = data.get("userId")
+    dj_name = data.get("djName")
+    training_semester_id = data.get("trainingSemesterId")
 
-    trainer_dj_id = data.get("trainer_dj_id")
-    graduating_semester_id = data.get("graduating_semester_id")
-    profile_desc = data.get("profile_desc")
-    profile_img = data.get("profile_img")
+    trainer_dj_id = data.get("trainerId")
+    graduating_semester_id = data.get("graduatingSemesterId")
+    profile_desc = data.get("profileDesc")
+    profile_img = data.get("profileImg")
 
-    if not all([user_id, dj_name, training_semester_id]):
-        return {
-            "message": "user_id, dj_name, and training_semester_id are required"
-        }, 400
+    if None in (user_id, dj_name, training_semester_id):
+        return {"message": "userId, djName, and trainingSemesterId are required"}, 400
 
     try:
         with db.connection.cursor() as cur:
             cur.execute("SELECT id FROM user WHERE id = %s", (user_id,))
             if cur.fetchone() is None:
-                return {"message": "user_id does not exist"}, 400
+                return {"message": "userId does not exist"}, 400
 
             # check training semester exists
             cur.execute(
                 "SELECT id FROM semester WHERE id = %s", (training_semester_id,)
             )
             if cur.fetchone() is None:
-                return {"message": "training_semester_id does not exist"}, 400
+                return {"message": "trainingSemesterId does not exist"}, 400
 
             cur.execute(
                 """
@@ -182,12 +180,12 @@ def create_dj():
         db.connection.commit()
         return {
             "id": user_id,
-            "dj_name": dj_name,
-            "training_semester_id": training_semester_id,
-            "trainer_dj_id": trainer_dj_id,
-            "graduating_semester_id": graduating_semester_id,
-            "profile_desc": profile_desc,
-            "profile_img": profile_img,
+            "djName": dj_name,
+            "trainingSemesterId": training_semester_id,
+            "trainerId": trainer_dj_id,
+            "graduatingSemesterId": graduating_semester_id,
+            "profileDesc": profile_desc,
+            "profileImg": profile_img,
         }, 201
     except DatabaseError as e:
         db.connection.rollback()
