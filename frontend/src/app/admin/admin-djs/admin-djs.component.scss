@@ -1,0 +1,12 @@
+th {
+  text-align: left;
+}
+
+td {
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+
+.form-field.ng-invalid.ng-touched {
+  background-color: lightpink;
+}

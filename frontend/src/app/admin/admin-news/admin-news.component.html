@@ -16,7 +16,7 @@
           <tr *ngFor="let entry of newsEntries">
             <td>{{ entry.title }}</td>
             <td>{{ entry.description | slice:0:100 }}{{ entry.description.length > 100 ? '...' : '' }}</td>
-            <td>{{ entry.submit_date | date:'short' }}</td>
+            <td>{{ entry.submitDate | date:'short' }}</td>
             <td>
               <button class="edit-btn" (click)="editNews(entry)">Edit</button>
               <button class="delete-btn" (click)="deleteNews(entry.id)">Delete</button>

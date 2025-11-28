@@ -10,23 +10,6 @@ export interface DJ {
   show?: string;
 }
 
-export interface PlaylistTrack {
-  track: number;
-  song: string;
-  artist: string;
-  album?: string;
-}
-
-export interface Playlist {
-  id: number;
-  name?: string;
-  description?: string;
-  date_played: string;
-  spotify_playlist_id?: string;
-  dj_name?: string;
-  posting_dj_id?: number;
-}
-
 export interface TownAndCampusNewsEntry {
   title: string;
   location: string;

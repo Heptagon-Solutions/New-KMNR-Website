@@ -35,22 +35,22 @@
     <div class="playlist-info">
       <h4>{{ playlist.name || 'Unnamed Playlist' }}</h4>
       <p class="playlist-meta">
-        <span class="dj-name">{{ playlist.dj_name || 'Unknown DJ' }}</span>
-        <span class="date">{{ playlist.date_played | date:'short' }}</span>
+        <span class="dj-name">{{ playlist.author || 'Unknown DJ' }}</span>
+        <span class="date">{{ playlist.datePlayed | date:'short' }}</span>
       </p>
       <p *ngIf="playlist.description" class="playlist-description">{{ playlist.description }}</p>
     </div>
     <div class="playlist-actions">
       <button 
-        *ngIf="!playlist.spotify_playlist_id" 
+        *ngIf="!playlist.spotifyPlaylistId" 
         (click)="publishToSpotify(playlist)"
         [disabled]="!isSpotifyConnected"
         class="publish-btn">
         Publish to Spotify
       </button>
       <button 
-        *ngIf="playlist.spotify_playlist_id" 
-        (click)="openSpotifyPlaylist(playlist.spotify_playlist_id!)"
+        *ngIf="playlist.spotifyPlaylistId" 
+        (click)="openSpotifyPlaylist(playlist.spotifyPlaylistId!)"
         class="view-spotify-btn">
         View on Spotify
       </button>
@@ -61,7 +61,9 @@
     <div class="subpages-section">
       <h2>Subpages</h2>
       <ul>
-        <li><a routerLink="/admin/news">Town And Campus News</a></li>
+        <li><a routerLink="/admin/users">Users</a></li>
+    <li><a routerLink="/admin/djs">DJs</a></li>
+    <li><a routerLink="/admin/news">Town And Campus News</a></li>
       </ul>
     </div>
   </div>

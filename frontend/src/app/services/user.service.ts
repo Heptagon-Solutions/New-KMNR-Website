@@ -1,36 +1,54 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 
-export interface User {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-  created_at: string;
-}
+import { API_URL } from 'src/constants';
+import { User } from 'src/models/user';
+
+const USERS_API_URL = API_URL + 'api/users';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private backendUrl = 'http://127.0.0.1:5000/api';
+  constructor(private readonly http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.backendUrl}/users`);
+  public getUserCount(): Observable<number> {
+    return this.http
+      .get<{ count: number }>(API_URL + 'api/count/users')
+      .pipe(map(resp => resp.count));
   }
 
-  createUser(user: Partial<User>): Observable<User> {
-    return this.http.post<User>(`${this.backendUrl}/users`, user);
+  /**
+   * Fetch paginated list of users.
+   * @param count Number of users to return
+   * @param page Pagination offset. Page 1 contains users 1 to `count`, page 2 contains `count + 1` to `2 * count`.
+   */
+  public getUsers(count: number, page: number): Observable<User[]> {
+    return this.http
+      .get<{ users: User[] }>(USERS_API_URL, { params: { count, page } })
+      .pipe(map(response => response.users));
   }
 
-  updateUser(id: string, user: Partial<User>): Observable<User> {
-    return this.http.put<User>(`${this.backendUrl}/users/${id}`, user);
+  public getUser(userId: number): Observable<User> {
+    return this.http.get<User>(USERS_API_URL + '/' + userId);
   }
 
-  deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.backendUrl}/users/${id}`);
+  public createUser(
+    email: string,
+    name: string,
+    password: string,
+    role: string | null = null
+  ): Observable<User> {
+    const data = { email, name, password, role };
+    return this.http.post<User>(USERS_API_URL, data);
+  }
+
+  updateUser(userId: number, user: Partial<User>): Observable<User> {
+    return this.http.put<User>(USERS_API_URL + userId, user);
+  }
+
+  deleteUser(userId: number): Observable<void> {
+    return this.http.delete<void>(USERS_API_URL + userId);
   }
 }

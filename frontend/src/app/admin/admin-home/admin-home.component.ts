@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 import { PlaylistService } from '../../services/playlist.service';
-import { Playlist } from '../../../models';
+import { PlaylistProfile, Track } from 'src/models/playlist';
 
 @Component({
   selector: 'app-admin-home',
@@ -14,7 +14,7 @@ import { Playlist } from '../../../models';
 })
 export class AdminHomeComponent implements OnInit {
   isSpotifyConnected = false;
-  playlists: Playlist[] = [];
+  playlists: PlaylistProfile[] = [];
   isLoading = false;
 
   constructor(
@@ -47,7 +47,7 @@ export class AdminHomeComponent implements OnInit {
     });
   }
 
-  publishToSpotify(playlist: Playlist) {
+  publishToSpotify(playlist: PlaylistProfile) {
     if (!this.isSpotifyConnected) {
       alert('Please connect to Spotify first');
       return;
@@ -55,7 +55,7 @@ export class AdminHomeComponent implements OnInit {
 
     this.playlistService.publishToSpotify(playlist.id).subscribe({
       next: (response) => {
-        playlist.spotify_playlist_id = response.spotify_playlist_id;
+        playlist.spotifyPlaylistId = response.spotify_playlist_id;
         alert(`Playlist published to Spotify! ${response.tracks_added} tracks added.`);
         
         if (response.spotify_url) {

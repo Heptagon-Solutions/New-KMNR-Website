@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NewsService } from 'src/app/services/news.service';
-import { TownAndCampusNewsEntryDetailed } from 'src/models';
+import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
 
 @Component({
   selector: 'app-admin-news',
@@ -12,29 +12,20 @@ import { TownAndCampusNewsEntryDetailed } from 'src/models';
   templateUrl: './admin-news.component.html',
   styleUrls: ['./admin-news.component.scss'],
 })
-export class AdminNewsComponent implements OnInit {
+export class AdminNewsComponent {
   public newsEntries: TownAndCampusNewsEntryDetailed[] | undefined = undefined;
   public newNews: Partial<TownAndCampusNewsEntryDetailed> = {
     title: '',
     description: ''
   };
 
-  constructor(private readonly newsService: NewsService) {}
-
-  ngOnInit(): void {
-    this.loadNews();
-  }
-
-  loadNews(): void {
-    this.newsService
-      .getAllNewsEntries()
-      .then(
+  constructor(private readonly newsService: NewsService) {
+    newsService
+      .getNewsEntries()
+      .subscribe(
         (entries: TownAndCampusNewsEntryDetailed[]) =>
           (this.newsEntries = entries)
       )
-      .catch(error => {
-        console.error('Error loading news:', error);
-      });
   }
 
   addNews(): void {
