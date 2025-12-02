@@ -13,24 +13,51 @@ import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news'
   styleUrls: ['./admin-news.component.scss'],
 })
 export class AdminNewsComponent {
-  public newsEntries: TownAndCampusNewsEntryDetailed[] | undefined = undefined;
+  protected newsEntries: TownAndCampusNewsEntryDetailed[] | undefined =
+    undefined;
+  protected page: number = 0;
+
+  /** Returns undefined if we're still waiting on an API response. */
+  protected get totalPages(): number | undefined {
+    if (this.totalEntries) {
+      return Math.ceil(this.totalEntries / this.entriesPerPage);
+    } else {
+      return undefined;
+    }
+  }
+
+  private readonly entriesPerPage: number = 25;
+
+  private totalEntries: number | undefined = undefined;
+
   public newNews: Partial<TownAndCampusNewsEntryDetailed> = {
     title: '',
-    description: ''
+    description: '',
   };
 
   constructor(private readonly newsService: NewsService) {
-    newsService
-      .getNewsEntries()
-      .subscribe(
-        (entries: TownAndCampusNewsEntryDetailed[]) =>
-          (this.newsEntries = entries)
-      )
+    newsService.getNewsCount().subscribe(count => (this.totalEntries = count));
+
+    this.goToPage(0);
   }
 
-  addNews(): void {
+  public goToPage(newPage: number) {
+    if (newPage >= 0) {
+      this.page = newPage;
+
+      this.newsService
+        .getNewsEntries(this.entriesPerPage, this.page)
+        .subscribe(
+          (entries: TownAndCampusNewsEntryDetailed[]) =>
+            (this.newsEntries = entries)
+        );
+    }
+  }
+
+  addNews() {
     if (this.newNews.title && this.newNews.description) {
-      this.newsService.createNewsEntry(this.newNews as TownAndCampusNewsEntryDetailed)
+      this.newsService
+        .createNewsEntry_Old(this.newNews as TownAndCampusNewsEntryDetailed)
         .then((entry: TownAndCampusNewsEntryDetailed) => {
           if (this.newsEntries) {
             this.newsEntries.push(entry);
@@ -45,17 +72,20 @@ export class AdminNewsComponent {
     }
   }
 
-  editNews(entry: TownAndCampusNewsEntryDetailed): void {
+  editNews(entry: TownAndCampusNewsEntryDetailed) {
     // TODO: Implement edit functionality
     console.log('Edit news:', entry);
   }
 
   deleteNews(entryId: number): void {
     if (confirm('Are you sure you want to delete this news entry?')) {
-      this.newsService.deleteNewsEntry(entryId.toString())
+      this.newsService
+        .deleteNewsEntry(entryId.toString())
         .then(() => {
           if (this.newsEntries) {
-            this.newsEntries = this.newsEntries.filter(entry => entry.id !== entryId);
+            this.newsEntries = this.newsEntries.filter(
+              entry => entry.id !== entryId
+            );
           }
         })
         .catch(error => {

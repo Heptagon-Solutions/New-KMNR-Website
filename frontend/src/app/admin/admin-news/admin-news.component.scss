@@ -9,11 +9,11 @@
   width: 100%;
   max-width: 1200px;
   padding: 1.5rem 2rem;
-  
+
   /* The core design: semi-transparent white background */
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
-  
+
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -62,7 +62,9 @@
 }
 
 /* Button Styles */
-.edit-btn, .delete-btn, .add-btn {
+.edit-btn,
+.delete-btn,
+.add-btn {
   padding: 0.5rem 1rem;
   margin: 0 0.25rem;
   border: none;
@@ -73,7 +75,7 @@
 }
 
 .edit-btn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
