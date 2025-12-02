@@ -7,10 +7,9 @@ name = "pypi"
 flask = "*"
 flask-mysqldb = "*"
 python-dotenv = "*"
-requests = "*"
-flask-cors = "*"
 
 [requires]
 python_version = "3.11"
 
 [dev-packages]
+flask-cors = "*"
