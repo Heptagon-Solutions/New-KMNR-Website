@@ -1,9 +1,45 @@
-<h1>Below is the full list of Town And Campus events</h1>
-<div *ngIf="newsEntries; else loadingOrError">
-  <div *ngFor="let entry of newsEntries">
-    {{ entry.title }}
+<div>
+  <h2>Town & Campus News List</h2>
+
+  <div>
+    <table *ngIf="newsEntries">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Date Submitted</th>
+          <th>Expiration Date</th>
+          <th>Approved?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let newsEntry of newsEntries">
+          <td>{{ newsEntry.id }}</td>
+          <td>{{ newsEntry.title }}</td>
+          <td>{{ newsEntry.submitDate }}</td>
+          <td>{{ newsEntry.expirationDate }}</td>
+          <td>{{ newsEntry.approved ? 'Yes' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loadingOrError>
+      <i>Loading...</i> (or broken beyond repair /:)
+    </ng-template>
   </div>
+
+  <br />
+
+  <span>
+    <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+      Previous Page
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+    <button
+      [disabled]="page + 1 >= (totalPages ?? 0)"
+      (click)="goToPage(page + 1)"
+    >
+      Next Page
+    </button>
+  </span>
 </div>
-<ng-template #loadingOrError>
-  <i>Loading...</i> (or broken beyond repair /:)
-</ng-template>
