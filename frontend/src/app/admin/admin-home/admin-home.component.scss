@@ -1,0 +1,199 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modular-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 1.5rem 2rem;
+  
+  background-color: rgba(0, 0, 0, 0.8);
+  
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+  color: #fecb33;
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 2px solid #fecb33;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card-content {
+  color: #FFFFFF;
+}
+
+.notice-section {
+  background-color: rgba(255, 193, 7, 0.2);
+  border: 1px solid rgba(255, 193, 7, 0.4);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.notice-section p {
+  color: #ffc107;
+  margin: 0;
+}
+
+h2 {
+  color: #fecb33;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(254, 203, 51, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.spotify-status {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 107, 53, 0.2);
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  color: #ffffff;
+}
+
+.spotify-status.connected {
+  background-color: rgba(40, 167, 69, 0.2);
+  border-color: rgba(40, 167, 69, 0.4);
+  color: #28a745;
+}
+
+.spotify-connect-btn {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.spotify-connect-btn:hover {
+  background-color: #1ed760;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.no-playlists {
+  text-align: center;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.playlists-container {
+  margin-top: 20px;
+}
+
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.playlist-info {
+  flex: 1;
+}
+
+.playlist-info h4 {
+  margin: 0 0 5px 0;
+  color: #fecb33;
+}
+
+.playlist-meta {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 5px 0;
+}
+
+.dj-name {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.date {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.playlist-description {
+  margin: 5px 0 0 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.playlist-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.publish-btn, .view-spotify-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.publish-btn {
+  background-color: #1db954;
+  color: white;
+}
+
+.publish-btn:hover:not(:disabled) {
+  background-color: #1ed760;
+}
+
+.publish-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.view-spotify-btn {
+  background-color: #191414;
+  color: white;
+}
+
+.view-spotify-btn:hover {
+  background-color: #333;
+}
+
+.subpages-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.subpages-section li {
+  margin-bottom: 0.5rem;
+}
+
+.subpages-section a {
+  color: #fecb33;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.subpages-section a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px #fecb33;
+}

@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Log files
+*.log
+logs/
+
 # Compiled output
 /dist
 /tmp
@@ -40,3 +44,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+backend/.env
+
+# Node.js dependencies
+node_modules/
+
+# Jekyll build output
+_site/

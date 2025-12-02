@@ -3,4 +3,5 @@ export interface User {
   name: string;
   email: string;
   role: string; // TODO: Turn into an enum
+  created_at?: string;
 }

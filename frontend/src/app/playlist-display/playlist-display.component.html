@@ -1,0 +1,67 @@
+<div class="playlist-display-wrapper">
+<div class="playlist-display-container">
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Loading playlist...</p>
+    </div>
+
+  <div *ngIf="errorMessage && !isLoading" class="error-message">
+    <p>⚠️ {{ errorMessage }}</p>
+  </div>
+
+  <!-- Spotify Embedded Player -->
+  <div *ngIf="showEmbed && playlistId && !errorMessage" class="spotify-embed">
+    <iframe 
+      [src]="getEmbedUrl()" 
+      [style.height]="embedHeight"
+      style="width: 100%; border-radius: 12px; border: none;"
+      allowfullscreen 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- Custom Playlist Display -->
+  <div *ngIf="!showEmbed && !isLoading && !errorMessage && playlistDetails">
+    <div class="playlist-header">
+      <div class="playlist-info">
+        <h2>{{ playlistDetails.name }}</h2>
+        <p class="playlist-description" *ngIf="playlistDetails.description">{{ playlistDetails.description }}</p>
+        <p class="playlist-meta">
+          By {{ playlistDetails.owner?.display_name || 'Unknown Owner' }} • {{ playlistTracks.length }} songs
+        </p>
+        <button (click)="openInSpotify()" class="spotify-link-btn" *ngIf="playlistDetails.external_urls?.spotify">
+          Listen on Spotify
+        </button>
+      </div>
+    </div>
+
+    <div class="tracks-list" *ngIf="playlistTracks.length > 0; else emptyPlaylist">
+      <div class="track-header">
+        <div class="track-number">#</div>
+        <div class="track-title">Title</div>
+        <div class="track-album">Album</div>
+        <div class="track-date">Date Added</div>
+        <div class="track-duration">Duration</div>
+      </div>
+      <div *ngFor="let item of playlistTracks; let i = index" class="track-item">
+        <div class="track-number">{{ i + 1 }}</div>
+        <div class="track-title">
+          <span class="track-name">{{ item.track.name || 'Unknown Track' }}</span>
+          <span class="track-artist">{{ getArtistNames(item.track.artists) }}</span>
+        </div>
+        <div class="track-album">{{ item.track.album?.name || 'Unknown Album' }}</div>
+         <div class="track-date">{{ formatDate(item.added_at) }}</div>
+        <div class="track-duration">{{ formatDuration(item.track.duration_ms) }}</div>
+      </div>
+    </div>
+
+    <ng-template #emptyPlaylist>
+      <p class="empty-message">This playlist appears to be empty.</p>
+    </ng-template>
+  </div>
+
+  <div *ngIf="!playlistId && !errorMessage && !isLoading && !showEmbed" class="no-playlist-selected">
+     <p>Select or provide a playlist ID to display.</p>
+   </div>
+</div>
+</div>

@@ -1,17 +1,76 @@
-<h1>This is the Admin home</h1>
-<p>
-  <b>NOTE:</b>
-</p>
-<p>
-  There is no authentication implemented yet; you shouldn't be allowed to get
-  here unless you already logged in as an admin.
-</p>
+<div class="modular-card">
+  <h1 class="card-title">Admin Dashboard</h1>
+  <div class="card-content">
+    <div class="notice-section">
+      <p>
+        <strong>NOTE:</strong>
+        There is no authentication implemented yet; you shouldn't be allowed to
+        get here unless you already logged in as an admin.
+      </p>
+    </div>
 
-<h2>Subpages</h2>
-<div>
-  <ul>
-    <li><a routerLink="/admin/users">Users</a></li>
-    <li><a routerLink="/admin/djs">DJs</a></li>
-    <li><a routerLink="/admin/news">Town And Campus News</a></li>
-  </ul>
+    <h2>Spotify Integration</h2>
+    <div>
+      <p *ngIf="!isSpotifyConnected" class="spotify-status">
+        <span>🔗 Connect to Spotify to manage playlists</span>
+      </p>
+      <p *ngIf="isSpotifyConnected" class="spotify-status connected">
+        <span>✅ Connected to Spotify</span>
+      </p>
+      <button
+        *ngIf="!isSpotifyConnected"
+        (click)="connectToSpotify()"
+        class="spotify-connect-btn"
+      >
+        Connect to Spotify
+      </button>
+    </div>
+
+    <h2>DJ Playlists</h2>
+    <div *ngIf="isLoading" class="loading">Loading playlists...</div>
+    <div *ngIf="!isLoading && playlists.length === 0" class="no-playlists">
+      <p>No playlists found.</p>
+    </div>
+    <div *ngIf="!isLoading && playlists.length > 0" class="playlists-container">
+      <div *ngFor="let playlist of playlists" class="playlist-item">
+        <div class="playlist-info">
+          <h4>{{ playlist.name || 'Unnamed Playlist' }}</h4>
+          <p class="playlist-meta">
+            <span class="dj-name">{{ playlist.author || 'Unknown DJ' }}</span>
+            <span class="date">{{ playlist.datePlayed | date : 'short' }}</span>
+          </p>
+          <p *ngIf="playlist.description" class="playlist-description">
+            {{ playlist.description }}
+          </p>
+        </div>
+        <div class="playlist-actions">
+          <button
+            *ngIf="!playlist.spotifyPlaylistId"
+            (click)="publishToSpotify(playlist)"
+            [disabled]="!isSpotifyConnected"
+            class="publish-btn"
+          >
+            Publish to Spotify
+          </button>
+          <div *ngIf="playlist.spotifyPlaylistId">
+            <button
+              (click)="openSpotifyPlaylist(playlist.spotifyPlaylistId)"
+              class="view-spotify-btn"
+            >
+              View on Spotify
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subpages-section">
+      <h2>Subpages</h2>
+      <ul>
+        <li><a routerLink="/admin/users">Users</a></li>
+        <li><a routerLink="/admin/djs">DJs</a></li>
+        <li><a routerLink="/admin/news">Town And Campus News</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { NewsService } from 'src/app/services/news.service';
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
@@ -7,7 +8,7 @@ import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news'
 @Component({
   selector: 'app-admin-news',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './admin-news.component.html',
   styleUrls: ['./admin-news.component.scss'],
 })
@@ -29,6 +30,11 @@ export class AdminNewsComponent {
 
   private totalEntries: number | undefined = undefined;
 
+  public newNews: Partial<TownAndCampusNewsEntryDetailed> = {
+    title: '',
+    description: '',
+  };
+
   constructor(private readonly newsService: NewsService) {
     newsService.getNewsCount().subscribe(count => (this.totalEntries = count));
 
@@ -45,6 +51,28 @@ export class AdminNewsComponent {
           (entries: TownAndCampusNewsEntryDetailed[]) =>
             (this.newsEntries = entries)
         );
+    }
+  }
+
+  editNews(entry: TownAndCampusNewsEntryDetailed) {
+    // TODO: Implement edit functionality
+    console.log('Edit news:', entry);
+  }
+
+  deleteNews(entryId: number): void {
+    if (confirm('Are you sure you want to delete this news entry?')) {
+      this.newsService
+        .deleteNewsEntry(entryId.toString())
+        .then(() => {
+          if (this.newsEntries) {
+            this.newsEntries = this.newsEntries.filter(
+              entry => entry.id !== entryId
+            );
+          }
+        })
+        .catch(error => {
+          console.error('Error deleting news:', error);
+        });
     }
   }
 }

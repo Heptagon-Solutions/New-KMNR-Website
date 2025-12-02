@@ -1,14 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 
-// Removes weird padding between html/body and AppComponent
-body,
-html {
-  height: 100%;
-  width: 100%;
+/* Global Design System - KMNR Retro-Modern Style */
+body, html {
+  min-height: 100%;
   margin: 0;
+  font-family: "Inter", "Helvetica Neue", sans-serif; /* Clean, readable font */
 }
 
+body {
+  background-image: url('assets/img/background_stickers.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Global reset */
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+/* Modular Card System - KMNR Design Language */
+.modular-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 20px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modular-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
+
+/* Transparent White Background - Main Site Style */
+.content-background {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 16px;
+  border-bottom: 3px solid #e74c3c;
+  padding-bottom: 8px;
+}
+
+.card-content {
+  color: #34495e;
+  line-height: 1.6;
 }

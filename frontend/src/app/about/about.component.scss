@@ -1,30 +1,70 @@
-.about {
-  font-family: "Bree Serif", serif;
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.top-header {
-  font-family: "Bree Serif", serif;
-  padding-left: 2rem;
-  border-top: 2px solid #c62828;
+.modular-card {
+  width: 100%;
+  max-width: 1000px;
+  padding: 1.5rem 2rem;
+  
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+  color: #c62828;
+  font-size: 2rem;
+  font-weight: 700;
   border-bottom: 2px solid #c62828;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card-content {
+  color: #333333;
+  font-family: "Bree Serif", serif;
 }
 
 h2 {
-  color: #0f7173;
+  color: #c62828;
   margin-top: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-ul {
-  padding: 1rem 0 1rem 2rem;
-}
-
-ol {
-  padding: 1rem 0 3rem 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(198, 40, 40, 0.3);
+  padding-bottom: 0.5rem;
 }
 
 p {
   padding: 0.5rem 0 0.5rem 0;
+  line-height: 1.6;
+  color: rgba(51, 51, 51, 0.9);
+}
+
+ul, ol {
+  padding: 1rem 0 1rem 2rem;
+  color: rgba(51, 51, 51, 0.9);
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+a {
+  color: #c62828;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #000000;
+  text-shadow: 0 0 8px #c62828;
 }

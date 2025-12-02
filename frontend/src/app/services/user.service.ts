@@ -43,4 +43,12 @@ export class UserService {
     const data = { email, name, password, role };
     return this.http.post<User>(USERS_API_URL, data);
   }
+
+  updateUser(userId: number, user: Partial<User>): Observable<User> {
+    return this.http.put<User>(USERS_API_URL + userId, user);
+  }
+
+  deleteUser(userId: number): Observable<void> {
+    return this.http.delete<void>(USERS_API_URL + userId);
+  }
 }
