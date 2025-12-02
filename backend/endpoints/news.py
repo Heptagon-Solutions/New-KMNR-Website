@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 
 from database import db, DatabaseError
 
@@ -36,4 +36,52 @@ def get_all_news():
             )
         return entries
     except DatabaseError as e:
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@town_and_campus_news_blueprint.post("/news")
+def create_news():
+    data = request.get_json(force=True, silent=True) or {}
+
+    organization = data.get("organization")
+    description = data.get("description")
+    location = data.get("location")
+    website = data.get("website")
+    contact_name = data.get("contactName")
+    contact_email = data.get("contactEmail")
+    expiration_date = data.get("expirationDate")  # optional
+
+    if not description:
+        return {"message": "description is required"}, 400
+
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute(
+                """
+                INSERT INTO town_and_campus_news
+                    (organization, description, location, website,
+                     contact_name, contact_email, approved,
+                     submit_date, expiration_date)
+                VALUES
+                    (%s, %s, %s, %s,
+                     %s, %s, %s,
+                     NOW(), %s)
+                """,
+                (
+                    organization,
+                    description,
+                    location,
+                    website,
+                    contact_name,
+                    contact_email,
+                    False,
+                    expiration_date,
+                ),
+            )
+            new_id = cur.lastrowid
+
+        db.connection.commit()
+        return {"id": new_id}, 201
+    except DatabaseError as e:
+        db.connection.rollback()
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
