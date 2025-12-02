@@ -33,10 +33,13 @@ def create_app():
     db.init_app(app)
 
     # THIS IS FOR DEV ONLY - REMOVE BEFORE PRODUCTION
-    CORS(app, resources={r'/api/*': {'origins': '*'}},
+    """
+    CORS(app, origins=["http://localhost:8970"], resources={r'/api/*': {'origins': '*'}},
          supports_credentials=True,
          allow_headers=["Content-Type", "Authorization"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
+    """
+    CORS(app, origins=["http://localhost:8970"])
 
     # Add a test endpoint
     @app.route('/test')
