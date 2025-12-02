@@ -39,34 +39,6 @@
         <p>No news entries found. Loading...</p>
       </div>
     </ng-template>
-
-    <!-- Add News Form -->
-    <div class="add-news-section">
-      <h3>Add News Entry</h3>
-      <form class="news-form" (ngSubmit)="addNews()">
-        <div class="form-group">
-          <label for="newsTitle">Title:</label>
-          <input
-            type="text"
-            id="newsTitle"
-            [(ngModel)]="newNews.title"
-            name="title"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="newsDescription">Description:</label>
-          <textarea
-            id="newsDescription"
-            [(ngModel)]="newNews.description"
-            name="description"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" class="add-btn">Add News</button>
-      </form>
-    </div>
   </div>
 
   <br />

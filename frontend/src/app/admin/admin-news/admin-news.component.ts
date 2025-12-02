@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NewsService } from 'src/app/services/news.service';
@@ -51,24 +51,6 @@ export class AdminNewsComponent {
           (entries: TownAndCampusNewsEntryDetailed[]) =>
             (this.newsEntries = entries)
         );
-    }
-  }
-
-  addNews() {
-    if (this.newNews.title && this.newNews.description) {
-      this.newsService
-        .createNewsEntry_Old(this.newNews as TownAndCampusNewsEntryDetailed)
-        .then((entry: TownAndCampusNewsEntryDetailed) => {
-          if (this.newsEntries) {
-            this.newsEntries.push(entry);
-          } else {
-            this.newsEntries = [entry];
-          }
-          this.newNews = { title: '', description: '' };
-        })
-        .catch(error => {
-          console.error('Error creating news:', error);
-        });
     }
   }
 

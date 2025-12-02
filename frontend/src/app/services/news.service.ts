@@ -45,19 +45,6 @@ export class NewsService {
     );
   }
 
-  public async createNewsEntry_Old(
-    newsEntry: TownAndCampusNewsEntryDetailed
-  ): Promise<TownAndCampusNewsEntryDetailed> {
-    const response = await fetch(API_URL + 'admin/news', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newsEntry),
-    });
-    return await response.json();
-  }
-
   public async updateNewsEntry(
     id: string,
     newsEntry: Partial<TownAndCampusNewsEntryDetailed>
