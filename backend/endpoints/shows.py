@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import base64
 from database import db, DatabaseError
 
 shows_bp = Blueprint("shows", __name__)
@@ -300,3 +301,47 @@ def delete_show(show_id: int):
     except DatabaseError as e:
         db.connection.rollback()
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@shows_bp.post("/shows/<int:show_id>/image")
+def upload_show_image(show_id: int):
+    try:
+        file = request.files.get("image")
+
+        if file:
+            image_bytes = file.read()
+
+        else:
+            data = request.get_json(force=True, silent=True) or {}
+            image_b64 = data.get("image_base64")
+
+            if not image_b64:
+                return {
+                    "message": "No image provided. Use multipart 'image' or JSON 'image_base64'."
+                }, 400
+
+            try:
+                image_bytes = base64.b64decode(image_b64)
+            except Exception:
+                return {"message": "Invalid base64 image string"}, 400
+
+        # Store image in DB
+        with db.connection.cursor() as cur:
+            cur.execute(
+                "SELECT id FROM radio_show WHERE id = %s",
+                (show_id,)
+            )
+            if cur.fetchone() is None:
+                return {"message": "show not found"}, 404
+
+            cur.execute(
+                "UPDATE radio_show SET show_image = %s WHERE id = %s",
+                (image_bytes, show_id)
+            )
+
+        db.connection.commit()
+        return {"message": "image updated successfully"}, 200
+
+    except DatabaseError as e:
+        db.connection.rollback()
+        return {"message": f'{e.args[1]} ({e.args[0]})'}, 500

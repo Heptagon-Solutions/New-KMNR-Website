@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import base64
 from database import db, DatabaseError
 
 users_bp = Blueprint("accounts", __name__)
@@ -343,6 +344,45 @@ def update_dj(dj_id: int):
 
         db.connection.commit()
         return {"message": "dj updated"}, 200
+    except DatabaseError as e:
+        db.connection.rollback()
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
+@users_bp.post("/djs/<int:dj_id>/profile-image")
+def upload_dj_profile_image(dj_id: int):
+    try:
+        file = request.files.get("image")
+
+        if file:
+            image_bytes = file.read()
+        else:
+            data = request.get_json(force=True, silent=True) or {}
+            image_b64 = data.get("image_base64")
+
+            if not image_b64:
+                return {
+                    "message": "No image provided. Use multipart 'image' or JSON 'image_base64'."
+                }, 400
+
+            try:
+                image_bytes = base64.b64decode(image_b64)
+            except Exception:
+                return {"message": "Invalid base64 image string"}, 400
+
+        with db.connection.cursor() as cur:
+            cur.execute("SELECT id FROM dj WHERE id = %s", (dj_id,))
+            if cur.fetchone() is None:
+                return {"message": "dj not found"}, 404
+
+            cur.execute(
+                "UPDATE dj SET profile_img = %s WHERE id = %s",
+                (image_bytes, dj_id),
+            )
+
+        db.connection.commit()
+        return {"message": "dj profile image updated"}, 200
+
     except DatabaseError as e:
         db.connection.rollback()
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
