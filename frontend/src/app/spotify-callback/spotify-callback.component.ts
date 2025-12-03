@@ -7,6 +7,7 @@ import { SpotifyService } from '../services/spotify.service';
   selector: 'app-spotify-callback',
   standalone: true,
   imports: [CommonModule],
+  providers: [SpotifyService],
   templateUrl: './spotify-callback.component.html',
   styleUrls: ['./spotify-callback.component.scss']
 })

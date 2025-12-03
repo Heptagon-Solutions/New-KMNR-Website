@@ -8,6 +8,7 @@ import { PlaylistDisplayComponent } from '../playlist-display/playlist-display.c
   selector: 'app-spotify-playlist',
   standalone: true,
   imports: [CommonModule, FormsModule, PlaylistDisplayComponent],
+  providers: [SpotifyService],
   templateUrl: './spotify-playlist.component.html',
   styleUrls: ['./spotify-playlist.component.scss']
 })

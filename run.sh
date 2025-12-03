@@ -74,11 +74,11 @@ main() {
     # Start the application
     echo -e "${GREEN}🚀 Starting KMNR Website...${NC}"
     echo "This will start:"
-    echo "  - Frontend (Angular) on http://localhost:3000"
+    echo "  - Frontend (Angular) on http://localhost:4200"
     echo "  - Backend (Flask) on http://localhost:5000" 
     echo "  - Database (MariaDB) on localhost:3306"
     echo ""
-    echo "📱 Open http://localhost:3000 in your browser"
+    echo "📱 Open http://localhost:4200 in your browser"
     echo "🛑 Press Ctrl+C to stop all services"
     echo ""
     

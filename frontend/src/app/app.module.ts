@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './shared/top-bar/top-bar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { SpotifyService } from './services/spotify.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     TopBarComponent,
     FooterComponent
   ],
-  providers: [],
+  providers: [SpotifyService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
