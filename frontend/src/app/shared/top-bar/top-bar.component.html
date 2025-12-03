@@ -1,19 +1,53 @@
-<div class="bar-grid">
-  <div class="current-show">
-    <img
-      src="../../../assets/newsnapman.svg"
-      alt="snapman"
-      height="100rem"
-      width="100rem"
-    />
-    <audio class="webstream" controls>
+<div class="header-container">
+  <div class="bar-grid">
+    <div class="header-spacer"></div>
+  </div>
+
+  <!-- Navigation Section with Snapman and Web Player -->
+  <div class="nav-container">
+    <button class="snapman-nav-btn" routerLink="/" title="Go to Home Page">
+      <img
+        class="snapman-nav"
+        src="../../../assets/newsnapman.svg"
+        alt="snapman"
+      />
+    </button>
+    <audio class="webstream-nav" controls>
       <source src="https://boombox.kmnr.org/webstream.mp3" />
       Your browser does not support the audio element.
     </audio>
-    <div class="show-info">
-      <strong class="listen">Listen in</strong>
-      <p>SHOW DJ</p>
+    
+    <!-- Desktop Navigation -->
+    <nav class="text-navigation desktop-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-button">home</a>
+      <a routerLink="/playlists" routerLinkActive="active" class="nav-button">kmnr</a>
+      <a routerLink="/blog" routerLinkActive="active" class="nav-button">blog</a>
+      <a routerLink="/shows" routerLinkActive="active" class="nav-button">schedule</a>
+      <a routerLink="/djs" routerLinkActive="active" class="nav-button">djs</a>
+      <a routerLink="/news" routerLinkActive="active" class="nav-button">town and campus news</a>
+      <a routerLink="/spotify" routerLinkActive="active" class="nav-button">playlists</a>
+      <a routerLink="/about" routerLinkActive="active" class="nav-button">about</a>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-header">
+        <a routerLink="/playlists" class="mobile-kmnr">kmnr</a>
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()">menu</button>
+      </div>
     </div>
   </div>
-  <p class="contact-info">Requests? Comments? Call or text 504-656-6735</p>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()">
+    <nav class="mobile-menu-nav" (click)="$event.stopPropagation()">
+      <a routerLink="/playlists" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">kmnr</a>
+      <a routerLink="/blog" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">blog</a>
+      <a routerLink="/shows" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">schedule</a>
+      <a routerLink="/djs" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">djs</a>
+      <a routerLink="/news" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">town and campus news</a>
+      <a routerLink="/spotify" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">playlists</a>
+      <a routerLink="/about" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">about</a>
+    </nav>
+  </div>
 </div>
