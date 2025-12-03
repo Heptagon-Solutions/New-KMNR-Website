@@ -1,0 +1,155 @@
+.playlist-display-wrapper {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  margin: 20px 0;
+}
+
+.playlist-display-container {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  border-radius: 8px;
+  padding: 20px;
+  color: #ffffff;
+}
+
+.spotify-embed {
+  margin: 0;
+  padding: 0;
+  
+  iframe {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.loading-indicator, .error-message, .empty-message, .no-playlist-selected {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.error-message {
+  color: #d9534f;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.playlist-cover {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.playlist-info {
+  flex-grow: 1;
+
+  h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fecb33;
+  }
+
+  .playlist-description {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+  }
+
+  .playlist-meta {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+  }
+}
+
+.spotify-link-btn {
+  background-color: #1DB954;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #1aa34a;
+  }
+}
+
+.tracks-list {
+  .track-header, .track-item {
+    display: grid;
+    grid-template-columns: 30px 1fr 1fr 100px 60px;
+    gap: 15px;
+    align-items: center;
+    padding: 10px 5px;
+    font-size: 0.9em;
+  }
+
+  .track-header {
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 0.8em;
+  }
+
+  .track-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .track-number, .track-date, .track-duration {
+      color: rgba(255, 255, 255, 0.6);
+      text-align: right;
+    }
+     .track-date{
+      text-align: left;
+      font-size: 0.9em;
+     }
+
+    .track-title {
+      display: flex;
+      flex-direction: column;
+
+      .track-name {
+        font-weight: 500;
+        color: #ffffff;
+      }
+
+      .track-artist {
+        font-size: 0.9em;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+     .track-album{
+       font-size: 0.95em;
+       color: rgba(255, 255, 255, 0.8);
+     }
+  }
+}
