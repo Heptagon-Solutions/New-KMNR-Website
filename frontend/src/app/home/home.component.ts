@@ -62,4 +62,13 @@ export class HomeComponent {
       }
     }
   }
+
+  /**
+   * Opens the KMNR featured playlist in Spotify web player
+   */
+  openSpotifyPlaylist(): void {
+    // Example playlist URL - replace with actual KMNR playlist
+    const playlistUrl = 'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M';
+    window.open(playlistUrl, '_blank');
+  }
 }
