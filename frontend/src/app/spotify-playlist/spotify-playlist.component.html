@@ -21,20 +21,20 @@
       <div class="profile-header">
         <div class="profile-avatar">
           <img 
-            *ngIf="userProfile?.images && userProfile.images.length > 0; else defaultAvatar" 
+            *ngIf="userProfile.images && userProfile.images.length > 0; else defaultAvatar" 
             [src]="userProfile.images[0].url" 
-            [alt]="(userProfile?.display_name || 'User') + ' profile'"
+            [alt]="(userProfile.display_name || 'User') + ' profile'"
             class="avatar-image">
           <ng-template #defaultAvatar>
-            <div class="default-avatar">{{ userProfile?.display_name?.charAt(0) || 'U' }}</div>
+            <div class="default-avatar">{{ userProfile.display_name.charAt(0) || 'U' }}</div>
           </ng-template>
         </div>
         <div class="profile-info">
-          <h3>Welcome, {{ userProfile?.display_name || 'Spotify User' }}!</h3>
+          <h3>Welcome, {{ userProfile.display_name || 'Spotify User' }}!</h3>
           <div class="profile-details">
-            <span class="user-id">{{ userProfile?.id }}</span>
-            <span class="user-product" *ngIf="userProfile?.product">{{ userProfile.product | titlecase }}</span>
-            <span class="user-followers">{{ userProfile?.followers?.total }} followers</span>
+            <span class="user-id">{{ userProfile.id }}</span>
+            <span class="user-product" *ngIf="userProfile.product">{{ userProfile.product | titlecase }}</span>
+            <span class="user-followers">{{ userProfile.followers.total }} followers</span>
           </div>
         </div>
         <button (click)="disconnect()" class="btn btn-disconnect">

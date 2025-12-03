@@ -15,8 +15,7 @@ import { DJService } from '../shared/dj.service';
   styleUrls: ['./dj-list.component.scss'],
 })
 export class DJListComponent {
-  public readonly djsPerPage = 9;
-
+  public djsPerPage = 9;
   public djList: DJ[] | undefined = undefined;
   public listStart = 0;
 
