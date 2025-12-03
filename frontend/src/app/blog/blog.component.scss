@@ -4,55 +4,18 @@
   padding: 2rem;
 }
 
-.modular-card {
-  width: 100%;
-  max-width: 1000px;
-  padding: 1.5rem 2rem;
-  
-  background-color: rgba(0, 0, 0, 0.8);
-  
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.card-title {
-  color: #fecb33;
-  font-size: 2rem;
-  font-weight: 700;
-  border-bottom: 2px solid #fecb33;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.card-content {
-  color: #FFFFFF;
-  font-family: "Bree Serif", serif;
-}
-
-h2 {
-  color: #fecb33;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(254, 203, 51, 0.3);
-  padding-bottom: 0.5rem;
-}
-
 p {
   padding: 0.5rem 0 0.5rem 0;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(51, 51, 51, 0.9);
 }
 
 .byline {
   margin-top: 2rem;
   padding: 1rem;
-  background-color: rgba(254, 203, 51, 0.1);
-  border: 1px solid rgba(254, 203, 51, 0.3);
+  background-color: rgba(198, 40, 40, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   font-weight: bold;
-  color: #fecb33;
+  color: #c62828;
 }

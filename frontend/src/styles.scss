@@ -23,14 +23,29 @@ body {
 }
 
 /* Modular Card System - KMNR Design Language */
+/*
 .modular-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 20px;
   padding: 24px;
+}
+*/
+
+.modular-card {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px;
+  padding: 1.5rem 2rem;
+  
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -47,15 +62,47 @@ body {
 }
 
 .card-title {
-  font-size: 1.8rem;
+  color: #c62828;
+  font-size: 2rem;
   font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 16px;
-  border-bottom: 3px solid #e74c3c;
-  padding-bottom: 8px;
+  border-bottom: 2px solid #c62828;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card-title-alt {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #c62828;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.card-heading {
+  color: #c62828;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(198, 40, 40, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.card-important {
+  color: #c62828;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .card-content {
-  color: #34495e;
+  color: rgba(51, 51, 51, 0.9);
+  font-family: "Bree Serif", serif;
   line-height: 1.6;
+}
+
+.card-content.center {
+  padding: 1.5rem;
+  text-align: center;
 }
