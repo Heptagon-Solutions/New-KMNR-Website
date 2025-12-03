@@ -1,15 +1,3 @@
-h1 {
-  font-family: "Bree Serif", serif;
-  border-top: 2px solid #c62828;
-  border-bottom: 2px solid #c62828;
-  padding-left: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  background-color: rgba(198, 40, 40, 0.1);
-  border-radius: 8px;
-}
-
 .home {
   display: flex;
   flex-direction: column;
@@ -26,55 +14,19 @@ h1 {
   min-height: 500px;
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
 }
 
-.background-text-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  pointer-events: none;
-  font-size: 3rem;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.1);
-  white-space: pre-line;
-  padding: 2rem;
-  line-height: 1.2;
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.content-overlay {
+.home-content-grid {
   position: relative;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.8);
+  // background-color: rgba(255, 255, 255, 0.8);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  backdrop-filter: blur(2px);
+  // backdrop-filter: blur(2px);
   border-radius: 8px;
   width: 100%;
   margin: 0 auto;
   justify-items: center;
-  align-items: center;
-}
-
-.artist-features, .album-reviews, .dj-playlists {
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.artist-features h2, .album-reviews h2, .dj-playlists h2 {
-  background-color: rgba(198, 40, 40, 0.2);
-  color: #c62828;
-  padding: 0.8rem;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  font-weight: bold;
+  align-items: flex-start;
 }
