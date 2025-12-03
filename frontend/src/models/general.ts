@@ -1,43 +1,16 @@
-export type DayOfTheWeek =
-  | 'Sunday'
-  | 'Monday'
-  | 'Tuesday'
-  | 'Wednesday'
-  | 'Thursday'
-  | 'Friday'
-  | 'Saturday';
+export enum DayOfTheWeek {
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+}
 
 export interface Semester {
   term: string;
   year: number;
-}
-
-export interface DJ {
-  id: number;
-  name: string;
-  genres: string;
-  show?: string;
-}
-
-export interface TownAndCampusNewsEntry {
-  title: string;
-  location: string;
-  contact_email: string;
-  description: string;
-}
-
-export interface TownAndCampusNewsEntryDetailed {
-  id: number;
-  title: string;
-  organization: string;
-  description: string;
-  location: string;
-  website: string;
-  contact_name: string;
-  contact_email: string;
-  approved: boolean;
-  submit_date: string; // ??? Date object instead ???
-  expiration_date: string; // ^
 }
 
 export interface ContactInfo {

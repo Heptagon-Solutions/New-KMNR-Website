@@ -30,11 +30,6 @@ export class AdminNewsComponent {
 
   private totalEntries: number | undefined = undefined;
 
-  public newNews: Partial<TownAndCampusNewsEntryDetailed> = {
-    title: '',
-    description: '',
-  };
-
   constructor(private readonly newsService: NewsService) {
     newsService.getNewsCount().subscribe(count => (this.totalEntries = count));
 
@@ -61,18 +56,15 @@ export class AdminNewsComponent {
 
   deleteNews(entryId: number): void {
     if (confirm('Are you sure you want to delete this news entry?')) {
-      this.newsService
-        .deleteNewsEntry(entryId.toString())
-        .then(() => {
-          if (this.newsEntries) {
-            this.newsEntries = this.newsEntries.filter(
-              entry => entry.id !== entryId
-            );
+      this.newsService.deleteNewsEntry(entryId).subscribe({
+        next: (success: boolean) => {
+          if (success) {
+            console.log('Successfully deleted news entry');
+          } else {
+            console.log('Could not delete news entry');
           }
-        })
-        .catch(error => {
-          console.error('Error deleting news:', error);
-        });
+        },
+      });
     }
   }
 }
