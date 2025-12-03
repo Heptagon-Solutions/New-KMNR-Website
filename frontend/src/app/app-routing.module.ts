@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -15,7 +14,7 @@ import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
@@ -89,9 +88,3 @@ const routes: Routes = [
     redirectTo: '',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
