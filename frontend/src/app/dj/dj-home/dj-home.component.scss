@@ -89,17 +89,20 @@ h2 {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.no-playlists {
+.no-playlists,
+.no-shows {
   text-align: center;
   padding: 20px;
   color: rgba(255, 255, 255, 0.6);
 }
 
-.playlists-container {
+.playlists-container,
+.shows-container {
   margin-top: 20px;
 }
 
-.playlist-item {
+.playlist-item,
+.show-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,16 +113,19 @@ h2 {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.playlist-info {
+.playlist-info,
+.show-info {
   flex: 1;
 }
 
-.playlist-info h4 {
+.playlist-info h4,
+.show-info h4 {
   margin: 0 0 5px 0;
   color: #fecb33;
 }
 
-.playlist-meta {
+.playlist-meta,
+.show-meta {
   font-size: 0.9em;
   color: rgba(255, 255, 255, 0.7);
   margin: 5px 0;
@@ -134,19 +140,20 @@ h2 {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.playlist-description {
+.playlist-description,
+.show-description {
   margin: 5px 0 0 0;
   font-style: italic;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.playlist-actions {
+.action-buttons {
   display: flex;
   gap: 10px;
 }
 
-.publish-btn,
-.view-spotify-btn {
+.post-button,
+.view-button {
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
@@ -155,26 +162,26 @@ h2 {
   transition: background-color 0.3s;
 }
 
-.publish-btn {
+.post-button {
   background-color: #1db954;
   color: white;
 }
 
-.publish-btn:hover:not(:disabled) {
+.post-button:hover:not(:disabled) {
   background-color: #1ed760;
 }
 
-.publish-btn:disabled {
+.post-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.view-spotify-btn {
+.view-button {
   background-color: #191414;
   color: white;
 }
 
-.view-spotify-btn:hover {
+.view-button:hover {
   background-color: #333;
 }
 

@@ -9,6 +9,46 @@
       </p>
     </div>
 
+    <h2>Shows</h2>
+    <div>
+      <div *ngIf="loadingShows" class="loading">Loading shows...</div>
+
+      <div *ngIf="!loadingShows && shows.length === 0" class="no-shows">
+        <p>No shows found.</p>
+      </div>
+
+      <div *ngIf="!loadingShows && shows.length > 0" class="show-container">
+        <div *ngFor="let show of shows" class="show-item">
+          <div class="show-info">
+            <h4>{{ show.name || 'Unnamed Show' }}</h4>
+
+            <p class="show-meta">
+              <span>
+                <span class="dj-name" *ngFor="let host of show.hosts">
+                  {{ host.djName }}
+                </span>
+              </span>
+              <span class="date">
+                {{ show.day }} {{ show.startTime }}-{{ show.endTime }}
+              </span>
+            </p>
+
+            <p *ngIf="show.shortDesc" class="show-description">
+              {{ show.shortDesc }}
+            </p>
+          </div>
+
+          <div class="action-buttons">
+            <button class="post-button">Post Playlist</button>
+
+            <div>
+              <button class="view-button">View Show Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h2>Spotify Integration</h2>
     <div>
       <p *ngIf="!isSpotifyConnected" class="spotify-status">
@@ -26,42 +66,51 @@
       </button>
     </div>
 
-    <h2>DJ Playlists</h2>
-    <div *ngIf="isLoading" class="loading">Loading playlists...</div>
+    <h2>Playlists</h2>
+    <div>
+      <div *ngIf="loadingPlaylists" class="loading">Loading playlists...</div>
 
-    <div *ngIf="!isLoading && playlists.length === 0" class="no-playlists">
-      <p>No playlists found.</p>
-    </div>
+      <div
+        *ngIf="!loadingPlaylists && playlists.length === 0"
+        class="no-playlists"
+      >
+        <p>No playlists found.</p>
+      </div>
 
-    <div *ngIf="!isLoading && playlists.length > 0" class="playlists-container">
-      <div *ngFor="let playlist of playlists" class="playlist-item">
-        <div class="playlist-info">
-          <h4>{{ playlist.name || 'Unnamed Playlist' }}</h4>
+      <div
+        *ngIf="!loadingPlaylists && playlists.length > 0"
+        class="playlists-container"
+      >
+        <div *ngFor="let playlist of playlists" class="playlist-item">
+          <div class="playlist-info">
+            <h4>{{ playlist.name || 'Unnamed Playlist' }}</h4>
 
-          <p class="playlist-meta">
-            <span class="dj-name">{{ playlist.author.djName }}</span>
-            <span class="date">{{ playlist.datePlayed | date : 'short' }}</span>
-          </p>
+            <p class="playlist-meta">
+              <span class="dj-name">{{ playlist.author.djName }}</span>
+              <span class="date">{{
+                playlist.datePlayed | date : 'short'
+              }}</span>
+            </p>
 
-          <p *ngIf="playlist.description" class="playlist-description">
-            {{ playlist.description }}
-          </p>
-        </div>
+            <p *ngIf="playlist.description" class="playlist-description">
+              {{ playlist.description }}
+            </p>
+          </div>
 
-        <div class="playlist-actions">
-          <button
-            *ngIf="!playlist.spotifyPlaylistId"
-            (click)="publishToSpotify(playlist)"
-            [disabled]="!isSpotifyConnected"
-            class="publish-btn"
-          >
-            Publish to Spotify
-          </button>
-
-          <div *ngIf="playlist.spotifyPlaylistId">
+          <div class="action-buttons">
             <button
+              *ngIf="!playlist.spotifyPlaylistId"
+              (click)="publishToSpotify(playlist)"
+              [disabled]="!isSpotifyConnected"
+              class="post-button"
+            >
+              Publish to Spotify
+            </button>
+
+            <button
+              *ngIf="playlist.spotifyPlaylistId"
               (click)="openSpotifyPlaylist(playlist.spotifyPlaylistId)"
-              class="view-spotify-btn"
+              class="view-button"
             >
               View on Spotify
             </button>
