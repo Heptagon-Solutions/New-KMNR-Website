@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 import { API_URL } from 'src/constants';
 import {
@@ -45,23 +45,9 @@ export class NewsService {
     );
   }
 
-  public async updateNewsEntry(
-    id: string,
-    newsEntry: Partial<TownAndCampusNewsEntryDetailed>
-  ): Promise<TownAndCampusNewsEntryDetailed> {
-    const response = await fetch(API_URL + `admin/news/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newsEntry),
-    });
-    return await response.json();
-  }
-
-  public async deleteNewsEntry(id: string): Promise<void> {
-    await fetch(API_URL + `admin/news/${id}`, {
-      method: 'DELETE',
-    });
+  public deleteNewsEntry(id: number): Observable<boolean> {
+    console.log('TODO: There is no API endpoint to delete news articles.');
+    return of(false);
+    // return this.http.delete<boolean>(`${NEWS_API_URL}/${id}`);
   }
 }

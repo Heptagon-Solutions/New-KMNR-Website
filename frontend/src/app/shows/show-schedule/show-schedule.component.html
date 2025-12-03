@@ -19,20 +19,36 @@
           <tbody>
             <tr *ngFor="let time of times" class="schedule-row">
               <th class="time-slot">{{ parseTime(time) }}</th>
+
               <td *ngFor="let day of days" class="show-slot">
-                <div class="show-info" *ngIf="getShowForTimeSlot(time, day)">
-                  <span class="show-name">{{ getShowForTimeSlot(time, day)?.name || 'No Show' }}</span>
-                  <span class="show-dj" *ngIf="getShowForTimeSlot(time, day)?.dj">{{ getShowForTimeSlot(time, day)?.dj }}</span>
+                <div
+                  class="show-info"
+                  *ngIf="getShowForTimeSlot(time, day); else automation"
+                >
+                  <span class="show-name">
+                    {{ getShowForTimeSlot(time, day)?.name || 'No Show' }}
+                  </span>
+                  <span
+                    class="show-dj"
+                    *ngFor="
+                      let host of getShowForTimeSlot(time, day)?.hosts ?? []
+                    "
+                  >
+                    {{ host.djName }}
+                  </span>
                 </div>
-                <div class="empty-slot" *ngIf="!getShowForTimeSlot(time, day)">
-                  <span>Open Slot</span>
-                </div>
+
+                <ng-template #automation>
+                  <div class="empty-slot">
+                    <span>Automation</span>
+                  </div>
+                </ng-template>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      
+
       <div class="schedule-legend" *ngIf="shows.length === 0">
         <p>Loading show schedule...</p>
       </div>

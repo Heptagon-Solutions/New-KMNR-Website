@@ -4,9 +4,9 @@ export interface TownAndCampusNewsEntryFormData {
   location: string;
   contactName: string;
   contactEmail: string;
-  expirationDate?: string | null;
-  organization?: string | null;
-  website?: string | null;
+  expirationDate: string | null;
+  organization: string | null;
+  website: string | null;
 }
 
 export interface TownAndCampusNewsEntry {
