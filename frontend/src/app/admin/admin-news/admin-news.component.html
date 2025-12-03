@@ -9,20 +9,27 @@
       <table class="news-table">
         <thead>
           <tr>
+            <th>Id</th>
             <th>Title</th>
             <th>Description</th>
-            <th>Date</th>
+            <th>Submit Date</th>
+            <th>Expiration Date</th>
+            <th>Approved?</th>
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           <tr *ngFor="let entry of newsEntries">
+            <td>{{ entry.id }}</td>
             <td>{{ entry.title }}</td>
             <td>
               {{ entry.description | slice : 0 : 100
               }}{{ entry.description.length > 100 ? '...' : '' }}
             </td>
             <td>{{ entry.submitDate | date : 'short' }}</td>
+            <td>{{ entry.expirationDate | date : 'short' }}</td>
+            <td>{{ entry.approved ? 'Yes' : 'No' }}</td>
             <td>
               <button class="edit-btn" (click)="editNews(entry)">Edit</button>
               <button class="delete-btn" (click)="deleteNews(entry.id)">
