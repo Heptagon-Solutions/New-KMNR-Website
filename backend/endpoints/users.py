@@ -251,6 +251,12 @@ def list_djs():
                 (count, offset),
             )
             rows = cur.fetchall()
+
+        for row in rows:
+            img_bytes = row.get("profileImg")
+            if img_bytes is not None:
+                row["profileImg"] = base64.b64encode(img_bytes).decode("utf-8")
+
         return {"djs": rows}, 200
     except DatabaseError as e:
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
@@ -282,6 +288,10 @@ def get_dj(dj_id: int):
 
         if row is None:
             return {"message": "dj not found"}, 404
+
+        img_bytes = row.get("profileImg")
+        if img_bytes is not None:
+            row["profileImg"] = base64.b64encode(img_bytes).decode("utf-8")
 
         return row, 200
     except DatabaseError as e:
