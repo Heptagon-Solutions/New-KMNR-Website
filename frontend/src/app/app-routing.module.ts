@@ -16,6 +16,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminDJsComponent } from './admin/admin-djs/admin-djs.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
+import { DJHomeComponent } from './dj/dj-home/dj-home.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,15 @@ const routes: Routes = [
   {
     path: 'callback',
     component: SpotifyCallbackComponent,
+  },
+  {
+    path: 'dj',
+    children: [
+      {
+        path: '',
+        component: DJHomeComponent,
+      },
+    ],
   },
   {
     // TO DO: AUTHENTICATION HERE

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -14,7 +15,7 @@ interface BackendData {
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [CommonModule, BannerComponent],
+  imports: [CommonModule, RouterModule, BannerComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
