@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import base64
 from database import db, DatabaseError
 
 shows_bp = Blueprint("shows", __name__)
@@ -117,6 +118,10 @@ def list_shows():
 
             # Attach hosts for each show
             for s in shows:
+                img_bytes = s.get("show_image")
+                if img_bytes is not None:
+                    s["show_image"] = base64.b64encode(img_bytes).decode("utf-8")
+
                 cur.execute(
                     """
                     SELECT sh.dj_id, dj.dj_name, u.name as user_name, u.email as user_email
@@ -146,6 +151,10 @@ def get_show(show_id: int):
             show = cur.fetchone()
             if show is None:
                 return {"message": "show not found"}, 404
+
+            img_bytes = show.get("show_image")
+            if img_bytes is not None:
+                show["show_image"] = base64.b64encode(img_bytes).decode("utf-8")
 
             cur.execute(
                 """
