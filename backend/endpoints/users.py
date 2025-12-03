@@ -252,9 +252,6 @@ def list_djs():
             )
             rows = cur.fetchall()
 
-        img = rows[0]["profileImg"]
-        print(f"Profile image is of type {type(img)}")
-
         for row in rows:
             img_bytes = row.get("profileImg")
             if img_bytes is not None:
