@@ -6,6 +6,23 @@ import { PlaylistProfile } from 'src/models/playlist';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { PlaylistService } from 'src/app/services/playlist.service';
 
+const SAMPLE_PLAYLISTS: PlaylistProfile[] = [
+  {
+    id: 1,
+    datePlayed: '2025-10-1 13:45:13',
+    name: "Baby's first playlist",
+    hidden: false,
+    author: {
+      id: 1,
+      djName: 'A DJ',
+      userName: 'Real name',
+    },
+    show: null,
+    spotifyPlaylistId: null,
+    description: 'This is test data for a playlist object',
+  },
+];
+
 @Component({
   selector: 'dj-home',
   standalone: true,
@@ -35,17 +52,24 @@ export class DJHomeComponent implements OnInit {
   }
 
   loadPlaylists() {
-    this.isLoading = true;
-    this.playlistService.getPlaylists().subscribe({
-      next: playlists => {
-        this.playlists = playlists;
-        this.isLoading = false;
-      },
-      error: error => {
-        console.error('Failed to load playlists:', error);
-        this.isLoading = false;
-      },
-    });
+    if (!this.isSpotifyConnected) {
+      console.debug(
+        "Loading dummy playlist data since Spotify isn't connected..."
+      );
+      this.playlists = SAMPLE_PLAYLISTS;
+    } else {
+      this.isLoading = true;
+      this.playlistService.getPlaylists().subscribe({
+        next: playlists => {
+          this.playlists = playlists;
+          this.isLoading = false;
+        },
+        error: error => {
+          console.error('Failed to load playlists:', error);
+          this.isLoading = false;
+        },
+      });
+    }
   }
 
   publishToSpotify(playlist: PlaylistProfile) {

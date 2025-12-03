@@ -39,7 +39,7 @@
           <h4>{{ playlist.name || 'Unnamed Playlist' }}</h4>
 
           <p class="playlist-meta">
-            <span class="dj-name">{{ playlist.author || 'Unknown DJ' }}</span>
+            <span class="dj-name">{{ playlist.author.djName }}</span>
             <span class="date">{{ playlist.datePlayed | date : 'short' }}</span>
           </p>
 
