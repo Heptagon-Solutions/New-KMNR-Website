@@ -1,0 +1,23 @@
+<div class="webstream-popup">
+  <div class="current-show">
+    <webstream-player class="webstream" />
+
+    <div class="show-info" *ngIf="currentShow; else automation">
+      <strong class="listen">Listen in</strong>
+
+      <p>
+        <span *ngFor="let host of currentShow.hosts; let last = last">
+          {{ host.djName + (last ? '' : ',') }}
+        </span>
+      </p>
+    </div>
+
+    <ng-template #automation>
+      <div class="show-info">
+        <strong class="listen">Listen in</strong>
+
+        <p>DJ Binary Swag</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

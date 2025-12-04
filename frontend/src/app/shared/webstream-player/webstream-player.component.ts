@@ -1,33 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Show } from 'src/models/show';
-import { DayOfTheWeek } from 'src/models/general';
-
-const SAMPLE_SHOW: Show = {
-  id: 1,
-  name: 'Morning Vibes',
-  shortDesc: 'short desc',
-  day: DayOfTheWeek.Monday,
-  startTime: 8,
-  endTime: 10,
-  semester: {
-    term: 'Fall',
-    year: 2026,
-  },
-  hosts: [
-    {
-      id: 1,
-      djName: 'DJ John',
-      userName: 'dj-john-username',
-    },
-    {
-      id: 2,
-      djName: 'DJ Sarah',
-      userName: 'dj-sarah-username',
-    },
-  ],
-};
+const WEBSTREAM_SRC_URL = 'https://boombox.kmnr.org/webstream.mp3';
 
 @Component({
   selector: 'webstream-player',
@@ -36,11 +10,35 @@ const SAMPLE_SHOW: Show = {
   templateUrl: './webstream-player.component.html',
   styleUrls: ['./webstream-player.component.scss'],
 })
-export class WebstreamPlayerComponent {
-  protected currentShow: Show | undefined = undefined;
+export class WebstreamPlayerComponent implements OnInit {
+  protected audioElement: HTMLAudioElement | null = null;
+  protected audioSrc: string = WEBSTREAM_SRC_URL;
 
-  constructor() {
-    // Dummy data for now
-    this.currentShow = SAMPLE_SHOW;
+  protected isPlaying: boolean = false;
+
+  public ngOnInit() {
+    this.audioElement = document.getElementById(
+      'audioElement'
+    ) as HTMLAudioElement;
+  }
+
+  public play() {
+    if (this.audioElement) {
+      this.isPlaying = true;
+      this.audioElement.play();
+    }
+  }
+
+  public stop() {
+    if (this.audioElement) {
+      this.isPlaying = false;
+      this.audioElement.pause();
+
+      // Changing the src URL makes the browser flush its cached audio.
+      // This means on load(), it pulls the current, live webstream
+      // Then, upon play() it starts at the current live webstream instead of resuming where paused.
+      this.audioElement.src = WEBSTREAM_SRC_URL + '?_=' + new Date().getTime();
+      this.audioElement.load();
+    }
   }
 }

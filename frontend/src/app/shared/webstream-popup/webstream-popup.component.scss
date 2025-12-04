@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'Special Elite';
+  src: url('../../../assets/SpecialElite-Regular.woff2') format('woff2'),
+    url('../../../assets/SpecialElite-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.webstream-popup {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+
+  background-color: yellow;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
+
+  z-index: 9999;
+
+  margin: 0;
+  padding: 0;
+}
+
+.current-show {
+  font-family: 'Special Elite', 'Bree Serif', serif;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-evenly;
+}
+
+.webstream {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  width: 50vw;
+}
+
+.listen {
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 970px) {
+  .current-show {
+    justify-content: unset;
+  }
+  .webstream {
+    width: 300px;
+  }
+}

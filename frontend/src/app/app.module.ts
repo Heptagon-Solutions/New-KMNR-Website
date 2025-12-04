@@ -7,10 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './shared/top-bar/top-bar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { WebstreamPopupComponent } from './shared/webstream-popup/webstream-popup.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 import { PlaylistDisplayComponent } from './playlist-display/playlist-display.component';
-import { WebstreamPlayerComponent } from './shared/webstream-player/webstream-player.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { WebstreamPlayerComponent } from './shared/webstream-player/webstream-pl
     TopBarComponent,
     FooterComponent,
     PlaylistDisplayComponent,
-    WebstreamPlayerComponent,
+    WebstreamPopupComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,26 +1,9 @@
-<div class="webstream-player-container">
-  <div class="current-show">
-    <audio class="webstream" controls>
-      <source src="https://boombox.kmnr.org/webstream.mp3" />
-      Your browser does not support the audio element.
-    </audio>
+<div class="webstream-player">
+  <audio id="audioElement" class="webstream">
+    <source src="https://boombox.kmnr.org/webstream.mp3" />
+    Your browser does not support the audio element.
+  </audio>
 
-    <div class="show-info" *ngIf="currentShow; else automation">
-      <strong class="listen">Listen in</strong>
-
-      <p>
-        <span *ngFor="let host of currentShow.hosts; let last = last">
-          {{ host.djName + (last ? '' : ',') }}
-        </span>
-      </p>
-    </div>
-
-    <ng-template #automation>
-      <div class="show-info">
-        <strong class="listen">Listen in</strong>
-
-        <p>DJ Binary Swag</p>
-      </div>
-    </ng-template>
-  </div>
+  <button *ngIf="!isPlaying" (click)="play()">Play!</button>
+  <button *ngIf="isPlaying" (click)="stop()">Pause!</button>
 </div>
