@@ -9,44 +9,53 @@
 
 .webstream-popup {
   position: fixed;
+  z-index: 9999;
   right: 0;
   bottom: 0;
-  width: 280px;
+  // width: 280px;
+  // height: 200px;
+
+  margin: 0;
+  padding: 0;
 
   background-color: yellow;
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
 
-  z-index: 9999;
-
-  margin: 0;
-  padding: 0;
-}
-
-.current-show {
   font-family: 'Special Elite', 'Bree Serif', serif;
+
   display: flex;
-  align-items: center;
   flex-grow: 1;
+  flex-direction: row;
+
   justify-content: space-evenly;
+  align-items: center;
 }
 
-.webstream {
-  padding: 0.5rem;
+.right-side {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.webstream-player {
   margin-right: 1rem;
-  width: 50vw;
+  margin-left: auto;
 }
 
-.listen {
+.show-info {
+  padding: 0.5rem;
+}
+
+.current-show-label {
+  font-size: 0.9rem;
+}
+
+.show-name {
   font-size: 1.5rem;
 }
 
 @media screen and (min-width: 970px) {
-  .current-show {
-    justify-content: unset;
-  }
-  .webstream {
-    width: 300px;
-  }
+  /* TODO: CSS for small screens */
 }

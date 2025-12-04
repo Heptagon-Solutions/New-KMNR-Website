@@ -1,9 +1,18 @@
 <div class="webstream-popup">
-  <div class="current-show">
-    <webstream-player class="webstream" />
+  <img
+    src="../../../assets/newsnapman.svg"
+    alt="Show Image"
+    height="75px"
+    width="75px"
+  />
+
+  <div class="right-side">
+    <webstream-player class="webstream-player" />
 
     <div class="show-info" *ngIf="currentShow; else automation">
-      <strong class="listen">Listen in</strong>
+      <div><i class="current-show-label">Current Show</i></div>
+
+      <strong class="show-name">{{ currentShow.name }}</strong>
 
       <p>
         <span *ngFor="let host of currentShow.hosts; let last = last">
@@ -14,7 +23,9 @@
 
     <ng-template #automation>
       <div class="show-info">
-        <strong class="listen">Listen in</strong>
+        <div><i class="current-show-label">Current Show</i></div>
+
+        <strong class="show-name">Automation</strong>
 
         <p>DJ Binary Swag</p>
       </div>
