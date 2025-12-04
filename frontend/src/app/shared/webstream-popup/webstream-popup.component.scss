@@ -18,12 +18,13 @@
   margin: 0;
   padding: 0;
 
-  background-color: yellow;
+  color: white;
+  font-family: 'Special Elite', 'Bree Serif', serif;
+
+  background-color: black;
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
   -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
-
-  font-family: 'Special Elite', 'Bree Serif', serif;
 
   display: flex;
   flex-grow: 1;
@@ -31,6 +32,11 @@
 
   justify-content: space-evenly;
   align-items: flex-end;
+}
+
+.show-image {
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
 }
 
 .right-side {
@@ -45,7 +51,9 @@
 }
 
 .show-info {
-  padding: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .current-show-label {
