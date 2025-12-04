@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const WEBSTREAM_SRC_URL = 'https://boombox.kmnr.org/webstream.mp3';
@@ -11,6 +11,8 @@ const WEBSTREAM_SRC_URL = 'https://boombox.kmnr.org/webstream.mp3';
   styleUrls: ['./webstream-player.component.scss'],
 })
 export class WebstreamPlayerComponent implements OnInit {
+  @Input() public invertColor: boolean = false;
+
   protected audioElement: HTMLAudioElement | null = null;
   protected audioSrc: string = WEBSTREAM_SRC_URL;
 

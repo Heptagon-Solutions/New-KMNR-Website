@@ -4,6 +4,16 @@
     Your browser does not support the audio element.
   </audio>
 
-  <button *ngIf="!isPlaying" (click)="play()">Play!</button>
-  <button *ngIf="isPlaying" (click)="stop()">Pause!</button>
+  <img
+    class="play-stop-button"
+    [class.invert-color]="invertColor"
+    (click)="isPlaying ? stop() : play()"
+    [src]="
+      isPlaying
+        ? 'assets/img/stop-in-circle.svg'
+        : 'assets/img/play-in-circle.svg'
+    "
+    height="50px"
+    width="50px"
+  />
 </div>

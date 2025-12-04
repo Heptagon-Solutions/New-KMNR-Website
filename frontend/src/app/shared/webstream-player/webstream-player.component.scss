@@ -7,10 +7,12 @@
   font-display: swap;
 }
 
-.webstream {
-  padding: 0.5rem;
-  margin-right: 1rem;
-  width: 50vw;
+.play-stop-button {
+  cursor: pointer;
+}
+
+.invert-color {
+  filter: invert(1);
 }
 
 @media screen and (min-width: 970px) {
