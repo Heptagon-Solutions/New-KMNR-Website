@@ -7,24 +7,30 @@
   font-display: swap;
 }
 
+.popup-background {
+  position: fixed;
+  z-index: 9998;
+  right: 0;
+  bottom: 0;
+
+  width: 375px;
+  height: 162px;
+
+  margin: 0;
+  padding: 0;
+}
+
 .webstream-popup {
   position: fixed;
   z-index: 9999;
   right: 0;
   bottom: 0;
-  // width: 280px;
-  // height: 200px;
 
   margin: 0;
   padding: 0;
 
   color: white;
   font-family: 'Special Elite', 'Bree Serif', serif;
-
-  background-color: black;
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.6);
 
   display: flex;
   flex-grow: 1;
@@ -43,6 +49,7 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  // min-width: 300px;
 }
 
 .webstream-player {

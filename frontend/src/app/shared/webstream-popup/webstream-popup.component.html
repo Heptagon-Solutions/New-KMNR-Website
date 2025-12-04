@@ -1,35 +1,42 @@
-<div class="webstream-popup">
+<div>
   <img
-    src="assets/img/sample_show_image.jpg"
-    class="show-image"
-    alt="Show Image"
-    height="75px;"
-    width="75px;"
+    class="popup-background"
+    src="assets/img/webstream-popup-background.svg"
   />
 
-  <div class="right-side">
-    <webstream-player class="webstream-player" [invertColor]="true" />
+  <div class="webstream-popup">
+    <img
+      src="assets/img/sample_show_image.jpg"
+      class="show-image"
+      alt="Show Image"
+      height="75px;"
+      width="75px;"
+    />
 
-    <div class="show-info" *ngIf="currentShow; else automation">
-      <div><i class="current-show-label">Current Show</i></div>
+    <div class="right-side">
+      <webstream-player class="webstream-player" [invertColor]="true" />
 
-      <strong class="show-name">{{ currentShow.name }}</strong>
-
-      <p>
-        <span *ngFor="let host of currentShow.hosts; let last = last">
-          {{ host.djName + (last ? '' : ',') }}
-        </span>
-      </p>
-    </div>
-
-    <ng-template #automation>
-      <div class="show-info">
+      <div class="show-info" *ngIf="currentShow; else automation">
         <div><i class="current-show-label">Current Show</i></div>
 
-        <strong class="show-name">Automation</strong>
+        <strong class="show-name">{{ currentShow.name }}</strong>
 
-        <p>DJ Binary Swag</p>
+        <p>
+          <span *ngFor="let host of currentShow.hosts; let last = last">
+            {{ host.djName + (last ? '' : ',') }}
+          </span>
+        </p>
       </div>
-    </ng-template>
+
+      <ng-template #automation>
+        <div class="show-info">
+          <div><i class="current-show-label">Current Show</i></div>
+
+          <strong class="show-name">Automation</strong>
+
+          <p>DJ Binary Swag</p>
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>
