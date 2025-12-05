@@ -1,23 +1,10 @@
 @font-face {
   font-family: 'Special Elite';
-  src: url('../../../assets/SpecialElite-Regular.woff2') format('woff2'),
-    url('../../../assets/SpecialElite-Regular.woff') format('woff');
+  src: url('/assets/SpecialElite-Regular.woff2') format('woff2'),
+    url('/assets/SpecialElite-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-
-.popup-background {
-  position: fixed;
-  z-index: 9998;
-  right: 0;
-  bottom: 0;
-
-  width: 375px;
-  height: 162px;
-
-  margin: 0;
-  padding: 0;
 }
 
 .webstream-popup {
@@ -26,41 +13,41 @@
   right: 0;
   bottom: 0;
 
-  margin: 0;
-  padding: 0;
-
   color: white;
   font-family: 'Special Elite', 'Bree Serif', serif;
 
-  display: flex;
-  flex-grow: 1;
-  flex-direction: row;
+  background-image: url('/assets/img/webstream-popup-background.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 
-  justify-content: space-evenly;
-  align-items: flex-end;
+  /* The following grid setup ensures that the show-info div always stays in the lower right corner of the triangle (and thus always has a full background), no matter the size of the show-info div. */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas:
+    '.               grid-show-info-and-player'
+    'grid-show-image grid-show-info-and-player';
+
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
 .show-image {
-  margin-bottom: 0.5rem;
+  grid-area: grid-show-image;
+  align-self: end;
+  justify-self: end;
+
   border-radius: 10px;
 }
 
 .right-side {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  // min-width: 300px;
+  grid-area: grid-show-info-and-player;
+  align-self: end;
+  justify-self: end;
 }
 
 .webstream-player {
-  margin-right: 1rem;
-  margin-left: auto;
-}
-
-.show-info {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  justify-self: end;
 }
 
 .current-show-label {
