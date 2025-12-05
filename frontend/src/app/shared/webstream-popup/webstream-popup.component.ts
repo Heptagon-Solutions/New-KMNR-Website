@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 
 import { Show } from 'src/models/show';
 import { DayOfTheWeek } from 'src/models/general';
 import { WebstreamPlayerComponent } from '../webstream-player/webstream-player.component';
+import { FooterPositionService } from 'src/app/services/footer-position.service';
 
 const SAMPLE_SHOW: Show = {
   id: 1,
@@ -40,8 +42,17 @@ const SAMPLE_SHOW: Show = {
 export class WebstreamPopupComponent {
   protected currentShow: Show | undefined = undefined;
 
-  constructor() {
+  protected popupPosition: number = 0;
+
+  constructor(private readonly footerPositionService: FooterPositionService) {
     // Dummy data for now
     this.currentShow = SAMPLE_SHOW;
+
+    // Move the popup above the footer when it is visible
+    this.footerPositionService.topOfFooterPosition
+      .pipe(filter(y => y >= 0))
+      .subscribe(y => {
+        this.popupPosition = y;
+      });
   }
 }
