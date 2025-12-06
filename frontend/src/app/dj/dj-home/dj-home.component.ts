@@ -13,6 +13,7 @@ const SAMPLE_DJ: DJ = {
   id: 1,
   djName: 'A DJ',
   userName: 'Real name',
+  profileImg: null,
 };
 
 const SAMPLE_SHOWS: Show[] = [

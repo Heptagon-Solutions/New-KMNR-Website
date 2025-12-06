@@ -3,7 +3,7 @@ export interface DJ {
   djName: string;
   userName: string;
   // genres: string; // Will we have genres for DJs? Not currently supported by DB
-  // profile image here or in DJProfile?
+  profileImg: string | null;
 }
 
 export interface DJProfile extends DJ {
