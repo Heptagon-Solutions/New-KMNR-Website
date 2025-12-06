@@ -9,7 +9,10 @@
         [size]="200"
       />
 
-      <form (submit)="updateProfileImage(profileImageInput.files?.item(0))">
+      <form
+        (submit)="updateProfileImage(profileImageInput.files?.item(0))"
+        class="edit-profile-image-form"
+      >
         <input
           type="file"
           id="new-profile-image"
