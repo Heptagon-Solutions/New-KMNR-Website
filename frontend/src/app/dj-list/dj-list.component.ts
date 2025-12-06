@@ -5,13 +5,14 @@ import { RouterModule } from '@angular/router';
 import { API_URL } from 'src/constants';
 import { DJ } from 'src/models/dj';
 
-import { OnAirComponent } from '../shared/on-air/on-air.component';
 import { DJService } from '../services/dj.service';
+import { OnAirComponent } from '../shared/on-air/on-air.component';
+import { ProfileImageComponent } from '../shared/profile-image/profile-image.component';
 
 @Component({
   selector: 'dj-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, OnAirComponent],
+  imports: [CommonModule, RouterModule, OnAirComponent, ProfileImageComponent],
   templateUrl: './dj-list.component.html',
   styleUrls: ['./dj-list.component.scss'],
 })

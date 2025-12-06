@@ -4,16 +4,11 @@
     <h1 class="card-title">DISC JOCKEYS</h1>
     <div class="dj-list card-content center" *ngIf="djList">
       <div *ngFor="let dj of djList" class="dj-avatar">
-        <div class="picture">
-          <img
-            [src]="
-              dj.profileImg ? API_URL + dj.profileImg : '/assets/sonic.gif'
-            "
-            alt="{{ dj.djName }}'s profile image"
-            width="75px"
-            height="75px"
-          />
-        </div>
+        <profile-image
+          [imagePath]="dj.profileImg"
+          altText="{{ dj.djName }}'s profile image"
+          [size]="75"
+        />
         <h3>
           <a [routerLink]="['/djs', dj.id]">{{ dj.djName }}</a>
         </h3>

@@ -2,15 +2,17 @@
   <on-air />
   <hr />
   <div class="dj-info" *ngIf="dj; else errorOccured">
-    <div class="dj-picture">
-      <div class="picture">
-        <img src="../../../assets/sonic.gif" alt="sample" />
-      </div>
-    </div>
+    <profile-image
+      [imagePath]="dj.profileImg"
+      altText="{{ dj.djName }}'s profile image"
+      [size]="200"
+    />
+
     <div class="dj-description">
       <h1>{{ dj.djName }}</h1>
       <i>{{ dj.profileDesc }}</i>
     </div>
+
     <div class="dj-shows">
       <h2>FEATURED ON</h2>
       <h4>SHOW_NAME</h4>
