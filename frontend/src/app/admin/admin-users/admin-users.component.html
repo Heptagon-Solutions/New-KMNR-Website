@@ -1,15 +1,16 @@
-<div>
-  <div>
-    <h2>Users List</h2>
+<div class="modular-card">
+  <div class="card-content">
+    <h1 class="card-title">Users List</h1>
 
-    <div>
-      <table>
+    <div *ngIf="userList; else loading">
+      <table class="theme-table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Email</th>
             <th>Name</th>
             <th>Role</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -18,81 +19,83 @@
             <td>{{ user.email }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.role }}</td>
+            <td>
+              <button class="theme-button edit-btn">Edit</button>
+              <button class="theme-button delete-btn">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
+
+      <span>
+        <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+          Previous Page
+        </button>
+        <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+        <button
+          [disabled]="page + 1 >= (totalPages ?? 0)"
+          (click)="goToPage(page + 1)"
+        >
+          Next Page
+        </button>
+      </span>
     </div>
 
-    <br />
-
-    <span>
-      <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
-        Previous Page
-      </button>
-      <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
-      <button
-        [disabled]="page + 1 >= (totalPages ?? 0)"
-        (click)="goToPage(page + 1)"
-      >
-        Next Page
-      </button>
-    </span>
+    <ng-template #loading>
+      <div class="loading">
+        <p>Loading Users...</p>
+      </div>
+    </ng-template>
   </div>
 
-  <br />
+  <h1 class="card-title">Create New User</h1>
 
-  <div>
-    <h2>Create New User</h2>
+  <form
+    class="theme-form"
+    [formGroup]="newUserForm"
+    (ngSubmit)="createUser($event)"
+  >
+    <div>
+      <label for="new-user-name-input">Name*: </label>
+      <input
+        id="new-user-name-input"
+        type="text"
+        required
+        formControlName="name"
+      />
+    </div>
 
-    <form [formGroup]="newUserForm" (ngSubmit)="createUser($event)">
-      <div>
-        <label for="new-user-name-input">Name*: </label>
-        <input
-          class="form-field"
-          id="new-user-name-input"
-          type="text"
-          required
-          formControlName="name"
-        />
-      </div>
+    <div>
+      <label for="new-user-email-input">Email*: </label>
+      <input
+        id="new-user-email-input"
+        type="text"
+        required
+        formControlName="email"
+      />
+    </div>
 
-      <div>
-        <label for="new-user-email-input">Email*: </label>
-        <input
-          class="form-field"
-          id="new-user-email-input"
-          type="text"
-          required
-          formControlName="email"
-        />
-      </div>
+    <div>
+      <label for="new-user-password-input">Password*: </label>
+      <input
+        id="new-user-password-input"
+        type="text"
+        required
+        formControlName="password"
+      />
+    </div>
 
-      <div>
-        <label for="new-user-password-input">Password*: </label>
-        <input
-          class="form-field"
-          id="new-user-password-input"
-          type="text"
-          required
-          formControlName="password"
-        />
-      </div>
+    <div>
+      <label for="new-user-role-input">Role: </label>
+      <input id="new-user-role-input" type="text" formControlName="role" />
+    </div>
 
-      <div>
-        <label for="new-user-role-input">Role: </label>
-        <input
-          class="form-field"
-          id="new-user-role-input"
-          type="text"
-          formControlName="role"
-        />
-      </div>
+    <div *ngIf="newUserErrorMessage">
+      {{ newUserErrorMessage }}
+    </div>
 
-      <div *ngIf="newUserErrorMessage">
-        {{ newUserErrorMessage }}
-      </div>
-
-      <button type="submit">Create User</button>
-    </form>
-  </div>
+    <button type="submit" class="theme-button submit-button">
+      Create User
+    </button>
+  </form>
 </div>
