@@ -376,7 +376,7 @@ def get_dj_profile_image(dj_id: int):
 
         return send_file(
             BytesIO(image_bytes),
-            download_name=f"dj-{dj_id}-profile-image.png",
+            mimetype="image",
         )
 
     except DatabaseError as e:
