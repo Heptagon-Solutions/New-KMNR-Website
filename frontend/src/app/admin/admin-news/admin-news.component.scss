@@ -5,51 +5,10 @@
   padding: 2rem;
 }
 
-/* Style for news table */
-.news-table {
-  width: 100%;
-  color: #333333;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
-}
-
-.news-table th {
-  background-color: rgba(254, 203, 51, 0.2);
-  color: #c62828;
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 2px solid #c62828;
-  font-weight: 600;
-}
-
-.news-table td {
-  padding: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  vertical-align: top;
-}
-
-.news-table tr:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Button Styles */
-.edit-btn,
-.delete-btn,
-.add-btn {
-  padding: 0.5rem 1rem;
-  margin: 0 0.25rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
 .edit-btn {
   background-color: #4caf50;
   color: white;
 }
-
 .edit-btn:hover {
   background-color: #45a049;
 }
@@ -58,7 +17,6 @@
   background-color: #f44336;
   color: white;
 }
-
 .delete-btn:hover {
   background-color: #da190b;
 }

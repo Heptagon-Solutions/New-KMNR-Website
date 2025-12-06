@@ -2,11 +2,8 @@
   <h1 class="card-title">Manage News</h1>
   <div class="card-content">
     <!-- News Table -->
-    <div
-      class="news-table-container"
-      *ngIf="newsEntries && newsEntries.length > 0; else noNews"
-    >
-      <table class="news-table">
+    <div *ngIf="newsEntries && newsEntries.length > 0; else noNews">
+      <table class="theme-table">
         <thead>
           <tr>
             <th>Id</th>
@@ -31,14 +28,32 @@
             <td>{{ entry.expirationDate | date : 'short' }}</td>
             <td>{{ entry.approved ? 'Yes' : 'No' }}</td>
             <td>
-              <button class="edit-btn" (click)="editNews(entry)">Edit</button>
-              <button class="delete-btn" (click)="deleteNews(entry.id)">
+              <button class="theme-button edit-btn" (click)="editNews(entry)">
+                Edit
+              </button>
+              <button
+                class="theme-button delete-btn"
+                (click)="deleteNews(entry.id)"
+              >
                 Delete
               </button>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <span>
+        <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
+          Previous Page
+        </button>
+        <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
+        <button
+          [disabled]="page + 1 >= (totalPages ?? 0)"
+          (click)="goToPage(page + 1)"
+        >
+          Next Page
+        </button>
+      </span>
     </div>
 
     <ng-template #noNews>
@@ -47,19 +62,4 @@
       </div>
     </ng-template>
   </div>
-
-  <br />
-
-  <span>
-    <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
-      Previous Page
-    </button>
-    <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
-    <button
-      [disabled]="page + 1 >= (totalPages ?? 0)"
-      (click)="goToPage(page + 1)"
-    >
-      Next Page
-    </button>
-  </span>
 </div>
