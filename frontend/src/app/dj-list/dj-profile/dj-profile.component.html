@@ -2,11 +2,32 @@
   <on-air />
   <hr />
   <div class="dj-info" *ngIf="dj; else errorOccured">
-    <profile-image
-      [imagePath]="dj.profileImg"
-      altText="{{ dj.djName }}'s profile image"
-      [size]="200"
-    />
+    <div>
+      <profile-image
+        [imagePath]="dj.profileImg"
+        altText="{{ dj.djName }}'s profile image"
+        [size]="200"
+      />
+
+      <form (submit)="updateProfileImage(profileImageInput.files?.item(0))">
+        <input
+          type="file"
+          id="new-profile-image"
+          name="new-profile-image"
+          accept="image"
+          (change)="isNewProfileImageValid = profileImageInput.value.length > 0"
+          #profileImageInput
+        />
+        <br />
+
+        <input
+          type="submit"
+          class="submit"
+          value="Change Profile Image"
+          [disabled]="!isNewProfileImageValid"
+        />
+      </form>
+    </div>
 
     <div class="dj-description">
       <h1>{{ dj.djName }}</h1>

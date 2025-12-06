@@ -43,4 +43,16 @@ export class DJService {
     const data = { userId, djName, trainingSemesterId, trainerId };
     return this.http.post<DJProfile>(DJS_API_URL, data);
   }
+
+  /** Returns the new profileImg value for DJ of given id. */
+  public updateDjProfileImg(id: number, newImage: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('image', newImage);
+    return this.http
+      .post<{ id: number; profileImg: string }>(
+        `${DJS_API_URL}/${id}/profile-image`,
+        formData
+      )
+      .pipe(map(resp => resp.profileImg));
+  }
 }
