@@ -1,0 +1,41 @@
+<div class="webstream-popup" [style.bottom.px]="popupPosition">
+  <img
+    src="assets/img/sample_show_image.jpg"
+    class="show-image"
+    alt="Show Image"
+    height="75px;"
+    width="75px;"
+  />
+
+  <div class="right-side">
+    <div class="webstream-player">
+      <webstream-player [invertColor]="true" />
+    </div>
+
+    <div class="show-info">
+      <div *ngIf="currentShow; else automation">
+        <p><i class="current-show-label">Current Show</i></p>
+
+        <p>
+          <strong class="show-name">{{ currentShow.name }}</strong>
+        </p>
+
+        <p>
+          <span *ngFor="let host of currentShow.hosts; let last = last">
+            {{ host.djName + (last ? '' : ',') }}
+          </span>
+        </p>
+      </div>
+
+      <ng-template #automation>
+        <div class="show-info">
+          <div><i class="current-show-label">Current Show</i></div>
+
+          <strong class="show-name">Automation</strong>
+
+          <p>DJ Binary Swag</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

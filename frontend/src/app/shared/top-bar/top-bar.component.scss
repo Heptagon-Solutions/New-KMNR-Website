@@ -1,123 +1,29 @@
 @font-face {
-    font-family: 'Special Elite';
-    src: url('../../../assets/SpecialElite-Regular.woff2') format('woff2'),
-        url('../../../assets/SpecialElite-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Special Elite';
+  src: url('/assets/SpecialElite-Regular.woff2') format('woff2'),
+    url('/assets/SpecialElite-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-.header-container {
+.nav-container {
   position: sticky;
   top: 0;
   z-index: 3;
-}
 
-.bar-grid {
-  font-family: "Special Elite", "Bree Serif", serif;
-  padding: 1rem 2rem;
-  background-color: #000000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
-
-.current-show {
-  font-family: "Special Elite", "Bree Serif", serif;
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: space-evenly;
-}
-
-.snapman-home-btn {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-  border: none;
-  border-radius: 50%;
-  padding: 0.75vmin;
-  margin-right: 1rem;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.snapman-home-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-.snapman-home-btn:active {
-  transform: scale(1.05);
-}
-
-.snapman-home-btn img {
-  width: 10vmin;
-  height: 10vmin;
-}
-
-.snapman-header {
-  display: block;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.current-show .webstream {
-  padding: 0.5rem;
-  margin-right: 1rem;
-  width: 50vw;
-}
-
-.listen {
-  font-size: 1.5rem;
-  color: white;
-}
-
-.contact-info {
-  font-family: "Roboto Condensed", sans-serif;
-  margin: 0;
-  color: white;
-  white-space: nowrap;
-  display: none;
-}
-
-.menu-icon {
-  display: flex;
-  align-items: center;
-}
-
-.menu-image {
-  height: 40px;
-  width: auto;
-  cursor: pointer;
-}
-
-/* Navigation Container */
-.nav-container {
   background-image: url('../../../assets/img/top-bar-flattened.svg');
-  position: relative;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  // background-image: url('../../../assets/img/navigation_transparent.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
   padding-top: 1.75vmax;
   padding-bottom: 3.25vmax;
+
+  display: flex;
+  justify-content: center;
 }
 
-/* Invisible Navigation Links */
 .invisible-navigation {
   position: relative;
   display: flex;
@@ -136,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Special Elite", "Bree Serif", serif;
+  font-family: 'Special Elite', 'Bree Serif', serif;
   font-weight: normal;
   text-decoration: none;
   font-size: 2.35vmax;
@@ -145,19 +51,12 @@
   opacity: 1;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   opacity: 0.8;
   font-weight: bolder;
 }
 
 @media screen and (min-width: 970px) {
-  .current-show {
-    justify-content: unset;
-  }
-  .current-show .webstream {
-    width: 300px;
-  }
-  .contact-info {
-    display: block;
-  }
+  /* TODO: Handle small screens */
 }
