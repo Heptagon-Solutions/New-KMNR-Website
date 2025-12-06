@@ -7,9 +7,7 @@
         <div class="picture">
           <img
             [src]="
-              dj.profileImg
-                ? 'data:image/png;base64,' + dj.profileImg
-                : '/assets/sonic.gif'
+              dj.profileImg ? API_URL + dj.profileImg : '/assets/sonic.gif'
             "
             alt="{{ dj.djName }}'s profile image"
             width="75px"

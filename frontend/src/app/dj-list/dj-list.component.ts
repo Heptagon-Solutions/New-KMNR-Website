@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { API_URL } from 'src/constants';
 import { DJ } from 'src/models/dj';
 
 import { OnAirComponent } from '../shared/on-air/on-air.component';
@@ -15,6 +16,8 @@ import { DJService } from '../services/dj.service';
   styleUrls: ['./dj-list.component.scss'],
 })
 export class DJListComponent {
+  protected readonly API_URL: string = API_URL;
+
   protected djList: DJ[] | undefined = undefined;
   protected page: number = 0;
 
