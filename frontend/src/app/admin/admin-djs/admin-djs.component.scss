@@ -1,3 +1,10 @@
+/* Center the card on the page */
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
 th {
   text-align: left;
 }
@@ -9,4 +16,39 @@ td {
 
 .form-field.ng-invalid.ng-touched {
   background-color: lightpink;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #da190b;
+}
+
+.add-btn {
+  background-color: #c62828;
+  color: #000000;
+  padding: 0.75rem 2rem;
+}
+
+.add-btn:hover {
+  background-color: #e6b82e;
+  transform: scale(1.02);
 }
