@@ -143,3 +143,50 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
   }
 }
+
+.theme-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  label {
+    margin-right: 0.5rem;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  .ng-invalid.ng-touched {
+    background-color: lightpink;
+  }
+
+  input,
+  textarea {
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #333333;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #c62828;
+    box-shadow: 0 0 5px rgba(254, 203, 51, 0.5);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .submit-button {
+    background-color: #c62828;
+    color: #000000;
+    padding: 0.75rem 2rem;
+  }
+  .submit-button:hover {
+    background-color: #e6b82e;
+    transform: scale(1.02);
+  }
+}

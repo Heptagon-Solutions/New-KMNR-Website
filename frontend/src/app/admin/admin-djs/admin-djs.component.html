@@ -1,7 +1,7 @@
 <div class="modular-card">
-  <h1 class="card-title">Manage DJs</h1>
-
   <div class="card-content">
+    <h1 class="card-title">Manage DJs</h1>
+
     <div *ngIf="djList; else loading">
       <table class="theme-table">
         <thead>
@@ -45,64 +45,68 @@
       </div>
     </ng-template>
 
-    <div>
-      <h2>Create New DJ</h2>
+    <h1 class="card-title">Create New DJ</h1>
 
-      <form [formGroup]="newDJForm" (ngSubmit)="createDJ($event)">
-        <div>
-          <label for="new-dj-user-id-input">User Id*: </label>
-          <input
-            class="form-field"
-            id="new-dj-user-id-input"
-            type="number"
-            min="0"
-            required
-            formControlName="userId"
-          />
-        </div>
+    <form
+      class="theme-form"
+      [formGroup]="newDJForm"
+      (ngSubmit)="createDJ($event)"
+    >
+      <div>
+        <label for="new-dj-user-id-input">User Id*: </label>
+        <input
+          class="form-field"
+          id="new-dj-user-id-input"
+          type="number"
+          min="0"
+          required
+          formControlName="userId"
+        />
+      </div>
 
-        <div>
-          <label for="new-dj-name-input">DJ Name*: </label>
-          <input
-            class="form-field"
-            id="new-dj-name-input"
-            type="text"
-            required
-            formControlName="name"
-          />
-        </div>
+      <div>
+        <label for="new-dj-name-input">DJ Name*: </label>
+        <input
+          class="form-field"
+          id="new-dj-name-input"
+          type="text"
+          required
+          formControlName="name"
+        />
+      </div>
 
-        <div>
-          <label for="new-dj-training-semester-input"
-            >Training Semester Id*:
-          </label>
-          <input
-            class="form-field"
-            id="new-dj-training-semester-input"
-            type="number"
-            min="0"
-            required
-            formControlName="trainingSemesterId"
-          />
-        </div>
+      <div>
+        <label for="new-dj-training-semester-input"
+          >Training Semester Id*:
+        </label>
+        <input
+          class="form-field"
+          id="new-dj-training-semester-input"
+          type="number"
+          min="0"
+          required
+          formControlName="trainingSemesterId"
+        />
+      </div>
 
-        <div>
-          <label for="new-dj-trainer-input">Trainer Id: </label>
-          <input
-            class="form-field"
-            id="new-dj-trainer-input"
-            type="number"
-            min="0"
-            formControlName="trainerId"
-          />
-        </div>
+      <div>
+        <label for="new-dj-trainer-input">Trainer Id: </label>
+        <input
+          class="form-field"
+          id="new-dj-trainer-input"
+          type="number"
+          min="0"
+          formControlName="trainerId"
+        />
+      </div>
 
-        <div *ngIf="newDJErrorMessage">
-          {{ newDJErrorMessage }}
-        </div>
+      <div *ngIf="newDJErrorMessage">
+        {{ newDJErrorMessage }}
+      </div>
 
-        <button type="submit">Create DJ</button>
-      </form>
-    </div>
+      <button type="submit" class="theme-button submit-button">
+        Create DJ
+      </button>
+    </form>
   </div>
 </div>
