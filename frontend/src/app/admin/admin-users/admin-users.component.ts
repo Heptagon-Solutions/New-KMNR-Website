@@ -51,7 +51,7 @@ export class AdminUsersComponent {
     }
   }
 
-  private readonly usersPerPage: number = 25;
+  private readonly usersPerPage: number = 10;
 
   private totalUsers: number | undefined = undefined;
 

@@ -27,7 +27,7 @@ export class AdminNewsComponent {
     }
   }
 
-  private readonly entriesPerPage: number = 25;
+  private readonly entriesPerPage: number = 10;
 
   private totalEntries: number | undefined = undefined;
 

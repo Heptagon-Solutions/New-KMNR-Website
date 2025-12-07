@@ -51,7 +51,7 @@ export class AdminDJsComponent {
     }
   }
 
-  private readonly djsPerPage: number = 25;
+  private readonly djsPerPage: number = 10;
 
   private totalDJs: number | undefined = undefined;
 
