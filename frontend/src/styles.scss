@@ -117,12 +117,14 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
 }
+.theme-button:disabled {
+  cursor: default;
+}
 
 .theme-table {
   width: 100%;
   color: #333333;
   border-collapse: collapse;
-  margin-bottom: 2rem;
 
   th {
     background-color: rgba(254, 203, 51, 0.2);

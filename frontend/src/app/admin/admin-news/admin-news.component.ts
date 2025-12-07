@@ -3,12 +3,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NewsService } from 'src/app/services/news.service';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
 
 @Component({
   selector: 'app-admin-news',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PaginatorComponent],
   templateUrl: './admin-news.component.html',
   styleUrls: ['./admin-news.component.scss'],
 })

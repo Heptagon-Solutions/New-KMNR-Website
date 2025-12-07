@@ -11,13 +11,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DJ } from 'src/models/dj';
 
 import { DJService } from 'src/app/services/dj.service';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 @Component({
   selector: 'app-admin-djs',
   templateUrl: './admin-djs.component.html',
   styleUrls: ['./admin-djs.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PaginatorComponent],
 })
 export class AdminDJsComponent {
   protected readonly newDJForm = new FormGroup({

@@ -25,18 +25,13 @@
         </tbody>
       </table>
 
-      <span>
-        <button [disabled]="page <= 0" (click)="goToPage(page - 1)">
-          Previous Page
-        </button>
-        <span>Page {{ page + 1 }} of {{ totalPages ?? '?' }}</span>
-        <button
-          [disabled]="page + 1 >= (totalPages ?? 0)"
-          (click)="goToPage(page + 1)"
-        >
-          Next Page
-        </button>
-      </span>
+      <div class="paginator">
+        <paginator
+          [totalPages]="totalPages"
+          [currentPage]="page"
+          (changePage)="goToPage($event)"
+        />
+      </div>
     </div>
 
     <ng-template #loading>
