@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DJ } from 'src/models/dj';
 
@@ -55,13 +56,21 @@ export class AdminDJsComponent {
 
   private totalDJs: number | undefined = undefined;
 
-  constructor(private readonly djService: DJService) {
+  constructor(
+    private readonly djService: DJService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     djService.getDJCount().subscribe(count => (this.totalDJs = count));
 
     this.goToPage(0);
   }
 
-  public goToPage(newPage: number) {
+  protected backToAdmin() {
+    this.router.navigate(['..'], { relativeTo: this.route });
+  }
+
+  protected goToPage(newPage: number) {
     if (newPage >= 0) {
       this.page = newPage;
 
@@ -71,7 +80,7 @@ export class AdminDJsComponent {
     }
   }
 
-  public createDJ(event: SubmitEvent) {
+  protected createDJ(event: SubmitEvent) {
     // Don't reload the page
     event.preventDefault();
 

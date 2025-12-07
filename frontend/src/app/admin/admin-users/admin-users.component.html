@@ -1,5 +1,11 @@
 <div class="modular-card">
   <div class="card-content">
+    <div>
+      <button class="theme-button red-button" (click)="backToAdmin()">
+        Back
+      </button>
+    </div>
+
     <h1 class="card-title">Users List</h1>
 
     <div *ngIf="userList; else loading">
@@ -20,8 +26,8 @@
             <td>{{ user.name }}</td>
             <td>{{ user.role }}</td>
             <td>
-              <button class="theme-button edit-btn">Edit</button>
-              <button class="theme-button delete-btn">Delete</button>
+              <button class="theme-button green-button">Edit</button>
+              <button class="theme-button red-button">Delete</button>
             </td>
           </tr>
         </tbody>

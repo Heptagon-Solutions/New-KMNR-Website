@@ -7,6 +7,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from 'src/models/user';
 
@@ -55,7 +56,11 @@ export class AdminUsersComponent {
 
   private totalUsers: number | undefined = undefined;
 
-  constructor(private readonly userService: UserService) {
+  constructor(
+    private readonly userService: UserService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     userService
       .getUserCount()
       .subscribe(userCount => (this.totalUsers = userCount));
@@ -63,7 +68,11 @@ export class AdminUsersComponent {
     this.goToPage(0);
   }
 
-  public goToPage(newPage: number) {
+  protected backToAdmin() {
+    this.router.navigate(['..'], { relativeTo: this.route });
+  }
+
+  protected goToPage(newPage: number) {
     if (newPage >= 0) {
       this.page = newPage;
 
@@ -73,7 +82,7 @@ export class AdminUsersComponent {
     }
   }
 
-  public createUser(event: SubmitEvent) {
+  protected createUser(event: SubmitEvent) {
     // Don't reload the page
     event.preventDefault();
 

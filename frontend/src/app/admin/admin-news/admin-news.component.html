@@ -1,5 +1,12 @@
 <div class="modular-card">
+  <div>
+    <button class="theme-button red-button" (click)="backToAdmin()">
+      Back
+    </button>
+  </div>
+
   <h1 class="card-title">Manage News</h1>
+
   <div class="card-content">
     <!-- News Table -->
     <div *ngIf="newsEntries && newsEntries.length > 0; else noNews">
@@ -28,11 +35,14 @@
             <td>{{ entry.expirationDate | date : 'short' }}</td>
             <td>{{ entry.approved ? 'Yes' : 'No' }}</td>
             <td>
-              <button class="theme-button edit-btn" (click)="editNews(entry)">
+              <button
+                class="theme-button green-button"
+                (click)="editNews(entry)"
+              >
                 Edit
               </button>
               <button
-                class="theme-button delete-btn"
+                class="theme-button red-button"
                 (click)="deleteNews(entry.id)"
               >
                 Delete
