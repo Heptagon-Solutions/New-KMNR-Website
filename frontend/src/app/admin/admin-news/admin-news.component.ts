@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { NewsService } from 'src/app/services/news.service';
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-news',
@@ -30,7 +31,9 @@ export class AdminNewsComponent {
 
   private totalEntries: number | undefined = undefined;
 
-  constructor(private readonly newsService: NewsService) {
+  constructor(
+    private readonly newsService: NewsService,
+    private readonly router: Router) {
     newsService.getNewsCount().subscribe(count => (this.totalEntries = count));
 
     this.goToPage(0);
@@ -50,7 +53,7 @@ export class AdminNewsComponent {
   }
 
   editNews(entry: TownAndCampusNewsEntryDetailed) {
-    // TODO: Implement edit functionality
+      this.router.navigate(['/admin/news/edit/', entry.id])
     console.log('Edit news:', entry);
   }
 

@@ -11,12 +11,14 @@ import { WebstreamPopupComponent } from './shared/webstream-popup/webstream-popu
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 import { PlaylistDisplayComponent } from './playlist-display/playlist-display.component';
+import { AdminNewsEditComponent } from './admin/admin-news-edit/admin-news-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SpotifyPlaylistComponent,
     SpotifyCallbackComponent,
+    AdminNewsEditComponent,
   ],
   imports: [
     BrowserModule,

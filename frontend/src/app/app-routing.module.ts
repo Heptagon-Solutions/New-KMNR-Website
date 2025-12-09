@@ -14,6 +14,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminDJsComponent } from './admin/admin-djs/admin-djs.component';
+import { AdminNewsEditComponent } from './admin/admin-news-edit/admin-news-edit.component';
 import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
 import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
 import { DJHomeComponent } from './dj/dj-home/dj-home.component';
@@ -93,6 +94,10 @@ const routes: Routes = [
       {
         path: 'news',
         component: AdminNewsComponent,
+      },
+      {
+        path: 'news/edit/:id',
+        component: AdminNewsEditComponent,
       },
       {
         path: 'users',
