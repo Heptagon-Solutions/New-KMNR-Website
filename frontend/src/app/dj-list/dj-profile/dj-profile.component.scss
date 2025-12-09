@@ -6,26 +6,9 @@ hr {
 
 .dj-info {
   display: flex;
-  font-family: "Bree Serif", serif;
+  font-family: 'Bree Serif', serif;
   align-items: center;
   padding: 0 10rem 0 10rem;
-
-  .dj-picture {
-    flex-grow: 1;
-    align-items: center;
-
-    .picture {
-      height: 12rem;
-      width: 12rem;
-      border: 2px solid #c62828;
-      border-radius: 50%;
-      overflow: hidden;
-
-      img {
-        text-align: center;
-      }
-    }
-  }
 
   .dj-description {
     flex-grow: 1;
@@ -48,8 +31,12 @@ hr {
 
     h2 {
       text-align: center;
-      font-family: "Roboto Condensed", sans-serif;
+      font-family: 'Roboto Condensed', sans-serif;
       padding-bottom: 1rem;
     }
   }
+}
+
+.edit-profile-image-form {
+  background-color: white;
 }

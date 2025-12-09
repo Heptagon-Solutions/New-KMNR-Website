@@ -1,5 +1,7 @@
-from flask import Blueprint, request
+from io import BytesIO
+from flask import Blueprint, request, send_file, url_for
 import base64
+
 from database import db, DatabaseError
 
 users_bp = Blueprint("accounts", __name__)
@@ -242,7 +244,7 @@ def list_djs():
                     `dj`.`id` AS `id`,
                     `u`.`name` AS `userName`,
                     `dj`.`dj_name` AS `djName`,
-                    `dj`.`profile_img` AS `profileImg`
+                    `dj`.`profile_img` IS NOT NULL AS `profileImg`
                 FROM `dj`
                 JOIN `user` `u` ON `dj`.`id` = `u`.`id`
                 ORDER BY `dj`.`id` ASC
@@ -253,9 +255,10 @@ def list_djs():
             rows = cur.fetchall()
 
         for row in rows:
-            img_bytes = row.get("profileImg")
-            if img_bytes is not None:
-                row["profileImg"] = base64.b64encode(img_bytes).decode("utf-8")
+            if row.get("profileImg"):
+                row["profileImg"] = url_for(".get_dj_profile_image", dj_id=row["id"])
+            else:
+                row["profileImg"] = None
 
         return {"djs": rows}, 200
     except DatabaseError as e:
@@ -277,7 +280,7 @@ def get_dj(dj_id: int):
                     `dj`.`trainer_dj_id` AS `trainerDJId`,
                     `dj`.`graduating_semester_id` AS `graduatingSemesterId`,
                     `dj`.`profile_desc` AS `profileDesc`,
-                    `dj`.`profile_img` AS `profileImg`
+                    `dj`.`profile_img` IS NOT NULL AS `profileImg`
                 FROM `dj`
                 JOIN `user` `u` ON `dj`.`id` = `u`.`id`
                 WHERE `dj`.`id` = %s
@@ -289,9 +292,10 @@ def get_dj(dj_id: int):
         if row is None:
             return {"message": "dj not found"}, 404
 
-        img_bytes = row.get("profileImg")
-        if img_bytes is not None:
-            row["profileImg"] = base64.b64encode(img_bytes).decode("utf-8")
+        if row.get("profileImg"):
+            row["profileImg"] = url_for(".get_dj_profile_image", dj_id=dj_id)
+        else:
+            row["profileImg"] = None
 
         return row, 200
     except DatabaseError as e:
@@ -311,9 +315,6 @@ def update_dj(dj_id: int):
     if "profile_desc" in data:
         fields.append("profile_desc = %s")
         values.append(data["profile_desc"])
-    if "profile_img" in data:
-        fields.append("profile_img = %s")
-        values.append(data["profile_img"])
     if "graduating_semester_id" in data:
         # verify semester exists before setting FK
         try:
@@ -359,6 +360,30 @@ def update_dj(dj_id: int):
         return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
 
 
+@users_bp.get("/djs/<int:dj_id>/profile-image")
+def get_dj_profile_image(dj_id: int):
+    try:
+        with db.connection.cursor() as cur:
+            cur.execute("SELECT profile_img FROM dj WHERE id = %s", (dj_id,))
+            results = cur.fetchone()
+
+        if results is None:
+            return {"message": "dj not found"}, 404
+
+        image_bytes: bytes = results.get("profile_img")
+        if image_bytes is None:
+            return {"message": "dj has no profile image"}, 404
+
+        return send_file(
+            BytesIO(image_bytes),
+            mimetype="image",
+        )
+
+    except DatabaseError as e:
+        db.connection.rollback()
+        return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
+
+
 @users_bp.post("/djs/<int:dj_id>/profile-image")
 def upload_dj_profile_image(dj_id: int):
     try:
@@ -391,7 +416,10 @@ def upload_dj_profile_image(dj_id: int):
             )
 
         db.connection.commit()
-        return {"message": "dj profile image updated"}, 200
+        return {
+            "id": dj_id,
+            "profileImg": url_for(".get_dj_profile_image", dj_id=dj_id),
+        }, 200
 
     except DatabaseError as e:
         db.connection.rollback()

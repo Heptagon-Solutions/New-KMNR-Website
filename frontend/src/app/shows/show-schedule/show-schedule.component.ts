@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DayOfTheWeek } from 'src/models/general';
 import { Show } from 'src/models/show';
 
-const SAMPLE_DATA = [
+const SAMPLE_DATA: Show[] = [
   {
     id: 1,
     name: 'Morning Vibes',
@@ -21,6 +21,7 @@ const SAMPLE_DATA = [
         id: 1,
         djName: 'DJ John',
         userName: 'dj-john-username',
+        profileImg: null,
       },
     ],
   },
@@ -40,11 +41,13 @@ const SAMPLE_DATA = [
         id: 2,
         djName: 'DJ Sarah',
         userName: 'dj-sarah-user-name',
+        profileImg: null,
       },
       {
         id: 3,
         djName: 'DJ Other',
         userName: 'dj-other-user-name',
+        profileImg: null,
       },
     ],
   },

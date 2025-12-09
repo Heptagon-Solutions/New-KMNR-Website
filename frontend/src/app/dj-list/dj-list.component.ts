@@ -2,19 +2,23 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { API_URL } from 'src/constants';
 import { DJ } from 'src/models/dj';
 
-import { OnAirComponent } from '../shared/on-air/on-air.component';
 import { DJService } from '../services/dj.service';
+import { OnAirComponent } from '../shared/on-air/on-air.component';
+import { ProfileImageComponent } from '../shared/profile-image/profile-image.component';
 
 @Component({
   selector: 'dj-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, OnAirComponent],
+  imports: [CommonModule, RouterModule, OnAirComponent, ProfileImageComponent],
   templateUrl: './dj-list.component.html',
   styleUrls: ['./dj-list.component.scss'],
 })
 export class DJListComponent {
+  protected readonly API_URL: string = API_URL;
+
   protected djList: DJ[] | undefined = undefined;
   protected page: number = 0;
 
@@ -32,7 +36,7 @@ export class DJListComponent {
   private totalDJs: number | undefined = undefined;
 
   constructor(private readonly djService: DJService) {
-    djService.getDJCount().subscribe(userCount => (this.totalDJs = userCount));
+    djService.getDJCount().subscribe(djCount => (this.totalDJs = djCount));
 
     this.goToPage(0);
   }
@@ -43,7 +47,7 @@ export class DJListComponent {
 
       this.djService
         .getDJs(this.djsPerPage, this.page)
-        .subscribe((users: DJ[]) => (this.djList = users));
+        .subscribe((djs: DJ[]) => (this.djList = djs));
     }
   }
 }

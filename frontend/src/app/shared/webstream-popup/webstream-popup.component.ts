@@ -23,11 +23,13 @@ const SAMPLE_SHOW: Show = {
       id: 1,
       djName: 'DJ John',
       userName: 'dj-john-username',
+      profileImg: null,
     },
     {
       id: 2,
       djName: 'DJ Sarah',
       userName: 'dj-sarah-username',
+      profileImg: null,
     },
   ],
 };
