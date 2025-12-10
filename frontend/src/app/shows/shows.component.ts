@@ -16,9 +16,11 @@ import { ShowScheduleComponent } from './show-schedule/show-schedule.component';
   styleUrls: ['./shows.component.scss'],
 })
 export class ShowsComponent {
-  public semester: Semester | undefined = undefined;
+  protected semester: Semester | undefined = undefined;
 
   constructor(private readonly showService: ShowService) {
-    showService.getSemester().then((s: Semester) => (this.semester = s));
+    this.showService
+      .getSemester()
+      .subscribe((s: Semester) => (this.semester = s));
   }
 }
