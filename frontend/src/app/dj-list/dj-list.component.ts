@@ -5,14 +5,21 @@ import { RouterModule } from '@angular/router';
 import { API_URL } from 'src/constants';
 import { DJ } from 'src/models/dj';
 
-import { DJService } from '../services/dj.service';
-import { OnAirComponent } from '../shared/on-air/on-air.component';
-import { ProfileImageComponent } from '../shared/profile-image/profile-image.component';
+import { DJService } from 'src/app/services/dj.service';
+import { OnAirComponent } from 'src/app/shared/on-air/on-air.component';
+import { ProfileImageComponent } from 'src/app/shared/profile-image/profile-image.component';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 @Component({
   selector: 'dj-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, OnAirComponent, ProfileImageComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    OnAirComponent,
+    ProfileImageComponent,
+    PaginatorComponent,
+  ],
   templateUrl: './dj-list.component.html',
   styleUrls: ['./dj-list.component.scss'],
 })
