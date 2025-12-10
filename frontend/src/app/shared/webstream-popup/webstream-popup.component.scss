@@ -30,6 +30,9 @@
 
   gap: 0.5rem;
   padding: 1rem;
+
+  /* Allow click events to pass through (popup should not block clicks) */
+  pointer-events: none;
 }
 
 .show-image {
@@ -38,6 +41,9 @@
   justify-self: end;
 
   border-radius: 10px;
+
+  /* Re-enable click events for this section */
+  pointer-events: all;
 }
 
 .right-side {
@@ -48,6 +54,14 @@
 
 .webstream-player {
   justify-self: end;
+
+  /* Re-enable click events for this section */
+  pointer-events: all;
+}
+
+.show-info {
+  /* Re-enable click events for this section */
+  pointer-events: all;
 }
 
 .current-show-label {

@@ -1,14 +1,18 @@
-<!-- Persistent Navigation Bar -->
-<app-top-bar></app-top-bar>
+<div>
+  <!-- Persistent Navigation Bar -->
+  <app-top-bar></app-top-bar>
 
-<!-- Main Content Area -->
-<main class="content-container">
-  <!-- All modular pages (cards) will be rendered here -->
-  <router-outlet></router-outlet>
-</main>
+  <!-- Main Content Area -->
+  <main class="content-container" #mainContent>
+    <!-- All webpages (defined in `app-routing.module.ts`) will be rendered here -->
+    <router-outlet></router-outlet>
+  </main>
 
-<!-- Webstream Player popup that hovers in bottom right corner -->
-<webstream-popup />
+  <!-- Webstream Player popup that hovers in bottom right corner -->
+  <webstream-popup />
 
-<!-- Optional: Persistent Footer -->
-<app-footer></app-footer>
+  <!-- Persistent Footer -->
+  <div #footer>
+    <app-footer />
+  </div>
+</div>
