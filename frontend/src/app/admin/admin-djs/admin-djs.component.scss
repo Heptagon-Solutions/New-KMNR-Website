@@ -1,12 +1,32 @@
-th {
-  text-align: left;
+/* Center the card on the page */
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
-td {
-  white-space: nowrap;
-  padding-right: 1rem;
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.form-field.ng-invalid.ng-touched {
-  background-color: lightpink;
+.green-button {
+  background-color: #4caf50;
+  color: white;
+}
+.green-button:hover {
+  background-color: #45a049;
+}
+
+.red-button {
+  background-color: #f44336;
+  color: white;
+}
+.red-button:hover {
+  background-color: #da190b;
+}
+
+.paginator {
+  justify-self: right;
 }

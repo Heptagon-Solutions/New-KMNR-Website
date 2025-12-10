@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import {
   FormControl,
   FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from 'src/models/user';
 
 import { UserService } from 'src/app/services/user.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 @Component({
   selector: 'admin-users',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PaginatorComponent],
   templateUrl: './admin-users.component.html',
   styleUrls: ['./admin-users.component.scss'],
 })
@@ -50,11 +52,15 @@ export class AdminUsersComponent {
     }
   }
 
-  private readonly usersPerPage: number = 25;
+  private readonly usersPerPage: number = 10;
 
   private totalUsers: number | undefined = undefined;
 
-  constructor(private readonly userService: UserService) {
+  constructor(
+    private readonly userService: UserService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     userService
       .getUserCount()
       .subscribe(userCount => (this.totalUsers = userCount));
@@ -62,7 +68,11 @@ export class AdminUsersComponent {
     this.goToPage(0);
   }
 
-  public goToPage(newPage: number) {
+  protected backToAdmin() {
+    this.router.navigate(['..'], { relativeTo: this.route });
+  }
+
+  protected goToPage(newPage: number) {
     if (newPage >= 0) {
       this.page = newPage;
 
@@ -72,7 +82,7 @@ export class AdminUsersComponent {
     }
   }
 
-  public createUser(event: SubmitEvent) {
+  protected createUser(event: SubmitEvent) {
     // Don't reload the page
     event.preventDefault();
 
