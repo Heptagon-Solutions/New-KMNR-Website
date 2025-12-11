@@ -5,12 +5,13 @@
   padding: 2rem;
 }
 
-/* DJ Grid Layout */
 .dj-grid {
+  justify-self: center;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(5, 170px);
+  gap: 1rem;
+  margin: 1rem 0;
 }
 
 .dj-card {
