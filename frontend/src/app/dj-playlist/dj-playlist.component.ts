@@ -58,8 +58,4 @@ export class DJPlaylistComponent implements OnInit {
   viewPlaylist(playlist: Playlist): void {
     this.router.navigate(['/playlist', playlist.id]);
   }
-
-  viewDJProfile(playlist: Playlist): void {
-    this.router.navigate(['/djs', playlist.dj_id]);
-  }
 }

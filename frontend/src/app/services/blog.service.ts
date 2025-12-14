@@ -115,6 +115,14 @@ export class BlogService {
     return post;
   }
 
+  public async getPostById(id: number): Promise<BlogPost | null> {
+    try {
+      return await this.getPost(id);
+    } catch (error) {
+      return null;
+    }
+  }
+
   public async getPostsByTag(tag: string): Promise<BlogPost[]> {
     try {
       const data = await fetch(URL + `tag/${tag}`);

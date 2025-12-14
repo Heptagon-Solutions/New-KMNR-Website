@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 import { DJ } from 'src/models';
 
@@ -19,7 +19,7 @@ export class DJListComponent implements OnInit {
   public djList: DJ[] | undefined = undefined;
   public listStart = 0;
 
-  constructor(private readonly djService: DJService) {}
+  constructor(private readonly djService: DJService, private router: Router) {}
 
   async ngOnInit() {
     console.log('🎧 DEBUG: DJ List component initializing...');
@@ -49,5 +49,9 @@ export class DJListComponent implements OnInit {
 
   get canGoPrevious(): boolean {
     return this.listStart > 0;
+  }
+
+  navigateToDJ(djId: number) {
+    this.router.navigate(['/djs', djId]);
   }
 }

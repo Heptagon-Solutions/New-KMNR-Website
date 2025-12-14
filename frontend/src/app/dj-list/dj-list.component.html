@@ -6,7 +6,7 @@
         *ngFor="let dj of djList.slice(listStart, listStart + djsPerPage)"
         class="dj-avatar"
       >
-        <div class="picture">
+        <div class="picture" (click)="navigateToDJ(dj.id)" style="cursor: pointer;">
           <img [src]="dj.image || '../../assets/sonic.gif'" [alt]="dj.name" />
         </div>
         <div class="dj-info">

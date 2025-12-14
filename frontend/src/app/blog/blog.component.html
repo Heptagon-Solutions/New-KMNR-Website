@@ -8,7 +8,7 @@
     
     <h2 class="section-header">Featured Posts</h2>
     <div class="featured-posts">
-      <article *ngFor="let post of featuredPosts" class="blog-post featured">
+      <article *ngFor="let post of featuredPosts" class="blog-post featured" (click)="navigateToPost(post.id)">
         <h3 class="post-title">{{ post.title }}</h3>
         <p class="post-meta">
           By {{ post.author }} • {{ formatDate(post.publish_date) }}
@@ -22,7 +22,7 @@
     
     <h2 class="section-header">All Posts</h2>
     <div class="all-posts">
-      <article *ngFor="let post of blogPosts" class="blog-post">
+      <article *ngFor="let post of blogPosts" class="blog-post" (click)="navigateToPost(post.id)">
         <h3 class="post-title">{{ post.title }}</h3>
         <p class="post-meta">
           By {{ post.author }} • {{ formatDate(post.publish_date) }}

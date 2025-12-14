@@ -1,0 +1,35 @@
+<div class="blog-detail">
+  <div class="modular-card">
+    <div *ngIf="loading" class="loading">
+      Loading blog post...
+    </div>
+    
+    <div *ngIf="error && !loading" class="error">
+      <p>{{ error }}</p>
+      <button (click)="goBack()" class="back-btn">← Back to Blog</button>
+    </div>
+    
+    <div *ngIf="blogPost && !loading" class="blog-content">
+      <nav class="breadcrumb">
+        <button (click)="goBack()" class="back-btn">← Back to Blog</button>
+      </nav>
+      
+      <article class="blog-post-full">
+        <header class="post-header">
+          <h1 class="post-title">{{ blogPost.title }}</h1>
+          <div class="post-meta">
+            <span class="author">By {{ blogPost.author }}</span>
+            <span class="date">{{ formatDate(blogPost.publish_date) }}</span>
+          </div>
+          <div class="post-tags" *ngIf="blogPost.tags && blogPost.tags.length > 0">
+            <span *ngFor="let tag of blogPost.tags" class="tag">#{{ tag }}</span>
+          </div>
+        </header>
+        
+        <div class="post-content">
+          <p [innerHTML]="blogPost.content"></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

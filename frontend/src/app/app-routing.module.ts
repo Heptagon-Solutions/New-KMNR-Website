@@ -14,6 +14,7 @@ import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 import { DJPlaylistComponent } from './dj-playlist/dj-playlist.component';
 import { DjProfileDetailComponent } from './dj-profile-detail/dj-profile-detail.component';
 import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 export const routes: Routes = [
   {
@@ -56,7 +57,16 @@ export const routes: Routes = [
   },
   {
     path: 'blog',
-    component: BlogComponent,
+    children: [
+      {
+        path: '',
+        component: BlogComponent,
+      },
+      {
+        path: ':id',
+        component: BlogDetailComponent,
+      },
+    ],
   },
   {
     path: 'login',

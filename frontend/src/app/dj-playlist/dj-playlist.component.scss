@@ -8,13 +8,6 @@
   width: 100%;
   max-width: 1200px;
   padding: 1.5rem 2rem;
-  
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-  
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .playlists-container {
@@ -437,20 +430,85 @@ h3 {
   
   .playlist-card {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     color: #333;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: 1px solid rgba(198, 40, 40, 0.1);
+    backdrop-filter: blur(8px);
     
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      border-color: #1DB954;
-      background-color: #fff;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(198, 40, 40, 0.15);
+      border-color: #c62828;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(254, 203, 51, 0.05) 100%);
+    }
+    
+    .playlist-header {
+      margin-bottom: 16px;
+      
+      .playlist-title {
+        color: #333;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+      }
+    }
+    
+    .playlist-info {
+      margin-bottom: 20px;
+      
+      .description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin: 0 0 12px 0;
+      }
+      
+      .metadata {
+        .track-count {
+          color: #888;
+          font-size: 0.85rem;
+          font-weight: 500;
+        }
+      }
+    }
+    
+    .playlist-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(198, 40, 40, 0.1);
+      
+      .played-date {
+        color: #666;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+      
+      .view-btn {
+        background: linear-gradient(135deg, #c62828, #e53935);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 24px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 3px 8px rgba(198, 40, 40, 0.3);
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
+          background: linear-gradient(135deg, #d32f2f, #f44336);
+        }
+      }
     }
   }
   
@@ -791,13 +849,22 @@ h3 {
           .dj-badge {
             background: linear-gradient(135deg, #c62828, #e53935);
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 0.85rem;
             font-weight: 600;
             white-space: nowrap;
             margin-left: 15px;
-            box-shadow: 0 2px 4px rgba(198, 40, 40, 0.3);
+            box-shadow: 0 3px 8px rgba(198, 40, 40, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
+              background: linear-gradient(135deg, #d32f2f, #f44336);
+            }
           }
         }
         
@@ -843,19 +910,21 @@ h3 {
           }
           
           .play-btn {
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #c62828, #e53935);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
+            box-shadow: 0 3px 8px rgba(198, 40, 40, 0.3);
             
             &:hover {
               transform: translateY(-2px);
-              box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+              box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
+              background: linear-gradient(135deg, #d32f2f, #f44336);
             }
           }
         }

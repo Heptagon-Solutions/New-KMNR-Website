@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { BlogService } from '../services/blog.service';
 import { BlogPost } from 'src/models';
 
@@ -14,7 +15,10 @@ export class BlogComponent implements OnInit {
   blogPosts: BlogPost[] = [];
   featuredPosts: BlogPost[] = [];
 
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private blogService: BlogService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     await this.loadBlogPosts();
@@ -41,5 +45,9 @@ export class BlogComponent implements OnInit {
   truncateContent(content: string, maxLength: number = 200): string {
     if (content.length <= maxLength) return content;
     return content.substring(0, maxLength) + '...';
+  }
+
+  navigateToPost(id: number) {
+    this.router.navigate(['/blog', id]);
   }
 }

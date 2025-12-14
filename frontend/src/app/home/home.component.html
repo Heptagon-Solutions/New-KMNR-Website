@@ -2,29 +2,43 @@
   <banner />
 
   <div class="modular-card">
-    <h1>Features</h1>
-
     <div class="home-content">
-      <div class="artist-features">
-        <h2>ARTISTS</h2>
-        <p>Upcoming</p>
-        <p>Last week</p>
+      <div class="latest-blog">
+        <h2>LATEST BLOG POST</h2>
+        <div *ngIf="latestBlogPost; else noBlogPost" (click)="navigateToBlogPost(latestBlogPost.id)" class="clickable-card">
+          <h3>{{ latestBlogPost.title }}</h3>
+          <p class="blog-meta">By {{ latestBlogPost.author }} | {{ formatDate(latestBlogPost.publish_date) }}</p>
+          <p>{{ truncateContent(latestBlogPost.content, 150) }}</p>
+        </div>
+        <ng-template #noBlogPost>
+          <p>No recent blog posts available.</p>
+        </ng-template>
       </div>
 
-      <div class="album-reviews">
-        <h2>ALBUM REVIEWS</h2>
-        <p>
-          This space is being used to show an example of contacting the backend
-          from the frontend. This message is from the backend:
-        </p>
-        <p>
-          <u>{{ backendMsg }}</u>
-        </p>
+      <div class="latest-song">
+        <h2>LATEST PLAYED SONG</h2>
+        <div *ngIf="latestPlayedSong; else noSong">
+          <h3>{{ latestPlayedSong.title }}</h3>
+          <p><strong>Artist:</strong> {{ latestPlayedSong.artist }}</p>
+          <p *ngIf="latestPlayedSong.album"><strong>Album:</strong> {{ latestPlayedSong.album }}</p>
+          <p class="song-meta">Played by {{ latestPlayedSong.dj_name }} | {{ formatPlayTime(latestPlayedSong.played_at) }}</p>
+        </div>
+        <ng-template #noSong>
+          <p>No recent songs available.</p>
+        </ng-template>
       </div>
 
-      <div class="dj-playlists">
-        <h2>PLAYLISTS</h2>
-        <p>Thing</p>
+      <div class="latest-playlist">
+        <h2>LATEST PLAYLIST</h2>
+        <div *ngIf="latestPlaylist; else noPlaylist" (click)="navigateToPlaylist(latestPlaylist.id)" class="clickable-card">
+          <h3>{{ latestPlaylist.name || 'Unnamed Playlist' }}</h3>
+          <p><strong>DJ:</strong> {{ latestPlaylist.dj_name }}</p>
+          <p *ngIf="latestPlaylist.description">{{ latestPlaylist.description }}</p>
+          <p class="playlist-meta">{{ formatDate(latestPlaylist.date_played) }}<span *ngIf="latestPlaylist.track_count"> | {{ latestPlaylist.track_count }} tracks</span></p>
+        </div>
+        <ng-template #noPlaylist>
+          <p>No recent playlists available.</p>
+        </ng-template>
       </div>
     </div>
   </div>

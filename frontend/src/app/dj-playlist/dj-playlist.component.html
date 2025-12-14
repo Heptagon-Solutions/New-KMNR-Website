@@ -20,7 +20,6 @@
         <div *ngFor="let playlist of playlists; trackBy: trackByFn" class="playlist-card" (click)="viewPlaylist(playlist)">
           <div class="playlist-header">
             <h3 class="playlist-title">{{playlist.name}}</h3>
-            <button class="dj-badge" (click)="viewDJProfile(playlist); $event.stopPropagation()">{{playlist.dj_name}}</button>
           </div>
           
           <div class="playlist-info">
