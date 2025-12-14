@@ -1,20 +1,37 @@
 <div class="blog">
   <div class="modular-card">
-    <h1 class="top-header">KMNR Blog</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro modi quod eos
-      impedit odio sit, iste rem vero in! Autem quis tempore nam suscipit
-      laboriosam porro, magnam temporibus dolore doloremque.
+    <h1 class="card-title">KMNR Blog</h1>
+    <p class="card-content">
+      Stay up to date with the latest news from KMNR 89.7 FM! Our DJs and staff share music reviews, 
+      concert coverage, station updates, and everything happening in the Missouri S&T music scene.
     </p>
-    <h2>Entries</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae at,
-      voluptatibus reprehenderit pariatur vero deleniti aliquid delectus id quo
-      vitae inventore asperiores beatae! Quam eius autem dignissimos, sit sapiente
-      dolorem.
-    </p>
-    <p class="byline">
-      <span class="date">March 1, 2023</span>
-    </p>
+    
+    <h2 class="section-header">Featured Posts</h2>
+    <div class="featured-posts">
+      <article *ngFor="let post of featuredPosts" class="blog-post featured">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-meta">
+          By {{ post.author }} • {{ formatDate(post.publish_date) }}
+        </p>
+        <p class="post-content">{{ truncateContent(post.content, 150) }}</p>
+        <div class="post-tags">
+          <span *ngFor="let tag of post.tags" class="tag">#{{ tag }}</span>
+        </div>
+      </article>
+    </div>
+    
+    <h2 class="section-header">All Posts</h2>
+    <div class="all-posts">
+      <article *ngFor="let post of blogPosts" class="blog-post">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-meta">
+          By {{ post.author }} • {{ formatDate(post.publish_date) }}
+        </p>
+        <p class="post-content">{{ truncateContent(post.content) }}</p>
+        <div class="post-tags">
+          <span *ngFor="let tag of post.tags" class="tag">#{{ tag }}</span>
+        </div>
+      </article>
+    </div>
   </div>
 </div>

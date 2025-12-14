@@ -1,25 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* SpecialElite Font Declaration */
+/* frontend/src/styles.scss */
+
 @font-face {
-  font-family: 'SpecialElite';
-  src: url('./assets/fonts/SpecialElite-Regular.woff2') format('woff2'),
-       url('./assets/fonts/SpecialElite-Regular.woff') format('woff'),
-       url('./assets/fonts/SpecialElite.ttf') format('truetype');
+  font-family: 'TypewriterFont';
+  src: url('/assets/fonts/MenuFont.woff2') format('woff2'),
+       url('/assets/fonts/MenuFont.woff') format('woff'),
+       url('/assets/fonts/MenuFont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 
 /* Global Design System - KMNR Retro-Modern Style */
 body, html {
   height: 100%;
   margin: 0;
-  font-family: "Inter", "Helvetica Neue", sans-serif;
+  font-family: "Inter", "Helvetica Neue", sans-serif; /* Clean, readable font */
 }
 
 body {
-  background-image: url('/assets/img/background_stickers.jpg');
+  background-image: url('assets/img/background_stickers.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -55,4 +55,18 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
   border-radius: 8px;
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 16px;
+  border-bottom: 3px solid #e74c3c;
+  padding-bottom: 8px;
+}
+
+.card-content {
+  color: #34495e;
+  line-height: 1.6;
 }

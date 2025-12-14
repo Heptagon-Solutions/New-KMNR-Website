@@ -3,27 +3,21 @@
     <tbody>
       <tr>
         <th></th>
-        <th rowspan="1">Sunday</th>
-        <th rowspan="1">Monday</th>
-        <th rowspan="1">Tuesday</th>
-        <th rowspan="1">Wednesday</th>
-        <th rowspan="1">Thursday</th>
-        <th rowspan="1">Friday</th>
-        <th rowspan="1">Saturday</th>
+        <th *ngFor="let day of days">{{ day }}</th>
       </tr>
       <tr *ngFor="let time of times">
         <th>{{ parseTime(time) }}</th>
-        <!--
-          This implementation not copied over yet. Original code was:
-
-          <td
-            v-for="(slot, idx) in timeslots[time]"
-            :key="idx"
-            :rowspan="slot.end_time - slot.start_time"
-          >
-            {{ getShow(slot.id) }}
-          </td>
-        -->
+        <td *ngFor="let day of days; let dayIdx = index" 
+            [ngClass]="{'show-cell': getShow(time, dayIdx), 'empty-cell': !getShow(time, dayIdx)}">
+          <div *ngIf="getShow(time, dayIdx) as show" class="show-info">
+            <div class="show-name">{{ show.show_name }}</div>
+            <div class="dj-name">{{ show.dj_name }}</div>
+            <div class="show-genre">{{ show.genre }}</div>
+          </div>
+          <div *ngIf="!getShow(time, dayIdx)" class="empty-slot">
+            <!-- Empty time slot -->
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

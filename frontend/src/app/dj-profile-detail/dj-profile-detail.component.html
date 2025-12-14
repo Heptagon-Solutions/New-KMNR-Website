@@ -1,0 +1,56 @@
+<div class="modular-card">
+  <div class="dj-profile-container">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <p>Loading DJ profile...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="error">
+      <h3>Error</h3>
+      <p>{{ error }}</p>
+      <button (click)="goBack()" class="btn btn-back">← Back to DJs</button>
+    </div>
+
+    <!-- DJ Profile -->
+    <div *ngIf="dj && !loading" class="dj-profile">
+      <!-- Header -->
+      <div class="dj-header">
+        <button (click)="goBack()" class="btn btn-back">← Back to DJs</button>
+        <div class="dj-info">
+          <img [src]="dj.image" [alt]="dj.name" class="dj-image" onerror="this.src='assets/img/default-dj.png'">
+          <div class="dj-details">
+            <h1>{{ dj.name }}</h1>
+            <p class="dj-genres"><strong>Genres:</strong> {{ dj.genres }}</p>
+            <p class="dj-bio">{{ dj.bio }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DJ's Playlists -->
+      <div class="dj-playlists-section">
+        <h2>Playlists by {{ dj.name }}</h2>
+        
+        <div *ngIf="djPlaylists.length > 0" class="playlists-grid">
+          <div *ngFor="let playlist of djPlaylists" class="playlist-card" (click)="viewPlaylist(playlist)">
+            <div class="playlist-info">
+              <h3 class="playlist-title">{{ playlist.name }}</h3>
+              <p class="playlist-description">{{ playlist.description || 'No description available' }}</p>
+              <div class="playlist-meta">
+                <span class="track-count">{{ playlist.track_count || 0 }} tracks</span>
+                <span class="played-date">{{ formatPlayedTime(playlist.date_played) }}</span>
+              </div>
+            </div>
+            <div class="playlist-actions">
+              <button class="btn-view">View Playlist →</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="djPlaylists.length === 0" class="no-playlists">
+          <p>No playlists found for {{ dj.name }}.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

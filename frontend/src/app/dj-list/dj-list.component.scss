@@ -2,7 +2,6 @@ $colors: #c62828, #6d597a, #0f7173;
 
 .djs {
   font-family: "Bree Serif", serif;
-  //text-align: center;
 }
 
 a {
@@ -17,27 +16,76 @@ a {
   border: 2px solid #c62828;
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
-    text-align: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
 .dj-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
-button {
+.dj-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dj-avatar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dj-info h3 {
+  margin: 8px 0 4px 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.dj-genres {
+  font-size: 0.9rem;
+  color: #0f7173;
+  font-style: italic;
+  margin: 0;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.pagination-controls button {
+  background-color: #0f7173;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
   margin-bottom: 4rem;
 }
 
-h1 {
-  border-top: 2px solid #c62828;
-  border-bottom: 2px solid #c62828;
-  padding-left: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #0d5f61;
+}
+
+.pagination-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

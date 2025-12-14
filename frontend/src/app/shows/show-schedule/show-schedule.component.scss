@@ -1,23 +1,72 @@
-table {
-  margin-bottom: 4rem;
+.week-grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-table,
+table {
+  margin-bottom: 4rem;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
 th,
 td {
   border: 1px solid #d9d9d9;
-  border-spacing: 0;
+  width: calc(100% / 8);
+  padding: 12px;
+  vertical-align: middle;
 }
 
 th {
   color: #c62828;
   text-align: center;
+  font-weight: bold;
+  background-color: rgba(198, 40, 40, 0.1);
 }
 
 td {
   font-family: "Roboto Condensed", sans-serif;
   color: #0f7173;
   text-align: center;
+  min-height: 60px;
+  position: relative;
+}
+
+.show-cell {
+  background-color: rgba(15, 113, 115, 0.1);
+  border-left: 3px solid #0f7173;
+}
+
+.empty-cell {
+  background-color: rgba(217, 217, 217, 0.1);
+}
+
+.show-info {
+  padding: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.show-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.dj-name {
+  font-size: 0.8rem;
+  color: #c62828;
+  margin-bottom: 2px;
+}
+
+.show-genre {
+  font-size: 0.7rem;
+  font-style: italic;
+  opacity: 0.8;
 }
 
 .automation {

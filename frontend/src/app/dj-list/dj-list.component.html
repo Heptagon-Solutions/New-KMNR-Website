@@ -1,21 +1,25 @@
 <div class="djs">
-  <on-air />
   <div class="modular-card">
-    <h1>DISC JOCKEYS</h1>
+    <h1 class="card-title">DISC JOCKEYS</h1>
     <div class="dj-list" *ngIf="djList">
       <div
         *ngFor="let dj of djList.slice(listStart, listStart + djsPerPage)"
         class="dj-avatar"
       >
         <div class="picture">
-          <img src="../../assets/sonic.gif" alt="sample" />
+          <img [src]="dj.image || '../../assets/sonic.gif'" [alt]="dj.name" />
         </div>
-        <h3>
-          <a [routerLink]="['/djs', dj.id]">{{ dj.name }}</a>
-        </h3>
-        <i>{{ dj.genres }}</i>
+        <div class="dj-info">
+          <h3>
+            <a [routerLink]="['/djs', dj.id]">{{ dj.name }}</a>
+          </h3>
+          <p class="dj-genres">{{ dj.genres }}</p>
+        </div>
       </div>
     </div>
-    <button class="next">Next</button>
+    <div class="pagination-controls">
+      <button class="prev" (click)="previousPage()" [disabled]="!canGoPrevious">Previous</button>
+      <button class="next" (click)="nextPage()" [disabled]="!canGoNext">Next</button>
+    </div>
   </div>
 </div>

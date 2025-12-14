@@ -48,21 +48,22 @@ def create_app():
         import example_endpoints
         import endpoints
         
-        # Import Spotify endpoints
-        try:
-            from endpoints.spotify import spotify_bp
-            app.register_blueprint(spotify_bp)
-            print("✅ Spotify endpoints loaded successfully")
-        except Exception as e:
-            print(f"❌ Failed to load Spotify endpoints: {e}")
-            
+        
         # Import Playlist endpoints
         try:
             from endpoints.playlist import playlist_bp
-            app.register_blueprint(playlist_bp)
+            app.register_blueprint(playlist_bp, url_prefix='/playlist')
             print("✅ Playlist endpoints loaded successfully")
         except Exception as e:
             print(f"❌ Failed to load Playlist endpoints: {e}")
+            
+        # Import DJ endpoints
+        try:
+            from endpoints.dj import dj_bp
+            app.register_blueprint(dj_bp, url_prefix='/djs')
+            print("✅ DJ endpoints loaded successfully")
+        except Exception as e:
+            print(f"❌ Failed to load DJ endpoints: {e}")
 
         return app
 

@@ -7,6 +7,8 @@ export interface DJ {
   id: number;
   name: string;
   genres: string;
+  image?: string;
+  bio?: string;
 }
 
 export interface TownAndCampusNewsEntry {
@@ -57,4 +59,46 @@ export interface ExecutiveBoard {
   newsDirector: string;
   productions: string;
   historian: string;
+}
+
+export interface PlaylistEntry {
+  id: number;
+  artist: string;
+  title: string;
+  album?: string;
+  genre: string;
+  played_at: string;
+  dj_name: string;
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  publish_date: string;
+  tags: string[];
+  featured: boolean;
+}
+
+export interface ShowScheduleEntry {
+  id: number;
+  show_name: string;
+  dj_id: number;
+  dj_name: string;
+  day_of_week: number;
+  start_time: number;
+  end_time: number;
+  genre: string;
+  description?: string;
+}
+
+export interface Playlist {
+  id: number;
+  name?: string;
+  description?: string;
+  date_played: string;
+  dj_id: number;
+  dj_name: string;
+  track_count?: number;
 }

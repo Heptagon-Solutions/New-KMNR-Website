@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-docker": "ng serve --host 0.0.0.0",
+    "start-docker": "ng serve --host 0.0.0.0 --disable-host-check --serve-path / --public-host 0.0.0.0:4200",
     "backend": "json-server dev-db.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

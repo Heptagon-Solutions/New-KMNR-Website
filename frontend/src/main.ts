@@ -4,12 +4,10 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app-routing.module';
-import { SpotifyService } from './app/services/spotify.service';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
-    SpotifyService
+    provideHttpClient()
   ]
 }).catch(err => console.error(err));
