@@ -36,11 +36,27 @@
 
       <div class="right-side">
         <h1 class="card-title">
-          {{ dj.djName }}
+          <span *ngIf="!isEditing">
+            {{ dj.djName }}
 
-          <button class="theme-button" (click)="isEditing = !isEditing">
-            <img src="/assets/img/edit.svg" width="30" height="30" />
-          </button>
+            <button class="theme-button" (click)="startEditing()">
+              <img src="/assets/img/edit.svg" width="30" height="30" />
+            </button>
+          </span>
+
+          <span *ngIf="isEditing" class="edit-dj-name">
+            <form class="theme-form new-dj-name-input">
+              <input type="text" [formControl]="newDJNameForm" />
+            </form>
+
+            <button class="theme-button" (click)="updateProfile()">
+              <img src="/assets/img/save.svg" width="30" height="30" />
+            </button>
+
+            <button class="theme-button" (click)="isEditing = false">
+              <img src="/assets/img/cancel.svg" width="30" height="30" />
+            </button>
+          </span>
         </h1>
 
         <p>

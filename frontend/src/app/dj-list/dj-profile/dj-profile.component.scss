@@ -27,6 +27,20 @@
   max-width: 200px;
 }
 
+.edit-dj-name {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.new-dj-name-input {
+  max-width: 300px;
+
+  input {
+    text-align: center;
+  }
+}
+
 .dj-shows {
   background-color: #d9d9d9;
   border-radius: 1rem;
