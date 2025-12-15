@@ -38,7 +38,7 @@ export class DJListComponent {
     }
   }
 
-  private readonly djsPerPage: number = 9;
+  private readonly djsPerPage: number = 15;
 
   private totalDJs: number | undefined = undefined;
 
