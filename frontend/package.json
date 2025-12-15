@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-docker": "ng serve --host 0.0.0.0",
+    "start-docker": "ng serve --host 0.0.0.0 --disable-host-check --serve-path / --public-host 0.0.0.0:4200",
     "backend": "json-server dev-db.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -35,6 +35,7 @@
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",
     "jasmine-core": "~4.6.0",
+    "json-server": "^0.17.4",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",

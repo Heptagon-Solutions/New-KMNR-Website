@@ -1,14 +1,25 @@
+.news-form {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 h1 {
-  font-family: 'Bree Serif', serif;
+  font-family: "Bree Serif", serif;
   border-top: 2px solid #c62828;
   border-bottom: 2px solid #c62828;
   padding-left: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem 2rem;
+  border-radius: 4px;
 }
 
 button {
-  font-family: 'Bree Serif', serif;
+  font-family: "Bree Serif", serif;
   font-size: 1.5rem;
   color: white;
   background-color: #0f7173;
@@ -26,7 +37,7 @@ label {
 }
 
 .submit {
-  font-family: 'Bree Serif', serif;
+  font-family: "Bree Serif", serif;
   font-size: 1.5rem;
   color: white;
   background-color: #0f7173;
@@ -48,25 +59,32 @@ label {
 }
 
 input {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 1.5rem;
   margin: 0.5rem 0 0.5rem 0;
 }
 
 textarea {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 1.5rem;
   margin: 0.5rem 0 0 0;
 }
 
 h2 {
-  font-family: 'Bree Serif', serif;
+  font-family: "Bree Serif", serif;
   color: #0f7173;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
 }
 
 ul {
   margin: 0 0 1rem 4rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 4px;
 }
 
 hr {
@@ -74,11 +92,23 @@ hr {
 }
 
 label {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  margin-right: 0.5rem;
 }
 
-/* Tell users which fields are invalid. */
-textarea.ng-invalid.ng-touched,
-.form-field.ng-invalid.ng-touched {
-  background-color: lightpink;
+form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+input, textarea {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
 }

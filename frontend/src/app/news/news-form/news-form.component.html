@@ -21,98 +21,25 @@
       emailing the person who submitted the announcement.
     </li>
   </ul>
-
   <hr />
   <h2>Event Information</h2>
-
-  <form [formGroup]="newEntryForm" (ngSubmit)="createNewEntry($event)">
+  <form>
     <label for="title">Title</label><span class="req">*</span>
-    <input
-      type="text"
-      class="form-field"
-      id="title"
-      name="title"
-      required
-      formControlName="title"
-    />
-    <br />
-
+    <input type="text" id="title" name="title" required /><br />
     <label for="location">Location</label><span class="req">*</span>
-    <input
-      type="text"
-      class="form-field"
-      id="location"
-      name="location"
-      required
-      formControlName="location"
-    />
-    <br />
-
+    <input type="text" id="location" name="location" required /><br />
     <label for="contact">Contact Name</label><span class="req">*</span>
-    <input
-      type="text"
-      class="form-field"
-      id="contact"
-      name="contact"
-      required
-      formControlName="contactName"
-    />
-    <br />
-
+    <input type="text" id="contact" name="contact" required /><br />
     <label for="contact_email">Contact Email</label><span class="req">*</span>
-    <input
-      type="text"
-      class="form-field"
-      id="contact_email"
-      name="contact_email"
-      required
-      formControlName="contactEmail"
-    />
-    <br />
-
+    <input type="text" id="contact_email" name="contact_email" required /><br />
     <label class="non-req" for="organization">Organization</label>
-    <input
-      type="text"
-      class="form-field"
-      id="organization"
-      name="organization"
-      formControlName="organization"
-    />
-    <br />
-
+    <input type="text" id="organization" name="organization" /><br />
     <label class="non-req" for="website">Website</label>
-    <input
-      type="text"
-      class="form-field"
-      id="website"
-      name="website"
-      formControlName="website"
-    />
-    <br />
-
+    <input type="text" id="website" name="website" /><br />
     <label for="expires">Expires</label><span class="req">*</span>
-    <input
-      type="date"
-      class="form-field"
-      id="expires"
-      name="expires"
-      required
-      formControlName="expirationDate"
-    />
-    <br />
-
+    <input type="date" id="expires" name="expires" /><br />
     <label for="description">Description</label><span class="req">*</span>
-    <textarea
-      class="form-field"
-      id="description"
-      name="description"
-      required
-      formControlName="description"
-    ></textarea>
-    <br />
-
-    <div *ngIf="errorMessage">{{ errorMessage }}</div>
-
-    <input type="submit" class="submit" value="Submit Your Event" />
+    <textarea id="description" name="description"></textarea><br />
+    <input class="submit" type="submit" value="Submit Your Event" />
   </form>
 </div>

@@ -7,6 +7,7 @@ name = "pypi"
 flask = "*"
 flask-mysqldb = "*"
 python-dotenv = "*"
+requests = "*"
 
 [requires]
 python_version = "3.11"

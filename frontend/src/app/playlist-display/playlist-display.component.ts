@@ -6,6 +6,7 @@ import { SpotifyService, SpotifyPlaylist, SpotifyTracksResponse, SpotifyTrack } 
   selector: 'playlist-display',
   standalone: true,
   imports: [CommonModule],
+  providers: [SpotifyService],
   templateUrl: './playlist-display.component.html',
   styleUrls: ['./playlist-display.component.scss']
 })

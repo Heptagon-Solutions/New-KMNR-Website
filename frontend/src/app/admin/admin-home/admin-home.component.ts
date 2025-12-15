@@ -9,4 +9,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './admin-home.component.html',
   styleUrls: ['./admin-home.component.scss'],
 })
-export class AdminHomeComponent {}
+export class AdminHomeComponent {
+  constructor() {}
+}

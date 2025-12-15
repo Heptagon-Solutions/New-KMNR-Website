@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -8,17 +7,16 @@ import { AboutComponent } from './about/about.component';
 import { NewsComponent } from './news/news.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { DJListComponent } from './dj-list/dj-list.component';
-import { DJProfileComponent } from './dj-list/dj-profile/dj-profile.component';
+import { DJProfileComponent } from './shared/dj-profile/dj-profile.component';
 import { ShowsComponent } from './shows/shows.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
-import { AdminDJsComponent } from './admin/admin-djs/admin-djs.component';
-import { SpotifyPlaylistComponent } from './spotify-playlist/spotify-playlist.component';
-import { SpotifyCallbackComponent } from './spotify-callback/spotify-callback.component';
-import { DJHomeComponent } from './dj/dj-home/dj-home.component';
+import { DJPlaylistComponent } from './dj-playlist/dj-playlist.component';
+import { DjProfileDetailComponent } from './dj-profile-detail/dj-profile-detail.component';
+import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
@@ -36,7 +34,7 @@ const routes: Routes = [
       },
       {
         path: ':id',
-        component: DJProfileComponent,
+        component: DjProfileDetailComponent,
       },
     ],
   },
@@ -59,28 +57,28 @@ const routes: Routes = [
   },
   {
     path: 'blog',
-    component: BlogComponent,
+    children: [
+      {
+        path: '',
+        component: BlogComponent,
+      },
+      {
+        path: ':id',
+        component: BlogDetailComponent,
+      },
+    ],
   },
   {
     path: 'login',
     component: LoginComponent,
   },
   {
-    path: 'spotify',
-    component: SpotifyPlaylistComponent,
+    path: 'playlists',
+    component: DJPlaylistComponent,
   },
   {
-    path: 'callback',
-    component: SpotifyCallbackComponent,
-  },
-  {
-    path: 'dj',
-    children: [
-      {
-        path: '',
-        component: DJHomeComponent,
-      },
-    ],
+    path: 'playlist/:id',
+    component: PlaylistDetailComponent,
   },
   {
     // TO DO: AUTHENTICATION HERE
@@ -94,14 +92,6 @@ const routes: Routes = [
         path: 'news',
         component: AdminNewsComponent,
       },
-      {
-        path: 'users',
-        component: AdminUsersComponent,
-      },
-      {
-        path: 'djs',
-        component: AdminDJsComponent,
-      },
     ],
   },
   {
@@ -109,9 +99,3 @@ const routes: Routes = [
     redirectTo: '',
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

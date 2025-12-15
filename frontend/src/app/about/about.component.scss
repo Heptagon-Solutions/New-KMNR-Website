@@ -1,42 +1,30 @@
-:host {
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
+.about {
+  font-family: "Bree Serif", serif;
+}
+
+.top-header {
+  font-family: "Bree Serif", serif;
+  padding-left: 2rem;
+  border-top: 2px solid #c62828;
+  border-bottom: 2px solid #c62828;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 h2 {
-  color: #c62828;
+  color: #0f7173;
   margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(198, 40, 40, 0.3);
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  padding: 1rem 0 1rem 2rem;
+}
+
+ol {
+  padding: 1rem 0 3rem 2rem;
 }
 
 p {
   padding: 0.5rem 0 0.5rem 0;
-  line-height: 1.6;
-  color: rgba(51, 51, 51, 0.9);
-}
-
-ul, ol {
-  padding: 1rem 0 1rem 2rem;
-  color: rgba(51, 51, 51, 0.9);
-}
-
-li {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-}
-
-a {
-  color: #c62828;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #000000;
-  text-shadow: 0 0 8px #c62828;
 }

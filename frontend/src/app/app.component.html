@@ -1,18 +1,12 @@
-<div>
-  <!-- Persistent Navigation Bar -->
-  <app-top-bar></app-top-bar>
+<div id="app">
+  <top-bar />
 
-  <!-- Main Content Area -->
-  <main class="content-container" #mainContent>
-    <!-- All webpages (defined in `app-routing.module.ts`) will be rendered here -->
-    <router-outlet></router-outlet>
-  </main>
 
-  <!-- Webstream Player popup that hovers in bottom right corner -->
-  <webstream-popup />
+  <div class="main-content">
+    <router-outlet />
+  </div>
 
-  <!-- Persistent Footer -->
-  <div #footer>
+  <div class="footer">
     <app-footer />
   </div>
 </div>

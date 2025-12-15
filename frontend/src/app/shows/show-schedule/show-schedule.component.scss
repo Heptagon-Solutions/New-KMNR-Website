@@ -1,138 +1,74 @@
-/* Center the card on the page */
-:host {
+.week-grid {
+  width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2rem;
 }
 
-.modular-card {
+table {
+  margin-bottom: 4rem;
   width: 100%;
-  max-width: 1400px;
-  padding: 1.5rem 2rem;
-  
-  /* The core design: semi-transparent white background */
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-  
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.card-title {
-  /* Bright, high-contrast text using brand color */
-  color: #c62828; // KMNR Gold
-  font-size: 2rem;
-  font-weight: 700;
-  border-bottom: 2px solid #c62828;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.card-content {
-  /* All other text is white for readability */
-  color: #FFFFFF;
-}
-
-/* Schedule Container */
-.schedule-container {
-  overflow-x: auto;
-}
-
-.week-grid {
-  min-width: 800px;
-}
-
-.schedule-table {
-  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
-  color: #FFFFFF;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  overflow: hidden;
 }
 
-.schedule-table th,
-.schedule-table td {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.75rem;
-  text-align: center;
-}
-
-.schedule-table th {
-  background-color: rgba(254, 203, 51, 0.2);
-  color: #c62828;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.time-header,
-.time-slot {
-  background-color: rgba(254, 203, 51, 0.3) !important;
-  color: #c62828 !important;
-  font-weight: bold;
-  min-width: 80px;
-}
-
-.schedule-row {
-  height: 50px;
-}
-
-.show-slot {
+th,
+td {
+  border: 1px solid #d9d9d9;
+  width: calc(100% / 8);
+  padding: 12px;
   vertical-align: middle;
+}
+
+th {
+  color: #c62828;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgba(198, 40, 40, 0.1);
+}
+
+td {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #0f7173;
+  text-align: center;
+  min-height: 60px;
   position: relative;
-  min-width: 120px;
+}
+
+.show-cell {
+  background-color: rgba(15, 113, 115, 0.1);
+  border-left: 3px solid #0f7173;
+}
+
+.empty-cell {
+  background-color: rgba(217, 217, 217, 0.1);
 }
 
 .show-info {
+  padding: 4px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  background-color: rgba(76, 175, 80, 0.3);
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid rgba(76, 175, 80, 0.5);
+  justify-content: center;
 }
 
 .show-name {
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: bold;
   font-size: 0.9rem;
+  margin-bottom: 2px;
 }
 
-.show-dj {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-style: italic;
-}
-
-.empty-slot {
-  color: rgba(255, 255, 255, 0.4);
-  font-style: italic;
+.dj-name {
   font-size: 0.8rem;
+  color: #c62828;
+  margin-bottom: 2px;
 }
 
-.schedule-legend {
-  margin-top: 2rem;
-  padding: 1rem;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-  color: rgba(255, 255, 255, 0.7);
+.show-genre {
+  font-size: 0.7rem;
+  font-style: italic;
+  opacity: 0.8;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .schedule-table {
-    font-size: 0.8rem;
-  }
-  
-  .schedule-table th,
-  .schedule-table td {
-    padding: 0.5rem;
-  }
-  
-  .show-info {
-    padding: 0.25rem;
-  }
+.automation {
+  //background-color: #d9d9d9;
 }

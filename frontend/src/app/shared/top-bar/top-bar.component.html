@@ -1,12 +1,54 @@
-<div class="nav-container">
-  <nav class="invisible-navigation">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link kmnr-link">KMNR</a>
-    <a routerLink="/shows" routerLinkActive="active" class="nav-link">SCHEDULE</a>
-    <a routerLink="/djs" routerLinkActive="active" class="nav-link">DJS</a>
-    <a routerLink="/news" routerLinkActive="active" class="nav-link">TOWN & CAMPUS NEWS</a>
-    <a routerLink="/about" routerLinkActive="active" class="nav-link">ABOUT</a>
-    <a routerLink="/blog" routerLinkActive="active" class="nav-link">BLOG</a>
-    <a routerLink="/spotify" routerLinkActive="active" class="nav-link">SPOTIFY</a>
-    <a routerLink="/login" routerLinkActive="active" class="nav-link">LOGIN</a>
+<!-- Original top bar layout preserved -->
+<div class="bar-grid">
+  <div class="current-show">
+    <img
+      src="../../../assets/newsnapman.svg"
+      alt="snapman"
+      height="100rem"
+      width="100rem"
+    />
+    <audio class="webstream" controls>
+      <source src="https://boombox.kmnr.org/webstream.mp3" />
+      Your browser does not support the audio element.
+    </audio>
+    <div class="show-info">
+      <strong class="listen">Listen in</strong>
+      <p>SHOW DJ</p>
+    </div>
+  </div>
+  <p class="contact-info">Requests? Comments? Call or text 504-656-6735</p>
+</div>
+
+<!-- Simple text navigation bar added below -->
+<div class="text-navigation-bar">
+  <nav class="text-navigation desktop-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-button">KMNR</a>
+    <a routerLink="/blog" routerLinkActive="active" class="nav-button">BLOG</a>
+    <a routerLink="/shows" routerLinkActive="active" class="nav-button">SCHEDULE</a>
+    <a routerLink="/djs" routerLinkActive="active" class="nav-button">DJS</a>
+    <a routerLink="/news" routerLinkActive="active" class="nav-button">TOWN AND CAMPUS NEWS</a>
+    <a routerLink="/playlists" routerLinkActive="active" class="nav-button">PLAYLISTS</a>
+    <a routerLink="/about" routerLinkActive="active" class="nav-button">ABOUT</a>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <div class="mobile-header">
+      <span class="mobile-kmnr">kmnr</span>
+      <button class="mobile-menu-btn" (click)="toggleMobileMenu()">menu</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()">
+  <nav class="mobile-menu-nav" (click)="$event.stopPropagation()">
+    <a routerLink="/" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">KMNR</a>
+    <a routerLink="/blog" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">BLOG</a>
+    <a routerLink="/shows" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">SCHEDULE</a>
+    <a routerLink="/djs" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">DJS</a>
+    <a routerLink="/news" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">TOWN AND CAMPUS NEWS</a>
+    <a routerLink="/playlists" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">PLAYLISTS</a>
+    <a routerLink="/about" routerLinkActive="active" class="mobile-nav-button" (click)="closeMobileMenu()">ABOUT</a>
   </nav>
 </div>

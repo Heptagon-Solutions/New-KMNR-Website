@@ -1,57 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DayOfTheWeek } from 'src/models/general';
-import { Show } from 'src/models/show';
-
-const SAMPLE_DATA: Show[] = [
-  {
-    id: 1,
-    name: 'Morning Vibes',
-    shortDesc: 'short description',
-    day: DayOfTheWeek.Monday,
-    startTime: 8,
-    endTime: 10,
-    semester: {
-      term: 'Fall',
-      year: 2026,
-    },
-    hosts: [
-      {
-        id: 1,
-        djName: 'DJ John',
-        userName: 'dj-john-username',
-        profileImg: null,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Rock Hour',
-    shortDesc: 'short desc',
-    day: DayOfTheWeek.Tuesday,
-    startTime: 15,
-    endTime: 16,
-    semester: {
-      term: 'Fall',
-      year: 2026,
-    },
-    hosts: [
-      {
-        id: 2,
-        djName: 'DJ Sarah',
-        userName: 'dj-sarah-user-name',
-        profileImg: null,
-      },
-      {
-        id: 3,
-        djName: 'DJ Other',
-        userName: 'dj-other-user-name',
-        profileImg: null,
-      },
-    ],
-  },
-];
+import { ScheduleService } from 'src/app/services/schedule.service';
+import { ShowScheduleEntry } from 'src/models';
 
 @Component({
   selector: 'show-schedule',
@@ -64,31 +14,22 @@ export class ShowScheduleComponent implements OnInit {
   public readonly times = Array(24)
     .fill(0)
     .map((x, i) => i);
+    
+  public timeslots: { [time: number]: ShowScheduleEntry[] } = {};
+  public readonly days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  public readonly days: DayOfTheWeek[] = [
-    DayOfTheWeek.Sunday,
-    DayOfTheWeek.Monday,
-    DayOfTheWeek.Tuesday,
-    DayOfTheWeek.Wednesday,
-    DayOfTheWeek.Thursday,
-    DayOfTheWeek.Friday,
-    DayOfTheWeek.Saturday,
-  ];
+  constructor(private scheduleService: ScheduleService) {}
 
-  public shows: Show[] = [];
-
-  ngOnInit(): void {
-    this.loadShows();
-
-    console.log('Days are:', this.days);
+  async ngOnInit() {
+    await this.loadSchedule();
   }
 
-  loadShows(): void {
-    // TODO: Replace with actual ShowService call
-    // this.showService.getShows().subscribe(shows => this.shows = shows);
-
-    // Mock data for now
-    this.shows = SAMPLE_DATA;
+  private async loadSchedule() {
+    try {
+      this.timeslots = this.scheduleService.getTimeslots();
+    } catch (error) {
+      console.error('Error loading schedule:', error);
+    }
   }
 
   public parseTime(t: number): string {
@@ -101,12 +42,14 @@ export class ShowScheduleComponent implements OnInit {
     return 'Error';
   }
 
-  public getShowForTimeSlot(time: number, day: DayOfTheWeek): Show | null {
-    return (
-      this.shows.find(
-        show =>
-          show.day === day && time >= show.startTime && time < show.endTime
-      ) || null
-    );
+  public getShow(time: number, dayOfWeek: number): ShowScheduleEntry | null {
+    const shows = this.timeslots[time] || [];
+    return shows.find(show => show.day_of_week === dayOfWeek && 
+                     time >= show.start_time && 
+                     time < show.end_time) || null;
+  }
+
+  public getShowSpan(show: ShowScheduleEntry): number {
+    return show.end_time - show.start_time;
   }
 }

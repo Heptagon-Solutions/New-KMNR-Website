@@ -1,41 +1,25 @@
-<div>
-  <on-air />
-
+<div class="djs">
   <div class="modular-card">
-    <div class="card-content">
-      <h1 class="card-title">Disc Jockeys</h1>
-
-      <div class="dj-grid" *ngIf="djList; else loadingDJs">
-        <div class="dj-card" *ngFor="let dj of djList">
-          <div class="dj-image">
-            <profile-image
-              [imagePath]="dj.profileImg"
-              altText="{{ dj.djName }}'s profile image"
-              [size]="75"
-            />
-          </div>
-
-          <h3 class="dj-name">
-            <a class="dj-profile-link" [routerLink]="['/djs', dj.id]">
-              {{ dj.djName }}
-            </a>
+    <h1 class="card-title">DISC JOCKEYS</h1>
+    <div class="dj-list" *ngIf="djList">
+      <div
+        *ngFor="let dj of djList.slice(listStart, listStart + djsPerPage)"
+        class="dj-avatar"
+      >
+        <div class="picture" (click)="navigateToDJ(dj.id)" style="cursor: pointer;">
+          <img [src]="dj.image || '../../assets/sonic.gif'" [alt]="dj.name" />
+        </div>
+        <div class="dj-info">
+          <h3>
+            <a [routerLink]="['/djs', dj.id]">{{ dj.name }}</a>
           </h3>
+          <p class="dj-genres">{{ dj.genres }}</p>
         </div>
       </div>
-
-      <ng-template #loadingDJs>
-        <div>
-          <p><i>Loading DJs...</i></p>
-        </div>
-      </ng-template>
-
-      <div class="paginator">
-        <paginator
-          [currentPage]="page"
-          [totalPages]="totalPages"
-          (changePage)="goToPage($event)"
-        />
-      </div>
+    </div>
+    <div class="pagination-controls">
+      <button class="prev" (click)="previousPage()" [disabled]="!canGoPrevious">Previous</button>
+      <button class="next" (click)="nextPage()" [disabled]="!canGoNext">Next</button>
     </div>
   </div>
 </div>

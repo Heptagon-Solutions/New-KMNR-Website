@@ -1,32 +1,120 @@
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+h1 {
+  font-family: "Bree Serif", serif;
+  border-top: 2px solid #c62828;
+  border-bottom: 2px solid #c62828;
+  padding-left: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .home-content {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Bree Serif', serif;
-  min-height: 500px;
-  max-width: 1200px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  font-family: "Bree Serif", serif;
 }
 
-.home-content-grid {
-  position: relative;
-  z-index: 2;
-  // background-color: rgba(255, 255, 255, 0.8);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  // backdrop-filter: blur(2px);
+/* Featured Playlist Section - Spotify Style */
+.featured-playlist-section {
+  margin: 2rem 0;
+  padding: 0 2rem;
+}
+
+.featured-playlist-section h2 {
+  font-family: "Bree Serif", serif;
+  color: #c62828;
+  border-top: 2px solid #c62828;
+  border-bottom: 2px solid #c62828;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.spotify-playlist-card {
+  background: linear-gradient(135deg, #1db954 0%, #191414 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+  transition: all 0.3s ease;
+  max-width: 600px;
+}
+
+.spotify-playlist-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.4);
+}
+
+.playlist-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.playlist-cover {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1db954, #1ed760);
   border-radius: 8px;
-  width: 100%;
-  margin: 0 auto;
-  justify-items: center;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.play-icon {
+  color: #191414;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.playlist-details {
+  color: white;
+}
+
+.playlist-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  color: white;
+}
+
+.playlist-description {
+  font-size: 0.9rem;
+  margin: 0 0 0.25rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.playlist-meta {
+  font-size: 0.8rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.spotify-btn {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(29, 185, 84, 0.3);
+}
+
+.spotify-btn:hover {
+  background-color: #1ed760;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+}
+
+.spotify-icon {
+  font-size: 1.1rem;
 }

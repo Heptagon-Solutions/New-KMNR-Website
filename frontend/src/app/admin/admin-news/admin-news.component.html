@@ -1,70 +1,9 @@
-<div class="modular-card">
-  <div>
-    <button class="theme-button red-button" (click)="backToAdmin()">
-      Back
-    </button>
-  </div>
-
-  <h1 class="card-title">Manage News</h1>
-
-  <div class="card-content">
-    <!-- News Table -->
-    <div *ngIf="newsEntries && newsEntries.length > 0; else noNews">
-      <table class="theme-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Submit Date</th>
-            <th>Expiration Date</th>
-            <th>Approved?</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr *ngFor="let entry of newsEntries">
-            <td>{{ entry.id }}</td>
-            <td>{{ entry.title }}</td>
-            <td>
-              {{ entry.description | slice : 0 : 100
-              }}{{ entry.description.length > 100 ? '...' : '' }}
-            </td>
-            <td>{{ entry.submitDate | date : 'short' }}</td>
-            <td>{{ entry.expirationDate | date : 'short' }}</td>
-            <td>{{ entry.approved ? 'Yes' : 'No' }}</td>
-            <td>
-              <button
-                class="theme-button green-button"
-                (click)="editNews(entry)"
-              >
-                Edit
-              </button>
-              <button
-                class="theme-button red-button"
-                (click)="deleteNews(entry.id)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="paginator">
-        <paginator
-          [totalPages]="totalPages"
-          [currentPage]="page"
-          (changePage)="goToPage($event)"
-        />
-      </div>
-    </div>
-
-    <ng-template #noNews>
-      <div class="no-news">
-        <p>No news entries found. Loading...</p>
-      </div>
-    </ng-template>
+<h1>Below is the full list of Town And Campus events</h1>
+<div *ngIf="newsEntries; else loadingOrError">
+  <div *ngFor="let entry of newsEntries">
+    {{ entry.title }}
   </div>
 </div>
+<ng-template #loadingOrError>
+  <i>Loading...</i> (or broken beyond repair /:)
+</ng-template>

@@ -1,39 +1,11 @@
-@font-face {
-    font-family: 'Special Elite';
-    src: url('../../../assets/SpecialElite-Regular.woff2') format('woff2'),
-        url('../../../assets/SpecialElite-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-.footer-container {
+.footer {
+  text-align: center;
   color: white;
-  background-color: #000000;
-  font-family: 'Special Elite';
+  background-color: #c62828;
+  padding: 8rem 8rem;
+  font-size: 2rem;
 }
 
-.footer-section {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, .05fr);
-
-}
-
-.footer-sectionL {
-  text-align: left;
+a {
   color: white;
-  background-color: #000000;
-  padding: 1.5rem;
-  font-size: 1.5rem;
-  font-family: 'Special Elite';
-}
-
-.footer-sectionR {
-  text-align: right;
-  color: white;
-  background-color: #000000;
-  padding: 1.5rem;
-  font-size: 1.5rem;
-  font-family: 'Special Elite';
 }

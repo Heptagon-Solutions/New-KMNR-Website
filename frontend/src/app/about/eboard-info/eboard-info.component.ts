@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ExecutiveBoard } from 'src/models/general';
+import { ExecutiveBoard } from 'src/models';
 
-import { AboutService } from '../../services/about.service';
+import { AboutService } from '../about.service';
 
 @Component({
   selector: 'eboard-info',

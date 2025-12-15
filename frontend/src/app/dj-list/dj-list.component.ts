@@ -1,60 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
-import { API_URL } from 'src/constants';
-import { DJ } from 'src/models/dj';
+import { DJ } from 'src/models';
 
-import { DJService } from 'src/app/services/dj.service';
-import { OnAirComponent } from 'src/app/shared/on-air/on-air.component';
-import { ProfileImageComponent } from 'src/app/shared/profile-image/profile-image.component';
-import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
+import { OnAirComponent } from '../shared/on-air/on-air.component';
+import { DJService } from '../shared/dj.service';
 
 @Component({
   selector: 'dj-list',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    OnAirComponent,
-    ProfileImageComponent,
-    PaginatorComponent,
-  ],
+  imports: [CommonModule, RouterModule, OnAirComponent],
   templateUrl: './dj-list.component.html',
   styleUrls: ['./dj-list.component.scss'],
 })
-export class DJListComponent {
-  protected readonly API_URL: string = API_URL;
+export class DJListComponent implements OnInit {
+  public djsPerPage = 6;
+  public djList: DJ[] | undefined = undefined;
+  public listStart = 0;
 
-  protected djList: DJ[] | undefined = undefined;
-  protected page: number = 0;
+  constructor(private readonly djService: DJService, private router: Router) {}
 
-  /** Returns undefined if we're still waiting on an API response. */
-  protected get totalPages(): number | undefined {
-    if (this.totalDJs) {
-      return Math.ceil(this.totalDJs / this.djsPerPage);
-    } else {
-      return undefined;
+  async ngOnInit() {
+    console.log('🎧 DEBUG: DJ List component initializing...');
+    try {
+      this.djList = await this.djService.getAllDJs();
+      console.log('✅ DEBUG: DJs loaded:', { count: this.djList?.length, djs: this.djList });
+    } catch (error) {
+      console.error('❌ DEBUG: Error loading DJs:', error);
     }
   }
 
-  private readonly djsPerPage: number = 15;
-
-  private totalDJs: number | undefined = undefined;
-
-  constructor(private readonly djService: DJService) {
-    djService.getDJCount().subscribe(djCount => (this.totalDJs = djCount));
-
-    this.goToPage(0);
+  nextPage() {
+    if (this.djList && this.listStart + this.djsPerPage < this.djList.length) {
+      this.listStart += this.djsPerPage;
+    }
   }
 
-  public goToPage(newPage: number) {
-    if (newPage >= 0) {
-      this.page = newPage;
-
-      this.djService
-        .getDJs(this.djsPerPage, this.page)
-        .subscribe((djs: DJ[]) => (this.djList = djs));
+  previousPage() {
+    if (this.listStart >= this.djsPerPage) {
+      this.listStart -= this.djsPerPage;
     }
+  }
+
+  get canGoNext(): boolean {
+    return this.djList ? this.listStart + this.djsPerPage < this.djList.length : false;
+  }
+
+  get canGoPrevious(): boolean {
+    return this.listStart > 0;
+  }
+
+  navigateToDJ(djId: number) {
+    this.router.navigate(['/djs', djId]);
   }
 }

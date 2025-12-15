@@ -1,22 +1,20 @@
-from flask import Blueprint
+from flask import current_app
 
 from database import db, DatabaseError
 
-example_endpoints_blueprint = Blueprint("example_endpoints_plz_delete_later", __name__)
 
-
-@example_endpoints_blueprint.route("/")
+@current_app.route("/")
 def hello_world():
     return "<p>The backend is working!</p>"
 
 
-@example_endpoints_blueprint.route("/data")
+@current_app.route("/data")
 def fake_data():
     return {"msg": "Hi! This is the backend API speaking!"}
 
 
 # Example endpoint that accesses the database and catches database related errors.
-@example_endpoints_blueprint.route("/database")
+@current_app.route("/database")
 def database_test():
     try:
         with db.connection.cursor() as cur:
@@ -30,7 +28,7 @@ def database_test():
 
 # Example endpoint that uses URL parameters to make a dynamic database query
 # (fyi - this is a TOTALLY unsecure endpoint)
-@example_endpoints_blueprint.route("/database/<table_name>")
+@current_app.route("/database/<table_name>")
 def database_table(table_name):
     try:
         with db.connection.cursor() as cur:

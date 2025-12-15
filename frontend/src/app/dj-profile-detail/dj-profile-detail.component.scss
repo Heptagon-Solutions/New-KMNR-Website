@@ -1,0 +1,192 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modular-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 1.5rem 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.dj-profile-container {
+  font-family: Arial, sans-serif;
+  color: #333333;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.error {
+  background: #f8d7da;
+  border: 1px solid #f1b2b7;
+  border-radius: 8px;
+  color: #721c24;
+}
+
+.dj-header {
+  margin-bottom: 30px;
+}
+
+.btn-back {
+  background: #f8f8f8;
+  color: #c62828;
+  border: 2px solid #c62828;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #c62828;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+  }
+}
+
+.dj-info {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.dj-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #c62828;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dj-details {
+  flex: 1;
+  
+  h1 {
+    margin: 0 0 15px 0;
+    color: #c62828;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .dj-genres {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .dj-bio {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+}
+
+.dj-playlists-section {
+  h2 {
+    color: #c62828;
+    border-bottom: 2px solid #c62828;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+}
+
+.tracks-list {
+  display: grid;
+  gap: 12px;
+}
+
+.track-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: #c62828;
+  }
+}
+
+.track-info {
+  .track-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+  }
+  
+  .track-artist {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  
+  .track-album {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  
+  .track-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    
+    span {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 12px;
+      
+      &.genre {
+        background: #e3f2fd;
+        color: #1976d2;
+        font-weight: 500;
+      }
+      
+      &.played-time {
+        background: #f1f8e9;
+        color: #388e3c;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.no-tracks {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  border: 2px dashed #ddd;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .dj-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .dj-image {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+  }
+}

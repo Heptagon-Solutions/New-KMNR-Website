@@ -9,10 +9,12 @@ from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
-
+    
     config = ConfigParser()
     config.read("config.ini")
     secrets = dotenv_values(".env")
+    
+    app.secret_key = secrets.get("FLASK_SECRET_KEY", 'your-secret-key-here')
 
     # Set database configurations
     db_config = config["DATABASE"]
@@ -31,23 +33,43 @@ def create_app():
     db.init_app(app)
 
     # THIS IS FOR DEV ONLY - REMOVE BEFORE PRODUCTION
-    CORS(app, origins=["http://localhost:8970"])
+    CORS(app, origins=["http://localhost:8970", "http://localhost:4200", "http://127.0.0.1:4200", "http://127.0.0.1:4200"], 
+         supports_credentials=True, 
+         allow_headers=["Content-Type", "Authorization"],
+         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
+
+    # Add a test endpoint
+    @app.route('/test')
+    def test():
+        return {"status": "Backend is running!", "message": "CORS should be working"}
 
     # Add all endpoints to the app
     with app.app_context():
-        from example_endpoints import example_endpoints_blueprint
-        from endpoints.news import town_and_campus_news_blueprint
-        from endpoints.users import users_bp
-        from endpoints.shows import shows_bp
-
-        app.register_blueprint(example_endpoints_blueprint)
-        app.register_blueprint(town_and_campus_news_blueprint)
-        app.register_blueprint(users_bp, url_prefix="/api")
-        app.register_blueprint(shows_bp, url_prefix="/api")
+        import example_endpoints
+        import endpoints
+        
+        
+        # Import Playlist endpoints
+        try:
+            from endpoints.playlist import playlist_bp
+            app.register_blueprint(playlist_bp, url_prefix='/playlist')
+            print("✅ Playlist endpoints loaded successfully")
+        except Exception as e:
+            print(f"❌ Failed to load Playlist endpoints: {e}")
+            
+        # Import DJ endpoints
+        try:
+            from endpoints.dj import dj_bp
+            app.register_blueprint(dj_bp, url_prefix='/djs')
+            print("✅ DJ endpoints loaded successfully")
+        except Exception as e:
+            print(f"❌ Failed to load DJ endpoints: {e}")
 
         return app
 
 
 if __name__ == "__main__":
+    import os
     app = create_app()
-    app.run(debug=True)
+    port = int(os.environ.get('FLASK_RUN_PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)

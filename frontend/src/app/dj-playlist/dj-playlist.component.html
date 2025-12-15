@@ -1,0 +1,45 @@
+<div class="modular-card">
+  <div class="playlists-container">
+    <div class="kmnr-playlist-header">
+      <h2>KMNR DJ Playlists</h2>
+      <p class="subtitle">Discover curated playlists from our talented DJs</p>
+    </div>
+    
+    <div class="loading-state" *ngIf="loading">
+      <div class="loading-spinner"></div>
+      <p>Loading DJ playlists...</p>
+    </div>
+
+    <div class="dj-playlists" *ngIf="!loading && playlists.length > 0">
+      <div class="playlist-stats">
+        <span class="playlist-count">{{playlists.length}} playlists available</span>
+        <span class="dj-count">{{getDJCount()}} different DJs</span>
+      </div>
+      
+      <div class="playlists-grid">
+        <div *ngFor="let playlist of playlists; trackBy: trackByFn" class="playlist-card" (click)="viewPlaylist(playlist)">
+          <div class="playlist-header">
+            <h3 class="playlist-title">{{playlist.name}}</h3>
+          </div>
+          
+          <div class="playlist-info">
+            <p class="description">{{playlist.description || 'No description available'}}</p>
+            <div class="metadata">
+              <span class="track-count">{{playlist.track_count || 0}} tracks</span>
+            </div>
+          </div>
+          
+          <div class="playlist-footer">
+            <span class="played-date">{{formatPlayedTime(playlist.date_played)}}</span>
+            <button class="view-btn">View Playlist →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-playlists" *ngIf="!loading && playlists.length === 0">
+      <h3>No playlists found</h3>
+      <p>No DJ playlists are available at this time.</p>
+    </div>
+  </div>
+</div>

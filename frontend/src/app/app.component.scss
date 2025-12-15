@@ -3,14 +3,14 @@
 
 .main-content {
   padding: 0 20rem 0 20rem;
+  min-height: 100vh;
 }
 
 .footer {
   overflow: hidden;
-  position: fixed;
-  bottom: 0;
+  position: static;
   width: 100%;
-  height: 2rem;
+  margin-top: 20rem;
 }
 
 #app {
@@ -18,6 +18,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   //text-align: center;
+  min-height: 100vh;
+  background: inherit;
 }
 
 #nav {

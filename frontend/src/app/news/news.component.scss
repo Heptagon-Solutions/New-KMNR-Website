@@ -1,103 +1,46 @@
-:host {
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.intro-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: rgba(51, 51, 51, 0.9);
-}
-
-.submit-section {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.submit-btn {
-  background-color: #c62828;
-  color: #ffffff;
-  border: none;
-  padding: 0.75rem 2rem;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-  background-color: #a91e1e;
-  transform: scale(1.02);
-}
-
-.submit-btn a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.events-section {
+h1 {
+  font-family: "Bree Serif", serif;
+  border-top: 2px solid #c62828;
+  border-bottom: 2px solid #c62828;
+  padding-left: 2rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.section-title {
-  color: #c62828;
+button {
+  font-family: "Bree Serif", serif;
   font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(198, 40, 40, 0.3);
-  padding-bottom: 0.5rem;
+  color: white;
+  background-color: #0f7173;
+  margin: 1rem 0 1rem 0;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5em;
+}
+
+h2 {
+  font-family: "Bree Serif", serif;
+  color: #0f7173;
+}
+
+.news {
+  font-family: "Roboto Condensed", sans-serif;
+  color: black;
 }
 
 .news-item {
-  background-color: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(198, 40, 40, 0.2);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
+  margin: 1rem 0 1rem 0;
 }
 
-.news-item:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+p {
+  font-family: "Bree Serif", serif;
 }
 
-.event-title {
-  color: #c62828;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+hr {
+  border: 1px solid #6d597a;
 }
 
-.event-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.event-location,
-.event-contact {
-  margin: 0;
-  color: rgba(51, 51, 51, 0.8);
-  font-size: 0.95rem;
-}
-
-.event-location strong,
-.event-contact strong {
-  color: #c62828;
-}
-
-.event-description {
-  margin: 1rem 0 0 0;
-  color: #333333;
-  line-height: 1.5;
-  font-size: 1rem;
+a {
+  color: white;
+  text-decoration: none;
 }

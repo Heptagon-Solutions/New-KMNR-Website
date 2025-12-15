@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Semester } from 'src/models/general';
+import { Semester } from 'src/models';
 
-import { ShowService } from '../services/show.service';
 import { OnAirComponent } from '../shared/on-air/on-air.component';
 
+import { ShowService } from './show.service';
 import { ShowScheduleComponent } from './show-schedule/show-schedule.component';
 
 @Component({
@@ -16,11 +16,9 @@ import { ShowScheduleComponent } from './show-schedule/show-schedule.component';
   styleUrls: ['./shows.component.scss'],
 })
 export class ShowsComponent {
-  protected semester: Semester | undefined = undefined;
+  public semester: Semester | undefined = undefined;
 
   constructor(private readonly showService: ShowService) {
-    this.showService
-      .getSemester()
-      .subscribe((s: Semester) => (this.semester = s));
+    showService.getSemester().then((s: Semester) => (this.semester = s));
   }
 }

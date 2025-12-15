@@ -1,57 +1,24 @@
-<div class="modular-card">
-  <h1 class="card-title">Show Schedule</h1>
-  <div class="card-content">
-    <div class="schedule-container">
-      <div class="week-grid">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th class="time-header">Time</th>
-              <th>Sunday</th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let time of times" class="schedule-row">
-              <th class="time-slot">{{ parseTime(time) }}</th>
-
-              <td *ngFor="let day of days" class="show-slot">
-                <div
-                  class="show-info"
-                  *ngIf="getShowForTimeSlot(time, day); else automation"
-                >
-                  <span class="show-name">
-                    {{ getShowForTimeSlot(time, day)?.name || 'No Show' }}
-                  </span>
-                  <span
-                    class="show-dj"
-                    *ngFor="
-                      let host of getShowForTimeSlot(time, day)?.hosts ?? []
-                    "
-                  >
-                    {{ host.djName }}
-                  </span>
-                </div>
-
-                <ng-template #automation>
-                  <div class="empty-slot">
-                    <span>Automation</span>
-                  </div>
-                </ng-template>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="schedule-legend" *ngIf="shows.length === 0">
-        <p>Loading show schedule...</p>
-      </div>
-    </div>
-  </div>
+<div class="week-grid">
+  <table>
+    <tbody>
+      <tr>
+        <th></th>
+        <th *ngFor="let day of days">{{ day }}</th>
+      </tr>
+      <tr *ngFor="let time of times">
+        <th>{{ parseTime(time) }}</th>
+        <td *ngFor="let day of days; let dayIdx = index" 
+            [ngClass]="{'show-cell': getShow(time, dayIdx), 'empty-cell': !getShow(time, dayIdx)}">
+          <div *ngIf="getShow(time, dayIdx) as show" class="show-info">
+            <div class="show-name">{{ show.show_name }}</div>
+            <div class="dj-name">{{ show.dj_name }}</div>
+            <div class="show-genre">{{ show.genre }}</div>
+          </div>
+          <div *ngIf="!getShow(time, dayIdx)" class="empty-slot">
+            <!-- Empty time slot -->
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

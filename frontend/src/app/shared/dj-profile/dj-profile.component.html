@@ -1,0 +1,24 @@
+<div class="dj-profile">
+  <on-air />
+  <hr />
+  <div class="dj-info" *ngIf="dj">
+    <div class="dj-picture">
+      <div class="picture">
+        <img [src]="dj.image || '../../../assets/sonic.gif'" [alt]="dj.name" />
+      </div>
+    </div>
+    <div class="dj-description">
+      <h1>{{ dj.name }}</h1>
+      <i>{{ dj.genres }}</i>
+      <p *ngIf="dj.bio" class="dj-bio">{{ dj.bio }}</p>
+    </div>
+    <div class="dj-shows">
+      <h2>FEATURED ON</h2>
+      <div *ngFor="let show of djShows" class="show-item">
+        <h4>{{ show.show_name }}</h4>
+        <p>{{ getDayName(show.day_of_week) }}s, {{ formatTime(show.start_time) }} - {{ formatTime(show.end_time) }}</p>
+      </div>
+      <p *ngIf="djShows.length === 0" class="no-shows">No scheduled shows currently</p>
+    </div>
+  </div>
+</div>

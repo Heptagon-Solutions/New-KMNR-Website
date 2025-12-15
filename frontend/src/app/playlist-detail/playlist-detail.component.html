@@ -1,0 +1,53 @@
+<div class="modular-card">
+  <div class="playlist-detail-container">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">
+      <p>Loading playlist...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="error">
+      <h3>Error</h3>
+      <p>{{ error }}</p>
+      <button (click)="goBack()" class="btn btn-back">← Back to Playlists</button>
+    </div>
+
+    <!-- Playlist Details -->
+    <div *ngIf="!loading && !error && playlist" class="playlist-detail">
+      <!-- Header -->
+      <div class="playlist-header">
+        <button (click)="goBack()" class="btn btn-back">← Back to Playlists</button>
+        <div class="playlist-info">
+          <h1>{{ playlist.name }}</h1>
+          <p class="playlist-description">{{ playlist.description }}</p>
+          <div class="playlist-meta">
+            <span class="track-count">{{ playlist.tracks.length }} tracks</span>
+            <span class="dj-info">Mixed by {{ playlist.dj_name }}</span>
+            <span class="played-date">{{ formatPlayedTime(playlist.date_played) }}</span>
+          </div>
+          <button (click)="viewDJProfile()" class="btn btn-dj">View DJ Profile</button>
+        </div>
+      </div>
+
+      <!-- Track List -->
+      <div class="tracks-section">
+        <h2>Tracks</h2>
+        
+        <div *ngIf="playlist.tracks.length > 0" class="tracks-list">
+          <div *ngFor="let track of playlist.tracks" class="track-item">
+            <div class="track-number">{{ track.track_number }}</div>
+            <div class="track-info">
+              <div class="track-title">{{ track.title }}</div>
+              <div class="track-artist">{{ track.artist }}</div>
+              <div class="track-album">{{ track.album || 'Unknown Album' }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="playlist.tracks.length === 0" class="no-tracks">
+          <p>No tracks found in this playlist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

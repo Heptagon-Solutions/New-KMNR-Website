@@ -1,28 +1,19 @@
-:host {
-  display: flex;
-  justify-content: center;
-}
-
-.show-image {
-  grid-area: show-image;
+.dj-icons {
+  grid-area: icons;
 }
 
 .show-info {
   grid-area: info;
 }
 
-.dj-images {
-  grid-area: dj-images;
+.snapman {
+  grid-area: player;
 }
 
 .on-air {
-  width: 100%;
-
+  font-family: "Bree Serif", serif;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto;
   grid-template-rows: auto;
-  grid-template-areas: 'show-image info dj-images';
-  justify-items: center;
-
-  font-family: 'Bree Serif', serif;
+  grid-template-areas: "icons info player";
 }

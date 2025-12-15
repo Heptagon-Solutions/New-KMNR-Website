@@ -1,39 +1,18 @@
-<div class="modular-card">
-  <h1 class="card-title">Now Playing:</h1>
-
-  <div class="on-air">
-    <img
-      class="show-image"
-      src="/assets/img/sample_show_image.jpg"
-      alt="{{ currentShow?.name ?? 'Automation' }}'s show image"
-    />
-
-    <div class="show-info">
-      <div *ngIf="currentShow; else automation">
-        <p class="card-important">
-          <strong>{{ currentShow.name }}</strong>
-        </p>
-
-        <p>
-          <span *ngFor="let host of currentShow.hosts; let last = last">
-            {{ host.djName + (last ? '' : ',') }}
-          </span>
-        </p>
-
-        <p>GENRE</p>
-      </div>
-
-      <ng-template #automation>
-        <div class="show-info">
-          <p><strong class="show-name">Automation</strong></p>
-
-          <p>DJ Binary Swag</p>
-        </div>
-      </ng-template>
-    </div>
-
-    <div class="dj-images">
-      <profile-image [imagePath]="null" [size]="250" />
-    </div>
+<div class="on-air">
+  <img class="dj-icons" src="../../../assets/sonic.gif" alt="sample" />
+  <div class="show-info">
+    <h2>Now Playing:</h2>
+    <br />
+    <h2>SHOW_NAME</h2>
+    <p>DJ_NAMES</p>
+    <p>DATETIME</p>
+    <p>GENRE</p>
   </div>
+  <img
+    class="snapman"
+    src="../../../assets/newsnapman.svg"
+    alt="snapman"
+    height="250px"
+    width="250px"
+  />
 </div>
