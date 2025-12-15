@@ -49,7 +49,11 @@
               class="theme-form new-dj-name-input"
               (keydown.enter)="$event.preventDefault()"
             >
-              <input type="text" [formControl]="newDJNameForm" />
+              <input
+                type="text"
+                [formControl]="newDJNameForm"
+                placeholder="DJ Name*"
+              />
             </form>
 
             <button class="theme-button" (click)="updateProfile()">
@@ -68,7 +72,11 @@
 
         <div *ngIf="isEditing">
           <form class="theme-form" (keydown.enter)="$event.preventDefault()">
-            <input type="textarea" [formControl]="newProfileDescForm" />
+            <input
+              type="textarea"
+              [formControl]="newProfileDescForm"
+              placeholder="Description"
+            />
           </form>
         </div>
       </div>
