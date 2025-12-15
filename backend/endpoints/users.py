@@ -304,32 +304,36 @@ def get_dj(dj_id: int):
 
 @users_bp.patch("/djs/<int:dj_id>")
 def update_dj(dj_id: int):
-    data = request.get_json(force=True, silent=True) or {}
+    new_dj_name = request.form.get("djName")
+    new_profile_desc = request.form.get("profileDesc")
+    new_graduating_semester_id = request.form.get("graduatingSemesterId")
 
     fields = []
     values = []
 
-    if "dj_name" in data:
+    if new_dj_name:
         fields.append("dj_name = %s")
-        values.append(data["dj_name"])
-    if "profile_desc" in data:
+        values.append(new_dj_name)
+    if new_profile_desc:
         fields.append("profile_desc = %s")
-        values.append(data["profile_desc"])
-    if "graduating_semester_id" in data:
+        values.append(new_profile_desc)
+    if new_graduating_semester_id is not None:
         # verify semester exists before setting FK
         try:
             with db.connection.cursor() as cur:
                 cur.execute(
                     "SELECT id FROM semester WHERE id = %s",
-                    (data["graduating_semester_id"],),
+                    (new_graduating_semester_id,),
                 )
                 if cur.fetchone() is None:
-                    return {"message": "graduating_semester_id does not exist"}, 400
+                    return {
+                        "message": "Provided graduatingSemesterId does not exist"
+                    }, 400
         except DatabaseError as e:
             return {"message": f"{e.args[1]} ({e.args[0]})"}, 500
 
         fields.append("graduating_semester_id = %s")
-        values.append(data["graduating_semester_id"])
+        values.append(new_graduating_semester_id)
 
     if not fields:
         return {"message": "no updatable fields provided"}, 400
