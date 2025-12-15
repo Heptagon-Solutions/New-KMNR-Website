@@ -1,7 +1,7 @@
 <div class="modular-card">
   <div class="card-content">
-    <div class="dj-info" *ngIf="dj; else errorOccured">
-      <div>
+    <div class="profile" *ngIf="dj; else errorOccured">
+      <div class="left-side">
         <profile-image
           [imagePath]="dj.profileImg"
           altText="{{ dj.djName }}'s profile image"
@@ -14,6 +14,7 @@
         >
           <input
             type="file"
+            class="new-profile-image-input"
             id="new-profile-image"
             name="new-profile-image"
             accept="image"
@@ -33,16 +34,19 @@
         </form>
       </div>
 
-      <div class="dj-description">
+      <div class="right-side">
         <h1 class="card-title">
           {{ dj.djName }}
-        </h1>
-        <i>{{ dj.profileDesc }}</i>
-      </div>
 
-      <button class="theme-button" (click)="isEditing = !isEditing">
-        <img src="/assets/img/edit.svg" width="30" height="30" />
-      </button>
+          <button class="theme-button" (click)="isEditing = !isEditing">
+            <img src="/assets/img/edit.svg" width="30" height="30" />
+          </button>
+        </h1>
+
+        <p>
+          <i class="dj-description">{{ dj.profileDesc }}</i>
+        </p>
+      </div>
     </div>
 
     <div class="dj-shows">

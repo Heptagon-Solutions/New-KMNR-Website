@@ -5,20 +5,26 @@
   padding: 2rem;
 }
 
-.dj-info {
-  display: flex;
-  font-family: 'Bree Serif', serif;
-  align-items: center;
-  padding: 0 10rem 0 10rem;
+.profile {
+  width: 100%;
 
-  .dj-description {
-    flex-grow: 1;
-    text-align: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'left-side right-side';
 
-    p {
-      padding-top: 1rem;
-    }
-  }
+  gap: 2rem;
+}
+
+.left-side {
+  grid-area: left-side;
+}
+
+.right-side {
+  grid-area: right-side;
+}
+
+.new-profile-image-input {
+  max-width: 200px;
 }
 
 .dj-shows {
