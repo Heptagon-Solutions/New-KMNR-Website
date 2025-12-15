@@ -18,6 +18,7 @@ import { ProfileImageComponent } from 'src/app/shared/profile-image/profile-imag
 export class DJProfileComponent {
   protected dj: DJProfile | undefined = undefined;
 
+  protected isEditing: boolean = false;
   protected isNewProfileImageValid: boolean = false;
 
   constructor(

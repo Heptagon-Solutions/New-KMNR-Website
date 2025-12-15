@@ -8,7 +8,10 @@
           [size]="200"
         />
 
-        <form (submit)="updateProfileImage(profileImageInput.files?.item(0))">
+        <form
+          *ngIf="isEditing"
+          (submit)="updateProfileImage(profileImageInput.files?.item(0))"
+        >
           <input
             type="file"
             id="new-profile-image"
@@ -31,14 +34,20 @@
       </div>
 
       <div class="dj-description">
-        <h1 class="card-title">{{ dj.djName }}</h1>
+        <h1 class="card-title">
+          {{ dj.djName }}
+        </h1>
         <i>{{ dj.profileDesc }}</i>
       </div>
 
-      <div class="dj-shows">
-        <h2>FEATURED ON</h2>
-        <h4>SHOW_NAME</h4>
-      </div>
+      <button class="theme-button" (click)="isEditing = !isEditing">
+        <img src="/assets/img/edit.svg" width="30" height="30" />
+      </button>
+    </div>
+
+    <div class="dj-shows">
+      <h2>FEATURED ON</h2>
+      <h4>SHOW_NAME</h4>
     </div>
 
     <ng-template #errorOccured>
