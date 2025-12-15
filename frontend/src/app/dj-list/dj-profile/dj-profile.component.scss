@@ -1,7 +1,8 @@
-hr {
-  border: 1px solid #c62828;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+/* Center the card on the page */
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .dj-info {
@@ -13,10 +14,6 @@ hr {
   .dj-description {
     flex-grow: 1;
     text-align: center;
-
-    h1 {
-      color: #0f7173;
-    }
 
     p {
       padding-top: 1rem;
@@ -35,8 +32,4 @@ hr {
       padding-bottom: 1rem;
     }
   }
-}
-
-.edit-profile-image-form {
-  background-color: white;
 }

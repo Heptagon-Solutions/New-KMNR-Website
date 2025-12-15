@@ -6,13 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 import { DJProfile } from 'src/models/dj';
 
 import { DJService } from 'src/app/services/dj.service';
-import { OnAirComponent } from 'src/app/shared/on-air/on-air.component';
 import { ProfileImageComponent } from 'src/app/shared/profile-image/profile-image.component';
 
 @Component({
   selector: 'dj-profile',
   standalone: true,
-  imports: [CommonModule, OnAirComponent, ProfileImageComponent],
+  imports: [CommonModule, ProfileImageComponent],
   templateUrl: './dj-profile.component.html',
   styleUrls: ['./dj-profile.component.scss'],
 })
