@@ -45,7 +45,10 @@
           </span>
 
           <span *ngIf="isEditing" class="edit-dj-name">
-            <form class="theme-form new-dj-name-input">
+            <form
+              class="theme-form new-dj-name-input"
+              (keydown.enter)="$event.preventDefault()"
+            >
               <input type="text" [formControl]="newDJNameForm" />
             </form>
 
@@ -59,9 +62,15 @@
           </span>
         </h1>
 
-        <p>
+        <div *ngIf="!isEditing">
           <i class="dj-description">{{ dj.profileDesc }}</i>
-        </p>
+        </div>
+
+        <div *ngIf="isEditing">
+          <form class="theme-form" (keydown.enter)="$event.preventDefault()">
+            <input type="textarea" [formControl]="newProfileDescForm" />
+          </form>
+        </div>
       </div>
     </div>
 

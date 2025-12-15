@@ -314,7 +314,7 @@ def update_dj(dj_id: int):
     if new_dj_name:
         fields.append("dj_name = %s")
         values.append(new_dj_name)
-    if new_profile_desc:
+    if new_profile_desc is not None:
         fields.append("profile_desc = %s")
         values.append(new_profile_desc)
     if new_graduating_semester_id is not None:

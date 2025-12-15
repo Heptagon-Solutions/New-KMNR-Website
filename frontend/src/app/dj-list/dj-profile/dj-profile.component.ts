@@ -21,7 +21,9 @@ export class DJProfileComponent {
     validators: [Validators.required, Validators.minLength(1)],
     nonNullable: true,
   });
-  protected readonly newProfileDescForm = new FormControl<string>('');
+  protected readonly newProfileDescForm = new FormControl<string>('', {
+    nonNullable: true,
+  });
 
   protected dj: DJProfile | undefined = undefined;
 
@@ -50,20 +52,46 @@ export class DJProfileComponent {
 
   protected updateProfile() {
     if (this.dj && this.newDJNameForm.valid && this.newProfileDescForm.valid) {
-      const newDJName = this.newDJNameForm.value;
-      const newProfileDesc = this.newProfileDescForm.value;
+      let newDJName: string | null = null;
+      let newProfileDesc: string | null = null;
 
-      this.djService.updateDJInfo(this.dj.id, newDJName, null).subscribe({
-        next: () => {
-          this.dj!.djName = newDJName;
-          this.isEditing = false;
-        },
-        error: (err: HttpErrorResponse) => {
-          alert(
-            `Could not update DJ Name:\n${err.status} ${err.statusText}: ${err.error?.message}`
-          );
-        },
-      });
+      if (
+        this.newDJNameForm.touched &&
+        this.newDJNameForm.value != this.dj.djName
+      ) {
+        newDJName = this.newDJNameForm.value;
+      }
+
+      if (
+        this.newProfileDescForm.touched &&
+        this.newProfileDescForm.value != this.dj.profileDesc
+      ) {
+        newProfileDesc = this.newProfileDescForm.value;
+      }
+
+      if (newDJName !== null || newProfileDesc !== null) {
+        this.djService
+          .updateDJInfo(this.dj.id, newDJName, newProfileDesc)
+          .subscribe({
+            next: () => {
+              if (newDJName !== null) {
+                this.dj!.djName = newDJName;
+              }
+              if (newProfileDesc !== null) {
+                this.dj!.profileDesc = newProfileDesc;
+              }
+              this.isEditing = false;
+            },
+            error: (err: HttpErrorResponse) => {
+              alert(
+                `Could not update DJ Name:\n${err.status} ${err.statusText}: ${err.error?.message}`
+              );
+            },
+          });
+      } else {
+        // Nothing changed
+        this.isEditing = false;
+      }
     }
   }
 
