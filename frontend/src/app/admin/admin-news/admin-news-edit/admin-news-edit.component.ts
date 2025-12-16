@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'admin-news-edit',
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-news-edit.component.scss'],
   standalone: true,
 })
-export class AdminNewsEditComponent {}
+export class AdminNewsEditComponent {
+  constructor(private readonly route: ActivatedRoute) {
+    const newsEntryId = route.snapshot.paramMap.get('id');
+  }
+}
