@@ -137,7 +137,7 @@ CREATE TABLE
         `posting_dj` INT UNSIGNED NOT NULL,
         `title` VARCHAR(50) NOT NULL,
         `content` TEXT NOT NULL,
-        `image` MEDIUMBLOB,
+        `image` MEDIUMBLOB DEFAULT NULL,
         `submit_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `edit_date` TIMESTAMP,
         `hidden` BOOLEAN NOT NULL DEFAULT 0,
