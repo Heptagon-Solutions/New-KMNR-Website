@@ -37,7 +37,7 @@
             <td>
               <button
                 class="theme-button green-button"
-                (click)="editNews(entry)"
+                [routerLink]="['/admin/news/', entry.id, 'edit']"
               >
                 Edit
               </button>

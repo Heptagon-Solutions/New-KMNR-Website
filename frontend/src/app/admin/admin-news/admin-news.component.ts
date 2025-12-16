@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { NewsService } from 'src/app/services/news.service';
 import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
@@ -10,7 +10,7 @@ import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news'
 @Component({
   selector: 'app-admin-news',
   standalone: true,
-  imports: [CommonModule, FormsModule, PaginatorComponent],
+  imports: [CommonModule, FormsModule, PaginatorComponent, RouterModule],
   templateUrl: './admin-news.component.html',
   styleUrls: ['./admin-news.component.scss'],
 })
@@ -57,11 +57,6 @@ export class AdminNewsComponent {
             (this.newsEntries = entries)
         );
     }
-  }
-
-  protected editNews(entry: TownAndCampusNewsEntryDetailed) {
-    // TODO: Implement edit functionality
-    console.log('Edit news:', entry);
   }
 
   protected deleteNews(entryId: number): void {

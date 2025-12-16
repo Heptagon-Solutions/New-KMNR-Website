@@ -1,0 +1,6 @@
+/* Center the card on the page */
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
