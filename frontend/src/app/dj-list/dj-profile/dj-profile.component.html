@@ -1,49 +1,94 @@
-<div class="dj-profile">
-  <on-air />
-  <hr />
-  <div class="dj-info" *ngIf="dj; else errorOccured">
-    <div>
-      <profile-image
-        [imagePath]="dj.profileImg"
-        altText="{{ dj.djName }}'s profile image"
-        [size]="200"
-      />
-
-      <form
-        (submit)="updateProfileImage(profileImageInput.files?.item(0))"
-        class="edit-profile-image-form"
-      >
-        <input
-          type="file"
-          id="new-profile-image"
-          name="new-profile-image"
-          accept="image"
-          (change)="isNewProfileImageValid = profileImageInput.value.length > 0"
-          #profileImageInput
+<div class="modular-card">
+  <div class="card-content">
+    <div class="profile" *ngIf="dj; else errorOccured">
+      <div class="left-side">
+        <profile-image
+          [imagePath]="dj.profileImg"
+          altText="{{ dj.djName }}'s profile image"
+          [size]="200"
         />
-        <br />
 
-        <input
-          type="submit"
-          class="submit"
-          value="Change Profile Image"
-          [disabled]="!isNewProfileImageValid"
-        />
-      </form>
-    </div>
+        <form
+          *ngIf="isEditing"
+          (submit)="updateProfileImage(profileImageInput.files?.item(0))"
+        >
+          <input
+            type="file"
+            class="new-profile-image-input"
+            id="new-profile-image"
+            name="new-profile-image"
+            accept="image"
+            (change)="
+              isNewProfileImageValid = profileImageInput.value.length > 0
+            "
+            #profileImageInput
+          />
+          <br />
 
-    <div class="dj-description">
-      <h1>{{ dj.djName }}</h1>
-      <i>{{ dj.profileDesc }}</i>
+          <input
+            type="submit"
+            class="submit"
+            value="Change Profile Image"
+            [disabled]="!isNewProfileImageValid"
+          />
+        </form>
+      </div>
+
+      <div class="right-side">
+        <h1 class="card-title">
+          <span *ngIf="!isEditing">
+            {{ dj.djName }}
+
+            <button class="theme-button" (click)="startEditing()">
+              <img src="/assets/img/edit.svg" width="30" height="30" />
+            </button>
+          </span>
+
+          <span *ngIf="isEditing" class="edit-dj-name">
+            <form
+              class="theme-form new-dj-name-input"
+              (keydown.enter)="$event.preventDefault()"
+            >
+              <input
+                type="text"
+                [formControl]="newDJNameForm"
+                placeholder="DJ Name*"
+              />
+            </form>
+
+            <button class="theme-button" (click)="updateProfile()">
+              <img src="/assets/img/save.svg" width="30" height="30" />
+            </button>
+
+            <button class="theme-button" (click)="isEditing = false">
+              <img src="/assets/img/cancel.svg" width="30" height="30" />
+            </button>
+          </span>
+        </h1>
+
+        <div *ngIf="!isEditing">
+          <i class="dj-description">{{ dj.profileDesc }}</i>
+        </div>
+
+        <div *ngIf="isEditing">
+          <form class="theme-form" (keydown.enter)="$event.preventDefault()">
+            <input
+              type="textarea"
+              [formControl]="newProfileDescForm"
+              placeholder="Description"
+            />
+          </form>
+        </div>
+      </div>
     </div>
 
     <div class="dj-shows">
       <h2>FEATURED ON</h2>
       <h4>SHOW_NAME</h4>
     </div>
-  </div>
 
-  <ng-template #errorOccured>
-    <div>An error occured</div>
-  </ng-template>
+    <ng-template #errorOccured>
+      <div>An error occured</div>
+    </ng-template>
+  </div>
 </div>

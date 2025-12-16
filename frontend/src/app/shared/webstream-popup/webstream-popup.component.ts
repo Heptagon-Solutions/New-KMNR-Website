@@ -1,38 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 import { Show } from 'src/models/show';
-import { DayOfTheWeek } from 'src/models/general';
-import { WebstreamPlayerComponent } from '../webstream-player/webstream-player.component';
 import { FooterPositionService } from 'src/app/services/footer-position.service';
-
-const SAMPLE_SHOW: Show = {
-  id: 1,
-  name: 'Morning Vibes',
-  shortDesc: 'short desc',
-  day: DayOfTheWeek.Monday,
-  startTime: 8,
-  endTime: 10,
-  semester: {
-    term: 'Fall',
-    year: 2026,
-  },
-  hosts: [
-    {
-      id: 1,
-      djName: 'DJ John',
-      userName: 'dj-john-username',
-      profileImg: null,
-    },
-    {
-      id: 2,
-      djName: 'DJ Sarah',
-      userName: 'dj-sarah-username',
-      profileImg: null,
-    },
-  ],
-};
+import { ShowService } from 'src/app/services/show.service';
+import { WebstreamPlayerComponent } from 'src/app/shared/webstream-player/webstream-player.component';
 
 @Component({
   selector: 'webstream-popup',
@@ -41,20 +14,33 @@ const SAMPLE_SHOW: Show = {
   templateUrl: './webstream-popup.component.html',
   styleUrls: ['./webstream-popup.component.scss'],
 })
-export class WebstreamPopupComponent {
-  protected currentShow: Show | undefined = undefined;
+export class WebstreamPopupComponent implements OnDestroy {
+  protected currentShow: Show | null = null;
 
   protected popupPosition: number = 0;
 
-  constructor(private readonly footerPositionService: FooterPositionService) {
-    // Dummy data for now
-    this.currentShow = SAMPLE_SHOW;
+  private readonly currentShowSubscription: Subscription;
+  private readonly footerPositionSubscription: Subscription;
+
+  constructor(
+    private readonly showService: ShowService,
+    private readonly footerPositionService: FooterPositionService
+  ) {
+    this.currentShowSubscription = this.showService
+      .getCurrentShow()
+      .subscribe((show: Show | null) => (this.currentShow = show));
 
     // Move the popup above the footer when it is visible
-    this.footerPositionService.topOfFooterPosition
-      .pipe(filter(y => y >= 0))
-      .subscribe(y => {
-        this.popupPosition = y;
-      });
+    this.footerPositionSubscription =
+      this.footerPositionService.topOfFooterPosition
+        .pipe(filter(y => y >= 0))
+        .subscribe(y => {
+          this.popupPosition = y;
+        });
+  }
+
+  public ngOnDestroy() {
+    this.currentShowSubscription.unsubscribe();
+    this.footerPositionSubscription.unsubscribe();
   }
 }

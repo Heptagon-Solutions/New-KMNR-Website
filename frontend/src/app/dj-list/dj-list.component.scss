@@ -5,12 +5,13 @@
   padding: 2rem;
 }
 
-/* DJ Grid Layout */
 .dj-grid {
+  justify-self: center;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(5, 170px);
+  gap: 1rem;
+  margin: 1rem 0;
 }
 
 .dj-card {
@@ -29,30 +30,15 @@
   background-color: rgba(255, 255, 255, 0.08);
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
 
-.dj-avatar {
-  margin-bottom: 1rem;
+  .dj-image {
+    transform: scale(1.05);
+  }
 }
 
 .dj-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid #c62828;
   object-fit: cover;
   transition: transform 0.3s ease;
-}
-
-.dj-card:hover .dj-image {
-  transform: scale(1.05);
-}
-
-.dj-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .dj-name {
@@ -61,68 +47,22 @@
   font-weight: 600;
 }
 
-.dj-name a {
+.dj-profile-link {
   color: #c62828;
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
-.dj-name a:hover {
+.dj-profile-link:hover {
   color: #ffffff;
   text-shadow: 0 0 8px #fecb33;
 }
 
+/* Left here in case we decide to include it again later */
 .dj-genres {
   margin: 0;
   font-style: italic;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
-}
-
-.dj-show {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.85rem;
-}
-
-/* Pagination Controls */
-.pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.pagination-btn {
-  background-color: #c62828;
-  color: #000000;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.pagination-btn:hover:not(:disabled) {
-  background-color: #e6b82e;
-  transform: scale(1.02);
-}
-
-.pagination-btn:disabled {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: rgba(0, 0, 0, 0.5);
-  cursor: not-allowed;
-  transform: none;
-}
-
-.page-info {
-  color: #ffffff;
-  font-weight: 500;
-  padding: 0 1rem;
 }
 
 /* No DJs Message */
@@ -132,19 +72,14 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
+.paginator {
+  justify-self: right;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .dj-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-  }
-  
-  .pagination-controls {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .page-info {
-    order: -1;
   }
 }

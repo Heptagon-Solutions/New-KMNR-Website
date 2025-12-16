@@ -7,17 +7,19 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DJ } from 'src/models/dj';
 
 import { DJService } from 'src/app/services/dj.service';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 @Component({
   selector: 'app-admin-djs',
   templateUrl: './admin-djs.component.html',
   styleUrls: ['./admin-djs.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PaginatorComponent],
 })
 export class AdminDJsComponent {
   protected readonly newDJForm = new FormGroup({
@@ -50,17 +52,25 @@ export class AdminDJsComponent {
     }
   }
 
-  private readonly djsPerPage: number = 25;
+  private readonly djsPerPage: number = 10;
 
   private totalDJs: number | undefined = undefined;
 
-  constructor(private readonly djService: DJService) {
+  constructor(
+    private readonly djService: DJService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     djService.getDJCount().subscribe(count => (this.totalDJs = count));
 
     this.goToPage(0);
   }
 
-  public goToPage(newPage: number) {
+  protected backToAdmin() {
+    this.router.navigate(['..'], { relativeTo: this.route });
+  }
+
+  protected goToPage(newPage: number) {
     if (newPage >= 0) {
       this.page = newPage;
 
@@ -70,7 +80,7 @@ export class AdminDJsComponent {
     }
   }
 
-  public createDJ(event: SubmitEvent) {
+  protected createDJ(event: SubmitEvent) {
     // Don't reload the page
     event.preventDefault();
 

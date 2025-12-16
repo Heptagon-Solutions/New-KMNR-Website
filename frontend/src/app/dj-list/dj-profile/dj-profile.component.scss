@@ -1,42 +1,56 @@
-hr {
-  border: 1px solid #c62828;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-}
-
-.dj-info {
+/* Center the card on the page */
+:host {
   display: flex;
-  font-family: 'Bree Serif', serif;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.profile {
+  width: 100%;
+  margin-bottom: 2rem;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'left-side right-side';
+
+  gap: 2rem;
+}
+
+.left-side {
+  grid-area: left-side;
+}
+
+.right-side {
+  grid-area: right-side;
+}
+
+.new-profile-image-input {
+  max-width: 200px;
+}
+
+.edit-dj-name {
+  display: flex;
+  justify-self: center;
   align-items: center;
-  padding: 0 10rem 0 10rem;
+}
 
-  .dj-description {
-    flex-grow: 1;
+.new-dj-name-input {
+  max-width: 300px;
+
+  input {
     text-align: center;
-
-    h1 {
-      color: #0f7173;
-    }
-
-    p {
-      padding-top: 1rem;
-    }
-  }
-
-  .dj-shows {
-    background-color: #d9d9d9;
-    border-radius: 1rem;
-    flex-grow: 1;
-    padding: 1rem;
-
-    h2 {
-      text-align: center;
-      font-family: 'Roboto Condensed', sans-serif;
-      padding-bottom: 1rem;
-    }
   }
 }
 
-.edit-profile-image-form {
-  background-color: white;
+.dj-shows {
+  background-color: #d9d9d9;
+  border-radius: 1rem;
+  flex-grow: 1;
+  padding: 1rem;
+
+  h2 {
+    text-align: center;
+    // font-family: 'Roboto Condensed', sans-serif;
+    padding-bottom: 1rem;
+  }
 }

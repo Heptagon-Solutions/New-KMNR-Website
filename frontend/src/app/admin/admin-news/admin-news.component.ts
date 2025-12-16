@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { NewsService } from 'src/app/services/news.service';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
 
 @Component({
   selector: 'app-admin-news',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, PaginatorComponent, RouterModule],
   templateUrl: './admin-news.component.html',
   styleUrls: ['./admin-news.component.scss'],
 })
@@ -27,17 +28,25 @@ export class AdminNewsComponent {
     }
   }
 
-  private readonly entriesPerPage: number = 25;
+  private readonly entriesPerPage: number = 10;
 
   private totalEntries: number | undefined = undefined;
 
-  constructor(private readonly newsService: NewsService) {
+  constructor(
+    private readonly newsService: NewsService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
+  ) {
     newsService.getNewsCount().subscribe(count => (this.totalEntries = count));
 
     this.goToPage(0);
   }
 
-  public goToPage(newPage: number) {
+  protected backToAdmin() {
+    this.router.navigate(['..'], { relativeTo: this.route });
+  }
+
+  protected goToPage(newPage: number) {
     if (newPage >= 0) {
       this.page = newPage;
 
@@ -50,7 +59,7 @@ export class AdminNewsComponent {
     }
   }
 
-  deleteNews(entryId: number): void {
+  protected deleteNews(entryId: number): void {
     if (confirm('Are you sure you want to delete this news entry?')) {
       this.newsService.deleteNewsEntry(entryId).subscribe({
         next: (success: boolean) => {

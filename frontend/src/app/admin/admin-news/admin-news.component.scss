@@ -5,154 +5,20 @@
   padding: 2rem;
 }
 
-.modular-card {
-  width: 100%;
-  max-width: 1200px;
-  padding: 1.5rem 2rem;
-
-  /* The core design: semi-transparent white background */
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-.card-title {
-  /* Bright, high-contrast text using brand color */
-  color: #c62828; // KMNR Gold
-  font-size: 2rem;
-  font-weight: 700;
-  border-bottom: 2px solid #c62828;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.card-content {
-  /* All other text is white for readability */
-  color: #333333;
-}
-
-/* Style for news table */
-.news-table {
-  width: 100%;
-  color: #333333;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
-}
-
-.news-table th {
-  background-color: rgba(254, 203, 51, 0.2);
-  color: #c62828;
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 2px solid #c62828;
-  font-weight: 600;
-}
-
-.news-table td {
-  padding: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  vertical-align: top;
-}
-
-.news-table tr:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Button Styles */
-.edit-btn,
-.delete-btn,
-.add-btn {
-  padding: 0.5rem 1rem;
-  margin: 0 0.25rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.edit-btn {
+.green-button {
   background-color: #4caf50;
   color: white;
 }
-
-.edit-btn:hover {
+.green-button:hover {
   background-color: #45a049;
 }
 
-.delete-btn {
+.red-button {
   background-color: #f44336;
   color: white;
 }
-
-.delete-btn:hover {
+.red-button:hover {
   background-color: #da190b;
-}
-
-.add-btn {
-  background-color: #c62828;
-  color: #000000;
-  padding: 0.75rem 2rem;
-}
-
-.add-btn:hover {
-  background-color: #e6b82e;
-  transform: scale(1.02);
-}
-
-/* Form Styles */
-.add-news-section {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.add-news-section h3 {
-  color: #c62828;
-  margin-bottom: 1rem;
-}
-
-.news-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333333;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #333333;
-  font-size: 1rem;
-  resize: vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #c62828;
-  box-shadow: 0 0 5px rgba(254, 203, 51, 0.5);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6);
 }
 
 /* No News Message */
@@ -160,4 +26,8 @@
   text-align: center;
   padding: 2rem;
   color: rgba(255, 255, 255, 0.7);
+}
+
+.paginator {
+  justify-self: right;
 }

@@ -1,19 +1,28 @@
-.dj-icons {
-  grid-area: icons;
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.show-image {
+  grid-area: show-image;
 }
 
 .show-info {
   grid-area: info;
 }
 
-.snapman {
-  grid-area: player;
+.dj-images {
+  grid-area: dj-images;
 }
 
 .on-air {
-  font-family: "Bree Serif", serif;
+  width: 100%;
+
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: "icons info player";
+  grid-template-areas: 'show-image info dj-images';
+  justify-items: center;
+
+  font-family: 'Bree Serif', serif;
 }
