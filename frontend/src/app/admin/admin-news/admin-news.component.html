@@ -31,7 +31,12 @@
             <td>{{ entry.expirationDate | date : 'short' }}</td>
             <td>{{ entry.approved ? 'Yes' : 'No' }}</td>
             <td>
-              <button class="edit-btn" (click)="editNews(entry)">Edit</button>
+              <button
+                class="edit-btn"
+                [routerLink]="['/admin/news/', entry.id, 'edit']"
+              >
+                Edit
+              </button>
               <button class="delete-btn" (click)="deleteNews(entry.id)">
                 Delete
               </button>

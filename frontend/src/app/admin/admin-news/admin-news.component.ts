@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { NewsService } from 'src/app/services/news.service';
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-news',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './admin-news.component.html',
   styleUrls: ['./admin-news.component.scss'],
 })
@@ -31,9 +31,7 @@ export class AdminNewsComponent {
 
   private totalEntries: number | undefined = undefined;
 
-  constructor(
-    private readonly newsService: NewsService,
-    private readonly router: Router) {
+  constructor(private readonly newsService: NewsService) {
     newsService.getNewsCount().subscribe(count => (this.totalEntries = count));
 
     this.goToPage(0);
@@ -50,11 +48,6 @@ export class AdminNewsComponent {
             (this.newsEntries = entries)
         );
     }
-  }
-
-  editNews(entry: TownAndCampusNewsEntryDetailed) {
-      this.router.navigate(['/admin/news/edit/', entry.id])
-    console.log('Edit news:', entry);
   }
 
   deleteNews(entryId: number): void {
