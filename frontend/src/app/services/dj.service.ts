@@ -45,7 +45,7 @@ export class DJService {
   }
 
   /** Returns the new profileImg value for DJ of given id. */
-  public updateDjProfileImg(id: number, newImage: File): Observable<string> {
+  public updateDJProfileImg(id: number, newImage: File): Observable<string> {
     const formData = new FormData();
     formData.append('image', newImage);
     return this.http
@@ -54,5 +54,32 @@ export class DJService {
         formData
       )
       .pipe(map(resp => resp.profileImg));
+  }
+
+  /**
+   * Edit a DJ's name or profile description (or both).
+   * If a parameter is null, it will NOT be updated.
+   */
+  public updateDJInfo(
+    id: number,
+    newName: string | null = null,
+    newDesc: string | null = null
+  ): Observable<void> {
+    const formData = new FormData();
+
+    if (newName) {
+      // Do not allow empty DJ names
+      formData.append('djName', newName);
+    }
+    if (newDesc !== null) {
+      // Allow empty descriptions, but null means do not edit
+      formData.append('profileDesc', newDesc);
+    }
+
+    return this.http.patch(`${DJS_API_URL}/${id}`, formData).pipe(
+      map(_ => {
+        return;
+      })
+    );
   }
 }
