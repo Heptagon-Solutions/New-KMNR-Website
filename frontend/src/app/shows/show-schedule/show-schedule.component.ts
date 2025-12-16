@@ -109,4 +109,18 @@ export class ShowScheduleComponent implements OnInit {
       ) || null
     );
   }
+
+  public getShowForStartingTime(time: number, day: DayOfTheWeek): Show | null {
+    return (
+      this.shows.find(
+        show =>
+          show.day === day && time == show.startTime
+      ) || null
+    );
+  }
+
+  public getShowDuration(time: number, day: DayOfTheWeek): number {
+    let show: Show | null = this.getShowForTimeSlot(time, day);
+    return show === null ? 0 : Math.abs(show.endTime - show.startTime);
+  }
 }

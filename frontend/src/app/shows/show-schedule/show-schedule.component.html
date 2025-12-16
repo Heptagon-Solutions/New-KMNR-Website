@@ -3,27 +3,23 @@
   <div class="card-content">
     <div class="schedule-container">
       <div class="week-grid">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th class="time-header">Time</th>
-              <th>Sunday</th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let time of times" class="schedule-row">
-              <th class="time-slot">{{ parseTime(time) }}</th>
+        <div class="schedule-table">
+          <div class="time-header">Time</div>
+          <div class="weekday">Sunday</div>
+          <div class="weekday">Monday</div>
+          <div class="weekday">Tuesday</div>
+          <div class="weekday">Wednesday</div>
+          <div class="weekday">Thursday</div>
+          <div class="weekday">Friday</div>
+          <div class="weekday">Saturday</div>
+          <ng-container *ngFor="let time of times" class="schedule-row">
+            <div class="time-slot">{{ parseTime(time) }}</div>
 
-              <td *ngFor="let day of days" class="show-slot">
+            <ng-container *ngFor="let day of days">
+              <div class="show-slot" [style.grid-row]="'span ' + getShowDuration(time, day)" *ngIf="getShowForStartingTime(time, day) || !getShowForTimeSlot(time, day)">
                 <div
                   class="show-info"
-                  *ngIf="getShowForTimeSlot(time, day); else automation"
+                  *ngIf="getShowForStartingTime(time, day); else automation"
                 >
                   <span class="show-name">
                     {{ getShowForTimeSlot(time, day)?.name || 'No Show' }}
@@ -43,10 +39,10 @@
                     <span>Automation</span>
                   </div>
                 </ng-template>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
       </div>
 
       <div class="schedule-legend" *ngIf="shows.length === 0">
