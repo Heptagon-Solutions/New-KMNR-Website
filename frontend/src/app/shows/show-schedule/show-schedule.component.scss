@@ -15,7 +15,7 @@
   backdrop-filter: blur(2px);
   
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
@@ -30,8 +30,7 @@
 }
 
 .card-content {
-  /* All other text is white for readability */
-  color: #FFFFFF;
+  color: #000;
 }
 
 /* Schedule Container */
@@ -42,7 +41,7 @@
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  color: #FFFFFF;
+  color: #000;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   overflow: hidden;
@@ -57,7 +56,7 @@
 
 .schedule-table > div {
   display: inline-block;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background-color: rgba(254, 203, 51, 0.2);
   color: #c62828;
   font-weight: 600;
@@ -93,18 +92,18 @@
 
 .show-name {
   font-weight: 600;
-  color: #ffffff;
+  color: #36454F;
   font-size: 0.9rem;
 }
 
 .show-dj {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(54, 69, 79, 0.8);
   font-style: italic;
 }
 
 .empty-slot {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.4);
   font-style: italic;
   font-size: 0.8rem;
   padding: 0.75rem;
