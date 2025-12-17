@@ -3,55 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DayOfTheWeek } from 'src/models/general';
 import { Show } from 'src/models/show';
-
-const SAMPLE_DATA: Show[] = [
-  {
-    id: 1,
-    name: 'Morning Vibes',
-    shortDesc: 'short description',
-    day: DayOfTheWeek.Monday,
-    startTime: 8,
-    endTime: 10,
-    semester: {
-      term: 'Fall',
-      year: 2026,
-    },
-    hosts: [
-      {
-        id: 1,
-        djName: 'DJ John',
-        userName: 'dj-john-username',
-        profileImg: null,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Rock Hour',
-    shortDesc: 'short desc',
-    day: DayOfTheWeek.Tuesday,
-    startTime: 15,
-    endTime: 16,
-    semester: {
-      term: 'Fall',
-      year: 2026,
-    },
-    hosts: [
-      {
-        id: 2,
-        djName: 'DJ Sarah',
-        userName: 'dj-sarah-user-name',
-        profileImg: null,
-      },
-      {
-        id: 3,
-        djName: 'DJ Other',
-        userName: 'dj-other-user-name',
-        profileImg: null,
-      },
-    ],
-  },
-];
+import { DEMO_SCHEDULE } from 'src/app/services/demo_schedule';
 
 @Component({
   selector: 'show-schedule',
@@ -88,7 +40,7 @@ export class ShowScheduleComponent implements OnInit {
     // this.showService.getShows().subscribe(shows => this.shows = shows);
 
     // Mock data for now
-    this.shows = SAMPLE_DATA;
+    this.shows = DEMO_SCHEDULE;
   }
 
   public parseTime(t: number): string {
@@ -112,10 +64,8 @@ export class ShowScheduleComponent implements OnInit {
 
   public getShowForStartingTime(time: number, day: DayOfTheWeek): Show | null {
     return (
-      this.shows.find(
-        show =>
-          show.day === day && time == show.startTime
-      ) || null
+      this.shows.find(show => show.day === day && time == show.startTime) ||
+      null
     );
   }
 
