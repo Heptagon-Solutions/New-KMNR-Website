@@ -61,6 +61,7 @@
         *ngIf="!isSpotifyConnected"
         (click)="connectToSpotify()"
         class="spotify-connect-btn"
+        disabled="true"
       >
         Connect to Spotify
       </button>
@@ -101,7 +102,7 @@
             <button
               *ngIf="!playlist.spotifyPlaylistId"
               (click)="publishToSpotify(playlist)"
-              [disabled]="!isSpotifyConnected"
+              [disabled]="true || !isSpotifyConnected"
               class="post-button"
             >
               Publish to Spotify
@@ -122,8 +123,7 @@
     <div class="subpages-section">
       <h2>Subpages</h2>
       <ul>
-        <li><a routerLink="/dj">TODO: Other DJ pages</a></li>
-        <li><a routerLink="/dj">Rent a Show</a></li>
+        <li><a routerLink="/admin">Admin Dashboard</a></li>
       </ul>
     </div>
   </div>
