@@ -1,4 +1,15 @@
 <div class="shows">
-  <!-- <h1 class="schedule-header">{{ semester?.term }} {{ semester?.year }}</h1> -->
-  <show-schedule />
+  <div class="modular-card">
+    <!-- <h1 class="schedule-header">{{ semester?.term }} {{ semester?.year }}</h1> -->
+    <!--
+      Complete functionality not yet ported. Original code for this:
+
+      <ShowSchedule
+        v-if="store.currentSchedule.value.slots.length > 0"
+        :slots="store.currentSchedule.value.slots"
+        :shows="store.currentSchedule.value.shows"
+      />
+    -->
+    <show-schedule />
+  </div>
 </div>
