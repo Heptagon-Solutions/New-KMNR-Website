@@ -29,16 +29,12 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-}
 
+  margin: 1em 0;
+}
 .submit-btn:hover {
   background-color: #a91e1e;
   transform: scale(1.02);
-}
-
-.submit-btn a {
-  color: #ffffff;
-  text-decoration: none;
 }
 
 .events-section {
@@ -100,4 +96,8 @@
   color: #333333;
   line-height: 1.5;
   font-size: 1rem;
+}
+
+.paginator {
+  justify-self: right;
 }

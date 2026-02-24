@@ -6,7 +6,6 @@ import { API_URL } from 'src/constants';
 import { DJ } from 'src/models/dj';
 
 import { DJService } from 'src/app/services/dj.service';
-import { OnAirComponent } from 'src/app/shared/on-air/on-air.component';
 import { ProfileImageComponent } from 'src/app/shared/profile-image/profile-image.component';
 import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
@@ -16,7 +15,6 @@ import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component
   imports: [
     CommonModule,
     RouterModule,
-    OnAirComponent,
     ProfileImageComponent,
     PaginatorComponent,
   ],

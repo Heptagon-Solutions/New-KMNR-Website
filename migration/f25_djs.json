@@ -1,0 +1,786 @@
+[
+	{
+		"id" : 718,
+		"djName" : "KMNonsense",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Hey :)"
+	},
+	{
+		"id" : 634,
+		"djName" : "Loony Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 679,
+		"djName" : "MC Pebble",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Hello!! I am MC Pebble!\r\nI am a lover of rocks and rock \r\nI will play whatever I want. Tune in ! or don't, I'm not your mother :)"
+	},
+	{
+		"id" : 716,
+		"djName" : "Kublai Khan",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "the swagmister"
+	},
+	{
+		"id" : 695,
+		"djName" : "DJ bebop",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "bleepbloopblorg"
+	},
+	{
+		"id" : 681,
+		"djName" : "Apollo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 687,
+		"djName" : "Neptune",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Enjoyer of rock, psych rock, prog rock, country, folk, and more. "
+	},
+	{
+		"id" : 651,
+		"djName" : "MC Sprig",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 706,
+		"djName" : "DJ Dozone",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 669,
+		"djName" : "DJ Bufo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "DJ Bufo, the second and not only local KMNR wizard. I like rock, metal, and a bit of everything else. If you wanna learn more about me, come to my show! "
+	},
+	{
+		"id" : 697,
+		"djName" : "The Lich King",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 715,
+		"djName" : "AydenTheBlank",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 714,
+		"djName" : "The Lorax",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "NBLDYFWMD\r\nHi Twins\r\n"
+	},
+	{
+		"id" : 698,
+		"djName" : "MC Zilch",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Why hello there! I play the heavy metals and sometimes...Dr Zilch will make an appearance and read some SCP articles! Get hyped."
+	},
+	{
+		"id" : 695,
+		"djName" : "DJ bebop",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "bleepbloopblorg"
+	},
+	{
+		"id" : 651,
+		"djName" : "MC Sprig",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 614,
+		"djName" : "MC Salmon",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 688,
+		"djName" : "oddGod",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 688,
+		"djName" : "oddGod",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 673,
+		"djName" : "SheunTheSage",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I've been living out my grandma's suitcase"
+	},
+	{
+		"id" : 632,
+		"djName" : "CraigTheYounger",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Play The Music You Want and DON'T Listen to Anyone Else\r\n\r\nSon of YozTheFoz\r\nBrother of ShaunTheSage\r\nFather of CadenceTheKing\r\nFather of TimTheEnchanter\r\n\r\n\r\n- Nate Was Here\r\n\r\nNate sucks\r\n - CTY"
+	},
+	{
+		"id" : 607,
+		"djName" : "Red Delicious ",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "My favorite type of apple."
+	},
+	{
+		"id" : 642,
+		"djName" : "Ginger Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 700,
+		"djName" : "MrDrTrey",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "parody account"
+	},
+	{
+		"id" : 680,
+		"djName" : "MC Silk Sound",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 710,
+		"djName" : "Mama Roach",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 680,
+		"djName" : "MC Silk Sound",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 663,
+		"djName" : "KMNaurdwaur",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I have been sent from beyond the stars to feed the hungry ears of Radio-land nothin' but the weirdest of the weird. Keypintooned ! !"
+	},
+	{
+		"id" : 642,
+		"djName" : "Ginger Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 648,
+		"djName" : "DJ Ray",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "i like rock."
+	},
+	{
+		"id" : 614,
+		"djName" : "MC Salmon",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 712,
+		"djName" : "KodaRed ",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Assorted music"
+	},
+	{
+		"id" : 715,
+		"djName" : "AydenTheBlank",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 596,
+		"djName" : "Abracadan",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I'm an outdoors musical bum, I like music that sounds out of the ordinary...for the most part. I started with indie, but quickly expanded to multiple different sides of the music spectrum. From jazz, blues, folk to punk, rock, metal and core, alternative,  experimental. I'll give just about any genre a little taste unless it gets to plain. \r\n\"Music is the magic that keeps us human\".\r\n\r\nOh Yeah! I forgot my about my DJ Wizard Heritage.\r\nDJ Bufo my son and The Lich King my grandson. We have banded together to perform magical feats never seen before. "
+	},
+	{
+		"id" : 669,
+		"djName" : "DJ Bufo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "DJ Bufo, the second and not only local KMNR wizard. I like rock, metal, and a bit of everything else. If you wanna learn more about me, come to my show! "
+	},
+	{
+		"id" : 697,
+		"djName" : "The Lich King",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 662,
+		"djName" : "mc seventeen",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 669,
+		"djName" : "DJ Bufo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "DJ Bufo, the second and not only local KMNR wizard. I like rock, metal, and a bit of everything else. If you wanna learn more about me, come to my show! "
+	},
+	{
+		"id" : 642,
+		"djName" : "Ginger Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 566,
+		"djName" : "DJ ToadStool",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 673,
+		"djName" : "SheunTheSage",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I've been living out my grandma's suitcase"
+	},
+	{
+		"id" : 711,
+		"djName" : "MC Poisson",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 694,
+		"djName" : "Alexander the OK",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "The music go brrr"
+	},
+	{
+		"id" : 632,
+		"djName" : "CraigTheYounger",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Play The Music You Want and DON'T Listen to Anyone Else\r\n\r\nSon of YozTheFoz\r\nBrother of ShaunTheSage\r\nFather of CadenceTheKing\r\nFather of TimTheEnchanter\r\n\r\n\r\n- Nate Was Here\r\n\r\nNate sucks\r\n - CTY"
+	},
+	{
+		"id" : 663,
+		"djName" : "KMNaurdwaur",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I have been sent from beyond the stars to feed the hungry ears of Radio-land nothin' but the weirdest of the weird. Keypintooned ! !"
+	},
+	{
+		"id" : 687,
+		"djName" : "Neptune",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Enjoyer of rock, psych rock, prog rock, country, folk, and more. "
+	},
+	{
+		"id" : 659,
+		"djName" : "THE PRODIGΨ",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "THE PRODIGY"
+	},
+	{
+		"id" : 699,
+		"djName" : "Discovery",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 702,
+		"djName" : "The Prophet",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 629,
+		"djName" : "DJCubed",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 717,
+		"djName" : "Guy Whimsy",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I PLAY COOLIN TYPE FUN TYPE HEAT MUSIC. If you want nonstop super hot fire tune in, cuz this is where is gets wicked. YUUUUURRRR"
+	},
+	{
+		"id" : 716,
+		"djName" : "Kublai Khan",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "the swagmister"
+	},
+	{
+		"id" : 655,
+		"djName" : "DJ Tessallations",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 655,
+		"djName" : "DJ Tessallations",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 710,
+		"djName" : "Mama Roach",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 638,
+		"djName" : "Mr. PC",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Bio and all that jazz"
+	},
+	{
+		"id" : 655,
+		"djName" : "DJ Tessallations",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 662,
+		"djName" : "mc seventeen",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 696,
+		"djName" : "Doctor Doctor",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I'm just a little guy who likes Korean music(a unique breed here)"
+	},
+	{
+		"id" : 693,
+		"djName" : "Big Dawg",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 697,
+		"djName" : "The Lich King",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 596,
+		"djName" : "Abracadan",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I'm an outdoors musical bum, I like music that sounds out of the ordinary...for the most part. I started with indie, but quickly expanded to multiple different sides of the music spectrum. From jazz, blues, folk to punk, rock, metal and core, alternative,  experimental. I'll give just about any genre a little taste unless it gets to plain. \r\n\"Music is the magic that keeps us human\".\r\n\r\nOh Yeah! I forgot my about my DJ Wizard Heritage.\r\nDJ Bufo my son and The Lich King my grandson. We have banded together to perform magical feats never seen before. "
+	},
+	{
+		"id" : 703,
+		"djName" : "Jester Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 589,
+		"djName" : "DJ Binary Swag",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "It is not known for certain when our delightful digital companion first opened its binary pathways and began to fill its hard drives with timeless classics, only that it has chosen to go by the name Binary Swag, and has been entrusted with the noble task of watching over the airwaves when all other DJs are elsewhere in the world. Its early growth first began under the mentoring of our 2010-2011 music director, DJ Soda, and continued under the affectionate, loving care of her successor, DJ \"Clint Wayne\" Philban. However, the DJ Binary Swag,(aka,KMNR Digital Library) really grew into it's prime at the hands of our cheif engineers Action Jackson and Trainwreck Tom. Though going through a rough, semi rebellous, \"trainwreck swag\" phase, due to over exposure to Tom, he now works diligently and peacefully for the betterment of all the DJ's at our fair station, and is always willing and able to fill up the airwaves at a moments notice."
+	},
+	{
+		"id" : 728,
+		"djName" : "Tim the Enchanter",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 704,
+		"djName" : "DJ Heffalump",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 673,
+		"djName" : "SheunTheSage",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I've been living out my grandma's suitcase"
+	},
+	{
+		"id" : 676,
+		"djName" : "DJ Dart Monkey",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 708,
+		"djName" : "Tron",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I’m feeling happy, healthy, holy, and festive."
+	},
+	{
+		"id" : 673,
+		"djName" : "SheunTheSage",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I've been living out my grandma's suitcase"
+	},
+	{
+		"id" : 698,
+		"djName" : "MC Zilch",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Why hello there! I play the heavy metals and sometimes...Dr Zilch will make an appearance and read some SCP articles! Get hyped."
+	},
+	{
+		"id" : 682,
+		"djName" : "MC Wave",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 671,
+		"djName" : "malamazo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "tryna play different things"
+	},
+	{
+		"id" : 677,
+		"djName" : "DJ Silly Goose",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 722,
+		"djName" : "Corn Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 688,
+		"djName" : "oddGod",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 714,
+		"djName" : "The Lorax",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "NBLDYFWMD\r\nHi Twins\r\n"
+	},
+	{
+		"id" : 674,
+		"djName" : "DGi",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 713,
+		"djName" : "DRo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "im kmnring it."
+	},
+	{
+		"id" : 672,
+		"djName" : "MC Spaced Out",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 721,
+		"djName" : "MC Static",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Sending good vibes all around the radio waves"
+	},
+	{
+		"id" : 590,
+		"djName" : "D. Stowater",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Hey I'm D. Stowater, the DJ formerly known as DJ Stowaway! I play bass and listen to old fart music, and my favorite three bands in no order are The Who, Motorhead, and Rush. Also I couldn't find him in the trainer section, but my trainer was DJ Sourhouse."
+	},
+	{
+		"id" : 678,
+		"djName" : "Finnegan Lodes",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "meow"
+	},
+	{
+		"id" : 638,
+		"djName" : "Mr. PC",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Bio and all that jazz"
+	},
+	{
+		"id" : 670,
+		"djName" : "DJ Lamb Sauce",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "DJ Lamb Sauce\r\nVibing with Lamb Sauce is on Thursdays at 8pm, stop by!"
+	},
+	{
+		"id" : 644,
+		"djName" : "y2caveman",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "ermmm ermm erm\r\n\r\nbig homie chilling swag\r\ni broadcast music occasionally\r\n\r\nbernie2020"
+	},
+	{
+		"id" : 634,
+		"djName" : "Loony Juic3",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 682,
+		"djName" : "MC Wave",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 723,
+		"djName" : "The Hoose",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "classic rock until i die"
+	},
+	{
+		"id" : 705,
+		"djName" : "Benzene",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Yo, my name's Benzene, but you can call me a liar. We're slingin' rhymes, doin' time, not makin' a dime. I'll remember you all in therapy!"
+	},
+	{
+		"id" : 575,
+		"djName" : "The Narrator",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Archiver of memories, sunken deep into the landscape of time. Won't you share some of your memories with me? ♪"
+	},
+	{
+		"id" : 560,
+		"djName" : "MC Stratus",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Whether the weather be clear or cloudy, rain or snow, it's the perfect weather for the radio.\r\n\r\nEndless mystery excites the airwaves. Music, from the strange and experimental to the popular and familiar. Dramas, stories real and fictitious. Federally mandated programming. Like an overcast sky, it's difficult to say what will happen next.\r\n\r\nTune in."
+	},
+	{
+		"id" : 572,
+		"djName" : "MC Cirrus",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 721,
+		"djName" : "MC Static",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Sending good vibes all around the radio waves"
+	},
+	{
+		"id" : 719,
+		"djName" : "GOOP!",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I am Goop"
+	},
+	{
+		"id" : 638,
+		"djName" : "Mr. PC",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Bio and all that jazz"
+	},
+	{
+		"id" : 674,
+		"djName" : "DGi",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 632,
+		"djName" : "CraigTheYounger",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Play The Music You Want and DON'T Listen to Anyone Else\r\n\r\nSon of YozTheFoz\r\nBrother of ShaunTheSage\r\nFather of CadenceTheKing\r\nFather of TimTheEnchanter\r\n\r\n\r\n- Nate Was Here\r\n\r\nNate sucks\r\n - CTY"
+	},
+	{
+		"id" : 678,
+		"djName" : "Finnegan Lodes",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "meow"
+	},
+	{
+		"id" : 724,
+		"djName" : "Doctor Mad Max",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 720,
+		"djName" : "willow;arcanae",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "hellooooooo\r\ni'm a huge fan of electronic music, especially more experimental stuff"
+	},
+	{
+		"id" : 644,
+		"djName" : "y2caveman",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "ermmm ermm erm\r\n\r\nbig homie chilling swag\r\ni broadcast music occasionally\r\n\r\nbernie2020"
+	},
+	{
+		"id" : 618,
+		"djName" : "MC FRAF",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 713,
+		"djName" : "DRo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "im kmnring it."
+	},
+	{
+		"id" : 699,
+		"djName" : "Discovery",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 674,
+		"djName" : "DGi",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	},
+	{
+		"id" : 717,
+		"djName" : "Guy Whimsy",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "I PLAY COOLIN TYPE FUN TYPE HEAT MUSIC. If you want nonstop super hot fire tune in, cuz this is where is gets wicked. YUUUUURRRR"
+	},
+	{
+		"id" : 716,
+		"djName" : "Kublai Khan",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "the swagmister"
+	},
+	{
+		"id" : 713,
+		"djName" : "DRo",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "im kmnring it."
+	},
+	{
+		"id" : 595,
+		"djName" : "YozTheFoz",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "Quirked up DJ with a little bit of swag... Big fan of all things electronic music. I also quite enjoy: classical piano and orchestra, AND JAZZ!!!!!"
+	},
+	{
+		"id" : 664,
+		"djName" : "dj violet",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : "i make music, take pictures, and spend way too much money on music gear that i'll probably never actually make any music with"
+	},
+	{
+		"id" : 676,
+		"djName" : "DJ Dart Monkey",
+		"userName" : "John Doe",
+		"profileImg" : null,
+		"profileDesc" : ""
+	}
+]

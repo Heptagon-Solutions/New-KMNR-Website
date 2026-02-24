@@ -1,0 +1,1142 @@
+[
+  {
+    "id": 3337,
+    "name": "The High Ground",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 23,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3338,
+    "name": "Bufo's Bops",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 22,
+    "end_time": 23,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3339,
+    "name": "One Wizard One Orb",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 21,
+    "end_time": 22,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3340,
+    "name": "Stanky Legs and the Barrel",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 20,
+    "end_time": 21,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3341,
+    "name": "the bite of 89.7",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 19,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3342,
+    "name": "Holy Mackerel",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 18,
+    "end_time": 19,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3343,
+    "name": "The demiGod",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 17,
+    "end_time": 18,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3344,
+    "name": "New Music Show",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 15,
+    "end_time": 17,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3345,
+    "name": "TBD",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 14,
+    "end_time": 15,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3346,
+    "name": "Lone Ranger",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 13,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3348,
+    "name": "Loony Tunes",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 12,
+    "end_time": 13,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3349,
+    "name": "On The Rocks",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 11,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3350,
+    "name": " Your Aunt's favorite Radio Show",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 10,
+    "end_time": 11,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3351,
+    "name": "Freaks and Greeks",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 0,
+    "end_time": 1,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3352,
+    "name": "Skylines",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 14,
+    "end_time": 15,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3353,
+    "name": "Dumb, Dimwit & Doofus",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 15,
+    "end_time": 16,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3354,
+    "name": "Ginger Snaps",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 16,
+    "end_time": 17,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3355,
+    "name": "Digested",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 17,
+    "end_time": 18,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3356,
+    "name": "Gone Fishing",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 18,
+    "end_time": 19,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3357,
+    "name": "Kickin' Rocks",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 19,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3358,
+    "name": "Late Night Snack",
+    "shortDesc": "",
+
+    "day": "Monday",
+    "start_time": 20,
+    "end_time": 21,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3359,
+    "name": "The Wizards of Ooo",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 21,
+    "end_time": 22,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3360,
+    "name": "halogenic",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 22,
+    "end_time": 23,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3361,
+    "name": "Miz Biz",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 23,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3362,
+    "name": "The Lazy Mushroom with OldMan ToadStool",
+    "shortDesc": "cool stuff idk how to explain you just have to be ",
+
+    "day": "Tuesday",
+    "start_time": 0,
+    "end_time": 2,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3363,
+    "name": "Sage & Co.",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 10,
+    "end_time": 11,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3364,
+    "name": "Fish & Chips",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 11,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3365,
+    "name": "Rock and/or Roll",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 13,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3366,
+    "name": "Dihedrals and Records",
+    "shortDesc": "",
+
+    "day": "Tuesday",
+    "start_time": 14,
+    "end_time": 15,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3367,
+    "name": "W.O.S.U.P",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 15,
+    "end_time": 16,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3368,
+    "name": "Tunes with Neptune",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 16,
+    "end_time": 17,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3369,
+    "name": "Checks over Stripes",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 17,
+    "end_time": 18,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3370,
+    "name": "Sifting through Stardust",
+    "shortDesc": "",
+
+    "day": "Tuesday",
+    "start_time": 18,
+    "end_time": 19,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3371,
+    "name": "Riffs of Revelations",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 19,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3372,
+    "name": "Family Show",
+    "shortDesc": "",
+
+    "day": "Tuesday",
+    "start_time": 20,
+    "end_time": 22,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3373,
+    "name": "the veil",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 22,
+    "end_time": 23,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3374,
+    "name": "Metamorphosis",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 23,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3375,
+    "name": "It's All About the Pentiums",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 0,
+    "end_time": 1,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3376,
+    "name": "Couch Time",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 11,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3377,
+    "name": "getting weirder!",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 10,
+    "end_time": 11,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3378,
+    "name": "Dawg Days",
+    "shortDesc": null,
+
+    "day": "We",
+    "start_time": 12,
+    "end_time": 13,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3379,
+    "name": "TBD",
+    "shortDesc": null,
+
+    "day": "We",
+    "start_time": 13,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3380,
+    "name": "Wizard Business Incorporated",
+    "shortDesc": "Metal and its punk adjacent genres, if you are luc",
+
+    "day": "We",
+    "start_time": 14,
+    "end_time": 15,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3381,
+    "name": "The Parallaxing Pantomime",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 15,
+    "end_time": 16,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3382,
+    "name": "The Sanctum",
+    "shortDesc": null,
+
+    "day": "We",
+    "start_time": 20,
+    "end_time": 21,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3383,
+    "name": "The Jungle",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 21,
+    "end_time": 22,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3384,
+    "name": "Spoils of the Desert",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 22,
+    "end_time": 23,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3385,
+    "name": "Going Bananas",
+    "shortDesc": null,
+
+    "day": "We",
+    "start_time": 23,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3386,
+    "name": "Infomercial Block",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 0,
+    "end_time": 1,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3387,
+    "name": "SZP",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 10,
+    "end_time": 11,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3388,
+    "name": "Caught in the Riptide",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 11,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3389,
+    "name": "Birds of a Feather",
+    "shortDesc": "",
+
+    "day": "Thursday",
+    "start_time": 14,
+    "end_time": 15,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3390,
+    "name": "Grandpa's Top Shelf",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 15,
+    "end_time": 16,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3391,
+    "name": "Dr. odd & Mr. God",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 16,
+    "end_time": 17,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3392,
+    "name": "Artist Feature",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 17,
+    "end_time": 19,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3393,
+    "name": "Listening to the trees",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 19,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3394,
+    "name": "One and One is Two",
+    "shortDesc": "i want you... to listen",
+
+    "day": "Thursday",
+    "start_time": 21,
+    "end_time": 22,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3395,
+    "name": "On my own world",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 22,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3396,
+    "name": "That Time I Got Reincarnated as a DJ in Rolla MO",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 11,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3397,
+    "name": "Yap Sesh",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 12,
+    "end_time": 13,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3398,
+    "name": "hooze cruise",
+    "shortDesc": "",
+
+    "day": "Friday",
+    "start_time": 13,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3399,
+    "name": "Resonance",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 14,
+    "end_time": 15,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3400,
+    "name": "Snapshot of Lucent Memoria",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 15,
+    "end_time": 16,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3401,
+    "name": "The Weather Report",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 16,
+    "end_time": 17,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3403,
+    "name": "Sky Wave",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 18,
+    "end_time": 19,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3404,
+    "name": "The New Wave",
+    "shortDesc": "",
+
+    "day": "Friday",
+    "start_time": 19,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3405,
+    "name": "Remember to Floss",
+    "shortDesc": "Quality music only",
+
+    "day": "Friday",
+    "start_time": 20,
+    "end_time": 21,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3406,
+    "name": "Trainee Request Show",
+    "shortDesc": null,
+
+    "day": "Friday",
+    "start_time": 21,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3407,
+    "name": "ii-V-I",
+    "shortDesc": "",
+
+    "day": "Saturday",
+    "start_time": 11,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3408,
+    "name": "Tropical Rain Forest",
+    "shortDesc": null,
+
+    "day": "Saturday",
+    "start_time": 12,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3409,
+    "name": "Live Music Show",
+    "shortDesc": null,
+
+    "day": "Saturday",
+    "start_time": 14,
+    "end_time": 16,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3410,
+    "name": "Roach's Library",
+    "shortDesc": null,
+
+    "day": "Saturday",
+    "start_time": 17,
+    "end_time": 18,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3411,
+    "name": "Fury Road",
+    "shortDesc": null,
+
+    "day": "Saturday",
+    "start_time": 20,
+    "end_time": 21,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3412,
+    "name": "Aqua Regia",
+    "shortDesc": "different \"theme\" each week, you might enjoy this ",
+
+    "day": "Saturday",
+    "start_time": 21,
+    "end_time": 22,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3414,
+    "name": "Stavromula Beta",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 12,
+    "end_time": 13,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3415,
+    "name": "Automation",
+    "shortDesc": null,
+
+    "day": "Sunday",
+    "start_time": 0,
+    "end_time": 12,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3416,
+    "name": "One to Two Grooves",
+    "shortDesc": "",
+
+    "day": "Monday",
+    "start_time": 13,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3418,
+    "name": "the great crupt",
+    "shortDesc": "lorem ipsum\r\n\r\ngamblers deluxe uhh anypercent%chan",
+
+    "day": "Friday",
+    "start_time": 0,
+    "end_time": 1,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3420,
+    "name": "Night Light",
+    "shortDesc": "im kmnring it",
+
+    "day": "Saturday",
+    "start_time": 22,
+    "end_time": 0,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3421,
+    "name": "Automation",
+    "shortDesc": null,
+
+    "day": "Tuesday",
+    "start_time": 12,
+    "end_time": 13,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3422,
+    "name": "Gold Standard",
+    "shortDesc": "I play super hot fire. Need I say more? Probably. ",
+
+    "day": "Friday",
+    "start_time": 10,
+    "end_time": 11,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3424,
+    "name": "Automation",
+    "shortDesc": null,
+
+    "day": "We",
+    "start_time": 1,
+    "end_time": 9,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3425,
+    "name": "Radio Redshift",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 20,
+    "end_time": 21,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3428,
+    "name": "CraigTheElder",
+    "shortDesc": "",
+
+    "day": "Saturday",
+    "start_time": 16,
+    "end_time": 17,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3429,
+    "name": "Soul Resonance",
+    "shortDesc": null,
+
+    "day": "Saturday",
+    "start_time": 18,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3430,
+    "name": "Amateur Hour",
+    "shortDesc": null,
+
+    "day": "Monday",
+    "start_time": 9,
+    "end_time": 10,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3431,
+    "name": "Automation",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 1,
+    "end_time": 10,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3432,
+    "name": "Mid-Century Melodrama",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 12,
+    "end_time": 13,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3433,
+    "name": "soundscapes",
+    "shortDesc": null,
+
+    "day": "Thursday",
+    "start_time": 13,
+    "end_time": 14,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3434,
+    "name": "Random Music Show",
+    "shortDesc": "this show is soooo cool, all physical :}",
+
+    "day": "Friday",
+    "start_time": 9,
+    "end_time": 10,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3435,
+    "name": "Engineering Hours",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 16,
+    "end_time": 18,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3436,
+    "name": "music mode",
+    "shortDesc": "",
+
+    "day": "Tuesday",
+    "start_time": 9,
+    "end_time": 10,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3437,
+    "name": "Bananas & Broken Hearts",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 9,
+    "end_time": 10,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3438,
+    "name": "TBD",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 18,
+    "end_time": 19,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  },
+  {
+    "id": 3439,
+    "name": "Intergalactic Backdrop",
+    "shortDesc": "",
+
+    "day": "We",
+    "start_time": 19,
+    "end_time": 20,
+    "semester_id": 63,
+    "show_image": null,
+    "hosts": []
+  }
+]

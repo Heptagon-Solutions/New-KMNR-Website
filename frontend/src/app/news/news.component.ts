@@ -4,12 +4,13 @@ import { RouterModule } from '@angular/router';
 
 import { TownAndCampusNewsEntryDetailed } from 'src/models/town-and-campus-news';
 
-import { NewsService } from '../services/news.service';
+import { NewsService } from 'src/app/services/news.service';
+import { PaginatorComponent } from 'src/app/shared/paginator/paginator.component';
 
 @Component({
   selector: 'news',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, PaginatorComponent],
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
 })
